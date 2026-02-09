@@ -989,21 +989,19 @@
 
                 </TabControl>
             </Grid>
-            <Grid Grid.Row="2">
-                <Border CornerRadius=" 10 ">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="#879ec0" Offset="1"/>
-                            <GradientStop Color="White" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-                </Border>
-                <Label FontWeight="Bold" Foreground="White" FontSize="20"  Margin="0,0,10,0" >
-                    <Label.Effect>
-                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
-                    </Label.Effect> Position Data
-                </Label>
-            </Grid>
+            <Border Grid.Row="2" Background="{StaticResource HeaderBackground}" Margin="5,5,5,5" CornerRadius="8">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="POSITIONING DATA" Foreground="White" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0">
+                        <Label.Effect>
+                            <DropShadowEffect BlurRadius="5" Opacity="0.2" ShadowDepth="2"/>
+                        </Label.Effect>
+                    </Label>
+                </Grid>
+            </Border>
             <Grid Grid.Row="3">
                 <TabControl  Grid.Column="0" FontSize="15" BorderThickness="1" FontFamily="Arial" FontWeight="SemiBold" Margin="4 0 0 2">
                     <TabItem FontSize="16" Header="RUN POSITIONING"  Height="30">
@@ -2255,24 +2253,19 @@
                 </TabControl>
 
             </Grid>
-            <Grid Grid.Row="4">
-                <Border CornerRadius=" 10 ">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="#879ec0" Offset="1"/>
-                            <GradientStop Color="White" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-                </Border>
-                <Label FontWeight="Bold" Foreground="White" FontSize="20"  Margin="0,0,10,0" >
-                    <Label.Effect>
-                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
-                    </Label.Effect> Manual
-                </Label>
-            </Grid>
-            <Grid Grid.Row="5">
-
-            </Grid>
+            <Border Grid.Row="4" Background="{StaticResource HeaderBackground}" Margin="5,5,5,5" CornerRadius="8">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="MANUAL" Foreground="White" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0">
+                        <Label.Effect>
+                            <DropShadowEffect BlurRadius="5" Opacity="0.2" ShadowDepth="2"/>
+                        </Label.Effect>
+                    </Label>
+                </Grid>
+            </Border>
         </Grid>
 
 
