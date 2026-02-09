@@ -85,12 +85,12 @@ namespace Development
             // Event Page Main
             this.Loaded += PgMain_Loaded;
             this.Unloaded += PgMain_Unloaded;
-            //this.btHome.Click += BtHome_Click;
             //this.btStart.Click += BtStart_Click;
+            //this.btStop.Click += BtStop_Click;
             //this.btReset.Click += BtReset_Click;
+            //this.btHome.Click += BtHome_Click;
             this.btLotIn.Click += BtLotIn_Click;
             this.btLotOut.Click += BtLotOut_Click;
-            //this.btStop.Click += BtStop_Click;
 
         }
 
