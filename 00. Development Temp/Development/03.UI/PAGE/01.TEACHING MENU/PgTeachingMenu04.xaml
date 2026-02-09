@@ -1,0 +1,297 @@
+﻿<Page x:Class="Development.PgTeachingMenu04"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Development"
+      mc:Ignorable="d" 
+      d:DesignHeight="890" d:DesignWidth="1300"
+      Title="PgTeachingMenu04">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="220"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="1" Background="{StaticResource HeaderBackground}" Margin="0,5,5,5" CornerRadius="12">
+            <Grid>
+                <StackPanel Margin="10">
+                    <Label Content="SYSTEM MENU" Foreground="White" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10,0,20"/>
+
+                    <Button x:Name="btMenuTab00"  BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="5 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}">
+                        MANUAL TAB
+                    </Button>
+                    <Button x:Name="btMenuTab01"  BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="5 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}">
+                        LOADER MGZ
+                    </Button>
+                    <Button x:Name="btMenuTab02"  BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="5 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}">
+                        TRANSFER
+                    </Button>
+                    <Button x:Name="btMenuTab03"  BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="5 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}">
+                        UNLOADER MGZ
+                    </Button>
+                    <Button x:Name="btMenuTab04" Background="SteelBlue" Foreground="White" BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="5 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}">
+                        MATRIX SETTINGS
+                    </Button>
+
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Bottom" Margin="15">
+                    <TextBlock Text="ITM" Foreground="#AED6F1" FontSize="20" FontWeight="Bold"/>
+                    <TextBlock Text="Semiconductor" Foreground="White" Opacity="0.7" FontSize="12"/>
+                    <TextBlock Text="AUTOMATION TEAM" Foreground="White" Opacity="0.5" FontSize="10"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid Grid.Column="0" Margin="0 0 2 0">
+            <Grid.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource sButton}">
+                    <Setter Property="FontSize" Value="24" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="Margin" Value="2 0 30 0" />
+                    <Setter Property="Background" Value="#6787c0" />
+                    <Setter Property="BorderThickness" Value="0.7"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                </Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="23" />
+                    <Setter Property="FontFamily" Value="Arial"/>
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="2"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="FontFamily" Value="Arial"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="Padding" Value="5 0 0 0"/>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="Cyan"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="Padding" Value="1"/>
+                </Style>
+                <Style TargetType="local:DataWord_D">
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Margin" Value="2"/>
+                    <Setter Property="FontSize" Value="22"/>
+                    <Setter Property="FontFamily" Value="Agency FB"/>
+                    <Setter Property="IsTabItem" Value="False"/>
+                </Style>
+                <Style TargetType="local:DataDWord_D">
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Margin" Value="2"/>
+                    <Setter Property="FontSize" Value="22"/>
+                    <Setter Property="FontFamily" Value="Agency FB"/>
+                    <Setter Property="IsTabItem" Value="False"/>
+                </Style>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Grid>
+                                    <Border Name="Border"
+                                         Background="LightGray"
+                                         BorderBrush="#333333"
+                                         BorderThickness="0.5"
+                                         CornerRadius="1"
+                                         Margin="1"
+                                         SnapsToDevicePixels="True">
+                                        <Grid>
+                                            <ContentPresenter x:Name="ContentSite"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           ContentSource="Header"
+                                           Margin="10,2"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="#333333" />
+                                        <Setter TargetName="Border" Property="BorderBrush" Value="#333333" />
+                                        <Setter Property="Foreground" Value="White" />
+
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="2" />
+
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="LightGray" />
+                                        <Setter TargetName="Border" Property="BorderBrush" Value="Gray" />
+                                        <Setter Property="Foreground" Value="Black" />
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="1" />
+
+                                    </Trigger>
+
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+
+                <Border Grid.Row="0" Background="{StaticResource HeaderBackground}" Margin="5,5,5,5" CornerRadius="8">
+                    <Label x:Name="txtMenu" FontWeight="Bold" Foreground="White" FontSize="24"  Margin="0,0,10,0" Style="{x:Null}">
+                        <Label.Effect>
+                            <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
+                        </Label.Effect> DATA MATRIX MENU
+                    </Label>
+                </Border>
+                <!--<Button Grid.Column="1" Margin="4" x:Name="BtnSave" Width="150" HorizontalAlignment="Right">
+    <StackPanel Orientation="Horizontal">
+       
+        <TextBlock VerticalAlignment="Center" Padding="15,0,0,0">Save</TextBlock>
+    </StackPanel>
+</Button>-->
+            </Grid>
+            <TabControl  Grid.Row="1" FontSize="15" BorderThickness="1" FontFamily="Arial" FontWeight="SemiBold" Margin="4 0 0 2">
+                <TabItem FontSize="16" Header="LOADER UNLOADER"  Height="30">
+                    <Grid Background="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.01*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.01*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="2.8*"></ColumnDefinition>
+                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+
+                            </Grid.RowDefinitions>
+                            <Label  Grid.Row="0" Grid.Column="0" Background="CadetBlue" Foreground="White" BorderThickness="1" FontSize="16"  FontWeight="Bold" BorderBrush="#000000">No.</Label>
+                            <Label  Grid.Row="0" Grid.Column="1" Background="CadetBlue" Foreground="White" BorderThickness="1" FontSize="16"  FontWeight="Bold" BorderBrush="#000000">Data Matrix Name</Label>
+                            <Label  Grid.Row="0" Grid.Column="2" Background="CadetBlue" Foreground="White" BorderThickness="1" FontSize="14"  FontWeight="Bold" BorderBrush="#000000">Value</Label>
+
+                            <UniformGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Columns="1" Rows="18">
+                                <Label Margin="2 2 0 2" BorderThickness="1 1 0 1" Background="LightGray" Foreground="Blue"></Label>
+                                <Label Content="1"/>
+                                <Label Content="2"/>
+                                <Label Content="3"/>
+                                <Label Content="4"/>
+                                <Label Content="5"/>
+                                <Label Content="6"/>
+                                <Label Content="7"/>
+                                <Label Content="8"/>
+
+                                <Label Margin="2 2 0 2" BorderThickness="1 1 0 1" Background="LightGray" Foreground="Blue"></Label>
+                                <Label Content="1"/>
+                                <Label Content="2"/>
+                                <Label Content="3"/>
+                                <Label Content="4"/>
+                                <Label Content="5"/>
+                                <Label Content="6"/>
+                                <Label Content="7"/>
+                                <Label Content="8"/>
+
+                            </UniformGrid>
+                            <UniformGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Columns="1" Rows="18">
+                                <Label HorizontalContentAlignment="Left" Content="LOADER MEGAZINE" Margin="0 2 0 2" BorderThickness="0 1 0 1" Background="LightGray" Foreground="Blue"/>
+                                <Label HorizontalContentAlignment="Left">MATRIX Z POINT</Label>
+                                <Label HorizontalContentAlignment="Left">MATRIX Z PITCH</Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+
+                                <Label HorizontalContentAlignment="Left" Content="UNLOADER MEGAZINE" Margin="0 2 0 2" BorderThickness="0 1 0 1" Background="LightGray" Foreground="Blue"/>
+                                <Label HorizontalContentAlignment="Left">MATRIX Z POINT</Label>
+                                <Label HorizontalContentAlignment="Left">MATRIX Z PITCH</Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+
+                            </UniformGrid>
+                            <UniformGrid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Columns="1" Rows="18">
+                                <Label Margin="0 2 2 2" BorderThickness="0 1 1 1" Background="LightGray" Foreground="Blue"></Label>
+                                <local:DataDWord_D
+                                    NoOfDisplay="2"
+                                    NoOfDecimalDigits="0"
+                                    CodeDevice="D" Device="502"
+                                    IsReadOnly="False"
+                                    Foreground="Aqua"
+>
+                                </local:DataDWord_D>
+                                <local:DataDWord_D
+                                    NoOfDisplay="3"
+                                    NoOfDecimalDigits="3"
+                                    CodeDevice="D" Device="504"
+                                    IsReadOnly="False"
+                                    Foreground="Aqua"
+>
+                                </local:DataDWord_D>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+
+                                <Label Margin="0 2 2 2" BorderThickness="0 1 1 1" Background="LightGray" Foreground="Blue"></Label>
+                                <local:DataDWord_D
+                                    NoOfDisplay="2"
+                                    NoOfDecimalDigits="0"
+                                    CodeDevice="D" Device="512"
+                                    IsReadOnly="False"
+                                    Foreground="Aqua"
+>
+                                </local:DataDWord_D>
+                                <local:DataDWord_D
+                                    NoOfDisplay="3"
+                                    NoOfDecimalDigits="3"
+                                    CodeDevice="D" Device="514"
+                                    IsReadOnly="False"
+                                    Foreground="Aqua"
+>
+                                </local:DataDWord_D>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+                                <Label HorizontalContentAlignment="Left"></Label>
+
+                            </UniformGrid>
+                        </Grid>
+
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+
+    </Grid>
+</Page>

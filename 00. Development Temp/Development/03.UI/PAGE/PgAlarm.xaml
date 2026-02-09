@@ -1,0 +1,95 @@
+﻿<Page x:Class="Development.PgAlarm"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Development"
+      mc:Ignorable="d" 
+      d:DesignHeight="790" d:DesignWidth="1300"
+      Title="PgAlarm">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="220"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Margin="0 5 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="2.25*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+               
+                <Border Grid.Row="0" Background="{StaticResource HeaderBackground}" Margin="5,0,5,5" CornerRadius="8">
+                    <Label Content="USE LOG" Foreground="White" FontSize="24" FontWeight="Bold" 
+                             VerticalAlignment="Center" Margin="20,0,0,0">
+                        <Label.Effect>
+                            <DropShadowEffect BlurRadius="5" Opacity="0.2" ShadowDepth="2"/>
+                        </Label.Effect>
+                    </Label>
+                </Border>
+            </Grid>
+            <TabControl Grid.Row="1" FontSize="20" Margin="5">
+                <TabItem Header="Alarm Log">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                                                <DataGrid Grid.Row="0" Grid.Column="0" x:Name="dgridAlarms" FontSize="16"
+                              CanUserAddRows="false" CanUserDeleteRows="False" SelectionMode="Single"
+                              AutoGenerateColumns="False" HorizontalContentAlignment="Center">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="No" Binding="{Binding id}" Width="50"/>
+                                <DataGridTextColumn Header="Date Time" Binding="{Binding createdTime}" Width="200"/>
+                                <DataGridTextColumn Header="Code" Binding="{Binding alarmCode}" Width="50"/>
+                                <DataGridTextColumn Header="Message" Binding="{Binding message}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <UniformGrid Grid.Row="1" Columns="7">
+                            <UniformGrid.Resources>
+                                <Style TargetType="Button" BasedOn="{StaticResource mButton}">
+                                    <Setter Property="Margin" Value="4,4,0,4"/>
+                                    <Setter Property="FontSize" Value="20"/>
+                                </Style>
+                            </UniformGrid.Resources>
+
+                            <Button x:Name="btAlarmFirst">|&lt; First</Button>
+                            <Button x:Name="btAlarmPrePage">&lt;&lt; Pre Page</Button>
+                            <Button x:Name="btAlarmPrevious">&lt; Previous</Button>
+                            <Button x:Name="btAlarmCurrent" Foreground="White" Background="DarkSeaGreen">2449/2449</Button>
+                            <Button x:Name="btAlarmNext">Next &gt;</Button>
+                            <Button x:Name="btAlarmNextPage">Next Page &gt;&gt;</Button>
+                            <Button x:Name="btAlarmLast">Last &gt;|</Button>
+
+
+                        </UniformGrid>
+                    </Grid>
+                </TabItem>
+
+                
+            </TabControl>
+        </Grid>
+        <Border Grid.Column="1" Background="{StaticResource HeaderBackground}" Margin="0,5,5,5" CornerRadius="12">
+            <Grid>
+                <StackPanel Margin="10">
+                    <Label Content="SYSTEM MENU" Foreground="White" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10,0,20"/>
+
+                    <Button x:Name="btSetting1" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="10 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}" Content="ALARM" Background="#2980B9" Foreground="White" BorderThickness="0"/>
+                   
+
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Bottom" Margin="15">
+                    <TextBlock Text="ITM" Foreground="#AED6F1" FontSize="20" FontWeight="Bold"/>
+                    <TextBlock Text="Semiconductor" Foreground="White" Opacity="0.7" FontSize="12"/>
+                    <TextBlock Text="AUTOMATION TEAM" Foreground="White" Opacity="0.5" FontSize="10"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+
+
+    </Grid>
+</Page>

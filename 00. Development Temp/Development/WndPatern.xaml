@@ -1,0 +1,99 @@
+﻿<Window x:Class="Development.WndPatern"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Development"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="WndPatern" Height="550" Width="550">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Label FontSize="30" FontWeight="Bold" Margin="1,1,1,1" Background="CadetBlue" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">SELECTION PATTERN</Label>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="0*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Background="LightGray">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton x:Name="rdbPatern1" BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/1.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern2" BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/2.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern3" Visibility="Hidden" BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/3.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern4" Visibility="Hidden" BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/4.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern5" BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/5.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern6" BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/6.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern7" Visibility="Hidden" BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/7.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern8" Visibility="Hidden" BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/8.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern9" BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/9.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern10" BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/10.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern11" Visibility="Hidden" BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/11.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern12" Visibility="Hidden" BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/12.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern13" BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/13.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern14" BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/14.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern15" Visibility="Hidden" BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/15.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+                <RadioButton x:Name="rdbPatern16" Visibility="Hidden" BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5">
+                    <Image Margin="2,2,2,2" Source="/01.Image/16.PNG" Stretch="Fill"></Image>
+                </RadioButton>
+            </Grid>
+            
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" x:Name="btnSave"  Content="SAVE" Height="50" Margin="10" Style="{StaticResource sButton}"/>
+            <Button Grid.Column="1" x:Name="btnCancle"  Content="CANCLE" Height="50" Margin="10" Style="{StaticResource sButton}"/>
+
+            
+        </Grid>
+    </Grid>
+</Window>

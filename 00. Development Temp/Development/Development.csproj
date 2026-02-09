@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{57F06D19-803B-4911-A84F-6F11BD9CC89A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Development</RootNamespace>
+    <AssemblyName>Development</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app_9073363.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml.Framework, Version=3.3.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.Framework.3.3.0\lib\net46\DocumentFormat.OpenXml.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=7.6.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.7.6.1\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.8.0.0\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=8.0.0.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.8.0.0\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.1\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.119.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.119.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.9.0.1\lib\net462\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="02.LIBRARY\03.Library ManagerSetting\AssignSystem.cs" />
+    <Compile Include="02.LIBRARY\02.Library AppSetting\AppSetting.cs" />
+    <Compile Include="02.LIBRARY\04.LogFile\MyLogger.cs" />
+    <Compile Include="02.LIBRARY\03.Library ManagerSetting\ManagerSetting.cs" />
+    <Compile Include="02.LIBRARY\05.SQLLite\Dba.cs" />
+    <Compile Include="02.LIBRARY\05.SQLLite\DbRead.cs" />
+    <Compile Include="02.LIBRARY\05.SQLLite\DbWrite.cs" />
+    <Compile Include="02.LIBRARY\07.PLC\01.Mitsubishi\RS 422 SC09\FX3_SC09.cs" />
+    <Compile Include="02.LIBRARY\07.PLC\01.Mitsubishi\TCP MC Protocol\TCP_MCProtocol.cs" />
+    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatMes.cs" />
+    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatS000.cs" />
+    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatS001.cs" />
+    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatS010.cs" />
+    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatS011.cs" />
+    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatS020.cs" />
+    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatS021.cs" />
+    <Compile Include="02.LIBRARY\10.MES\01.MES Json\Mes00Check.cs" />
+    <Compile Include="02.LIBRARY\10.MES\MESCheckLogIn.cs" />
+    <Compile Include="02.LIBRARY\10.MES\01.MES Json\MES00SendPCB.cs" />
+    <Compile Include="02.LIBRARY\10.MES\01.MES Json\MES00Service.cs" />
+    <Compile Include="02.LIBRARY\10.MES\MESSetting.cs" />
+    <Compile Include="03.UI\PAGE\PgAlarm.xaml.cs">
+      <DependentUpon>PgAlarm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\PgInput.xaml.cs">
+      <DependentUpon>PgInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\PgOutput.xaml.cs">
+      <DependentUpon>PgOutput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\09.UIManager\Uimanger.cs" />
+    <Compile Include="03.UI\PAGE\08.ASSIGN MENU\PgAssignMenu.xaml.cs">
+      <DependentUpon>PgAssignMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\03.Library ManagerSetting\SettingFTPUpdate.cs" />
+    <Compile Include="02.LIBRARY\01.CheckUpdate\Updater.cs" />
+    <Compile Include="03.UI\WND\WndCheckUpdate.xaml.cs">
+      <DependentUpon>WndCheckUpdate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\03.Library ManagerSetting\LoginApp.cs" />
+    <Compile Include="02.LIBRARY\03.Library ManagerSetting\ManagerLogin.cs" />
+    <Compile Include="02.LIBRARY\03.Library ManagerSetting\UserLog.cs" />
+    <Compile Include="02.LIBRARY\03.Library ManagerSetting\UserManager.cs" />
+    <Compile Include="03.UI\WND\WndChangePass.xaml.cs">
+      <DependentUpon>WndChangePass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\WND\03.WND LOGIN\WndLogin.xaml.cs">
+      <DependentUpon>WndLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\WND\03.WND LOGIN\WndLoginMES.xaml.cs">
+      <DependentUpon>WndLoginMES.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\06.Alarm\AlarmList.cs" />
+    <Compile Include="02.LIBRARY\06.Alarm\EllipseInfo.cs" />
+    <Compile Include="03.UI\PAGE\08.ASSIGN MENU\PgAssignAlarmSetting.xaml.cs">
+      <DependentUpon>PgAssignAlarmSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\06.Alarm\StatusMachine.cs" />
+    <Compile Include="03.UI\WND\02.WND ALARM\WndAlarm.xaml.cs">
+      <DependentUpon>WndAlarm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu01.xaml.cs">
+      <DependentUpon>PgMechanicalMenu01.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\07.PLC\01.Mitsubishi\TCP MC Protocol\ServiceTCPMCProtocolBinary.cs" />
+    <Compile Include="02.LIBRARY\02.Library AppSetting\SettingDevice.cs" />
+    <Compile Include="02.LIBRARY\02.Library AppSetting\TCPSetting.cs" />
+    <Compile Include="03.UI\WND\WndComfirm.xaml.cs">
+      <DependentUpon>WndComfirm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\WND\01.WND SETTING\WndMCTCPSetting.xaml.cs">
+      <DependentUpon>WndMCTCPSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\02.Library AppSetting\SaveDevice.cs" />
+    <Compile Include="02.LIBRARY\02.Library AppSetting\SC09Setting.cs" />
+    <Compile Include="02.LIBRARY\07.PLC\00.Common PLC\SelectDevice.cs" />
+    <Compile Include="03.UI\WND\01.WND SETTING\WndSC09Setting.xaml.cs">
+      <DependentUpon>WndSC09Setting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\07.PLC\01.Mitsubishi\RS 422 SC09\ServiceRs422Fx.cs" />
+    <Compile Include="02.LIBRARY\02.Library AppSetting\COMSetting.cs" />
+    <Compile Include="03.UI\WND\02.WND ALARM\WndAlarmMES.xaml.cs">
+      <DependentUpon>WndAlarmMES.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\WND\01.WND SETTING\WndComSetting.xaml.cs">
+      <DependentUpon>WndComSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\02.Library AppSetting\LotInData.cs" />
+    <Compile Include="05.USER CONTROL PLC\01.Button\PLCButton.xaml.cs">
+      <DependentUpon>PLCButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\08.SystemsManager\01.NotifyPLCBits\IObserverChangeBits.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\01.NotifyPLCBits\NotifyPLCBits.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\02.NotifyPLCWord_D\IObserverChangeWords.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\02.NotifyPLCWord_D\NotifyPLCWord.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\03.NotifyPLCDWord_D\IObserverChangeDWord.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\03.NotifyPLCDWord_D\NotifyPLCDWord.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\SystemsManager.cs" />
+    <Compile Include="05.USER CONTROL PLC\02.DisplayWord\DataDWord_D.xaml.cs">
+      <DependentUpon>DataDWord_D.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="05.USER CONTROL PLC\02.DisplayWord\DataWord_D.xaml.cs">
+      <DependentUpon>DataWord_D.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\WND\WndLotin.xaml.cs">
+      <DependentUpon>WndLotin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="05.USER CONTROL PLC\04.RetangleLamp\RectangleLamp.xaml.cs">
+      <DependentUpon>RectangleLamp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\07.PLC\02.PLC LS\01.TCP XGT Server\ServiceXGTServerTCP.cs" />
+    <Compile Include="02.LIBRARY\07.PLC\02.PLC LS\04.LS XGTServer COM\ServiceLSXGTServerCOM.cs" />
+    <Compile Include="02.LIBRARY\05.SQLLite\SQLimageAlarm.cs" />
+    <Compile Include="03.UI\WND\01.WND SETTING\WndModbusComSetting.xaml.cs">
+      <DependentUpon>WndModbusComSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\07.PLC\02.PLC LS\04.LS XGTServer COM\XGTServerCom.cs" />
+    <Compile Include="02.LIBRARY\07.PLC\02.PLC LS\01.TCP XGT Server\XGTServerTCP.cs" />
+    <Compile Include="03.UI\WND\WndMessenger.xaml.cs">
+      <DependentUpon>WndMessenger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\04.LogFile\LogLevel.cs" />
+    <Compile Include="300.Library Tester\TesterCOM.cs" />
+    <Compile Include="200.Server TCP Vision\TcpImageServer.cs" />
+    <Compile Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu02.xaml.cs">
+      <DependentUpon>PgMechanicalMenu02.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu05.xaml.cs">
+      <DependentUpon>PgMechanicalMenu05.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="200.Vision ZoomBorder\ZoomBorder.cs" />
+    <Compile Include="400.ECIGA WEIGHT\Scale.cs" />
+    <Compile Include="400.ECIGA WEIGHT\Scanner.cs" />
+    <Compile Include="400.ECIGA WEIGHT\ScannerLogger.cs" />
+    <Compile Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu04.xaml.cs">
+      <DependentUpon>PgMechanicalMenu04.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataPCB.cs" />
+    <Compile Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu03.xaml.cs">
+      <DependentUpon>PgMechanicalMenu03.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.ko.Designer.cs">
+      <DependentUpon>Resources.ko.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.ja.Designer.cs">
+      <DependentUpon>Resources.ja.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.zh.Designer.cs">
+      <DependentUpon>Resources.zh.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.vi.Designer.cs">
+      <DependentUpon>Resources.vi.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="50.MANUAL VISION\WorkItem.cs" />
+    <Compile Include="RUNMachine.cs" />
+    <Compile Include="WndPatern.xaml.cs">
+      <DependentUpon>WndPatern.xaml</DependentUpon>
+    </Compile>
+    <Page Include="05.USER CONTROL PLC\02.DisplayWord\DataDWord_D.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="05.USER CONTROL PLC\02.DisplayWord\DataWord_D.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="02.LIBRARY\05.SQLLite\AlarmInfo.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="02.LIBRARY\07.PLC\00.Common PLC\Device.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\04.NotifyPLCDWord_ZR\IObserverChangeDWord_ZR.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\05.NotifyPLCWord_ZR\IObserverChangeWord_ZR.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\06.NotifyEvenMES\IObserverMES.cs" />
+    <Compile Include="02.LIBRARY\10.MES\02.MES COM\Mes01Repository.cs" />
+    <Compile Include="02.LIBRARY\10.MES\02.MES COM\MES01Check.cs" />
+    <Compile Include="02.LIBRARY\10.MES\02.MES COM\MES01Service.cs" />
+    <Compile Include="02.LIBRARY\11.Scanner\01.Keyence\02.Scanner TCP\KeyenceScannerTCP.cs" />
+    <Compile Include="02.LIBRARY\11.Scanner\01.Keyence\01.Scanner COM\KeyenceScannerCom.cs" />
+    <Compile Include="02.LIBRARY\07.PLC\01.Mitsubishi\RS232 Modbus\FX_RS232_MODBUS.cs" />
+    <Compile Include="02.LIBRARY\05.SQLLite\EventLog.cs" />
+    <Compile Include="300.Library Tester\IOTester.cs" />
+    <Compile Include="200.Server TCP Vision\DATACheck.cs" />
+    <Compile Include="200.Server TCP Vision\FormatVision.cs" />
+    <Compile Include="200.Server TCP Vision\IObserverDataVision.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\07.NotifyPLCWord_R\IObserverChangeDWord_R.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\08.NotifyPLCWord_R\IObserverChangeWord_R.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="03.UI\PAGE\PgMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\PgMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\PgAlarm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\PgInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\PgOutput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\08.ASSIGN MENU\PgAssignMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="04.STYLE\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="04.STYLE\ImageStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="04.STYLE\LabelStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="04.STYLE\Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="04.STYLE\TextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="03.UI\WND\WndCheckUpdate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\WndChangePass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\03.WND LOGIN\WndLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\03.WND LOGIN\WndLoginMES.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\08.ASSIGN MENU\PgAssignAlarmSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\02.WND ALARM\WndAlarm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu01.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\WndComfirm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\01.WND SETTING\WndMCTCPSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\01.WND SETTING\WndSC09Setting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\02.WND ALARM\WndAlarmMES.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\01.WND SETTING\WndComSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="05.USER CONTROL PLC\01.Button\PLCButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\WndLotin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\01.TEACHING MENU\PgTeachingMenu01.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\01.TEACHING MENU\PgTeachingMenu02.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\03.SYSTEM MENU\PgSystemMenu01.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\03.SYSTEM MENU\PgSystemMenu02.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\04.MANUAL OPERATION\PgManual01.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\05.STATUS MENU\PgStatusMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\06.MODEL\PgModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\07.SUPER USER MENU\PgSuperUserMenu01.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\07.SUPER USER MENU\PgSuperUserMenu02.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\07.SUPER USER MENU\PgSuperUserMenu03.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\07.SUPER USER MENU\PgSuperUserMenu04.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="05.USER CONTROL PLC\04.RetangleLamp\RectangleLamp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\01.WND SETTING\WndModbusComSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\WndMessenger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\01.TEACHING MENU\PgTeachingMenu03.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\01.TEACHING MENU\PgTeachingMenu04.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu02.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu05.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu04.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu03.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WndPatern.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="03.UI\PAGE\PgMain.xaml.cs">
+      <DependentUpon>PgMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\PgMenu.xaml.cs">
+      <DependentUpon>PgMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\01.TEACHING MENU\PgTeachingMenu01.xaml.cs">
+      <DependentUpon>PgTeachingMenu01.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\01.TEACHING MENU\PgTeachingMenu02.xaml.cs">
+      <DependentUpon>PgTeachingMenu02.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\03.SYSTEM MENU\PgSystemMenu01.xaml.cs">
+      <DependentUpon>PgSystemMenu01.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\03.SYSTEM MENU\PgSystemMenu02.xaml.cs">
+      <DependentUpon>PgSystemMenu02.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\04.MANUAL OPERATION\PgManual01.xaml.cs">
+      <DependentUpon>PgManual01.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\05.STATUS MENU\PgStatusMenu.xaml.cs">
+      <DependentUpon>PgStatusMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\06.MODEL\PgModel.xaml.cs">
+      <DependentUpon>PgModel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\07.SUPER USER MENU\PgSuperUserMenu01.xaml.cs">
+      <DependentUpon>PgSuperUserMenu01.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\07.SUPER USER MENU\PgSuperUserMenu02.xaml.cs">
+      <DependentUpon>PgSuperUserMenu02.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\07.SUPER USER MENU\PgSuperUserMenu03.xaml.cs">
+      <DependentUpon>PgSuperUserMenu03.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\07.SUPER USER MENU\PgSuperUserMenu04.xaml.cs">
+      <DependentUpon>PgSuperUserMenu04.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="02.LIBRARY\08.SystemsManager\04.NotifyPLCDWord_ZR\NotifyPLCDWord_ZR.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\05.NotifyPLCWord_ZR\NotifyPLCWord_ZR.cs" />
+    <Compile Include="02.LIBRARY\02.Library AppSetting\ModbusCOMSetting.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\06.NotifyEvenMES\NotifyEvenMES.cs" />
+    <Compile Include="03.UI\PAGE\01.TEACHING MENU\PgTeachingMenu03.xaml.cs">
+      <DependentUpon>PgTeachingMenu03.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="03.UI\PAGE\01.TEACHING MENU\PgTeachingMenu04.xaml.cs">
+      <DependentUpon>PgTeachingMenu04.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="300.Library Tester\NotifyEvenTester.cs" />
+    <Compile Include="02.LIBRARY\12.PLCStore\PLCStore.cs" />
+    <Compile Include="200.Server TCP Vision\NotifyEvenDataVision.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\07.NotifyPLCWord_R\NotifyPLCDWord_R.cs" />
+    <Compile Include="02.LIBRARY\08.SystemsManager\08.NotifyPLCWord_R\NotifyPLCWord_R.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.ko.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ko.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ja.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ja.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.zh.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.vi.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="01.IMAGE\Autoteam.png" />
+    <Resource Include="01.IMAGE\Autoteam1.png" />
+    <Resource Include="01.IMAGE\Autotem2.png" />
+    <Resource Include="01.IMAGE\avatar.png" />
+    <Resource Include="01.IMAGE\btdown.png" />
+    <Resource Include="01.IMAGE\btdown1.png" />
+    <Resource Include="01.IMAGE\btup.png" />
+    <Resource Include="01.IMAGE\btup1.png" />
+    <Resource Include="01.IMAGE\button off.png" />
+    <Resource Include="01.IMAGE\button on.png" />
+    <Resource Include="01.IMAGE\checked.png" />
+    <Resource Include="01.IMAGE\Close.png" />
+    <Resource Include="01.IMAGE\close1.png" />
+    <Resource Include="01.IMAGE\disconnect.png" />
+    <Resource Include="01.IMAGE\down3.png" />
+    <Resource Include="01.IMAGE\FTP.png" />
+    <Resource Include="01.IMAGE\home.png" />
+    <Resource Include="01.IMAGE\id.png" />
+    <Resource Include="01.IMAGE\key.png" />
+    <Resource Include="01.IMAGE\login.png" />
+    <Resource Include="01.IMAGE\Logo.png" />
+    <Resource Include="01.IMAGE\logout.png" />
+    <Resource Include="01.IMAGE\Manager.png" />
+    <Resource Include="01.IMAGE\Manager1.png" />
+    <Resource Include="01.IMAGE\Manager2.png" />
+    <Resource Include="01.IMAGE\menu-admin.png" />
+    <Resource Include="01.IMAGE\menu-grid.png" />
+    <Resource Include="01.IMAGE\menu-manual.png" />
+    <Resource Include="01.IMAGE\menu-mechanic.png" />
+    <Resource Include="01.IMAGE\menu-save.png" />
+    <Resource Include="01.IMAGE\menu-system.png" />
+    <Resource Include="01.IMAGE\mini1.png" />
+    <Resource Include="01.IMAGE\mini2.png" />
+    <Resource Include="01.IMAGE\open.png" />
+    <Resource Include="01.IMAGE\Operator.png" />
+    <Resource Include="01.IMAGE\pattern0.png" />
+    <Resource Include="01.IMAGE\pattern1.png" />
+    <Resource Include="01.IMAGE\pattern2.png" />
+    <Resource Include="01.IMAGE\pattern3.png" />
+    <Resource Include="01.IMAGE\pattern4.png" />
+    <Resource Include="01.IMAGE\pattern5.png" />
+    <Resource Include="01.IMAGE\pattern6.png" />
+    <Resource Include="01.IMAGE\pattern7.png" />
+    <Resource Include="01.IMAGE\Pause.png" />
+    <Resource Include="01.IMAGE\plc.png" />
+    <Resource Include="01.IMAGE\Reset.png" />
+    <Resource Include="01.IMAGE\restore.png" />
+    <Resource Include="01.IMAGE\save.png" />
+    <Resource Include="01.IMAGE\save01.png" />
+    <Resource Include="01.IMAGE\save02.png" />
+    <Resource Include="01.IMAGE\save03.png" />
+    <Resource Include="01.IMAGE\Scanner.PNG" />
+    <Resource Include="01.IMAGE\setting.png" />
+    <Resource Include="01.IMAGE\setting1.png" />
+    <Resource Include="01.IMAGE\setting2.png" />
+    <Resource Include="01.IMAGE\settings.png" />
+    <Resource Include="01.IMAGE\shutdown_def.png" />
+    <Resource Include="01.IMAGE\Start.png" />
+    <Resource Include="01.IMAGE\Status.png" />
+    <Resource Include="01.IMAGE\Stop.png" />
+    <Resource Include="01.IMAGE\System.png" />
+    <Resource Include="01.IMAGE\team.png" />
+    <Resource Include="01.IMAGE\up3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="01.IMAGE\updated.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="01.IMAGE\Minion.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="01.IMAGE\Minion1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="02.LIBRARY\07.PLC\02.PLC LS\02.TCP Modbus LS\" />
+    <Folder Include="02.LIBRARY\07.PLC\02.PLC LS\03.COM Modbus LS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KeyPad\KeyPad.csproj">
+      <Project>{3adbff38-915c-4115-9cdd-81c0cad9733a}</Project>
+      <Name>KeyPad</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="app_9073165.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="app_9073363.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="04.STYLE\app_9073165.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="04.STYLE\app_9073363.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="01.IMAGE\picture.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="01.IMAGE\1.png" />
+    <Resource Include="01.IMAGE\10.png" />
+    <Resource Include="01.IMAGE\11.png" />
+    <Resource Include="01.IMAGE\12.png" />
+    <Resource Include="01.IMAGE\13.png" />
+    <Resource Include="01.IMAGE\14.png" />
+    <Resource Include="01.IMAGE\15.png" />
+    <Resource Include="01.IMAGE\16.png" />
+    <Resource Include="01.IMAGE\2.png" />
+    <Resource Include="01.IMAGE\3.png" />
+    <Resource Include="01.IMAGE\4.png" />
+    <Resource Include="01.IMAGE\5.png" />
+    <Resource Include="01.IMAGE\6.png" />
+    <Resource Include="01.IMAGE\7.png" />
+    <Resource Include="01.IMAGE\8.png" />
+    <Resource Include="01.IMAGE\9.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+</Project>

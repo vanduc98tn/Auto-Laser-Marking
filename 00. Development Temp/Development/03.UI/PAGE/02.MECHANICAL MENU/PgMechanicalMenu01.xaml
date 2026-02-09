@@ -1,0 +1,206 @@
+﻿<Page x:Class="Development.PgMechanicalMenu01"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Development"
+      mc:Ignorable="d" 
+      d:DesignHeight="790" d:DesignWidth="1300"
+      Title="PgMechanicalMenu01">
+
+    <Page.Resources>
+        
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderBrush" Value="#ABB2B9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style x:Key="SectionHeader" TargetType="Label">
+            <Setter Property="Background" Value="#34495E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource PrimaryBackground}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="220"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="1" Background="{StaticResource HeaderBackground}" Margin="0,5,5,5" CornerRadius="12">
+            <Grid>
+                <StackPanel Margin="10">
+                    <Label Content="SYSTEM MENU" Foreground="White" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10,0,20"/>
+
+                    <Button x:Name="btMenuTab01" Background="SteelBlue" Foreground="White" BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="5 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}">
+                        PLC
+                    </Button>
+                    <Button x:Name="btMenuTab02"  BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="5 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}">
+                        MES TCP
+                    </Button>
+                    <Button x:Name="btMenuTab03"  BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="5 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}">
+                        SCANNER TCP
+                    </Button>
+                    <!--<Button x:Name="btMenuTab04"  BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="5 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}">
+                        SCANNER COM
+                    </Button>-->
+                    <Button x:Name="btMenuTab05"  BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="5 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}">
+                        LASER COM
+                    </Button>
+
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Bottom" Margin="15">
+                    <TextBlock Text="ITM" Foreground="#AED6F1" FontSize="20" FontWeight="Bold"/>
+                    <TextBlock Text="Semiconductor" Foreground="White" Opacity="0.7" FontSize="12"/>
+                    <TextBlock Text="AUTOMATION TEAM" Foreground="White" Opacity="0.5" FontSize="10"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="{StaticResource HeaderBackground}" Margin="5,5,5,5" CornerRadius="8">
+                <Label Content="PLC SETTING" Foreground="White" FontSize="24" FontWeight="Bold" 
+                       VerticalAlignment="Center" Margin="20,0,0,0">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="5" Opacity="0.2" ShadowDepth="2"/>
+                    </Label.Effect>
+                </Label>
+            </Border>
+
+            <Grid Grid.Row="1" Margin="10,5,10,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Background="White" CornerRadius="8" Margin="0,0,5,0" BorderBrush="{StaticResource BorderColor}" BorderThickness="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Logs" Style="{StaticResource SectionHeader}" Opacity="0.9"/>
+                        <TextBox Grid.Row="1" x:Name="txtLogs" Text="{Binding rxLog}" Background="Black" Foreground="White" 
+                                 BorderThickness="0" VerticalContentAlignment="Top" FontFamily="Consolas" FontSize="13" Margin="0" VerticalScrollBarVisibility="Visible"/>
+                        <Button Grid.Row="2" x:Name="btLogClear" Content="Clear Logs" Margin="5,5" Style="{StaticResource sButton}"/>
+                    </Grid>
+                </Border>
+
+                <Grid Grid.Column="1" Margin="5,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="3*"/>
+                        
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" x:Name="lbConnect" Content="DEVICE CONFIGURATION" Style="{StaticResource SectionHeader}" Height="50" Margin="0,0,0,0"/>
+                    <Border Grid.Row="1" Background="White" CornerRadius="8" Padding="10" Margin="0,0,0,10" BorderBrush="{StaticResource BorderColor}" BorderThickness="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Width="150">
+                                <Button x:Name="btnSave" Content="Save Config" Height="30" Margin="2" Style="{StaticResource sButton}"/>
+                                <Button x:Name="btnOpen" Content="Open Config" Height="30" Margin="2" Style="{StaticResource sButton}"/>
+                                <Button x:Name="btnClose" Content="Close Port" Height="30" Margin="2" Style="{StaticResource sButton}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                <Label Content="Device Protocol Type" FontSize="12" Foreground="Gray"/>
+                                <ComboBox x:Name="cbSelectDeviceType" SelectedValuePath="Content" Height="30" Margin="0,0,0,10">
+                                    <ComboBoxItem Tag="MCProtocolBinaryEthernet">Mitsubishi_MC_Protocol_Binary_TCP</ComboBoxItem>
+                                    <ComboBoxItem Tag="MCProtocolAsciiEthernet">Mitsubishi_RS422_SC09</ComboBoxItem>
+                                    <ComboBoxItem Tag="LSXGTServerTCP">LS_XGTServer_TCP</ComboBoxItem>
+                                    <ComboBoxItem Tag="LSModbusCOM">LS_XGTServer_COM</ComboBoxItem>
+                                </ComboBox>
+                                <Button x:Name="btnSettingDevice" Content="⚙ Device Settings" Height="40" Style="{StaticResource sButton}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <Label Grid.Row="2" Content="PLC DATA OPERATIONS" Style="{StaticResource SectionHeader}" />
+                    <Border Grid.Row="3" Background="White" CornerRadius="8" Padding="10" BorderBrush="{StaticResource BorderColor}" BorderThickness="1">
+                       
+                            <StackPanel>
+                                <TextBlock Text="Read from PLC" FontWeight="Bold" Margin="0,0,0,5" Foreground="#2C3E50"/>
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+
+                                </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+                                        <Button x:Name="btReadBit" Content="Read Bit" Height="30" Style="{StaticResource sButton}" Margin="0,1"/>
+                                        <Button x:Name="btReadWord" Content="Read Word" Height="30" Style="{StaticResource sButton}" Margin="0,1"/>
+                                        <Button x:Name="btReadDWord" Content="Read DWord" Height="30" Style="{StaticResource sButton}" Margin="0,1"/>
+                                        <Button x:Name="btReadString" Content="Read String" Height="30" Style="{StaticResource sButton}" Margin="0,1"/>
+                                </StackPanel>
+                                <ComboBox x:Name="cbSelectDevice" Grid.Column="1" Height="30" Margin="2" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectedValuePath="Content">
+                                    <ComboBoxItem  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" >D</ComboBoxItem>
+                                    <ComboBoxItem  VerticalContentAlignment="Center" HorizontalContentAlignment="Center">M</ComboBoxItem>
+                                </ComboBox>
+                                <TextBox x:Name="tbxValueInput" Grid.Column="2" Margin="2" Height="30" VerticalAlignment="Top"/>
+                                    <TextBox x:Name="tbxValueList" Grid.Column="3" Margin="2" Height="30" VerticalAlignment="Top" Text="1"/>
+                                </Grid>
+                            <TextBox x:Name="tbxValueOutput" Height="80" IsReadOnly="True" Background="#F8F9F9" Margin="0,0,0,15" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+
+                                <TextBlock Text="Write to PLC" FontWeight="Bold" Margin="0,0,0,5" Foreground="#2C3E50"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="*"/>
+
+                                </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+                                        <Button x:Name="btWriteBit" Height="30" Content="Write Bit" Style="{StaticResource sButton}" Margin="0,1"/>
+                                        <Button x:Name="btWriteWord" Height="30" Content="Write Word" Style="{StaticResource sButton}" Margin="0,1"/>
+                                        <Button x:Name="btWriteDWord" Height="30" Content="Write DWord" Style="{StaticResource sButton}" Margin="0,1"/>
+                                        <Button x:Name="btWriteString" Height="30" Content="Write String" Style="{StaticResource sButton}" Margin="0,1"/>
+                                </StackPanel>
+                                <ComboBox x:Name="cbSelectDeviceOut" Margin="2" Grid.Column="1" Height="30" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectedValuePath="Content">
+                                    <ComboBoxItem  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" >D</ComboBoxItem>
+                                    <ComboBoxItem  VerticalContentAlignment="Center" HorizontalContentAlignment="Center">M</ComboBoxItem>
+                                </ComboBox>
+     
+                                 <TextBox x:Name="tbxValueInputW" Grid.Column="2" Margin="2" Height="30" VerticalAlignment="Top"/>
+                                <TextBox x:Name="tbxValueinput2" Grid.Column="3" VerticalAlignment="Top"  Height="30" Margin="2"/>
+                            </Grid>
+                            
+                                <TextBlock FontSize="11" Foreground="#E74C3C" TextWrapping="Wrap">
+                                    <Run Text="Note: The string can convert value if bool: true, false, 0, 1"/>
+                                </TextBlock>
+                                
+                            </StackPanel>
+                      
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+        
+    </Grid>
+</Page>

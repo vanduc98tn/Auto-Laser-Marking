@@ -1,0 +1,39 @@
+﻿<Window x:Class="Development.WndSC09Setting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Development"
+        mc:Ignorable="d"
+        Title="WndSC09Setting" WindowStyle="None" WindowStartupLocation="CenterScreen" Height="180" Width="420">
+    <Grid MouseDown="Window_MouseDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+               
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Margin="1 7" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" BorderBrush="Black" BorderThickness="1">COM</Label>
+
+            <ComboBox Margin="2,7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Grid.Column="1"  x:Name="cbSelecCom"  >
+            </ComboBox>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Margin="10" Width="150" Content="OK" Style="{StaticResource mainButton}" x:Name="btnOk" FontWeight="Bold" ></Button>
+            <Button Grid.Column="1" Margin="10" Width="150" Content="CANCEL" Style="{StaticResource mainButton}" x:Name="btnCancle" FontWeight="Bold" ></Button>
+        </Grid>
+    </Grid>
+</Window>

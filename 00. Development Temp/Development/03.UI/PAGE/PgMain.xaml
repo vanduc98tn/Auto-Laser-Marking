@@ -1,0 +1,1119 @@
+﻿<Page x:Class="Development.PgMain"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Development"
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
+      xmlns:Language="clr-namespace:Development.Properties"
+      mc:Ignorable="d" 
+     d:DesignHeight="1000" d:DesignWidth="1900"
+      Title="PgMain">
+
+    <Grid Background="#fff0f0f0" Margin="3,3,3,0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" />
+            <RowDefinition Height="620*" />
+            <RowDefinition Height="120*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                    <GradientStop Color="#879ec0" Offset="1"/>
+                    <GradientStop Color="White" Offset="1"/>
+                    
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="1.2*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0">
+
+                </Grid>
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                           FontSize="20" 
+                           FontWeight="Bold" 
+                           VerticalContentAlignment="Center" 
+                           Foreground="White"
+                           HorizontalContentAlignment="Center" 
+                           Background="Transparent">STATUS</Label>
+
+                    <local:RectangleLamp
+                             Grid.Row="0"
+                             Grid.Column="1"
+                             Margin="2"
+                             IsTabItem="False"
+                             DeviceLamp="M" AddressLamp="6147"
+                             TextON="RUNNING"
+                             TextOFF="STOP"
+                             Background="LightGray"
+                             FontSize="12"
+                             Foreground="Black"
+                             BackgroundLampOFF="RED"
+                             BackgroundLampON="GreenYellow" >
+                    </local:RectangleLamp>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.3*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+
+
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"   Content="CONFIG" Foreground="White" FontSize="19" FontWeight="Bold"></Label>
+                    <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
+                        <Label Name="lbConfig" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" Content="SA0006-01A-A1 / B2131G" FontFamily="Bahnschrift SemiBold Condensed" FontSize="18"></Label>
+                    </Border>
+                    <Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="19" FontWeight="Bold" Content="LOT ID"></Label>
+                    <Border Margin="0,5,5,5" Grid.Column="3" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
+                        <Label x:Name="lbLotID" FontFamily="Bahnschrift SemiBold Condensed" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#333333" Content="UF1234" FontSize="18"></Label>
+
+                    </Border>
+                    <Label Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="19" FontWeight="Bold" Content="RECIPE"></Label>
+                    <Border Margin="0,5,5,5" Grid.Column="5" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
+                        <Label x:Name="lbRecipe" FontFamily="Bahnschrift SemiBold Condensed" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#333333" Content="Recipe123" FontSize="18"></Label>
+
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Column="2">
+                    <UniformGrid Grid.Column="3" Columns="3" Rows="2" >
+                        <Label Margin="0,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">MES</Label>
+                        <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">PLC</Label>
+                        <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">SCANNER</Label>
+
+                        <Label Margin="0,0,0,0" x:Name="lbMesConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9" >Disconnect</Label>
+                        <Label Margin="1,0,0,0" x:Name="lbPlcConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
+                        <Label Margin="1,0,0,0" x:Name="lbScannerConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
+                    </UniformGrid>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="White">
+                <Grid Grid.Row="0" Margin="0 2 0 0">
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                            <GradientStop Color="#879ec0" Offset="1"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.6*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0*"></ColumnDefinition>
+                        <ColumnDefinition Width="0*"></ColumnDefinition>
+                        <ColumnDefinition Width="0*"></ColumnDefinition>
+                        <ColumnDefinition Width="5*"></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                            FontSize="18" 
+                            FontWeight="Bold" 
+                            VerticalContentAlignment="Center" 
+                            HorizontalContentAlignment="Center" Foreground="White"  Background="Transparent">Equipment</Label>
+
+                    <Border Margin="5,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
+                        <Label Name="lbEquipmentId" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" Content="Equipment ID" FontFamily="Bahnschrift SemiBold Condensed" FontSize="20" ></Label>
+                    </Border>
+
+                    <Label Grid.Column="2"
+                            FontSize="18" 
+                            FontWeight="Bold" 
+                            Foreground="White"
+                            VerticalContentAlignment="Center" 
+                            HorizontalContentAlignment="Center"  Background="Transparent">Model</Label>
+
+                    <Border Margin="0,5,5,5" Grid.Column="3" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
+                        <Label Name="lblModel" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" Content="Model Name 01" FontFamily="Bahnschrift SemiBold Condensed" FontSize="20"></Label>
+                    </Border>
+                    <Border Margin="0,5,5,5" Grid.Column="4" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
+                        <Label Name="lblStatust" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Green" Content="Update Statust Current Machine : Thông báo trạng thái máy " FontFamily="Bahnschrift SemiBold Condensed" FontSize="18"></Label>
+                    </Border>
+
+                    <!--Hien thi Thiet bi-->
+                    <!--<Grid Grid.Column="5">
+                        <UniformGrid Grid.Column="3" Columns="3" Rows="2" >
+                            <Label Margin="0,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">MES</Label>
+                            <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">PLC</Label>
+                            <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">Scanner</Label>
+
+                            <Label Margin="0,0,0,0" x:Name="lbMesConnect1" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9" >Disconnect</Label>
+                            <Label Margin="1,0,0,0" x:Name="lbPlcConnect1" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
+                            <Label Margin="1,0,0,0" x:Name="lbScannerConnect1" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
+                        </UniformGrid>
+                    </Grid>-->
+                </Grid>
+
+            </Grid>
+
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="300"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="Label" >
+                    <Setter Property="FontFamily" Value="arial"/>
+                    <Setter Property="FontSize" Value=" 30"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Style>
+
+            </Grid.Resources>
+      
+
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="0*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource sButton}">
+                        <Setter Property="FontSize" Value="24" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                        <Setter Property="Background" Value="LightGray"/>
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid Grid.Row="0" Margin="0" x:Name="GirdInfor">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Border Margin="0,2,0,0" BorderBrush="Silver" Background="#EEEEEE" BorderThickness="1" CornerRadius="8,8,8,8" Grid.Row="0">
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Height="6*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Border Margin="15,0,0,0" Background="#333333" HorizontalAlignment="Left" BorderBrush="Silver" BorderThickness="1" CornerRadius="0,0,8,8" Grid.Row="0" >
+                                        <StackPanel>
+                                            <Label Grid.Row="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="White" Content="  Count Infor  " FontSize="13"></Label>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">NG Count (EA)</Label>
+                                        <Grid Grid.Row="0" Grid.Column="3" Margin="1">
+                                            <Label x:Name="lbNgCount" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">OK Count (EA)</Label>
+                                        <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                            <Grid Grid.Row="0" Grid.Column="3" Margin="1">
+                                                <Label x:Name="lbOkCount" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Grid.Row="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">Total Count (EA)</Label>
+                                        <Grid Grid.Row="0" Grid.Column="3" Margin="1">
+                                            <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                                <Label x:Name="lbTotalCount" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Grid.Row="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="135*"></ColumnDefinition>
+                                            <ColumnDefinition Width="62*"/>
+                                            <ColumnDefinition Width="197*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Margin="1,1,1,1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2">Yield (%)</Label>
+                                        <Grid Grid.Row="0" Grid.Column="2" Margin="1,1,1,1">
+                                            <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                                <Label x:Name="lbYield" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Grid.Row="4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="135*"></ColumnDefinition>
+                                            <ColumnDefinition Width="62*"/>
+                                            <ColumnDefinition Width="197*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Margin="1,1,1,1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2">Qty (EA)</Label>
+                                        <Grid Grid.Row="0" Grid.Column="2" Margin="1">
+                                            <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                                <Label x:Name="lbQty" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="1" Background="Black" x:Name="GirdAlarm">
+                        <Image
+                Margin="4"
+                gif:ImageBehavior.AnimatedSource="/01.Image/Minion1.gif"
+                Stretch="Fill"/>
+
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Border Margin="0,0,0,0" BorderBrush="Silver" Background="#EEEEEE" BorderThickness="1" CornerRadius="8,8,8,8" Grid.Row="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition Height="7*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Border Margin="10,0,0,0" Background="#333333" HorizontalAlignment="Left" BorderBrush="Silver" BorderThickness="1" CornerRadius="0,0,8,8" Grid.Row="0" >
+                                <StackPanel>
+                                    <Label Grid.Row="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="White" Content="  MES Infor.  " FontSize="13"></Label>
+                                </StackPanel>
+                            </Border>
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"></RowDefinition>
+                                    <RowDefinition Height="2*"></RowDefinition>
+                                    <RowDefinition Height="2.5*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <!--<Label x:Name="lblStatusMES" Background="SkyBlue"  FontSize="16"></Label>-->
+                                <Border Height="25" BorderThickness="0" BorderBrush="Gray">
+                                    <Label Name="lblMcsStatus" Background="SkyBlue"
+                                           FontSize="13">[..] Connecting....</Label>
+                                </Border>
+                                <Grid Grid.Row="1" Margin="2,2,2,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0" Name="txtLocalIp1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">192</TextBox>
+                                    <TextBox Grid.Column="1" TabIndex="-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">.</TextBox>
+                                    <TextBox Grid.Column="2" Name="txtLocalIp2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">168</TextBox>
+                                    <TextBox Grid.Column="3" TabIndex="-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">.</TextBox>
+                                    <TextBox Grid.Column="4" Name="txtLocalIp3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">72</TextBox>
+                                    <TextBox Grid.Column="5" TabIndex="-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">.</TextBox>
+                                    <TextBox Grid.Column="6" Name="txtLocalIp4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">97</TextBox>
+                                </Grid>
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock FontWeight="Bold" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Port</TextBlock>
+                                    <TextBox Grid.Column="1" Foreground="Blue" Name="txtMcsLocalPort" IsReadOnly="True"
+                             HorizontalContentAlignment="Center" FontSize="20"
+                             VerticalAlignment="Center" VerticalContentAlignment="Center"
+                             Height="30">5010</TextBox>
+                                    <Grid Grid.Column="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">Listen</TextBlock>
+                                        <CheckBox Grid.Row="0" Grid.Column="1" Name="chkMcsListen"
+                               VerticalContentAlignment="Center" HorizontalAlignment="Center"></CheckBox>
+
+                                        <TextBlock FontWeight="Bold" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right">Accepted</TextBlock>
+                                        <CheckBox Grid.Row="1" Grid.Column="1"  Name="chkMcsAccepted"
+                               VerticalContentAlignment="Center" HorizontalAlignment="Center"></CheckBox>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="3" Margin="0">
+                    <Border Margin="0,5,0,0" BorderBrush="Silver" Background="#EEEEEE" BorderThickness="1" CornerRadius="8,8,8,8" Grid.Row="1">
+                        <Grid Grid.Row="1" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="28"></RowDefinition>
+                                <RowDefinition Height="7*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Border Margin="15,0,0,0" Background="#333333" HorizontalAlignment="Left" BorderBrush="Silver" BorderThickness="1" CornerRadius="0,0,8,8" Grid.Row="0" >
+                                    <StackPanel>
+                                        <Label Grid.Row="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="White" Content="  Time Info.  " FontSize="13"></Label>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+
+                            <Grid Grid.Row="1" Margin="5,3,5,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+
+                                </Grid.RowDefinitions>
+                                <Label Margin="0,0,0,2" Grid.Row="0" Grid.Column="0" FontFamily="arial" Foreground="#222222" FontSize="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" FontWeight="Bold" >COLUM PCB</Label>
+                                <Label Margin="0,0,0,2" Grid.Row="1" Grid.Column="0" FontFamily="arial"  Foreground="#222222" FontSize="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" FontWeight="Bold">ROW PCB</Label>
+                                <Label Margin="0,0,0,2" Grid.Row="2" Grid.Column="0" FontFamily="arial" Foreground="#222222" FontSize="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" FontWeight="Bold" >POSITION CHECK</Label>
+                                <Label Margin="0,0,0,2" Grid.Row="3" Grid.Column="0" FontFamily="arial" Foreground="#222222" FontSize="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" FontWeight="Bold" >COLUM VISION CHECK</Label>
+                                <Label Margin="0,0,0,2" Grid.Row="4" Grid.Column="0" FontFamily="arial" Foreground="#222222" FontSize="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="White" FontWeight="Bold" >ROW VISION CHECK</Label>
+
+
+                                <local:DataWord_D
+                                        x:Name="txtData1"
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        Margin="2"
+                                        IsTabItem="False" 
+                                        FontFamily="Arial" 
+                                        FontSize="20"
+                                        NoOfDecimalDigits="0" 
+                                        NoOfDisplay="4" 
+                                        CodeDevice="D"
+                                        Device="3236" 
+                                        IsReadOnly="True" 
+                                        Background="Black" 
+                                        Foreground="White">
+                                </local:DataWord_D>
+                                <local:DataWord_D
+                                        x:Name="txtData2"
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        Margin="2"
+                                        IsTabItem="False" 
+                                        FontFamily="Arial" 
+                                        FontSize="20"
+                                        NoOfDecimalDigits="0" 
+                                        NoOfDisplay="4" 
+                                        CodeDevice="D"
+                                        Device="3237" 
+                                        IsReadOnly="True" 
+                                        Background="Black" 
+                                        Foreground="White">
+                                </local:DataWord_D>
+                                <local:DataWord_D
+                                      
+                                        Grid.Column="1"
+                                        Grid.Row="2"
+                                        Margin="2"
+                                        IsTabItem="False" 
+                                        FontFamily="Arial" 
+                                        FontSize="20"
+                                        NoOfDecimalDigits="0" 
+                                        NoOfDisplay="4" 
+                                        CodeDevice="D"
+                                        Device="3240" 
+                                        IsReadOnly="True" 
+                                        Background="Black" 
+                                        Foreground="White">
+                                </local:DataWord_D>
+
+                                <local:DataWord_D
+                                         x:Name="txtData4"
+                                         Grid.Column="1"
+                                         Grid.Row="3"
+                                         Margin="2"
+                                         IsTabItem="False" 
+                                         FontFamily="Arial" 
+                                         FontSize="20"
+                                         NoOfDecimalDigits="0" 
+                                         NoOfDisplay="4" 
+                                         CodeDevice="D"
+                                         Device="3259" 
+                                         IsReadOnly="True" 
+                                         Background="Black" 
+                                         Foreground="White">
+                                </local:DataWord_D>
+                                <local:DataWord_D
+                                         x:Name="txtData5"
+                                         Grid.Column="1"
+                                         Grid.Row="4"
+                                         Margin="2"
+                                         IsTabItem="False" 
+                                         FontFamily="Arial" 
+                                         FontSize="20"
+                                         NoOfDecimalDigits="0" 
+                                         NoOfDisplay="4" 
+                                         CodeDevice="D"
+                                         Device="3260" 
+                                         IsReadOnly="True" 
+                                         Background="Black" 
+                                         Foreground="White">
+                                </local:DataWord_D>
+                                <!--<Border Margin="0,0,2,2" Grid.Row="0" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="2,2,2,2" >
+                                    <Label  x:Name="lbPLCScanTime" FontFamily="Bahnschrift SemiBold Condensed" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#333333" FontSize="16" >00.000</Label>
+                                </Border>
+                                <Border Margin="0,0,2,2" Grid.Row="1" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="2,2,2,2" >
+                                    <Label x:Name="lbPCBRunTime"  FontFamily="Bahnschrift SemiBold Condensed"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#333333" FontSize="16" >00.000</Label>
+
+                                </Border>
+                                <Border Margin="0,0,2,2" Grid.Row="2" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="2,2,2,2" >
+                                    <Label x:Name="lbPCBWorkingTime" FontFamily="Bahnschrift SemiBold Condensed" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#333333" FontSize="16" >00.000</Label>
+                                </Border>-->
+
+                                <!--<Border Margin="0,0,2,2" Grid.Row="3" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="2,2,2,2" >
+                                    <Label x:Name="lbMegzineRuntime" FontFamily="Bahnschrift SemiBold Condensed" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#333333" FontSize="16" >00.000</Label>
+                                </Border>
+
+                                <Border Margin="0,0,2,2" Grid.Row="4" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="2,2,2,2" >
+                                    <Label x:Name="lbMegzineWorkingTime" FontFamily="Bahnschrift SemiBold Condensed" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#333333" FontSize="16" >00.000</Label>
+                                </Border>-->
+
+
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2" Margin="0">
+                    <Border Margin="0,5,0,0" BorderBrush="Silver" Background="#EEEEEE" BorderThickness="1" CornerRadius="8,8,8,8" Grid.Row="2">
+                        <Grid Grid.Row="2">
+                            <Grid.Resources>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource sButton}">
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="#dddddd" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="FontSize" Value="30" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="Margin" Value="2" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property="Background" Value="#6787c0"/>
+                                </Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="FontSize" Value="25" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="Foreground" Value="White"/>
+
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Margin="2" >
+                                <Button x:Name="btLotIn">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--<Image Source="/Resource/Image/lotin.png"></Image>-->
+                                        <TextBlock  Padding="40,0,0,0"  FontWeight="Bold" FontSize="20"><Run Text="LotIn"/></TextBlock>
+                                        <!--<Image Source="/Resource/Image/lotin.png"></Image>-->
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="2" >
+                                <Button x:Name="btLotOut" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--<Image Source="/Resource/Image/lotEnd.png"></Image>-->
+                                        <TextBlock VerticalAlignment="Center"  Padding="30,0,0,0" FontWeight="Bold" FontSize="20">LotOut</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="4" Margin="2">
+                    <Border Margin="0,5,0,0" BorderBrush="Silver" Background="#EEEEEE" BorderThickness="1" CornerRadius="8,8,8,8" Grid.Row="2">
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Margin="2" >
+                                <Button x:Name="btUnitControl">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--<Image Source="/Resource/Image/lotin.png"></Image>-->
+                                        <TextBlock Foreground="Black" Padding="0,0,0,0" FontWeight="Bold" FontSize="20"><Run Text="Unit Control"/></TextBlock>
+                                        <!--<Image Source="/Resource/Image/lotin.png"></Image>-->
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="2" >
+                                <Button x:Name="btLotEnd">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--<Image Source="/Resource/Image/lotEnd.png"></Image>-->
+                                        <TextBlock VerticalAlignment="Center" Foreground="Black" Padding="20,0,0,0" FontWeight="Bold" FontSize="20" Text="Lot End"></TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+            
+            
+            <!--////////////// GIAO DIEN MAIN  ///////////////-->
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+                <Grid Grid.Row="0" Background="White">
+                    <Grid Grid.Row="0" Margin="0 2 0 0">
+                        <Grid.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                                <GradientStop Color="Gray" Offset="1"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               FontSize="18" 
+                               FontWeight="Bold" 
+                               VerticalContentAlignment="Center" 
+                               HorizontalContentAlignment="Center" Foreground="White"  Background="Transparent">RUN NUMBER</Label>
+
+                        <Border Margin="1" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="0" Grid.Row="0" >
+                            <Label  Grid.Row="0" x:Name="lbRunNumberCheck" Foreground="Green" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="0" FontWeight="Bold" FontSize="25" ></Label>
+                        </Border>
+                        <Label  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="White" Content="/" FontWeight="Bold" FontSize="25" ></Label>
+                        <local:DataWord_D
+                                Grid.Column="3"
+                                Grid.Row="0"
+                                Margin="2"
+                                IsTabItem="False" 
+                                FontFamily="Arial" 
+                                FontSize="25"
+                                NoOfDecimalDigits="0" 
+                                NoOfDisplay="4" 
+                                CodeDevice="D"
+                                Device="3262" 
+                                IsReadOnly="True" 
+                                Background="White" 
+                                Foreground="Green">
+                        </local:DataWord_D>
+
+                        <Label Grid.Column="4"
+                               FontSize="18" 
+                               
+                               FontWeight="Bold" 
+                               Foreground="White"
+                               VerticalContentAlignment="Center" 
+                               HorizontalContentAlignment="Center"  Background="Transparent">QR PCB</Label>
+
+                        <Border x:Name="BdQR" Margin="0,5,5,5" Grid.Column="5" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
+                            <Label  Grid.Row="0" x:Name="lbQRPcb" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" Content="QR000000000000000000000000" FontFamily="Bahnschrift SemiBold Condensed" FontSize="20" ></Label>
+                        </Border>
+
+
+
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Row="1">
+
+                    <Label Grid.Column="1" x:Name="lbMES" Background="CadetBlue" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#333333" Content="MESSENGER MES" FontFamily="Bahnschrift SemiBold Condensed" FontSize="40" Margin="0,1,0,1"></Label>
+                </Grid>
+                
+                <Grid Grid.Row="2">
+                    <TextBox x:Name="txtQRinput" Background="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#333333" Text="QR INPUT" FontFamily="Bahnschrift SemiBold Condensed" FontSize="40" Margin="0,1,0,1"></TextBox>
+                </Grid>
+                <GroupBox Grid.Row="3" Header="KHU VỰC KIỂM TRA HIỆN TẠI" Margin="5" FontWeight="Bold" Visibility="Collapsed">
+                    <ItemsControl ItemsSource="{Binding CurrentCheckItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding CurrentDisplayCols}"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ToggleButton IsChecked="{Binding IsNG, Mode=TwoWay}" Margin="5">
+                                    <ToggleButton.Template>
+                                        <ControlTemplate TargetType="ToggleButton">
+                                            <Border x:Name="backBorder" 
+                                    Background="#2ecc71" 
+                                    CornerRadius="10" 
+                                    BorderThickness="3" 
+                                    BorderBrush="White">
+                                                <StackPanel VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Index}" FontSize="60" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                                                    <TextBlock Text="OK" x:Name="txt" Foreground="White" FontSize="24" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter TargetName="backBorder" Property="Background" Value="#e74c3c"/>
+                                                    <Setter TargetName="txt" Property="Text" Value="NG"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </ToggleButton.Template>
+                                </ToggleButton>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </GroupBox>
+
+                <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Visibility="Collapsed">
+                    <!--<Button Content="QUAY LẠI" Click="PrevStep_Click" Width="100" Height="50" Margin="5"/>
+                    <Border Background="#2c3e50" CornerRadius="5" Margin="10,5" Padding="20,0">
+                        <TextBlock Text="{Binding CurrentStepDisplay}" VerticalAlignment="Center" Foreground="White" FontSize="20" FontWeight="Bold"/>
+                    </Border>
+                    <Button Content="TIẾP THEO" Click="NextStep_Click" Width="100" Height="50" Margin="5" Background="#3498db" Foreground="White"/>
+                    <Button Content="END (List)" Click="ExportResults_Click" Width="100" Height="50" Margin="5" Background="#2980b9" Foreground="White"/>-->
+                </StackPanel>
+
+                <GroupBox Grid.Row="5" Header="BẢNG TỔNG QUÁT" Margin="5" Visibility="Collapsed">
+                    <ItemsControl ItemsSource="{Binding MasterItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding TotalCols}" Rows="{Binding TotalRows}"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border x:Name="box" Margin="1" Background="#ecf0f1" BorderThickness="1">
+                                    <TextBlock Text="{Binding Index}" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding HasBeenReached}" Value="True">
+                                        <Setter TargetName="box" Property="Background" Value="#2ecc71"/>
+                                        <Setter TargetName="box" Property="TextBlock.Foreground" Value="White"/>
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding IsCurrent}" Value="True">
+                                        <Setter TargetName="box" Property="Background" Value="#f1c40f"/>
+                                        <Setter TargetName="box" Property="TextBlock.Foreground" Value="Black"/>
+                                        <Setter TargetName="box" Property="BorderBrush" Value="Black"/>
+                                        <Setter TargetName="box" Property="BorderThickness" Value="2"/>
+                                    </DataTrigger>
+
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding HasBeenReached}" Value="True"/>
+                                            <Condition Binding="{Binding IsNG}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter TargetName="box" Property="Background" Value="#e74c3c"/>
+                                        <Setter TargetName="box" Property="TextBlock.Foreground" Value="White"/>
+                                    </MultiDataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </GroupBox>
+
+                <!--<Button Grid.Row="5" Content="RESET / CLEAR ALL" Click="ClearData_Click" Height="50" Margin="10,5" Background="#7f8c8d" Foreground="White" FontWeight="Bold"/>-->
+            </Grid>
+
+
+
+
+
+
+        </Grid>
+
+        <Border Grid.Row="2" BorderThickness="1" BorderBrush="Gray" Margin="0,3,0,3">
+            <Grid Background="#eeeeee">
+                <Grid.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource sButton}">
+                        <Setter Property="FontSize" Value="24" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="Margin" Value="0,4,4,4" />
+                        <Setter Property="Background" Value="LightGray"/>
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                    </Style>
+
+
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.3"/>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.3"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="FontSize" Value="21"/>
+
+                    </Style>
+
+                    <Style TargetType="ItemsControl" x:Key="LogViewerStyle">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <ScrollViewer CanContentScroll="True">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel IsItemsHost="True" />
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="0,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="1*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0" Background="White" >
+                        <Border Margin="0 0 1 0" CornerRadius=" 10 10 0 0 " Background="#696969" />
+                        <StackPanel Orientation="Horizontal">
+
+                            <Border Margin="15,0,0,0" Background="#333333" HorizontalAlignment="Left" BorderBrush="Silver" BorderThickness="1" CornerRadius="0,0,8,8" Grid.Row="0" >
+                                <StackPanel>
+                                    <Label Grid.Row="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="White" Content=" Event Message  " FontSize="15"></Label>
+                                </StackPanel>
+                            </Border>
+                            <CheckBox x:Name="CbLog"  Margin="10 0 0 0" Unchecked="WriteLog_Unchecked" Checked="WriteLog_Checked" Content="Write Log" Foreground="White" FontSize="12"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+
+                    <Grid Grid.Row="1" Grid.Column="0" Background="#696969">
+
+                        <DockPanel Background="Black" Margin="0,0,3,0">
+
+                            <!--hien thi addlog-->
+                            <ItemsControl ItemsSource="{Binding LogEntries}">
+                                <ItemsControl.Template>
+                                    <ControlTemplate>
+                                        <ScrollViewer CanContentScroll="True" ScrollChanged="ScrollViewer_ScrollChanged">
+                                            <ItemsPresenter />
+                                        </ScrollViewer>
+                                    </ControlTemplate>
+                                </ItemsControl.Template>
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel IsItemsHost="True" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Foreground="White" FontFamily="Arial">
+                                            <Run Text="{Binding logTime}" />
+                                            <Run Text=" - " />
+                                            <Run Text="{Binding logMessage}" />
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+
+                        </DockPanel>
+                    </Grid>
+                    <Grid Grid.Row="0" Grid.Column="1"  Background="White" MouseDown="Grid_MouseDown" >
+                        <Border Margin="0 0 1 0" CornerRadius=" 10 10 0 0 " Background="#696969" />
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="CbShow"  Margin="10 0 0 0" Unchecked="AlarmCheckBox_Unchecked" Checked="AlarmCheckBox_Checked" Content="Not Show" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Border Margin="10,0,0,0" Background="#333333" HorizontalAlignment="Left" BorderBrush="Silver" BorderThickness="1" CornerRadius="0,0,8,8" Grid.Row="0" >
+                                <StackPanel>
+                                    <Label Grid.Row="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="White" Content=" Event Alarm  " FontSize="16"></Label>
+                                </StackPanel>
+                            </Border>
+                            <Label Grid.Row="0" Padding="20 0 0 0"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="White" FontSize="15">
+                                <TextBlock FontSize="16" Text=" Click to here show alarm." Foreground="Yellow" TextDecorations="Underline"/>
+                            </Label>
+
+
+                        </StackPanel>
+
+
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1" Background="#696969">
+                        <ScrollViewer CanContentScroll="True" Name="scrollView" VerticalScrollBarVisibility="Auto" Grid.Row="2">
+                            <Grid Grid.Row="2" Background="White">
+
+
+                                <Grid.RowDefinitions>
+                                    <!-- Sử dụng vòng lặp để tạo 20 hàng -->
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+                                    <RowDefinition Height="23"></RowDefinition>
+
+                                    <!-- Copy và dán dòng trên 19 lần nữa -->
+                                </Grid.RowDefinitions>
+
+                                <!-- Nội dung của các hàng Label -->
+                                <!-- Đảm bảo điều chỉnh Grid.Row cho mỗi Label -->
+                                <Label x:Name="lbMes1" Grid.Row="0"  Background="Black" Foreground="White" Margin="0"></Label>
+                                <Label x:Name="lbMes2" Grid.Row="1"  Background="Black" Foreground="White" Margin="0"></Label>
+                                <Label x:Name="lbMes3" Grid.Row="2"  Background="Black" Foreground="White" Margin="0"></Label>
+                                <Label x:Name="lbMes4" Grid.Row="3"  Background="Black" Foreground="White" Margin="0"></Label>
+                                <Label x:Name="lbMes5" Grid.Row="4"  Background="Black" Foreground="White" Margin="0"></Label>
+
+                                <Label x:Name="lbMes6" Grid.Row="5"  Background="Black" Foreground="White" Margin="0"></Label>
+                                <Label x:Name="lbMes7" Grid.Row="6"  Background="Black" Foreground="White" Margin="0"></Label>
+                                <Label x:Name="lbMes8" Grid.Row="7"  Background="Black" Foreground="White" Margin="0"></Label>
+                                <Label x:Name="lbMes9" Grid.Row="8"  Background="Black" Foreground="White" Margin="0"></Label>
+                                <Label x:Name="lbMes10" Grid.Row="9"  Background="Black" Foreground="White" Margin="0"></Label>
+
+                                <Label x:Name="lbMes11" Grid.Row="10" Background="Black" Foreground="White" Margin="0">11 : No Error</Label>
+                                <Label x:Name="lbMes12" Grid.Row="11" Background="Black" Foreground="White" Margin="0">12 : No Error</Label>
+                                <Label x:Name="lbMes13" Grid.Row="12" Background="Black" Foreground="White" Margin="0">13 : No Error</Label>
+                                <Label x:Name="lbMes14" Grid.Row="13" Background="Black" Foreground="White" Margin="0">14 : No Error</Label>
+                                <Label x:Name="lbMes15" Grid.Row="14" Background="Black" Foreground="White" Margin="0">15: No Error</Label>
+
+                                <Label x:Name="lbMes16" Grid.Row="15" Background="Black" Foreground="White" Margin="0">16 No Error</Label>
+                                <Label x:Name="lbMes17" Grid.Row="16" Background="Black" Foreground="White" Margin="0">17: No Error</Label>
+                                <Label x:Name="lbMes18" Grid.Row="17" Background="Black" Foreground="White" Margin="0">18: No Error</Label>
+                                <Label x:Name="lbMes19" Grid.Row="18" Background="Black" Foreground="White" Margin="0">19: No Error</Label>
+                                <Label x:Name="lbMes20" Grid.Row="19" Background="Black" Foreground="White" Margin="0">20: No Error</Label>
+
+                                <Label x:Name="lbMes21" Grid.Row="20" Background="Black" Foreground="White" Margin="0">21: No Error</Label>
+                                <Label x:Name="lbMes22" Grid.Row="21" Background="Black" Foreground="White" Margin="0">22: No Error</Label>
+                                <Label x:Name="lbMes23" Grid.Row="22" Background="Black" Foreground="White" Margin="0">23: No Error</Label>
+                                <Label x:Name="lbMes24" Grid.Row="23" Background="Black" Foreground="White" Margin="0">24: No Error</Label>
+                                <Label x:Name="lbMes25" Grid.Row="24" Background="Black" Foreground="White" Margin="0">25: No Error</Label>
+
+                                <Label x:Name="lbMes26" Grid.Row="25" Background="Black" Foreground="White" Margin="0">26: No Error</Label>
+                                <Label x:Name="lbMes27" Grid.Row="26" Background="Black" Foreground="White" Margin="0">27: No Error</Label>
+                                <Label x:Name="lbMes28" Grid.Row="27" Background="Black" Foreground="White" Margin="0">28: No Error</Label>
+                                <Label x:Name="lbMes29" Grid.Row="28" Background="Black" Foreground="White" Margin="0">29: No Error</Label>
+                                <Label x:Name="lbMes30" Grid.Row="29" Background="Black" Foreground="White" Margin="0">30: No Error</Label>
+
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#FFFFE0" Offset="0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <!--<Button Grid.Column="0" Name="btStart">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/01.Image/Start.png" Height="40"></Image>
+                                <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" Foreground="Black" Text="{x:Static Language:Resources.PG_MAIN_btStart}"></TextBlock>
+                            </StackPanel>
+                        </Button>-->
+                        <!--<Button Grid.Column="0" Name="btStart">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/01.Image/Start.png" Height="40"></Image>
+                                <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" Foreground="Black" Text="TEST WORKIN"></TextBlock>
+                            </StackPanel>
+                        </Button>-->
+                        <!--<Button Grid.Column="1" Name="btStop" >
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/01.Image/Stop.png" Height="40"></Image>
+                                <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" Foreground="Black" Text="{x:Static Language:Resources.PG_MAIN_btStop}"></TextBlock>
+                            </StackPanel>
+                        </Button>-->
+                        <!--<Button Grid.Column="1" Name="btStop" >
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/01.Image/Stop.png" Height="40"></Image>
+                                <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" Foreground="Black" Text="TEST WORKOUT"></TextBlock>
+                            </StackPanel>
+                        </Button>-->
+                        <local:PLCButton
+                            Grid.Column="0"
+                            Action="Momentary"
+                            UseLampCodition="True"
+                            DeviceWrite="L" AddressWrite="1"
+                            DeviceLamp="L" AddressLamp="1"
+                            Content="START"
+                            Background="LightGray"
+                            BackgroundLampOFF="LightGray"
+                            BackgroundLampON="GreenYellow"
+>
+
+                        </local:PLCButton>
+                        <local:PLCButton
+                            Grid.Column="1"
+                            Action="Momentary"
+                            UseLampCodition="True"
+                            DeviceWrite="L" AddressWrite="2"
+                            DeviceLamp="L" AddressLamp="2"
+                            Content="STOP"
+                            Background="LightGray"
+                            BackgroundLampOFF="LightGray"
+                            BackgroundLampON="Red"
+>
+
+                        </local:PLCButton>
+
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <!--<Button Grid.Column="0" Name="btHome">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/01.Image/Home.png" Height="40"></Image>
+                                <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" Foreground="Black"  Text="{x:Static Language:Resources.PG_MAIN_btHome}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Column="1" Name="btReset">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/01.Image/Reset.png" Height="40"></Image>
+                                <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" Foreground="Black" Text="{x:Static Language:Resources.PG_MAIN_btReset}"></TextBlock>
+                            </StackPanel>
+                        </Button>-->
+                        <local:PLCButton
+                            Grid.Column="0"
+                            Action="Momentary"
+                            UseLampCodition="True"
+                            DeviceWrite="L" AddressWrite="3"
+                            DeviceLamp="L" AddressLamp="3"
+                            Content="HOME"
+                            Background="LightGray"
+                            BackgroundLampOFF="LightGray"
+                            BackgroundLampON="BlueViolet"
+>
+
+                        </local:PLCButton>
+                        <local:PLCButton
+                            Grid.Column="1"
+                            Action="Momentary"
+                            UseLampCodition="True"
+                            DeviceWrite="L" AddressWrite="4"
+                            DeviceLamp="L" AddressLamp="4"
+                            Content="RESET"
+                            Background="LightGray"
+                            BackgroundLampOFF="LightGray"
+                            BackgroundLampON="Yellow"
+>
+
+                        </local:PLCButton>
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

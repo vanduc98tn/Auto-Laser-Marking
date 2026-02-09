@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15 d18.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Development", "Development\Development.csproj", "{57F06D19-803B-4911-A84F-6F11BD9CC89A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyPad", "KeyPad\KeyPad.csproj", "{3ADBFF38-915C-4115-9CDD-81C0CAD9733A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4BF395C6-C804-4A62-8A94-CA33A602A458}"
+	ProjectSection(SolutionItems) = preProject
+		Note - Program .txt = Note - Program .txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57F06D19-803B-4911-A84F-6F11BD9CC89A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57F06D19-803B-4911-A84F-6F11BD9CC89A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57F06D19-803B-4911-A84F-6F11BD9CC89A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57F06D19-803B-4911-A84F-6F11BD9CC89A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ADBFF38-915C-4115-9CDD-81C0CAD9733A}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3ADBFF38-915C-4115-9CDD-81C0CAD9733A}.Debug|Any CPU.Build.0 = Debug|x86
+		{3ADBFF38-915C-4115-9CDD-81C0CAD9733A}.Release|Any CPU.ActiveCfg = Release|x86
+		{3ADBFF38-915C-4115-9CDD-81C0CAD9733A}.Release|Any CPU.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7BCD8EB-ACD5-4FC4-8022-EA6024DB45AE}
+	EndGlobalSection
+EndGlobal
