@@ -22,6 +22,7 @@ namespace Development
         public COMSetting ScannerCOM { get; set; }
         public TCPSetting ScannerTCP { get; set; }
         public COMSetting COMTestter { get; set; }
+        public COMSetting COMLaser { get; set; }
 
         public SettingDevice()
         {
@@ -38,6 +39,7 @@ namespace Development
             ScannerCOM = new COMSetting();
             ScannerTCP = new TCPSetting();
             COMTestter = new COMSetting();
+            COMLaser = new COMSetting();
 
         }
     }

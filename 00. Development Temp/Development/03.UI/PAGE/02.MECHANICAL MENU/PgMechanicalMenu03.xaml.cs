@@ -57,12 +57,12 @@ namespace Development
         }
         private void BtClose_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.Instance.DisconnectScannerTCP();
+            UiManager.Instance.scannerTCP.Stop();
             UpdateUiButton();
         }
         private void BtOpen_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.Instance.ConnectScannerTCP();
+            UiManager.Instance.scannerTCP.Start();
             UpdateUiButton();
         }
         private void UpdateUiButton()

@@ -47,6 +47,7 @@ namespace Development
             {
                 SystemsManager.Instance.StartUp();
                 UiManager.Instance.Startup();
+
             }
             catch (Exception ex)
             {

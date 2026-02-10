@@ -99,6 +99,8 @@ namespace Development
 
         public KeyenceScannerTCP scannerTCP;
 
+        public LaserCOM laserCOM;
+
 
         #region Sử dụng Use Đăng Nhập MES
         public static string UserNameLoginMesOP_ME { get; set; }
@@ -141,6 +143,8 @@ namespace Development
                 this.LoadMES();
 
                 this.ConnectScannerTCP();
+
+                this.ConnectLaserCOM();
 
 
                 // Load MainWindow
@@ -378,7 +382,7 @@ namespace Development
         public void ConnectScannerTCP()
         {
             var Setting = UiManager.appSetting.settingDevice.ScannerTCP;
-            scannerTCP = new KeyenceScannerTCP(Setting);
+            scannerTCP = new KeyenceScannerTCP(UiManager.appSetting.settingDevice.ScannerTCP);
             scannerTCP.Start();
         }
         public void DisconnectScannerTCP()
@@ -386,7 +390,18 @@ namespace Development
             scannerTCP.Stop();
         }
         #endregion
-
+        #region Connect Laser COM
+        public void ConnectLaserCOM()
+        {
+            var Setting = UiManager.appSetting.settingDevice.COMLaser;
+            laserCOM = new LaserCOM(Setting);
+            laserCOM.Open();
+        }
+        public void DisconnectLaserCOM()
+        {
+            laserCOM.Close();
+        }
+        #endregion
 
     }
 }

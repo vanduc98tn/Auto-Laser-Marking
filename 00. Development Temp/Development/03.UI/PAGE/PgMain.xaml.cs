@@ -1217,16 +1217,26 @@ namespace Development
                 this.lbPlcConnect.Background = Brushes.Red;
             }
 
-            //if (UiManager.Instance.scannerCOM.IsConnected())
-            //{
-            //    this.lbScannerConnect.Content = "Connect";
-            //    this.lbScannerConnect.Background = Brushes.Green;
-            //}
-            //else
-            //{
-            //    this.lbScannerConnect.Content = "Disconnect";
-            //    this.lbScannerConnect.Background = Brushes.Red;
-            //}
+            if (UiManager.Instance.scannerTCP.IsConnected)
+            {
+                this.lbScannerConnect.Content = "Connect";
+                this.lbScannerConnect.Background = Brushes.Green;
+            }
+            else
+            {
+                this.lbScannerConnect.Content = "Disconnect";
+                this.lbScannerConnect.Background = Brushes.Red;
+            }
+            if (UiManager.Instance.laserCOM.isOpen())
+            {
+                this.lbLaserConnect.Content = "Connect";
+                this.lbLaserConnect.Background = Brushes.Green;
+            }
+            else
+            {
+                this.lbLaserConnect.Content = "Disconnect";
+                this.lbLaserConnect.Background = Brushes.Red;
+            }
 
 
         }

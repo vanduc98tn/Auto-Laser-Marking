@@ -137,12 +137,14 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="80"></RowDefinition>
                                 <RowDefinition Height="80"></RowDefinition>
+                                <RowDefinition Height="80"></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Button Grid.Column="0" Grid.Row="0" x:Name="btSetting">Setting</Button>
                             <Button Grid.Column="1" Grid.Row="0" x:Name="btSave">Save</Button>
                             <Button Grid.Column="0" Grid.Row="1" x:Name="btOpen">Open</Button>
                             <Button Grid.Column="1" Grid.Row="1" x:Name="btClose">Close</Button>
+                            <Button Grid.Column="0" Grid.Row="2" x:Name="btSend">Send</Button>
                         </Grid>
                     </Grid>
 

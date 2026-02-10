@@ -119,6 +119,39 @@ namespace Development
                 }
             }
         }
+        public void CreateLaser(String content, LogLevel logLevel)
+        {
+            // Get FilePath:
+            var currentDate = DateTime.Now.ToString("yyyy-MM");
+
+            var fileName = String.Format("{0}.log", DateTime.Now.ToString("yyyy-MM-dd"));
+            var folder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "02.Logs", "DebugLaser", currentDate);
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            var filePath = System.IO.Path.Combine(folder, fileName);
+
+            lock (objLock)
+            {
+                try
+                {
+                    var log = String.Format("\r\n{0}-[{1}]-[{3}]:{2}", DateTime.Now.ToString("HH:mm:ss.ff"), this.prefix, content, logLevel.ToString());
+
+                    System.Diagnostics.Debug.Write(log);
+
+                    using (var strWriter = new StreamWriter(filePath, true))
+                    {
+                        strWriter.Write(log);
+                        strWriter.Flush();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.Write("\r\nMyLoger.Create error:" + ex.Message);
+                }
+            }
+        }
         public void WriteLogSystem(Exception ex, string title)
         {
             try

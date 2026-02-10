@@ -49,12 +49,12 @@ namespace Development
         }
         private void BtClose_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.Instance.DisconnectScannerCOM();
+            UiManager.Instance.scannerCOM.Stop();
             UpdateUiButton();
         }
         private void BtOpen_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.Instance.ConnectScannerCOM();
+            UiManager.Instance.scannerCOM.Start();
             UpdateUiButton();
         }
         private void UpdateUiButton()

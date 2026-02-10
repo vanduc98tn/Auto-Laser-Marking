@@ -241,6 +241,9 @@
       <DependentUpon>WndMessenger.xaml</DependentUpon>
     </Compile>
     <Compile Include="02.LIBRARY\04.LogFile\LogLevel.cs" />
+    <Compile Include="301.Library Laser\IOLaser.cs" />
+    <Compile Include="301.Library Laser\NotifyEvenLaser.cs" />
+    <Compile Include="301.Library Laser\LaserCOM.cs" />
     <Compile Include="300.Library Tester\TesterCOM.cs" />
     <Compile Include="200.Server TCP Vision\TcpImageServer.cs" />
     <Compile Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu02.xaml.cs">

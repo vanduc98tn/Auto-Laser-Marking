@@ -99,14 +99,16 @@
                 </Grid>
 
                 <Grid Grid.Column="2">
-                    <UniformGrid Grid.Column="3" Columns="3" Rows="2" >
-                        <Label Margin="0,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">MES</Label>
-                        <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">PLC</Label>
+                    <UniformGrid Grid.Column="3" Columns="4" Rows="2" >
+                        <Label Margin="0,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">PLC</Label>
+                        <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">MES</Label>
                         <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">SCANNER</Label>
+                        <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">LASER</Label>
 
-                        <Label Margin="0,0,0,0" x:Name="lbMesConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9" >Disconnect</Label>
                         <Label Margin="1,0,0,0" x:Name="lbPlcConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
+                        <Label Margin="0,0,0,0" x:Name="lbMesConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9" >Disconnect</Label>
                         <Label Margin="1,0,0,0" x:Name="lbScannerConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
+                        <Label Margin="1,0,0,0" x:Name="lbLaserConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
                     </UniformGrid>
                 </Grid>
             </Grid>

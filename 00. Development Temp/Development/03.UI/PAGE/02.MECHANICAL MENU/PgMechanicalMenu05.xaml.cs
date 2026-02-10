@@ -32,74 +32,100 @@ namespace Development
             this.btMenuTab03.Click += BtMenuTab03_Click;
             //this.btMenuTab04.Click += BtMenuTab04_Click;
             this.btMenuTab05.Click += BtMenuTab05_Click;
+
+            this.btLogClear.Click += BtLogClear_Click;
             this.btSetting.Click += BtSetting_Click;
             this.btSave.Click += BtSave_Click;
-
             this.btOpen.Click += BtOpen_Click;
             this.btClose.Click += BtClose_Click;
 
+            this.btSend.Click += BtSend_Click;
+
+        }
+
+
+        private void BtSend_Click(object sender, RoutedEventArgs e)
+        {
+            string Result = "";
+            string sendData = "abc";
+
+            UpdateLogs($"Send: {sendData}");
+
+            byte[] sendDataB = Encoding.UTF8.GetBytes(sendData).ToArray();
+            byte[] resultB = UiManager.Instance.laserCOM.SendDataLaser(sendDataB);
+            if (resultB != null)
+            {
+                Result = ASCIIEncoding.ASCII.GetString(resultB.ToArray());
+            }
+            else
+            {
+                Result = "Time out!";
+            }
+
+
+
+            UpdateLogs($"Receive: {Result}");
         }
 
         private void BtClose_Click(object sender, RoutedEventArgs e)
         {
-            //if(UiManager.Instance.TesterCOM.isOpen())
-            //{
-               
-            //    UpdateUiButton();
-            //}    
-        }
-
-        private void BtOpen_Click(object sender, RoutedEventArgs e)
-        {
-            //if (!UiManager.Instance.TesterCOM.isOpen())
-            //{
-              
-            //    UpdateUiButton();
-            //}
-        }
-        private void UpdateUiButton()
-        {
-            //if (UiManager.Instance.TesterCOM.isOpen())
-            //{
-            //    UpdateLogs("Connect Tester Complete");
-            //    btClose.Background = Brushes.White;
-            //    btOpen.Background = Brushes.LightGreen;
-            //}
-            //else
-            //{
-            //    UpdateLogs("Disconnect Tester");
-            //    btClose.Background = Brushes.OrangeRed;
-            //    btOpen.Background = Brushes.White;
-            //}
-        }
-        private void PgMechanicalMenu05_Loaded(object sender, RoutedEventArgs e)
-        {
-            settingDevice = UiManager.appSetting.settingDevice;
+            UiManager.Instance.laserCOM.Close();
             UpdateUiButton();
         }
-
+        private void BtOpen_Click(object sender, RoutedEventArgs e)
+        {
+            UiManager.Instance.laserCOM.Open();
+            UpdateUiButton();
+        }
         private void BtSave_Click(object sender, RoutedEventArgs e)
         {
             WndComfirm comfirmYesNo = new WndComfirm();
             if (!comfirmYesNo.DoComfirmYesNo("You Want Save Setting?")) return;
-            UiManager.appSetting.settingDevice.COMTestter = settingDevice.COMTestter;
-            UpdateLogs($"Save Setting Com Tester Complete");
+            UiManager.appSetting.settingDevice.COMLaser = settingDevice.COMLaser;
+            UpdateLogs($"Save Setting Com Laser Complete");
             UiManager.SaveAppSetting();
         }
-
         private void BtSetting_Click(object sender, RoutedEventArgs e)
         {
             WndComSetting wndMC = new WndComSetting();
-            var settingNew = wndMC.DoSettings(Window.GetWindow(this), this.settingDevice.COMTestter);
+            var settingNew = wndMC.DoSettings(Window.GetWindow(this), this.settingDevice.COMLaser);
             if (settingNew != null)
             {
-                this.settingDevice.COMTestter = settingNew;
+                this.settingDevice.COMLaser = settingNew;
                 UpdateLogs($"Device Seting PortName :{settingNew.portName.ToString()}");
                 UpdateLogs($"Device Seting Parity :{settingNew.parity}");
                 UpdateLogs($"Device Seting Databis :{settingNew.dataBits.ToString()}");
                 UpdateLogs($"Device Seting Stopbit :{settingNew.stopBits.ToString()}");
                 UpdateLogs($"Device Seting Handshake :{settingNew.Handshake.ToString()}");
                 UpdateLogs($"Click Button Save to Complete");
+            }
+        }
+        private void BtLogClear_Click(object sender, RoutedEventArgs e)
+        {
+            WndComfirm comfirmYesNo = new WndComfirm();
+            if (!comfirmYesNo.DoComfirmYesNo("You Want Clear?")) return;
+            this.ClearLogs();
+        }
+
+        private void PgMechanicalMenu05_Loaded(object sender, RoutedEventArgs e)
+        {
+            settingDevice = UiManager.appSetting.settingDevice;
+            UpdateUiButton();
+        }
+
+        private void UpdateUiButton()
+        {
+            if (UiManager.Instance.laserCOM.isOpen())
+            {
+                UpdateLogs("Connect Tester Complete");
+                btClose.Background = Brushes.White;
+                btOpen.Background = Brushes.LightGreen;
+            }
+            else
+            {
+                UpdateLogs("Disconnect Tester");
+                btClose.Background = Brushes.OrangeRed;
+                btOpen.Background = Brushes.White;
             }
         }
         private void UpdateLogs(string notify)
@@ -109,7 +135,12 @@ namespace Development
                 this.txtLogs.ScrollToEnd();
             });
         }
-
+        private void ClearLogs()
+        {
+            this.Dispatcher.Invoke(() => {
+                this.txtLogs.Clear();
+            });
+        }
 
         private void BtMenuTab05_Click(object sender, RoutedEventArgs e)
         {
