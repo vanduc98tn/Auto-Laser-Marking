@@ -118,6 +118,7 @@ namespace Development
 
                 // Load ManagerSetting
                 LoadManagerSetting();
+                SaveManagerSetting();
 
                 //ChangeLanguage
                 ChangeLanguage(managerSetting.assignSystem.Language);
@@ -391,6 +392,7 @@ namespace Development
             scannerTCP.Stop();
         }
         #endregion
+
         #region Connect Laser COM
         public void ConnectLaserCOM()
         {
