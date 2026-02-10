@@ -17,7 +17,7 @@ namespace Development
         private object PLCLock = new object();
         public bool isConnect = false;
 
-        private const int READ_TIMEOUT = 500;
+        private const int READ_TIMEOUT = 300;
         private static bool enableReadingLog = false;
         private byte[] readBuf = new byte[1];
         private volatile bool isReading = false;

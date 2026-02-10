@@ -105,8 +105,8 @@
                         <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">SCANNER</Label>
                         <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">LASER</Label>
 
-                        <Label Margin="1,0,0,0" x:Name="lbPlcConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
-                        <Label Margin="0,0,0,0" x:Name="lbMesConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9" >Disconnect</Label>
+                        <Label Margin="0,0,0,0" x:Name="lbPlcConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
+                        <Label Margin="1,0,0,0" x:Name="lbMesConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9" >Disconnect</Label>
                         <Label Margin="1,0,0,0" x:Name="lbScannerConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
                         <Label Margin="1,0,0,0" x:Name="lbLaserConnect" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
                     </UniformGrid>
@@ -1045,10 +1045,12 @@
                             Grid.Column="0"
                             Action="Momentary"
                             UseLampCodition="True"
-                            DeviceWrite="L" AddressWrite="1"
-                            DeviceLamp="L" AddressLamp="1"
+                            DeviceWrite="L" AddressWrite="2"
+                            DeviceLamp="L" AddressLamp="10002"
                             Content="START"
                             Background="LightGray"
+                            Foreground="Black"
+                            FontSize="30"
                             BackgroundLampOFF="LightGray"
                             BackgroundLampON="GreenYellow"
 >
@@ -1058,10 +1060,12 @@
                             Grid.Column="1"
                             Action="Momentary"
                             UseLampCodition="True"
-                            DeviceWrite="L" AddressWrite="2"
-                            DeviceLamp="L" AddressLamp="2"
+                            DeviceWrite="L" AddressWrite="3"
+                            DeviceLamp="L" AddressLamp="10003"
                             Content="STOP"
                             Background="LightGray"
+                            Foreground="Black"
+                            FontSize="30"
                             BackgroundLampOFF="LightGray"
                             BackgroundLampON="Red"
 >
@@ -1090,12 +1094,16 @@
                             Grid.Column="0"
                             Action="Momentary"
                             UseLampCodition="True"
-                            DeviceWrite="L" AddressWrite="3"
-                            DeviceLamp="L" AddressLamp="3"
+                            DeviceWrite="L" AddressWrite="5"
+                            DeviceLamp="L" AddressLamp="10005"
                             Content="HOME"
                             Background="LightGray"
+                            Foreground="Black"
+                            FontSize="30"
                             BackgroundLampOFF="LightGray"
                             BackgroundLampON="BlueViolet"
+                            IsComfrim="True"
+                            IsMesComfrim="Confrim Home All Machine?"
 >
 
                         </local:PLCButton>
@@ -1103,10 +1111,12 @@
                             Grid.Column="1"
                             Action="Momentary"
                             UseLampCodition="True"
-                            DeviceWrite="L" AddressWrite="4"
-                            DeviceLamp="L" AddressLamp="4"
+                            DeviceWrite="L" AddressWrite="7"
+                            DeviceLamp="L" AddressLamp="10007"
                             Content="RESET"
                             Background="LightGray"
+                            Foreground="Black"
+                            FontSize="30"
                             BackgroundLampOFF="LightGray"
                             BackgroundLampON="Yellow"
 >

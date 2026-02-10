@@ -900,6 +900,7 @@ namespace Development
             this.RegisterDevicePLC();
 
             this.RegisterNotifyMES();
+            this.CheckConnectionMES(UiManager.Instance.MES.isAccept);
 
 
 

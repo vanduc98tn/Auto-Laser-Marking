@@ -11,7 +11,9 @@ namespace Development
     {
         private MES00SendPCB MESSend;
         private SemaphoreSlim modbusSemaphore = new SemaphoreSlim(1, 1);
-        public bool isAccept { get; set; }
+        //public bool isAccept { get; set; }
+        public bool isAccept { get => MESSend.isAccept; }
+
         //public string ReceivedLog;
 
 
@@ -161,7 +163,7 @@ namespace Development
         public async Task Start()
         {
             await this.MESSend.Start();
-            this.isAccept = this.MESSend.isAccept;
+            //this.isAccept = this.MESSend.isAccept;
         }
         public void Stop()
         {

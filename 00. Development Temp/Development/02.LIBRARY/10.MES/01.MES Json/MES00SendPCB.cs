@@ -27,7 +27,7 @@ namespace Development
         // TCP server:
         protected TcpListener listener;
         protected TcpClient mesClients;
-        protected bool isRunning = false;
+        public bool isRunning = false;
         public bool isAccept = false;
         public string IpServer;
         public string PortServer;
