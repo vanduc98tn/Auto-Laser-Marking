@@ -114,6 +114,7 @@ namespace Development
             {
                 // Load Settings
                 LoadAppSetting();
+                SaveAppSetting();
 
                 // Load ManagerSetting
                 LoadManagerSetting();

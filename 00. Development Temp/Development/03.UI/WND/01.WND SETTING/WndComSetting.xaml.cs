@@ -28,7 +28,7 @@ namespace Development
 
             InitializeComponent();
 
-            this.Loaded += WndComSetting_Loaded;
+            //this.Loaded += WndComSetting_Loaded;
             this.btOk.Click += BtOk_Click;
             this.btOk.TouchDown += BtOk_Click;
 

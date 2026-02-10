@@ -24,7 +24,7 @@ namespace Development
         public WndMCTCPSetting()
         {
             InitializeComponent();
-            this.Loaded += WndMCTCPSetting_Loaded;
+            //this.Loaded += WndMCTCPSetting_Loaded;
             this.btnOk.Click += BtnOk_Click;
             this.btnOk.TouchDown += BtnOk_Click;
 

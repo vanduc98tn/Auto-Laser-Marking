@@ -11,7 +11,7 @@ namespace Development
         public string COM { get; set; }
         public SC09Setting()
         {
-            COM = "COM1";
+            COM = "COM#";
         }
     }
 }

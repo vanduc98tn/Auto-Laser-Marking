@@ -17,7 +17,7 @@ namespace Development
         public Handshake Handshake { get; set; }
         public COMSetting()
         {
-            this.portName = "COM1";
+            this.portName = "COM#";
             this.baudrate = 9600;
             this.dataBits = 8;
             this.stopBits = StopBits.One;
