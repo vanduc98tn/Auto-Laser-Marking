@@ -482,9 +482,9 @@ namespace Development
             if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 2);
             Thread.Sleep(10);
-            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15716, true);
+            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
             Thread.Sleep(10);
-            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15716, false);
+            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, false);
 
         }
         private void btLoadTab1Pos1_Click(object sender, RoutedEventArgs e)
@@ -492,11 +492,11 @@ namespace Development
 
             WndComfirm comfirmYesNo = new WndComfirm();
             if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
-            UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5212, 1);
+            UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 1);
             Thread.Sleep(10);
-            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15716, true);
+            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
             Thread.Sleep(10);
-            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15716, false);
+            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, false);
 
         }
         private void btLoadTab1Pos0_Click(object sender, RoutedEventArgs e)
@@ -504,11 +504,11 @@ namespace Development
 
             WndComfirm comfirmYesNo = new WndComfirm();
             if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
-            UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5212, 0);
+            UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 0);
             Thread.Sleep(10);
-            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15716, true);
+            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
             Thread.Sleep(10);
-            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15716, false);
+            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, false);
 
         }
 
