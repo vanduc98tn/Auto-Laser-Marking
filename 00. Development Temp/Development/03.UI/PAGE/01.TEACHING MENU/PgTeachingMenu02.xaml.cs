@@ -480,7 +480,7 @@ namespace Development
 
             WndComfirm comfirmYesNo = new WndComfirm();
             if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
-            UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5212, 2);
+            UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 2);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15716, true);
             Thread.Sleep(10);
