@@ -134,7 +134,6 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <UniformGrid Grid.Column="0" Columns="1" VerticalAlignment="Top">

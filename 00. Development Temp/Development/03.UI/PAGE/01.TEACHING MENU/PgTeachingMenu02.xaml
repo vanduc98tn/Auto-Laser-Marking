@@ -1927,9 +1927,144 @@
                     </Label>
                 </Grid>
             </Border>
-            <Grid Grid.Row="5">
+            <UniformGrid Grid.Row="5" Columns="1" VerticalAlignment="Top">
+                <Border  BorderThickness="1" BorderBrush="CadetBlue" Margin="2" CornerRadius="10" VerticalAlignment="Top">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <!--<Border Grid.Row="0" CornerRadius=" 10 10 0 0 " Margin="1">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#879ec0" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1.5"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Label FontWeight="Bold" Foreground="White" FontSize="20"  Margin="0" Content="TRANSFER WORK" >
+                                <Label.Effect>
+                                    <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
+                                </Label.Effect>
+                            </Label>
+                        </Border>-->
+                        <UniformGrid Grid.Row="1" Margin="0" Columns="2">
+                            <GroupBox Height="80" Header="[LANCE1 LIFT PCB]">
+                                <UniformGrid Columns="2">
+                                    <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="1006"
+                                            DeviceLamp="L" AddressLamp="11006"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="CadetBlue"
+                                            Content="UP"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                    </local:PLCButton>
+                                    <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="1007"
+                                            DeviceLamp="L" AddressLamp="11007"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="CadetBlue"
+                                            Content="DN"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                    </local:PLCButton>
+                                </UniformGrid>
+                            </GroupBox>
+                            <GroupBox Height="80" Header="[LANCE1 CLAMP PCB]">
+                                <UniformGrid Columns="2">
+                                    <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="1008"
+                                            DeviceLamp="L" AddressLamp="11008"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="CadetBlue"
+                                            Content="CLAMP"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                    </local:PLCButton>
+                                    <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="1009"
+                                            DeviceLamp="L" AddressLamp="11009"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="CadetBlue"
+                                            Content="UNCLAMP"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                    </local:PLCButton>
+                                </UniformGrid>
+                            </GroupBox>
+                            <GroupBox Height="80" Header="[LANCE2 LIFT PCB]">
+                                <UniformGrid Columns="2">
+                                    <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="1010"
+                                            DeviceLamp="L" AddressLamp="11010"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="CadetBlue"
+                                            Content="UP"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                    </local:PLCButton>
+                                    <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="1011"
+                                            DeviceLamp="L" AddressLamp="11011"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="CadetBlue"
+                                            Content="DN"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                    </local:PLCButton>
+                                </UniformGrid>
+                            </GroupBox>
+                            <GroupBox Height="80" Header="[LANCE2 CLAMP PCB]">
+                                <UniformGrid Columns="2">
+                                    <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="1012"
+                                            DeviceLamp="L" AddressLamp="11012"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="CadetBlue"
+                                            Content="CLAMP"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                    </local:PLCButton>
+                                    <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="1013"
+                                            DeviceLamp="L" AddressLamp="11013"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="CadetBlue"
+                                            Content="UNCLAMP"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                    </local:PLCButton>
+                                </UniformGrid>
+                            </GroupBox>
 
-            </Grid>
+                        </UniformGrid>
+                    </Grid>
+                </Border>
+
+            </UniformGrid>
         </Grid>
 
 
