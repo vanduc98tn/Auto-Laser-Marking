@@ -185,7 +185,7 @@
     <Compile Include="02.LIBRARY\13.Vision\Vision Setting\ModelStore.cs" />
     <Compile Include="02.LIBRARY\13.Vision\Vision Setting\ROISettings.cs" />
     <Compile Include="02.LIBRARY\13.Vision\Vision Setting\VisionModel.cs" />
-    <Compile Include="03.UI\PAGE\09.PgCamera\PgCamera.xaml.cs">
+    <Compile Include="03.UI\PAGE\09.CAMERA\PgCamera.xaml.cs">
       <DependentUpon>PgCamera.xaml</DependentUpon>
     </Compile>
     <Compile Include="03.UI\PAGE\PgAlarm.xaml.cs">
@@ -348,7 +348,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="03.UI\PAGE\09.PgCamera\PgCamera.xaml">
+    <Page Include="03.UI\PAGE\09.CAMERA\PgCamera.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
