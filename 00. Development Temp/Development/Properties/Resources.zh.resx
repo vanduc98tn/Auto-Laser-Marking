@@ -162,4 +162,7 @@
   <data name="PG_MAIN_btHome" xml:space="preserve">
     <value>返回原点</value>
   </data>
+  <data name="PG_MN_Camera" xml:space="preserve">
+    <value>相机</value>
+  </data>
 </root>

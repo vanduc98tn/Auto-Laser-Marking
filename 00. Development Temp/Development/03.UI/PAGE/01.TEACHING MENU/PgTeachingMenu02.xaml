@@ -17,7 +17,7 @@
         <Border Grid.Column="1" Background="{StaticResource HeaderBackground}" Margin="0,5,5,5" CornerRadius="12">
             <Grid>
                 <StackPanel Margin="10">
-                    <Label Content="SYSTEM MENU" Foreground="White" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10,0,20"/>
+                    <Label Content="TEACHING MENU" Foreground="White" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10,0,20"/>
 
                     <Button x:Name="btMenuTab00"  BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="5 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}">
                         MANUAL TAB

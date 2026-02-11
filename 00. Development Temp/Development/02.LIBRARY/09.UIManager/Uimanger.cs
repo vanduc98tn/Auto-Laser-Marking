@@ -1,4 +1,5 @@
 ﻿using ITM_Semiconductor;
+using MvCamCtrl.NET;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
 
 namespace Development
 {
@@ -75,6 +77,8 @@ namespace Development
         // Page Alarm 
         PAGE_ALARM,
 
+        //Page Camera Setting
+        PAGE_CAMERA,
     }
 
 
@@ -88,8 +92,7 @@ namespace Development
         public static Hashtable pageTable = new Hashtable();
         public static AppSetting appSetting = new AppSetting();
         public static ManagerSetting managerSetting = new ManagerSetting();
-
-
+        public static ModelSettings currentModel = new ModelSettings();
 
         public SelectDevice PLC;
 
@@ -101,6 +104,10 @@ namespace Development
 
         public LaserCOM laserCOM;
 
+        //Camera
+        public static HikCamDevice hikCamera = new HikCamDevice();
+        public static HikCam Cam1 = new HikCam();
+        public static HikCam Cam2 = new HikCam();
 
         #region Sử dụng Use Đăng Nhập MES
         public static string UserNameLoginMesOP_ME { get; set; }
@@ -157,14 +164,16 @@ namespace Development
                 wndMain.Show();
 
                 // Creatr Wnd CheckUpdate
-               if( managerSetting.assignSystem.AutoCheckUpdate)
+                if( managerSetting.assignSystem.AutoCheckUpdate)
                 {
                     WndCheckver = new WndCheckUpdate();
                     WndCheckver.Show();
-                }    
-              
+                }
 
-               
+                CameraListAcq();
+                ConectCamera();
+
+
 
                 logger.Create("Uimanager Program Start Up",LogLevel.Information);
             }
@@ -223,6 +232,7 @@ namespace Development
             pageTable.Add(PAGE_ID.PAGE_ASSIGN_MENU, new PgAssignMenu());
             pageTable.Add(PAGE_ID.PAGE_ASSIGN_ALARM_SETTING, new PgAssignAlarmSetting());
 
+            pageTable.Add(PAGE_ID.PAGE_CAMERA, new PgCamera());
         }
         public void SwitchPage(PAGE_ID pgID)     // ham de thay dd
         {
@@ -406,5 +416,44 @@ namespace Development
         }
         #endregion
 
+        #region Models
+        public static void SaveCurrentModelSettings()
+        {
+            ModelStore.UpdateModelSettings(currentModel);
+        }
+        public static void ReplaceModel(ModelSettings model)
+        {
+            try
+            {
+                if (model != null)
+                {
+                    currentModel = model;
+                    appSetting.currentModel = model.modelName;
+                    SaveAppSetting();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Create(String.Format("ReplaceModel error:" + ex.Message), LogLevel.Error);
+            }
+        }
+        #endregion
+
+        #region Camera
+        public static void CameraListAcq()
+        {
+            hikCamera.DeviceListAcq();
+            ConectCamera();
+        }
+        public static void ConectCamera()
+        {
+            MyCamera.MV_CC_DEVICE_INFO_LIST m_pDeviceList = hikCamera.m_pDeviceList;
+
+            MyCamera.MV_CC_DEVICE_INFO device1 = UiManager.appSetting.connection.camSettings.device;
+            int ret1 = Cam1.Open(device1, HikCam.AquisMode.AcquisitionMode);
+            Cam1.SetExposeTime((int)UiManager.appSetting.connection.camSettings.ExposeTime);
+            Thread.Sleep(2);
+        }
+        #endregion
     }
 }

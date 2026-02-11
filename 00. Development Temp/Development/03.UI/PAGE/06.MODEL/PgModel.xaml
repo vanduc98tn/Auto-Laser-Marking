@@ -29,8 +29,6 @@
                     <Setter Property="Margin" Value="0,5,5,5" />
                     <Setter Property="Background" Value="White" />
                     <Setter Property="BorderThickness" Value="0"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
-
 
                 </Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -42,49 +40,18 @@
                 </Style>
 
             </Grid.Resources>
-            <Border>
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#6787c0" Offset="0"/>
-                        <GradientStop Color="White" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-
+            <Border Background="{StaticResource HeaderBackground}" Margin="0,5,5,5" CornerRadius="12">
                 <Grid>
-                    <Canvas>
-                        <Polygon Points="0,20,130,80,0,170" Fill="#879ec8"/>
-                        <Polygon Points="100,400,200,370,180,470" Fill="#879ec8"/>
-                        <Ellipse Margin="250 450 0 0" Width="40" Height="40" Fill="#879ec8"/>
-                        <Ellipse Margin="50 400 0 0" Width="40" Height="40" Fill="#879ec8"/>
-
-                    </Canvas>
-                    <StackPanel VerticalAlignment="Bottom">
-                        <TextBlock Foreground="#879ec8" Text="ITM" Style="{StaticResource titleText}"/>
-                        <TextBlock Foreground="#879ec8" Text="Semiconductor" Style="{StaticResource normalText}" Opacity="0.8" Margin=" 20 0" FontWeight="Bold"/>
-                        <TextBlock Foreground="#879ec8" Text="AUTOMATION TEAM" Style="{StaticResource normalText}" Opacity="0.8" Margin=" 20 0"/>
+                    <StackPanel VerticalAlignment="Bottom" Margin="15">
+                        <TextBlock Text="ITM" Foreground="#AED6F1" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="Semiconductor" Foreground="White" Opacity="0.7" FontSize="12"/>
+                        <TextBlock Text="AUTOMATION TEAM" Foreground="White" Opacity="0.5" FontSize="10"/>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" >
-                        <Label  FontWeight="Bold" Padding="0 20 0 0" Foreground="White" FontSize="27" HorizontalAlignment="Center">
-                            <Label.Effect>
-                                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
-                            </Label.Effect> System Menu
-                        </Label>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0 100 0 0" >
-                        <Button x:Name="btSetting1" Background="#333333" Height="60" Width="215"  Margin="0 5 5 5" >
-
-                            <TextBlock Text="Model 01" Foreground="White" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <Label Content="MODEL MENU" Foreground="White" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10,0,20"/>
+                        <Button x:Name="btSetting1"  BorderThickness="0" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="5 0 0 0" FontSize="15"  Height="50" Margin="0,5" Style="{StaticResource sButton}">
+                            MODEL
                         </Button>
-
-
-                       
-
-
-
-
-
-
                     </StackPanel>
                 </Grid>
             </Border>
@@ -94,27 +61,19 @@
                 <RowDefinition Height="75"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Border CornerRadius=" 0 ">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="#879ec0" Offset="1"/>
-                            <GradientStop Color="White" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-                </Border>
-                <Label  FontWeight="Bold" Foreground="White" FontSize="40" BorderThickness="1" BorderBrush="White" Margin="0,0,0,0" >
+            <Border Grid.Row="0" Background="{StaticResource HeaderBackground}" Margin="5,5,5,5" CornerRadius="8">
+                <Label Grid.Column="0" Content="MENU CHANGE MODEL" Foreground="White" FontSize="35" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0">
                     <Label.Effect>
-                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
-                    </Label.Effect> MENU CHANGE MODEL
+                        <DropShadowEffect BlurRadius="5" Opacity="0.2" ShadowDepth="2"/>
+                    </Label.Effect>
                 </Label>
-            </Grid>
+            </Border>
             <Grid Grid.Row="1" Margin=" 0 2 0 0">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="240"></RowDefinition>
+                    <RowDefinition Height="1.1*"></RowDefinition>
 
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
@@ -136,12 +95,23 @@
                         <Label Name="lblModelNo" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" Content="00" FontFamily="Bahnschrift SemiBold Condensed" FontSize="35"></Label>
                     </Border>
                     <Border Margin="0,5,5,5" Grid.Column="2" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                        <Label Name="lblModel" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" Content="No Connect..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="35"></Label>
+                        <Label Name="lblModel" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" Content="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="35"></Label>
                     </Border>
 
                 </Grid>
                 <Grid  Grid.Row="1">
+                    <Grid.Resources>
 
+                        <Style TargetType="Button" BasedOn="{StaticResource sButton}">
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Margin" Value="0,5,5,5" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Background" Value="#333333" />
+                            <Setter Property="BorderThickness" Value="0.7"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                        </Style>
+                    </Grid.Resources>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="45"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -156,27 +126,21 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" Margin="0 0 0 0">
-                        <Grid.Background>
-                            <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                                <GradientStop Color="#879ec0" Offset="1"/>
-                                <GradientStop Color="White" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Grid.Background>
-                        <Label  FontWeight="Bold" Foreground="White" FontSize="25" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="White" Margin="0,0,0,0" >
+                    <Border Grid.Row="0" Background="{StaticResource HeaderBackground}" Margin="5,5,5,5" CornerRadius="8">
+                        <Label Grid.Column="0" Content="MANAGEMENT MODEL" Foreground="White" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="10,-5,0,0">
                             <Label.Effect>
-                                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
-                            </Label.Effect> Management Model
+                                <DropShadowEffect BlurRadius="5" Opacity="0.2" ShadowDepth="2"/>
+                            </Label.Effect>
                         </Label>
-                    </Grid>
+                    </Border>
                     <Grid Grid.Row="1" Margin=" 0 0 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"   Content="Model 01 " Foreground="Black" FontSize="21" FontWeight="Bold"></Label>
+                        <Button x:Name="btSelectModel01" Margin="2">Model 01</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel1" Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="No Connect..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel1" Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
                     <Grid Grid.Row="2" Margin=" 0 0 0 0">
@@ -184,9 +148,9 @@
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"   Content="Model 02 " Foreground="Black" FontSize="21" FontWeight="Bold"></Label>
+                        <Button x:Name="btSelectModel02" Margin="2">Model 02</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel2"   Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="No Connect..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel2"   Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
                     <Grid Grid.Row="3" Margin=" 0 0 0 0">
@@ -194,9 +158,9 @@
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"   Content="Model 03 " Foreground="Black" FontSize="21" FontWeight="Bold"></Label>
+                        <Button x:Name="btSelectModel03" Margin="2">Model 03</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel3"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="No Connect..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel3"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
                     <Grid Grid.Row="4" Margin=" 0 0 0 0">
@@ -204,9 +168,9 @@
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"   Content="Model 04 " Foreground="Black" FontSize="21" FontWeight="Bold"></Label>
+                        <Button x:Name="btSelectModel04" Margin="2">Model 04</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel4"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="No Connect..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel4"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
                     <Grid Grid.Row="5" Margin=" 0 0 0 0">
@@ -214,9 +178,9 @@
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"   Content="Model 05 " Foreground="Black" FontSize="21" FontWeight="Bold"></Label>
+                        <Button x:Name="btSelectModel05" Margin="2">Model 05</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel5"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="No Connect..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel5"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
                     <Grid Grid.Row="6" Margin=" 0 0 0 0">
@@ -224,9 +188,9 @@
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"   Content="Model 06 " Foreground="Black" FontSize="21" FontWeight="Bold"></Label>
+                        <Button x:Name="btSelectModel06" Margin="2">Model 06</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel6"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="No Connect..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel6"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
                     <Grid Grid.Row="7" Margin=" 0 0 0 0">
@@ -234,9 +198,9 @@
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"   Content="Model 07 " Foreground="Black" FontSize="21" FontWeight="Bold"></Label>
+                        <Button x:Name="btSelectModel07" Margin="2">Model 07</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel7"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="No Connect..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel7"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
                     <Grid Grid.Row="8" Margin=" 0 0 0 0">
@@ -244,9 +208,9 @@
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"   Content="Model 08 " Foreground="Black" FontSize="21" FontWeight="Bold"></Label>
+                        <Button x:Name="btSelectModel08" Margin="2">Model 08</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel8"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="No Connect..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel8"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
                     <Grid Grid.Row="9" Margin=" 0 0 0 0">
@@ -254,9 +218,9 @@
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"   Content="Model 09" Foreground="Black" FontSize="21" FontWeight="Bold"></Label>
+                        <Button x:Name="btSelectModel09" Margin="2">Model 09</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel9"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="No Connect..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel9"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
                     <Grid Grid.Row="10" Margin=" 0 0 0 0">
@@ -264,9 +228,9 @@
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"   Content="Model 10 " Foreground="Black" FontSize="21" FontWeight="Bold"></Label>
+                        <Button x:Name="btSelectModel10" Margin="2">Model 10</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel10"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="No Connect..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel10"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
 
@@ -282,21 +246,13 @@
                         <RowDefinition Height="45"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Margin="0 2 0 2">
-                        <Border CornerRadius="0 ">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#879ec0" Offset="1"/>
-                                    <GradientStop Color="White" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                        </Border>
-                        <Label  FontWeight="Bold" Foreground="White" FontSize="25" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="White" Margin="0,0,0,0" >
+                    <Border Grid.Row="0" Background="{StaticResource HeaderBackground}" Margin="5,5,5,5" CornerRadius="8">
+                        <Label Grid.Column="0" Content="LOAD/SAVE MODEL" Foreground="White" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="10,-5,0,0">
                             <Label.Effect>
-                                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
-                            </Label.Effect> Load/Save Model
+                                <DropShadowEffect BlurRadius="5" Opacity="0.2" ShadowDepth="2"/>
+                            </Label.Effect>
                         </Label>
-                    </Grid>
+                    </Border>
                     <Grid Grid.Row="1">
                         <Grid.Resources>
                             <Style TargetType="{x:Type Label}">
@@ -310,12 +266,12 @@
                                 <Setter Property="FontWeight" Value="Bold" />
                             </Style>
 
-                            <Style TargetType="TextBox">
-                                <Setter Property="Background" Value="Black"/>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Foreground" Value="Cyan"/>
                                 <Setter Property="FontWeight" Value="Bold"/>
-                                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
                                 <Setter Property="FontSize" Value="25"/>
                                 <Setter Property="Padding" Value="1,1,1,1"/>
                             </Style>
@@ -338,30 +294,23 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label  Grid.Column="0" Margin="2,2,2,2" Content="Select Model No"></Label>
-                        <TextBox x:Name="TbxSelectModel" Grid.Column="1" Margin="10" Text="0"></TextBox>
-                        <Button x:Name="BtnSaveData" Grid.Column="2" Margin="10">Save Data</Button>
-                        <Button x:Name="BtnLoadModel" Grid.Column="3" Margin="10">Load Model</Button>
+                        <Border Grid.Column="1" Margin="10" Background="Black">
+                            <TextBlock x:Name="txtSelectModel" Text="0" Padding="0"></TextBlock>
+                        </Border>
+                        <Button x:Name="btSaveModel" Grid.Column="2" Margin="10">Save Model</Button>
+                        <Button x:Name="btLoadModel" Grid.Column="3" Margin="10">Load Model</Button>
                         <Button x:Name="BtnDeleteModel" Grid.Column="4" Margin="10">Delete Model</Button>
                     </Grid>
 
 
 
-                    <Grid Grid.Row="2" Margin="0">
-                        <Border CornerRadius=" 0 ">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#879ec0" Offset="1"/>
-                                    <GradientStop Color="White" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                        </Border>
-                        <Label  FontWeight="Bold" Foreground="White" FontSize="25" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="White" Margin="0,0,0,0" >
+                    <Border Grid.Row="2" Background="{StaticResource HeaderBackground}" Margin="5,5,5,5" CornerRadius="8">
+                        <Label Grid.Column="0" Content="COPY MODEL DATA" Foreground="White" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="10,-5,0,0">
                             <Label.Effect>
-                                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
-                            </Label.Effect> Copy Data Model
+                                <DropShadowEffect BlurRadius="5" Opacity="0.2" ShadowDepth="2"/>
+                            </Label.Effect>
                         </Label>
-                    </Grid>
-
+                    </Border>
                     <Grid Grid.Row="3">
                         <Grid.Resources>
                             <Style TargetType="{x:Type Label}">

@@ -38,7 +38,12 @@ namespace Development
             this.btModel.Click += BtModel_Click;
             this.btSuperUser.Click += BtSuperUser_Click;
             this.btAssignMenu.Click += BtAssignMenu_Click;
-        
+            this.btCamera.Click += BtCamera_Click;
+        }
+
+        private void BtCamera_Click(object sender, RoutedEventArgs e)
+        {
+            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_CAMERA);
         }
 
         private void BtSuperUser_Click(object sender, RoutedEventArgs e)
@@ -125,6 +130,7 @@ namespace Development
                 this.btSuperUser.IsEnabled = false;
                 this.btSystem.IsEnabled = true;
                 this.btAssignMenu.IsEnabled = false;
+                this.btCamera.IsEnabled = true;
             }
             if (UserManager.IsLogOn() == 3)
             {
@@ -140,6 +146,7 @@ namespace Development
                 this.btSuperUser.IsEnabled = true;
                 this.btSystem.IsEnabled = true;
                 this.btAssignMenu.IsEnabled = true;
+                this.btCamera.IsEnabled = true;
             }
             if (UserManager.IsLogOn() == 1)
             {
@@ -156,7 +163,7 @@ namespace Development
                 this.btSuperUser.IsEnabled = false;
                 this.btSystem.IsEnabled = false;
                 this.btAssignMenu.IsEnabled = false;
-
+                this.btCamera.IsEnabled = false;
 
             }
             if (UserManager.IsLogOn() == 0)
@@ -171,6 +178,7 @@ namespace Development
                 this.btSuperUser.IsEnabled = false;
                 this.btSystem.IsEnabled = false;
                 this.btAssignMenu.IsEnabled = false;
+                this.btCamera.IsEnabled = false;
             }
         }
     }

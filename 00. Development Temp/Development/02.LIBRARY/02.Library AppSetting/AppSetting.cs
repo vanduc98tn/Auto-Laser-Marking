@@ -21,6 +21,11 @@ namespace Development
         public LotInData LotinData;
         public MESSetting MESSettings;
         public RUNMachine RUN;
+
+
+        public string currentModel; // Machine Run Model
+        public ROIProperty RoiProperty;
+        public ConnectionSettings connection;
         public AppSetting()
         {
             this.settingDevice = new SettingDevice();
@@ -28,6 +33,10 @@ namespace Development
             this.LotinData = new LotInData();
             this.MESSettings = new MESSetting();
             this.RUN = new RUNMachine();
+
+            this.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
+            this.RoiProperty = new ROIProperty();
+            this.connection = new ConnectionSettings();
         }
         public string TOJSON()
         {
@@ -57,7 +66,18 @@ namespace Development
             {
                 _appSettings.RUN = new RUNMachine();
             }
-
+            if(_appSettings.currentModel == null)
+            {
+                _appSettings.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
+            }  
+            if(_appSettings.RoiProperty == null)
+            {
+                _appSettings.RoiProperty = new ROIProperty();
+            }
+            if(_appSettings.connection == null)
+            {
+                _appSettings.connection = new ConnectionSettings();
+            }
             return _appSettings;
         }
     }

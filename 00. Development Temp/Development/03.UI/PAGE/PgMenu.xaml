@@ -214,7 +214,7 @@
             </Border>
 
 
-            <UniformGrid Columns="0" Rows="4" Margin="100,0,100,0" Height="480">
+            <UniformGrid Columns="0" Rows="5" Margin="100,0,100,0" Height="480">
                 <UniformGrid.Resources>
                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource sButton}">
                         <Setter Property="Foreground" Value="#dd222222" />
@@ -359,6 +359,23 @@
                             </Image.Effect>
                         </Image>
                         <TextBlock Text="{x:Static Language:Resources.PG_MN_Super_User_Menu}" VerticalAlignment="Center" Padding="20,0,0,0">
+                            <TextBlock.Effect>
+                                <DropShadowEffect ShadowDepth="7" Color="Black" Opacity="0.2" Direction="315"/>
+                            </TextBlock.Effect></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btCamera">
+                    <Button.Effect>
+                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.6" BlurRadius="20"/>
+                    </Button.Effect>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Image Margin="40,0,0,0" Source="/01.IMAGE/CameraSetting.png">
+                            <Image.Effect>
+                                <DropShadowEffect ShadowDepth="7" Color="Black" Opacity="0.2" Direction="315"/>
+                            </Image.Effect>
+                        </Image>
+                        <TextBlock Text="{x:Static Language:Resources.PG_MN_Camera}" VerticalAlignment="Center" Padding="20,0,0,0">
                             <TextBlock.Effect>
                                 <DropShadowEffect ShadowDepth="7" Color="Black" Opacity="0.2" Direction="315"/>
                             </TextBlock.Effect></TextBlock>

@@ -162,4 +162,7 @@
   <data name="PG_MAIN_btHome" xml:space="preserve">
     <value>홈</value>
   </data>
+  <data name="PG_MN_Camera" xml:space="preserve">
+    <value>카메라</value>
+  </data>
 </root>
