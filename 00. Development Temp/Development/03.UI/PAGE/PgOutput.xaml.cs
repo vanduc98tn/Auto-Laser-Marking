@@ -34,8 +34,8 @@ namespace Development
             InitializeComponent();
             this.Loaded += PgIO_Loaded;
             this.Unloaded += PgIO_Unloaded;
-            this.btSetting1.Click += BtSetting1_Click;
-            this.btSetting2.Click += BtSetting2_Click;
+            this.btMenuTab01.Click += BtMenuTab01_Click;
+            this.btMenuTab02.Click += BtMenuTab02_Click;
 
             this.btnFirt.Click += BtnFirt_Click;
             this.btnBack.Click += BtnBack_Click;
@@ -110,14 +110,13 @@ namespace Development
 
         }
 
-        private void BtSetting2_Click(object sender, RoutedEventArgs e)
+        private void BtMenuTab02_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_IO_OUTPUT);
+            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_IO_OUTPUT_PLC);
         }
-
-        private void BtSetting1_Click(object sender, RoutedEventArgs e)
+        private void BtMenuTab01_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_IO_INPUT);
+            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_IO_INPUT_PLC);
         }
 
         private void BtnIn9_Click(object sender, RoutedEventArgs e)

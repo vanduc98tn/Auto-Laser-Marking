@@ -71,8 +71,8 @@ namespace Development
         PAGE_ASSIGN_ALARM_SETTING,
 
         // Page I/O
-        PAGE_IO_INPUT,
-        PAGE_IO_OUTPUT,
+        PAGE_IO_INPUT_PLC,
+        PAGE_IO_OUTPUT_PLC,
 
         // Page Alarm 
         PAGE_ALARM,
@@ -195,8 +195,8 @@ namespace Development
 
             pageTable.Add(PAGE_ID.PAGE_MAIN, new PgMain());
             pageTable.Add(PAGE_ID.PAGE_ALARM, new PgAlarm());
-            pageTable.Add(PAGE_ID.PAGE_IO_INPUT, new PgInput());
-            pageTable.Add(PAGE_ID.PAGE_IO_OUTPUT, new PgOutput());
+            pageTable.Add(PAGE_ID.PAGE_IO_INPUT_PLC, new PgInput());
+            pageTable.Add(PAGE_ID.PAGE_IO_OUTPUT_PLC, new PgOutput());
             pageTable.Add(PAGE_ID.PAGE_MENU, new PgMenu());
 
             pageTable.Add(PAGE_ID.PAGE_TEACHING_MENU_01, new PgTeachingMenu01());
@@ -253,7 +253,7 @@ namespace Development
                 {
                     wndMain.btMenu.Background = Brushes.Orange;
                 }
-                if ((pgID >= PAGE_ID.PAGE_IO_INPUT) & (pgID <= PAGE_ID.PAGE_IO_OUTPUT))
+                if ((pgID >= PAGE_ID.PAGE_IO_INPUT_PLC) & (pgID <= PAGE_ID.PAGE_IO_OUTPUT_PLC))
                 {
                     wndMain.btIO.Background = Brushes.Orange;
                 }

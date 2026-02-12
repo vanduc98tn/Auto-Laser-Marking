@@ -85,7 +85,7 @@ namespace Development
         }
         private void BtIO_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_IO_INPUT);
+            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_IO_INPUT_PLC);
         }
         private void BtMain_Click(object sender, RoutedEventArgs e)
         {

@@ -171,16 +171,16 @@
                         <Label HorizontalContentAlignment="Left">SPARE</Label>
                         <Label HorizontalContentAlignment="Left">SPARE</Label>
                         <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
+                        <Label HorizontalContentAlignment="Left">LOADER DETECT C/V IN MGZ DELAY TIME</Label>
+                        <Label HorizontalContentAlignment="Left">LOADER DETECT C/V IN EMTY CHECK DELAY TIME</Label>
+                        <Label HorizontalContentAlignment="Left">LOADER DETECT C/V OUT MGZ DELAY TIME</Label>
+                        <Label HorizontalContentAlignment="Left">LOADER DETECT CLAMP MGZ DELAY TIME</Label>
+                        <Label HorizontalContentAlignment="Left">CENTER DETECT IN/OUTPUT C/V SEN DELAY TIME</Label>
+                        <Label HorizontalContentAlignment="Left">LANCE1 DETECT CLAMP PCB SEN DELAY TIME</Label>
+                        <Label HorizontalContentAlignment="Left">LANCE2 DETECT CLAMP PCB SEN DELAY TIME</Label>
+                        <Label HorizontalContentAlignment="Left">CLEAR ALL VISION TIMEOUT WAR</Label>
+                        <Label HorizontalContentAlignment="Left">TRIGGER VISION TIMEOUT WAR</Label>
+                        <Label HorizontalContentAlignment="Left">CLEAR SCANER TIMEOUT WAR</Label>
 
                     </UniformGrid>
 
@@ -370,20 +370,20 @@
 
                     </UniformGrid>
                     <UniformGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Columns="1" Rows="20">
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
-                        <Label HorizontalContentAlignment="Left">SPARE</Label>
+                        <Label HorizontalContentAlignment="Left">TRIGGER SCANER TIMEOUT WAR</Label>
+                        <Label HorizontalContentAlignment="Left"></Label>
+                        <Label HorizontalContentAlignment="Left">UNLOADER DETECT C/V IN MGZ DELAY TIME</Label>
+                        <Label HorizontalContentAlignment="Left">UNLOADER DETECT C/V IN EMTY CHECK DELAY TIME</Label>
+                        <Label HorizontalContentAlignment="Left">UNLOADER DETECT C/V OUT MGZ DELAY TIME</Label>
+                        <Label HorizontalContentAlignment="Left">UNLOADER DETECT CLAMP MGZ DELAY TIME</Label>
+                        <Label HorizontalContentAlignment="Left"></Label>
+                        <Label HorizontalContentAlignment="Left"></Label>
+                        <Label HorizontalContentAlignment="Left"></Label>
+                        <Label HorizontalContentAlignment="Left"></Label>
+                        <Label HorizontalContentAlignment="Left">LOADER AUTO FIX MGZ RETRY COUNTER SET</Label>
+                        <Label HorizontalContentAlignment="Left">LOADER AUTO FIX MGZ COUNTER SET</Label>
+                        <Label HorizontalContentAlignment="Left">UNLOADER AUTO FIX MGZ RETRY COUNTER SET</Label>
+                        <Label HorizontalContentAlignment="Left">UNLOADER AUTO FIX MGZ COUNTER SET</Label>
                         <Label HorizontalContentAlignment="Left">SPARE</Label>
                         <Label HorizontalContentAlignment="Left">SPARE</Label>
                         <Label HorizontalContentAlignment="Left">SPARE</Label>
@@ -467,28 +467,28 @@
                         </local:DataWord_D>
                         <local:DataWord_D
                             NoOfDisplay="2"
-                            NoOfDecimalDigits="1"
+                            NoOfDecimalDigits="0"
                             CodeDevice="D" Device="330"
                             IsReadOnly="False"
 >
                         </local:DataWord_D>
                         <local:DataWord_D
                             NoOfDisplay="2"
-                            NoOfDecimalDigits="1"
+                            NoOfDecimalDigits="0"
                             CodeDevice="D" Device="331"
                             IsReadOnly="False"
 >
                         </local:DataWord_D>
                         <local:DataWord_D
                             NoOfDisplay="2"
-                            NoOfDecimalDigits="1"
+                            NoOfDecimalDigits="0"
                             CodeDevice="D" Device="332"
                             IsReadOnly="False"
 >
                         </local:DataWord_D>
                         <local:DataWord_D
                             NoOfDisplay="2"
-                            NoOfDecimalDigits="1"
+                            NoOfDecimalDigits="0"
                             CodeDevice="D" Device="333"
                             IsReadOnly="False"
 >
