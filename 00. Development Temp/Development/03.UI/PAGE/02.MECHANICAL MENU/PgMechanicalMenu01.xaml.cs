@@ -541,9 +541,12 @@ namespace Development
             }
         }
         #endregion
+
         private void BtLogClear_Click(object sender, RoutedEventArgs e)
         {
-            this.txtLogs.Text = "";
+            WndComfirm comfirmYesNo = new WndComfirm();
+            if (!comfirmYesNo.DoComfirmYesNo("You Want Clear?")) return;
+            this.ClearLogs();
         }
         private void PgMechanicalMenu01_Loaded(object sender, RoutedEventArgs e)
         {
@@ -569,13 +572,7 @@ namespace Development
                 this.btWriteString.IsEnabled = false;
             }
         }
-        public void Time_Ticke()
-        {
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(1000); // Thiết lập thời gian lặp (1 giây)
-            timer.Tick += Timer_Tick;
-            timer.Start();
-        }
+        
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (UiManager.Instance.PLC != null)
@@ -646,13 +643,7 @@ namespace Development
                 this.UpdateLogs("SaveDeviceTypeSetting: " + ex.Message);
             }
         }
-        private void UpdateLogs(string notify)
-        {
-            this.Dispatcher.Invoke(() => {
-                this.txtLogs.Text += "\r\n" + notify;
-                this.txtLogs.ScrollToEnd();
-            });
-        }
+        
         private void BtnSettingDevice_Click(object sender, RoutedEventArgs e)
         {
             if (this.cbSelectDeviceType.SelectedValue == null) return;
@@ -735,6 +726,27 @@ namespace Development
         private void BtnOpen_Click(object sender, RoutedEventArgs e)
         {
             UiManager.Instance.ConncetPLC();
+        }
+
+        public void Time_Ticke()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(1000); // Thiết lập thời gian lặp (1 giây)
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+        private void UpdateLogs(string notify)
+        {
+            this.Dispatcher.Invoke(() => {
+                this.txtLogs.Text += "\r\n" + notify;
+                this.txtLogs.ScrollToEnd();
+            });
+        }
+        private void ClearLogs()
+        {
+            this.Dispatcher.Invoke(() => {
+                this.txtLogs.Clear();
+            });
         }
 
         private void BtMenuTab05_Click(object sender, RoutedEventArgs e)

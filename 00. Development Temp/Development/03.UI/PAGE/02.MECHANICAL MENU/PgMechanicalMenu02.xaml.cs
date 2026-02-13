@@ -48,6 +48,8 @@ namespace Development
         }
         private void BtLogClear_Click(object sender, RoutedEventArgs e)
         {
+            WndComfirm comfirmYesNo = new WndComfirm();
+            if (!comfirmYesNo.DoComfirmYesNo("You Want Clear?")) return;
             this.ClearLogs();
         }
 
