@@ -139,6 +139,7 @@
                             <Button Grid.Column="0" Grid.Row="1" x:Name="btOpen">Open</Button>
                             <Button Grid.Column="1" Grid.Row="1" x:Name="btClose">Close</Button>
                             <Button Grid.Column="0" Grid.Row="2" x:Name="btSend">Send Test</Button>
+                            <Button Grid.Column="1" Grid.Row="2" x:Name="btPattern">Pattern Setting</Button>
                         </Grid>
                     </Grid>
 

@@ -21,6 +21,7 @@ namespace Development
         public LotInData LotinData;
         public MESSetting MESSettings;
         public RUNMachine RUN;
+        public PatternSetting Pattern;
 
 
         public string currentModel; // Machine Run Model
@@ -33,6 +34,7 @@ namespace Development
             this.LotinData = new LotInData();
             this.MESSettings = new MESSetting();
             this.RUN = new RUNMachine();
+            this.Pattern = new PatternSetting();
 
             this.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
             this.RoiProperty = new ROIProperty();
@@ -66,6 +68,10 @@ namespace Development
             {
                 _appSettings.RUN = new RUNMachine();
             }
+            if ( _appSettings.Pattern == null)
+            {
+                _appSettings.Pattern = new PatternSetting();
+            }    
             if(_appSettings.currentModel == null)
             {
                 _appSettings.currentModel = ModelSettings.DEFAULT_MODEL_NAME;

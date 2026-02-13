@@ -20,6 +20,7 @@ namespace Development
     /// </summary>
     public partial class PgMechanicalMenu05 : Page
     {
+        private MyLogger logger = new MyLogger("PgMechanical05Menu");
         private SettingDevice settingDevice;
         public PgMechanicalMenu05()
         {
@@ -40,9 +41,27 @@ namespace Development
             this.btClose.Click += BtClose_Click;
 
             this.btSend.Click += BtSend_Click;
+            this.btPattern.Click += BtPattern_Click;
 
         }
 
+        
+        private void BtPattern_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                WndPatern uiPatern = new WndPatern();
+                uiPatern.DoConfirmYesNo();
+                //generateCells(modelSetting.Pattern.xRow, modelSetting.Pattern.yColumn, modelSetting.Pattern.CurrentPatern, modelSetting.Pattern.Use2Matrix);
+                //string filePath = string.Format("/Resource/Image/{0}.PNG", modelSetting.Pattern.CurrentPatern);
+                //imgPattern.Source = new BitmapImage(new Uri(filePath, UriKind.Relative));
+                UpdateLogs($"Click Button Save to Complete");
+            }
+            catch (Exception ex)
+            {
+                this.logger.Create("BtPattern_Click: " + ex.Message, LogLevel.Error);
+            }
+        }
         private void BtSend_Click(object sender, RoutedEventArgs e)
         {
             string strResult = "";
