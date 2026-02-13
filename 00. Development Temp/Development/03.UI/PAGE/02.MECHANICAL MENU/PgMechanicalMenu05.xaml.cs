@@ -43,28 +43,35 @@ namespace Development
 
         }
 
-
         private void BtSend_Click(object sender, RoutedEventArgs e)
         {
-            string Result = "";
-            string sendData = "abc";
+            string strResult = "";
+            string strData = "Test";
 
-            UpdateLogs($"Send: {sendData}");
+            UpdateLogs($"Send: {strData}");
 
-            byte[] sendDataB = Encoding.UTF8.GetBytes(sendData).ToArray();
-            byte[] resultB = UiManager.Instance.laserCOM.SendDataLaser(sendDataB);
-            if (resultB != null)
+            byte[] arr1 = Encoding.UTF8.GetBytes(strData).ToArray();
+            byte[] arr2 = { 0x0D };
+
+            byte[] byData = new byte[arr1.Length + arr2.Length];
+
+            Array.Copy(arr1, 0, byData, 0, arr1.Length);
+            Array.Copy(arr2, 0, byData, arr1.Length, arr2.Length);
+
+
+            byte[] byResult = UiManager.Instance.laserCOM.SendWaitResponse(byData);
+
+
+            if (byResult != null)
             {
-                Result = ASCIIEncoding.ASCII.GetString(resultB.ToArray());
+                strResult = ASCIIEncoding.ASCII.GetString(byResult.ToArray());
             }
             else
             {
-                Result = "Time out!";
+                strResult = "Time out!";
             }
 
-
-
-            UpdateLogs($"Receive: {Result}");
+            UpdateLogs($"Receive: {strResult}");
         }
 
         private void BtClose_Click(object sender, RoutedEventArgs e)

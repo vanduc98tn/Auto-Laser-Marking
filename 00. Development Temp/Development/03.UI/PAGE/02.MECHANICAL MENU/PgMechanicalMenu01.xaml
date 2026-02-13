@@ -84,10 +84,11 @@
                 </Label>
             </Border>
 
-            <Grid Grid.Row="1" Margin="10,5,10,10">
+            <Grid Grid.Row="1" Margin="5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.Column="0" Background="White" CornerRadius="8" Margin="0,0,5,0" BorderBrush="{StaticResource BorderColor}" BorderThickness="1">
@@ -97,9 +98,8 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
-                        <Label Content="Logs" Style="{StaticResource SectionHeader}" Opacity="0.9"/>
-                        <TextBox Grid.Row="1" x:Name="txtLogs" Text="{Binding rxLog}" Background="Black" Foreground="White" 
-                                 BorderThickness="0" VerticalContentAlignment="Top" FontFamily="Consolas" FontSize="13" Margin="0" VerticalScrollBarVisibility="Visible"/>
+                        <Label Content="Logs" Style="{StaticResource SectionHeader}" Opacity="0.9" />
+                        <TextBox Grid.Row="1" x:Name="txtLogs" Text="{Binding rxLog}" Background="Black" Foreground="White" BorderThickness="0" VerticalContentAlignment="Top" FontFamily="Consolas" FontSize="13" Margin="0" VerticalScrollBarVisibility="Visible"/>
                         <Button Grid.Row="2" x:Name="btLogClear" Content="Clear Logs" Margin="5,5" Style="{StaticResource sButton}"/>
                     </Grid>
                 </Border>

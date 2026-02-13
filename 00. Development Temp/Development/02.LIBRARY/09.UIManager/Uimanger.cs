@@ -377,19 +377,6 @@ namespace Development
         }
         #endregion
 
-        #region Connect Scanner COM
-        public void ConnectScannerCOM()
-        {
-            var Setting = UiManager.appSetting.settingDevice.ScannerCOM;
-            scannerCOM = new KeyenceScannerCom(Setting);
-            scannerCOM.Start();
-        }
-        public void DisconnectScannerCOM()
-        {
-            scannerCOM.Stop();
-        }
-        #endregion
-
         #region Connect Scanner TCP
         public void ConnectScannerTCP()
         {

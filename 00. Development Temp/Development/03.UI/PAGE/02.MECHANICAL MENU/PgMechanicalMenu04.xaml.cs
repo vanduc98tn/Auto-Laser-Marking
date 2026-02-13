@@ -33,20 +33,23 @@ namespace Development
             //this.btMenuTab04.Click += BtMenuTab04_Click;
             this.btMenuTab05.Click += BtMenuTab05_Click;
 
+            this.btLogClear.Click += BtLogClear_Click;
             this.btSetting.Click += BtSetting_Click;
             this.btSave.Click += BtSave_Click;
-
             this.btOpen.Click += BtOpen_Click;
             this.btClose.Click += BtClose_Click;
+
             this.btRead.Click += BtRead_Click;
 
         }
+
         private void BtRead_Click(object sender, RoutedEventArgs e)
         {
             string Result = UiManager.Instance.scannerCOM.ReadQRKeyence();
             UpdateLogs($"QR: {Result}");
 
         }
+
         private void BtClose_Click(object sender, RoutedEventArgs e)
         {
             UiManager.Instance.scannerCOM.Stop();
@@ -55,26 +58,6 @@ namespace Development
         private void BtOpen_Click(object sender, RoutedEventArgs e)
         {
             UiManager.Instance.scannerCOM.Start();
-            UpdateUiButton();
-        }
-        private void UpdateUiButton()
-        {
-            if (UiManager.Instance.scannerCOM.IsConnected())
-            {
-                UpdateLogs("Connect scanner Complete");
-                btClose.Background = Brushes.White;
-                btOpen.Background = Brushes.LightGreen;
-            }
-            else
-            {
-                UpdateLogs("Scanner Not Connected");
-                btClose.Background = Brushes.OrangeRed;
-                btOpen.Background = Brushes.White;
-            }
-        }
-        private void PgMechanicalMenu04_Loaded(object sender, RoutedEventArgs e)
-        {
-            settingDevice = UiManager.appSetting.settingDevice;
             UpdateUiButton();
         }
         private void BtSave_Click(object sender, RoutedEventArgs e)
@@ -100,6 +83,34 @@ namespace Development
                 UpdateLogs($"Click Button Save to Complete");
             }
         }
+        private void BtLogClear_Click(object sender, RoutedEventArgs e)
+        {
+            WndComfirm comfirmYesNo = new WndComfirm();
+            if (!comfirmYesNo.DoComfirmYesNo("You Want Clear?")) return;
+            this.ClearLogs();
+        }
+
+        private void PgMechanicalMenu04_Loaded(object sender, RoutedEventArgs e)
+        {
+            settingDevice = UiManager.appSetting.settingDevice;
+            UpdateUiButton();
+        }
+
+        private void UpdateUiButton()
+        {
+            if (UiManager.Instance.scannerCOM.IsConnected())
+            {
+                UpdateLogs("Connect scanner Complete");
+                btClose.Background = Brushes.White;
+                btOpen.Background = Brushes.LightGreen;
+            }
+            else
+            {
+                UpdateLogs("Scanner Not Connected");
+                btClose.Background = Brushes.OrangeRed;
+                btOpen.Background = Brushes.White;
+            }
+        }
         private void UpdateLogs(string notify)
         {
             this.Dispatcher.Invoke(() => {
@@ -107,6 +118,13 @@ namespace Development
                 this.txtLogs.ScrollToEnd();
             });
         }
+        private void ClearLogs()
+        {
+            this.Dispatcher.Invoke(() => {
+                this.txtLogs.Clear();
+            });
+        }
+
         private void BtMenuTab05_Click(object sender, RoutedEventArgs e)
         {
             UiManager.Instance.SwitchPage(PAGE_ID.PAGE_MECHANICAL_MENU_05);

@@ -58,28 +58,9 @@ namespace Development
             this.btWriteDWord.Click += BtWriteDWord_Click;
             this.btWriteString.Click += BtWriteString_Click;
 
+
         }
 
-        private void BtMenuTab05_Click(object sender, RoutedEventArgs e)
-        {
-            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_MECHANICAL_MENU_05);
-        }
-        private void BtMenuTab04_Click(object sender, RoutedEventArgs e)
-        {
-            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_MECHANICAL_MENU_04);
-        }
-        private void BtMenuTab03_Click(object sender, RoutedEventArgs e)
-        {
-            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_MECHANICAL_MENU_03);
-        }
-        private void BtMenuTab02_Click(object sender, RoutedEventArgs e)
-        {
-            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_MECHANICAL_MENU_02);
-        }
-        private void BtMenuTab01_Click(object sender, RoutedEventArgs e)
-        {
-            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_MECHANICAL_MENU_01);
-        }
 
         #region Button Action 
         private void BtWriteString_Click(object sender, RoutedEventArgs e)
@@ -754,6 +735,27 @@ namespace Development
         private void BtnOpen_Click(object sender, RoutedEventArgs e)
         {
             UiManager.Instance.ConncetPLC();
+        }
+
+        private void BtMenuTab05_Click(object sender, RoutedEventArgs e)
+        {
+            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_MECHANICAL_MENU_05);
+        }
+        private void BtMenuTab04_Click(object sender, RoutedEventArgs e)
+        {
+            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_MECHANICAL_MENU_04);
+        }
+        private void BtMenuTab03_Click(object sender, RoutedEventArgs e)
+        {
+            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_MECHANICAL_MENU_03);
+        }
+        private void BtMenuTab02_Click(object sender, RoutedEventArgs e)
+        {
+            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_MECHANICAL_MENU_02);
+        }
+        private void BtMenuTab01_Click(object sender, RoutedEventArgs e)
+        {
+            UiManager.Instance.SwitchPage(PAGE_ID.PAGE_MECHANICAL_MENU_01);
         }
     }
 }

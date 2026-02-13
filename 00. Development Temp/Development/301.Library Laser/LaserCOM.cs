@@ -70,19 +70,19 @@ namespace Development
                     if (_serialPort.IsOpen)
                     {
                         _serialPort.Write(data, 0, data.Length);
-                        logger.Create01($"Sent {data.Length} bytes: {BitConverter.ToString(data)}", LogLevel.Information);
+                        logger.CreateLaser($"Sent {data.Length} bytes: {BitConverter.ToString(data)}", LogLevel.Information);
                         return true;
                     }
                     else
                     {
-                        logger.Create01("Error: COM port is not open", LogLevel.Error);
+                        logger.CreateLaser("Error: COM port is not open", LogLevel.Error);
                         return false;
                     }
                 }
             }
             catch (Exception ex)
             {
-                logger.Create01($"Error sending bytes: {ex.Message}", LogLevel.Error);
+                logger.CreateLaser($"Error sending bytes: {ex.Message}", LogLevel.Error);
                 return false;
             }
         }
@@ -108,8 +108,8 @@ namespace Development
 
                         if (data.Count > 0)
                         {
-                            string hexData = BitConverter.ToString(data.ToArray()).Replace("-", " ");
-                            logger.CreateLaser($"Received data: {hexData}", LogLevel.Information);
+                            string hexData = BitConverter.ToString(data.ToArray()).Replace(" ", "-");
+                            logger.CreateLaser($"Received {hexData.Length} byte: {hexData}", LogLevel.Information);
                             DataReceived?.Invoke(this, data);
                         }
                     }
@@ -139,8 +139,8 @@ namespace Development
                             List<byte> data = new List<byte>(buffer);
 
                            
-                            string hexData = BitConverter.ToString(buffer).Replace("-", " ");
-                            logger.CreateLaser($"Received data: {hexData}", LogLevel.Information);
+                            string hexData = BitConverter.ToString(buffer).Replace(" ", "-");
+                            logger.CreateLaser($"Received {hexData.Length} byte: {hexData}", LogLevel.Information);
 
                             // Gọi sự kiện với List<byte>
                             DataReceived?.Invoke(this, data);
@@ -153,7 +153,7 @@ namespace Development
                 logger.CreateLaser($"Error receiving data: {ex.Message}", LogLevel.Error);
             }
         }
-        public byte[] SendDataLaser(byte[] data)
+        public byte[] SendWaitResponse(byte[] data)
         {
             byte[] rec;
             isReading = true;
@@ -173,8 +173,8 @@ namespace Development
             {
                 rec = this.readingBuf.ToArray();
 
-                string hexData = BitConverter.ToString(rec).Replace("-", " ");
-                logger.CreateLaser($"Received data: {hexData}", LogLevel.Information);
+                string hexData = BitConverter.ToString(rec).Replace(" ", "-");
+                logger.CreateLaser($"Received {rec.Length} byte: {hexData}", LogLevel.Information);
             }
             else
             {
@@ -247,7 +247,7 @@ namespace Development
             }
             catch (Exception ex)
             {
-                logger.Create01($"Error Open COM {ex}", LogLevel.Error);
+                logger.CreateLaser($"Error Open COM {ex}", LogLevel.Error);
                 isConnect = false;
             }
         }
@@ -264,7 +264,7 @@ namespace Development
             }
             catch (Exception ex)
             {
-                logger.Create01($"Error Close COM {ex}", LogLevel.Error);
+                logger.CreateLaser($"Error Close COM {ex}", LogLevel.Error);
             }
         }
 
