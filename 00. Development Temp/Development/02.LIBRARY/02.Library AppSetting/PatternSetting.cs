@@ -16,6 +16,9 @@ namespace Development
         public double offsetX { get; set; }
         public double offsetY { get; set; }
         public bool Use2Matrix { get; set; }
+
+        public List<int> positionNGs { get; set; }
+
         public PatternSetting()
         {
             this.CurrentPatern = 1;
@@ -26,6 +29,8 @@ namespace Development
             this.offsetX = 0;
             this.offsetY = 0;
             this.Use2Matrix = false;
+
+            this.positionNGs = new List<int>();
         }
     }
 }

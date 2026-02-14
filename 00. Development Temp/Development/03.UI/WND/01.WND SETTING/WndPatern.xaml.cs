@@ -21,6 +21,8 @@ namespace Development
     {
         private MyLogger logger = new MyLogger("WndPatern");
         private PatternSetting pattern = UiManager.appSetting.Pattern;
+        private Boolean isConfirmYes = false;
+
         public WndPatern()
         {
             InitializeComponent();
@@ -33,6 +35,7 @@ namespace Development
         {
             try
             {
+                this.isConfirmYes = false;
                 this.Close();
             }
             catch (Exception ex)
@@ -118,6 +121,7 @@ namespace Development
                 //pattern.offsetY = Convert.ToDouble(txtOffsetY.Text);
                 pattern.Use2Matrix = Convert.ToBoolean(cb2Matrix.IsChecked);
                 UiManager.SaveAppSetting();
+                this.isConfirmYes = true;
                 this.Close();
             }
             catch (Exception ex)
@@ -275,7 +279,7 @@ namespace Development
         public Boolean DoConfirmYesNo(Window owner = null)
         {
             this.ShowDialog();
-            return true;
+            return isConfirmYes;
         }
     }
 }
