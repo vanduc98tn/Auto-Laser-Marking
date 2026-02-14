@@ -20,7 +20,7 @@ namespace Development
     public partial class WndPatern : Window
     {
         private MyLogger logger = new MyLogger("WndPatern");
-        PatternSetting pattern = UiManager.appSetting.Pattern;
+        private PatternSetting pattern = UiManager.appSetting.Pattern;
         public WndPatern()
         {
             InitializeComponent();

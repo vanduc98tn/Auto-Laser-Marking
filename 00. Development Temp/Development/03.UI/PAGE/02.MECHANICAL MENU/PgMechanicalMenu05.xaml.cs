@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenCvSharp.XFeatures2D;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,10 @@ namespace Development
     public partial class PgMechanicalMenu05 : Page
     {
         private MyLogger logger = new MyLogger("PgMechanical05Menu");
+        private PatternSetting pattern = UiManager.appSetting.Pattern;
         private SettingDevice settingDevice;
+        private List<Button> lstButtonPos;
+
         public PgMechanicalMenu05()
         {
             InitializeComponent();
@@ -46,13 +50,16 @@ namespace Development
         }
 
         
+
+
+
         private void BtPattern_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 WndPatern uiPatern = new WndPatern();
                 uiPatern.DoConfirmYesNo();
-                //generateCells(modelSetting.Pattern.xRow, modelSetting.Pattern.yColumn, modelSetting.Pattern.CurrentPatern, modelSetting.Pattern.Use2Matrix);
+                generateCells(pattern.xRow, pattern.yColumn, pattern.CurrentPatern, pattern.Use2Matrix);
                 //string filePath = string.Format("/Resource/Image/{0}.PNG", modelSetting.Pattern.CurrentPatern);
                 //imgPattern.Source = new BitmapImage(new Uri(filePath, UriKind.Relative));
                 UpdateLogs($"Click Button Save to Complete");
@@ -166,6 +173,332 @@ namespace Development
             this.Dispatcher.Invoke(() => {
                 this.txtLogs.Clear();
             });
+        }
+        private void generateCells(int rowCnt, int colCnt, int pattern, bool Use2Matrix)
+        {
+            lstButtonPos = new List<Button>();
+            gridPos.Children.Clear();
+            gridPos.RowDefinitions.Clear();
+            gridPos.ColumnDefinitions.Clear();
+
+            // Rows
+            for (int r = 0; r < rowCnt; r++)
+            {
+                gridPos.RowDefinitions.Add(
+                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) }
+                );
+            }
+
+            int matrixCols = Use2Matrix ? colCnt / 2 : colCnt;
+            int gapCols = Use2Matrix ? 1 : 0;
+            int totalCols = Use2Matrix ? matrixCols * 2 + gapCols : colCnt;
+
+            // Columns (có GAP)
+            for (int c = 0; c < totalCols; c++)
+            {
+                if (Use2Matrix && c == matrixCols)
+                {
+                    // Cột trống giữa 2 matrix
+                    gridPos.ColumnDefinitions.Add(
+                        new ColumnDefinition { Width = new GridLength(10) } // px
+                    );
+                }
+                else
+                {
+                    gridPos.ColumnDefinitions.Add(
+                        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }
+                    );
+                }
+            }
+
+            int matrixSize = rowCnt * matrixCols;
+
+            // Create cells
+            for (int id = 1; id <= rowCnt * colCnt; id++)
+            {
+                int r = GetCellRow(id, pattern, rowCnt, colCnt, Use2Matrix);
+                int c = GetCellColumn(id, pattern, rowCnt, colCnt, Use2Matrix);
+
+                var cell = createCell(id);
+                gridPos.Children.Add(cell);
+                Grid.SetRow(cell, r);
+                Grid.SetColumn(cell, c);
+            }
+        }
+        private Button createCell(int number)
+        {
+            var cell = new Button();
+            cell.Content = String.Format("{0}", number);
+            cell.FontWeight = FontWeights.Bold;
+            cell.FontSize = 12;
+            //cell.Margin = new Thickness(1, 1, 1, 1);
+            cell.Name = String.Format("btCell{0:00}", number);
+            cell.Background = Brushes.LightGray;
+            //cell.Click += this.Cell_Click;
+            //cell.TouchDown += this.Cell_Click;
+            lstButtonPos.Add(cell);
+            return cell;
+        }
+        //private void Cell_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        ClearBackGroundButton();
+        //        var btCell = (Button)sender;
+        //        btCell.Background = Brushes.OrangeRed;
+        //        lblId.Content = Convert.ToInt32(btCell.Content.ToString());
+        //        int id = Convert.ToInt32(btCell.Content.ToString());
+        //        this.UpdatePosToUi(id, modelSetting.Pattern.CurrentPatern);
+        //        this.SendDataTrigger();
+        //        if (cbUseWithTargetX.IsChecked == true)
+        //        {
+        //            txtChangePosX.Text = lblPosX.Content.ToString();
+        //        }
+        //        if (cbUseWithTargetY.IsChecked == true)
+        //        {
+        //            txtChangePosY.Text = lblPosY.Content.ToString();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logger.Create("Cell_Click:" + ex.Message, LogLevel.Error);
+        //    }
+        //}
+
+
+        private int GetCellRow(int cellId, int pattern, int row, int column, bool use2Matrix)
+        {
+            if (!use2Matrix)
+                return GetCellRowCaculator(cellId, pattern, row, column);
+
+            int matrixCols = column / 2;
+            int matrixSize = row * matrixCols;
+
+            int localCellId = (cellId - 1) % matrixSize + 1;
+
+            return GetCellRowCaculator(localCellId, pattern, row, matrixCols);
+        }
+        private int GetCellColumn(int cellId, int pattern, int row, int column, bool use2Matrix)
+        {
+            if (!use2Matrix)
+                return GetCellColumnCaculator(cellId, pattern, row, column);
+
+            int matrixCols = column / 2;
+            int matrixSize = row * matrixCols;
+            int gapCols = 1;
+
+            int matrixIndex = (cellId - 1) / matrixSize; // 0 hoặc 1
+            int localCellId = (cellId - 1) % matrixSize + 1;
+
+            int col = GetCellColumnCaculator(localCellId, pattern, row, matrixCols);
+
+            return col + matrixIndex * (matrixCols + gapCols);
+        }
+        private int GetCellRowCaculator(int cellId, int pattern, int row, int column)
+        {
+            int xSize = column;
+            int ySize = row;
+            // new
+            if (pattern == 1 || pattern == 2)
+            {
+                return ySize - 1 - (cellId - 1) / xSize;
+            }
+            else if (pattern == 3 || pattern == 4)
+            {
+                return (cellId - 1) / xSize;
+            }
+            else if (pattern == 5)
+            {
+                if (((cellId - 1) / ySize) % 2 == 0)
+                {
+                    return ySize - 1 - ((cellId - 1) % ySize);
+                }
+                else
+                {
+                    return (cellId - 1) % ySize;
+                }
+            }
+            else if (pattern == 6)
+            {
+                if (((cellId - 1) / ySize) % 2 != 0)
+                {
+                    return ySize - 1 - ((cellId - 1) % ySize);
+                }
+                else
+                {
+                    return (cellId - 1) % ySize;
+                }
+            }
+            else if (pattern == 7)
+            {
+                if ((column - 1) % 2 != 0)
+                {
+                    if ((xSize - 1 - (cellId - 1) / ySize) % 2 != 0)
+                    {
+                        return (cellId - 1) % ySize;
+                    }
+                    else
+                    {
+                        return ySize - 1 - ((cellId - 1) % ySize);
+                    }
+                }
+                else
+                {
+                    if ((xSize - 1 - (cellId - 1) / ySize) % 2 == 0)
+                    {
+                        return (cellId - 1) % ySize;
+                    }
+                    else
+                    {
+                        return ySize - 1 - ((cellId - 1) % ySize);
+                    }
+                }
+            }
+            else if (pattern == 8)
+            {
+                if ((column - 1) % 2 != 0)
+                {
+                    if ((xSize - 1 - (cellId - 1) / ySize) % 2 == 0)
+                    {
+                        return (cellId - 1) % ySize;
+                    }
+                    else
+                    {
+                        return ySize - 1 - ((cellId - 1) % ySize);
+                    }
+                }
+                else
+                {
+                    if ((xSize - 1 - (cellId - 1) / ySize) % 2 != 0)
+                    {
+                        return (cellId - 1) % ySize;
+                    }
+                    else
+                    {
+                        return ySize - 1 - ((cellId - 1) % ySize);
+                    }
+                }
+            }
+            else if (pattern == 9 || pattern == 10)
+            {
+                return ySize - 1 - (cellId - 1) / xSize;
+            }
+            else if (pattern == 11 || pattern == 12)
+            {
+                return (cellId - 1) / xSize;
+            }
+            else if (pattern == 13 || pattern == 15)
+            {
+                return ySize - 1 - ((cellId - 1) % ySize);
+            }
+            else if (pattern == 14 || pattern == 16)
+            {
+                return (cellId - 1) % ySize;
+            }
+            return 0;
+        }
+        private int GetCellColumnCaculator(int cellId, int pattern, int row, int column)
+        {
+            int xSize = column;
+            int ySize = row;
+
+            if (pattern == 1)
+            {
+                if ((row - 1) % 2 != 0)
+                {
+                    if ((ySize - 1 - (cellId - 1) / xSize) % 2 != 0)
+                    {
+                        return (cellId - 1) % xSize;
+                    }
+                    else
+                    {
+                        return xSize - 1 - ((cellId - 1) % xSize);
+                    }
+                }
+                else
+                {
+                    if ((ySize - 1 - (cellId - 1) / xSize) % 2 == 0)
+                    {
+                        return (cellId - 1) % xSize;
+                    }
+                    else
+                    {
+                        return xSize - 1 - ((cellId - 1) % xSize);
+                    }
+                }
+            }
+            else if (pattern == 2)
+            {
+                if ((row - 1) % 2 != 0)
+                {
+                    if ((ySize - 1 - (cellId - 1) / xSize) % 2 == 0)
+                    {
+                        return (cellId - 1) % xSize;
+                    }
+                    else
+                    {
+                        return xSize - 1 - ((cellId - 1) % xSize);
+                    }
+                }
+                else
+                {
+                    if ((ySize - 1 - (cellId - 1) / xSize) % 2 != 0)
+                    {
+                        return (cellId - 1) % xSize;
+                    }
+                    else
+                    {
+                        return xSize - 1 - ((cellId - 1) % xSize);
+                    }
+                }
+            }
+            else if (pattern == 3)
+            {
+                if (((cellId - 1) / xSize) % 2 == 0)
+                {
+                    return (cellId - 1) % xSize;
+                }
+                else
+                {
+                    return xSize - 1 - ((cellId - 1) % xSize);
+                }
+            }
+            else if (pattern == 4)
+            {
+                if (((cellId - 1) / xSize) % 2 != 0)
+                {
+                    return (cellId - 1) % xSize;
+                }
+                else
+                {
+                    return xSize - 1 - ((cellId - 1) % xSize);
+                }
+            }
+            else if (pattern == 5 || pattern == 6)
+            {
+                return (cellId - 1) / ySize;
+            }
+            else if (pattern == 7 || pattern == 8)
+            {
+                return xSize - 1 - (cellId - 1) / ySize;
+            }
+            else if (pattern == 9 || pattern == 12)
+            {
+                return (cellId - 1) % xSize;
+            }
+            else if (pattern == 10 || pattern == 11)
+            {
+                return xSize - 1 - ((cellId - 1) % xSize);
+            }
+            else if (pattern == 13 || pattern == 14)
+            {
+                return (cellId - 1) / ySize;
+            }
+            else if (pattern == 15 || pattern == 16)
+            {
+                return xSize - 1 - (cellId - 1) / ySize;
+            }
+            return 0;
         }
 
         private void BtMenuTab05_Click(object sender, RoutedEventArgs e)
