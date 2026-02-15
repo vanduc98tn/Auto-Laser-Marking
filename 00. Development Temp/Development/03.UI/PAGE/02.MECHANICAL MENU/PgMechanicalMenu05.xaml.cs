@@ -1,4 +1,5 @@
-﻿using OpenCvSharp.XFeatures2D;
+﻿using KeyPad;
+using OpenCvSharp.XFeatures2D;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,9 +50,32 @@ namespace Development
             this.btAllPos.Click += BtAllPos_Click;
             this.btClrPos.Click += BtClrPos_Click;
 
+            this.txtPrgLaser.PreviewMouseDown += TxtPrgLaser_PreviewMouseDown;
+            this.btTrigger.Click += BtTrigger_Click;
+
         }
 
+        private void BtTrigger_Click(object sender, RoutedEventArgs e)
+        {
+            WndComfirm comfirmYesNo = new WndComfirm();
+            if (!comfirmYesNo.DoComfirmYesNo("You Want To..?")) return;
 
+            UpdateLogs($"Sent code Laser switch Program {pattern.PrgLaser}: ");
+            UpdateLogs($"Sent code Laser Marking Block: ");
+            UpdateLogs($"Write bit Trigger : ");
+        }
+
+        private void TxtPrgLaser_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            Keypad keyboardWindow = new Keypad(true);
+            if (keyboardWindow.ShowDialog() == true && Convert.ToInt16(keyboardWindow.Result) >= 0 && Convert.ToInt16(keyboardWindow.Result) <= 20)
+            {
+                txt.Text = keyboardWindow.Result;
+                pattern.PrgLaser = Convert.ToInt16(txt.Text);
+                UpdateLogs($"Changed Laser to Program: {pattern.PrgLaser}");
+            }
+        }
 
         private void BtClrPos_Click(object sender, RoutedEventArgs e)
         {
@@ -171,19 +195,21 @@ namespace Development
 
         private void PgMechanicalMenu05_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
             try
             {
                 settingDevice = UiManager.appSetting.settingDevice;
+                this.UpdateUiButton();
+                this.UpdateLaser();
+
                 this.generateCells(pattern.xRow, pattern.yColumn, pattern.CurrentPatern, pattern.Use2Matrix);
-                LoadPosition();
-                UpdateUiButton();
+                this.LoadPosition();
+
             }
             catch (Exception ex)
             {
                 this.logger.Create("PgTeachingMenu_Loaded: " + ex.Message, LogLevel.Error);
             }
-            UpdateUiButton();
         }
 
         private void UpdateUiButton()
@@ -214,6 +240,12 @@ namespace Development
                 this.txtLogs.Clear();
             });
         }
+        private void UpdateLaser()
+        {
+            var PrgLaser = pattern.PrgLaser;
+            txtPrgLaser.Text = PrgLaser.ToString();
+        }
+
         private void generateCells(int rowCnt, int colCnt, int pattern, bool Use2Matrix)
         {
             gridPos.Children.Clear();
@@ -263,97 +295,8 @@ namespace Development
                 Grid.SetRow(cell, r);
                 Grid.SetColumn(cell, c);
             }
-        }
-        private Button createCell(int number)
-        {
-            //var cell = new Button();
-            //cell.Content = String.Format("{0}", number);
-            //cell.FontWeight = FontWeights.Bold;
-            //cell.FontSize = 12;
-            ////cell.Margin = new Thickness(1, 1, 1, 1);
-            //cell.Name = String.Format("btCell{0:00}", number);
-            //cell.Background = Brushes.LightGray;
-            //cell.Click += this.Cell_Click;
-            //cell.TouchDown += this.Cell_Click;
-            //lstButtonPos.Add(cell);
-            //return cell;
-
-            var cell = new Button();
-            cell.Tag = false; // Unselected
-            cell.Content = createCellContent(String.Format("{0}", number));
-            cell.Name = String.Format("lblCell{0:00}", number);
-            cell.HorizontalContentAlignment = HorizontalAlignment.Center;
-            cell.VerticalContentAlignment = VerticalAlignment.Center;
-            cell.BorderThickness = new Thickness(1);
-            cell.BorderBrush = Brushes.Gray;
-
-            cell.Click += this.Cell_Click;
-            //cell.PreviewMouseDown += this.Cell_Click;
-            return cell;
-        }
-        private void Cell_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var cell = sender as Button;
-                if ((bool)cell.Tag)
-                {
-                    cell.Tag = false;
-                    cell.ClearValue(Button.BackgroundProperty);
-                    cell.Foreground = Brushes.Black;
-                }
-                else
-                {
-                    cell.Tag = true;
-                    cell.Background = EM_COLOR;
-                    cell.Foreground = Brushes.White;
-                }
-                //updateCounter();
-            }
-            catch (Exception ex)
-            {
-                logger.Create("Cell_Click:" + ex.Message, LogLevel.Error);
-            }
-        }
-        private object createCellContent(String qr)
-        {
-            var cellText = new TextBlock();
-            cellText.TextWrapping = TextWrapping.Wrap;
-            cellText.FontSize = 10;
-            cellText.Text = String.Format("{0}", qr);
-            return cellText;
-        }
-        private void SaveSelectPositon()
-        {
-            List<int> lstPos = new List<int>();
-            foreach (var cell in gridPos.Children)
-            {
-                var btCell = cell as Button;
-
-                if (btCell != null && btCell.Background == EM_COLOR)
-                {
-                    var textcell = btCell.Content as TextBlock;
-                    lstPos.Add(Convert.ToInt32(textcell.Text.ToString()));
-                }
-            }
-            lstPos.Sort();
-            pattern.positionNGs = lstPos;
-            UiManager.SaveAppSetting();
-        }
-        private void LoadPosition()
-        {
-            var pos = pattern.positionNGs;
-            foreach (var cell in gridPos.Children)
-            {
-                if (cell is Button btCell && btCell.Content is TextBlock textcell && pos.Contains(int.Parse(textcell.Text)))
-                {
-                    btCell.Background = EM_COLOR;
-                    btCell.Foreground = Brushes.White;
-                }
-            }
 
         }
-
         private int GetCellRow(int cellId, int pattern, int row, int column, bool use2Matrix)
         {
             if (!use2Matrix)
@@ -587,6 +530,96 @@ namespace Development
                 return xSize - 1 - (cellId - 1) / ySize;
             }
             return 0;
+        }
+        private Button createCell(int number)
+        {
+            //var cell = new Button();
+            //cell.Content = String.Format("{0}", number);
+            //cell.FontWeight = FontWeights.Bold;
+            //cell.FontSize = 12;
+            ////cell.Margin = new Thickness(1, 1, 1, 1);
+            //cell.Name = String.Format("btCell{0:00}", number);
+            //cell.Background = Brushes.LightGray;
+            //cell.Click += this.Cell_Click;
+            //cell.TouchDown += this.Cell_Click;
+            //lstButtonPos.Add(cell);
+            //return cell;
+
+            var cell = new Button();
+            cell.Tag = false; // Unselected
+            cell.Content = createCellContent(String.Format("{0}", number));
+            cell.Name = String.Format("lblCell{0:00}", number);
+            cell.HorizontalContentAlignment = HorizontalAlignment.Center;
+            cell.VerticalContentAlignment = VerticalAlignment.Center;
+            cell.BorderThickness = new Thickness(1);
+            cell.BorderBrush = Brushes.Gray;
+
+            cell.Click += this.Cell_Click;
+            //cell.PreviewMouseDown += this.Cell_Click;
+            return cell;
+        }
+        private object createCellContent(String qr)
+        {
+            var cellText = new TextBlock();
+            cellText.TextWrapping = TextWrapping.Wrap;
+            cellText.FontSize = 10;
+            cellText.Text = String.Format("{0}", qr);
+            return cellText;
+        }
+        private void Cell_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var cell = sender as Button;
+                if ((bool)cell.Tag)
+                {
+                    cell.Tag = false;
+                    cell.ClearValue(Button.BackgroundProperty);
+                    cell.Foreground = Brushes.Black;
+                }
+                else
+                {
+                    cell.Tag = true;
+                    cell.Background = EM_COLOR;
+                    cell.Foreground = Brushes.White;
+                }
+                //updateCounter();
+            }
+            catch (Exception ex)
+            {
+                logger.Create("Cell_Click:" + ex.Message, LogLevel.Error);
+            }
+        }
+        
+        private void SaveSelectPositon()
+        {
+            List<int> lstPos = new List<int>();
+            foreach (var cell in gridPos.Children)
+            {
+                var btCell = cell as Button;
+
+                if (btCell != null && btCell.Background == EM_COLOR)
+                {
+                    var textcell = btCell.Content as TextBlock;
+                    lstPos.Add(Convert.ToInt32(textcell.Text.ToString()));
+                }
+            }
+            lstPos.Sort();
+            pattern.positionNGs = lstPos;
+            UiManager.SaveAppSetting();
+        }
+        private void LoadPosition()
+        {
+            var pos = pattern.positionNGs;
+            foreach (var cell in gridPos.Children)
+            {
+                if (cell is Button btCell && btCell.Content is TextBlock textcell && pos.Contains(int.Parse(textcell.Text)))
+                {
+                    btCell.Background = EM_COLOR;
+                    btCell.Foreground = Brushes.White;
+                }
+            }
+
         }
 
         private void BtMenuTab05_Click(object sender, RoutedEventArgs e)

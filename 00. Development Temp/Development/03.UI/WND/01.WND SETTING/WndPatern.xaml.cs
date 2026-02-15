@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KeyPad;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,8 +30,28 @@ namespace Development
             this.Loaded += WndPatern_Loaded;
             this.btnSave.Click += BtnSave_Click;
             this.btnCancle.Click += BtnCancle_Click;
+            this.txtRow.PreviewMouseDown += TxtRow_PreviewMouseDown;
+            this.txtColumn.PreviewMouseDown += TxtColumn_PreviewMouseDown;
         }
 
+        private void TxtColumn_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            Keypad keyboardWindow = new Keypad(true);
+            if (keyboardWindow.ShowDialog() == true && Convert.ToInt16(keyboardWindow.Result) > 0)
+            {
+                txt.Text = keyboardWindow.Result;
+            }
+        }
+        private void TxtRow_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            Keypad keyboardWindow = new Keypad(true);
+            if (keyboardWindow.ShowDialog() == true && Convert.ToInt16(keyboardWindow.Result) > 0)
+            {
+                txt.Text = keyboardWindow.Result;
+            }
+        }
         private void BtnCancle_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -43,7 +64,6 @@ namespace Development
                 logger.Create("BtnCancle_Click : " + ex.Message, LogLevel.Error);
             }
         }
-
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -113,6 +133,7 @@ namespace Development
                 {
                     pattern.CurrentPatern = 16;
                 }
+                    
                 //pattern.PitchX = Convert.ToDouble(txtPitchX.Text);
                 //pattern.PitchY = Convert.ToDouble(txtPitchY.Text);
                 pattern.xRow = Convert.ToInt32(txtRow.Text);
@@ -237,7 +258,6 @@ namespace Development
         private bool CheckInputFormat()
         {
             int x;
-            double b;
             if (!int.TryParse(txtRow.Text, out x))
             {
                 txtRow.Focus();
@@ -274,6 +294,11 @@ namespace Development
             //    MessageBox.Show("Input [OffsetY] incorrect!", "Notification", MessageBoxButton.OK, MessageBoxImage.Error);
             //    return false;
             //}
+            if (Convert.ToInt32(txtRow.Text) * Convert.ToInt32(txtColumn.Text) > 1000)
+            {
+                MessageBox.Show("Input [Row]x[Column] > 2000 is incorrect!", "Notification", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
             return true;
         }
         public Boolean DoConfirmYesNo(Window owner = null)

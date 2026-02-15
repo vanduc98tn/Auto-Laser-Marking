@@ -133,9 +133,10 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="80"></RowDefinition>
-                                <RowDefinition Height="80"></RowDefinition>
-                                <RowDefinition Height="80"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Button Grid.Column="0" Grid.Row="0" x:Name="btSetting">Setting</Button>
@@ -144,6 +145,16 @@
                             <Button Grid.Column="1" Grid.Row="1" x:Name="btClose">Close</Button>
                             <Button Grid.Column="0" Grid.Row="2" x:Name="btSend">Send Test</Button>
                             <Button Grid.Column="1" Grid.Row="2" x:Name="btPattern">Pattern Setting</Button>
+                            <Grid Grid.Column="0" Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="120"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Background="LightCoral" Margin="2,2,2,2" BorderBrush="Black" BorderThickness="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="22">Program set</Label>
+                                <TextBox Grid.Column="1" x:Name="txtPrgLaser" Background="LightCyan" Margin="2,2,2,2" BorderBrush="Black" BorderThickness="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="22" IsReadOnly="True">0</TextBox>
+                            </Grid>
+                            <Button Grid.Column="1" Grid.Row="3" x:Name="btTrigger">Run Marking Laser</Button>
+
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">

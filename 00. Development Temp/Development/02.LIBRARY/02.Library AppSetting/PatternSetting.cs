@@ -18,6 +18,7 @@ namespace Development
         public bool Use2Matrix { get; set; }
 
         public List<int> positionNGs { get; set; }
+        public int PrgLaser { get; set; }
 
         public PatternSetting()
         {
@@ -31,6 +32,7 @@ namespace Development
             this.Use2Matrix = false;
 
             this.positionNGs = new List<int>();
+            this.PrgLaser = 0;
         }
     }
 }
