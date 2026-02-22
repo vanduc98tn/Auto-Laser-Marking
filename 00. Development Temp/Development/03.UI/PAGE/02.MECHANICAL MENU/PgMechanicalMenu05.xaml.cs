@@ -2,18 +2,22 @@
 using OpenCvSharp.XFeatures2D;
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static OfficeOpenXml.ExcelErrorValue;
 
 namespace Development
 {
@@ -32,6 +36,7 @@ namespace Development
             InitializeComponent();
 
             this.Loaded += PgMechanicalMenu05_Loaded;
+            this.Unloaded += PgMechanicalMenu05_Unloaded;
 
             this.btMenuTab01.Click += BtMenuTab01_Click;
             this.btMenuTab02.Click += BtMenuTab02_Click;
@@ -55,16 +60,23 @@ namespace Development
 
         }
 
+        
+
         private void BtTrigger_Click(object sender, RoutedEventArgs e)
         {
             WndComfirm comfirmYesNo = new WndComfirm();
             if (!comfirmYesNo.DoComfirmYesNo("You Want To..?")) return;
 
-            UpdateLogs($"Sent code Laser switch Program {pattern.PrgLaser}: ");
-            UpdateLogs($"Sent code Laser Marking Block: ");
-            UpdateLogs($"Write bit Trigger : ");
+            if (UiManager.Instance.laserCOM.isConnect)
+            {
+                TriggerManual();
+            }
+            else
+            {
+                UpdateLogs($"Error: COM port is not open");
+            }
+            
         }
-
         private void TxtPrgLaser_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             TextBox txt = sender as TextBox;
@@ -72,8 +84,7 @@ namespace Development
             if (keyboardWindow.ShowDialog() == true && Convert.ToInt16(keyboardWindow.Result) >= 0 && Convert.ToInt16(keyboardWindow.Result) <= 20)
             {
                 txt.Text = keyboardWindow.Result;
-                pattern.PrgLaser = Convert.ToInt16(txt.Text);
-                UpdateLogs($"Changed Laser to Program: {pattern.PrgLaser}");
+                UpdateLogs($"Changed Laser to Program: {txt.Text}");
             }
         }
 
@@ -150,6 +161,7 @@ namespace Development
             }
 
             UpdateLogs($"Receive: {strResult}");
+
         }
 
         private void BtClose_Click(object sender, RoutedEventArgs e)
@@ -193,6 +205,10 @@ namespace Development
             this.ClearLogs();
         }
 
+        private void PgMechanicalMenu05_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ClearLogs();
+        }
         private void PgMechanicalMenu05_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -606,6 +622,7 @@ namespace Development
             }
             lstPos.Sort();
             pattern.positionNGs = lstPos;
+            pattern.PrgLaser = Convert.ToInt16(txtPrgLaser.Text);
             UiManager.SaveAppSetting();
         }
         private void LoadPosition()
@@ -618,6 +635,46 @@ namespace Development
                     btCell.Background = EM_COLOR;
                     btCell.Foreground = Brushes.White;
                 }
+            }
+
+        }
+        private void TriggerManual()
+        {
+            List<int> lstPos = new List<int>();
+            foreach (var cell in gridPos.Children)
+            {
+                var btCell = cell as Button;
+
+                if (btCell != null && btCell.Background == EM_COLOR)
+                {
+                    var textcell = btCell.Content as TextBlock;
+                    lstPos.Add(Convert.ToInt32(textcell.Text.ToString()));
+                }
+            }
+            lstPos.Sort();
+
+            int prg = Convert.ToInt16(txtPrgLaser.Text);
+            int[] cmd = lstPos.ToArray();
+
+            string header = $"D6,{prg},1";
+            if (cmd != null && cmd.Length > 0)
+            {
+                header += "," + string.Join(",", cmd);
+            }
+            header += "\r";
+
+            UpdateLogs($"Send: {header.Replace("\r", "<CR>")}");
+
+            string rec = UiManager.Instance.laserCOM.SendBlockOn(prg, cmd);
+            UpdateLogs($"Receive: {rec?.Replace("\r", "<CR>")}");
+
+            if (rec == "NG")
+            {
+                int plc = 700;
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, plc, true);
+                Thread.Sleep(10);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, plc, false);
+                UpdateLogs($"Write bit Trigger: L{plc}");
             }
 
         }

@@ -27,6 +27,7 @@ namespace Development
             InitializeComponent();
 
             this.Loaded += PgMechanicalMenu03_Loaded;
+            this.Unloaded += PgMechanicalMenu03_Unloaded;
 
             this.btMenuTab01.Click += BtMenuTab01_Click;
             this.btMenuTab02.Click += BtMenuTab02_Click;
@@ -92,6 +93,10 @@ namespace Development
             this.ClearLogs();
         }
 
+        private void PgMechanicalMenu03_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ClearLogs();
+        }
         private void PgMechanicalMenu03_Loaded(object sender, RoutedEventArgs e)
         {
             settingDevice = UiManager.appSetting.settingDevice;

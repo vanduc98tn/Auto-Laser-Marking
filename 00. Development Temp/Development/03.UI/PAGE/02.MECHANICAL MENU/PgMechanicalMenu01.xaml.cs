@@ -32,6 +32,7 @@ namespace Development
             InitializeComponent();
 
             this.Loaded += PgMechanicalMenu01_Loaded;
+            this.Unloaded += PgMechanicalMenu01_Unloaded;
 
             this.btMenuTab01.Click += BtMenuTab01_Click;
             this.btMenuTab02.Click += BtMenuTab02_Click;
@@ -547,6 +548,11 @@ namespace Development
             WndComfirm comfirmYesNo = new WndComfirm();
             if (!comfirmYesNo.DoComfirmYesNo("You Want Clear?")) return;
             this.ClearLogs();
+        }
+
+        private void PgMechanicalMenu01_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ClearLogs();
         }
         private void PgMechanicalMenu01_Loaded(object sender, RoutedEventArgs e)
         {

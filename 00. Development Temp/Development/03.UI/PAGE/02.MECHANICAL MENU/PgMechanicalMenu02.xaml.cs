@@ -25,6 +25,7 @@ namespace Development
             InitializeComponent();
 
             this.Loaded += PgMechanicalMenu02_Loaded;
+            this.Unloaded += PgMechanicalMenu02_Unloaded;
 
             this.btMenuTab01.Click += BtMenuTab01_Click;
             this.btMenuTab02.Click += BtMenuTab02_Click;
@@ -53,6 +54,10 @@ namespace Development
             this.ClearLogs();
         }
 
+        private void PgMechanicalMenu02_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ClearLogs();
+        }
         private void PgMechanicalMenu02_Loaded(object sender, RoutedEventArgs e)
         {
             this.UpdateUI();

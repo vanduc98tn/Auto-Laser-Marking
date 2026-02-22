@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace Development
 {
@@ -172,14 +173,15 @@ namespace Development
             if (!isReading)
             {
                 rec = this.readingBuf.ToArray();
-
                 string hexData = BitConverter.ToString(rec).Replace(" ", "-");
                 logger.CreateLaser($"Received {rec.Length} byte: {hexData}", LogLevel.Information);
             }
             else
             {
                 rec = null;
+                logger.CreateLaser($"Received 0 byte: <null>", LogLevel.Information);
             }
+            
 
             return rec;
         }
@@ -268,85 +270,29 @@ namespace Development
             }
         }
 
-        public void Send01OutAnd02OutTester()
+        public string SendBlockOn(int prg, params int[] values)
         {
-            // STX = 0x02 , CMD = 0x32 , CMD = 0x032 , O = 0x4F , K = 0x4B , ETX = 0x03
-            byte[] Data01Out02OutTester = new byte[] { 0x02, 0x32, 0x32, 0x4F, 0X4B, 0x03, 0x0D, 0X0A };
-            SendBytes(Data01Out02OutTester);
-        }
-        public void Send01InAnd02OutTester()
-        {
-            // STX = 0x02 , CMD = 0x32 , CMD = 0x033 , O = 0x4F , K = 0x4B , ETX = 0x03
-            byte[] Data01Out02OutTester = new byte[] { 0x02, 0x32, 0x33, 0x4F, 0X4B, 0x03, 0x0D, 0X0A };
-            SendBytes(Data01Out02OutTester);
-        }
-        public void Send01OutAnd02InTester()
-        {
-            // STX = 0x02 , CMD = 0x32 , CMD = 0x034 , O = 0x4F , K = 0x4B , ETX = 0x03
-            byte[] Data01Out02OutTester = new byte[] { 0x02, 0x32, 0x34, 0x4F, 0X4B, 0x03, 0x0D, 0X0A };
-            SendBytes(Data01Out02OutTester);
-        }
-        public void SendLotin(string Lotin)
-        {
-            
-            if (Lotin.Length < 21)
+            string repStr = $"D6,{prg},1";
+            string header = $"D6,{prg},1";
+            //values = new int[] {1};
+
+            if (values != null && values.Length > 0)
             {
-                Lotin = Lotin.PadRight(21, '-');
+                header += "," + string.Join(",", values);
             }
-            else if (Lotin.Length > 21)
+            header += "\r";
+
+            byte[] rep = Encoding.ASCII.GetBytes(repStr);
+            byte[] cmd = Encoding.ASCII.GetBytes(header);
+
+            byte[] rec = SendWaitResponse(cmd);
+
+            if (rec == rep && rec != null)
             {
-                Lotin = Lotin.Substring(0, 21); 
+                return Encoding.ASCII.GetString(rec);
             }
-
-            byte[] Data01 = new byte[] { 0x02 , 0x39 ,0x39 };
-
-            byte[] LotinBytes = System.Text.Encoding.ASCII.GetBytes(Lotin);
-
-            byte[] DataEnd = new byte[] { 0x03, 0x0D, 0X0A };
-
-            byte[] DataSendLotin = new byte[Data01.Length + LotinBytes.Length + DataEnd.Length];
-            Array.Copy(Data01, 0, DataSendLotin, 0, Data01.Length);
-            Array.Copy(LotinBytes, 0, DataSendLotin, Data01.Length, LotinBytes.Length);
-            Array.Copy(DataEnd, 0, DataSendLotin, Data01.Length + LotinBytes.Length, DataEnd.Length);
-
-
-            SendBytes(DataSendLotin);
+            else return "NG";
         }
 
-        public void SendCheckAgain()
-        {
-            // STX = 0x02 , CMD = 0x33 , CMD = 0x033 , O = 0x4F , K = 0x4B , ETX = 0x03
-            byte[] DataCheckAgain = new byte[] { 0x02, 0x33, 0x33, 0x4F, 0X4B, 0x03, 0x0D, 0X0A };
-            SendBytes(DataCheckAgain);
-        }
-        public void  SendResult()
-        {
-            // STX = 0x02 , CMD = 0x34 , CMD = 0x034 , O = 0x4F , K = 0x4B , ETX = 0x03
-            byte[] DataResult = new byte[] { 0x02, 0x34, 0x34, 0x4F, 0X4B, 0x03, 0x0D, 0X0A };
-            SendBytes(DataResult);
-        }
-        public void SendIRSS(bool CH1_EN, bool CH2_EN, bool CH3_EN, bool CH4_EN, bool CH5_EN, bool CH6_EN, bool CH7_EN, bool CH8_EN, bool CH9_EN, bool CH10_EN, bool CH11_EN, bool CH12_EN)
-
-        {
-            byte[] Data01 = new byte[] { 0x02, 0x31, 0x31 };
-            byte[] DataCH = new byte[12];
-            byte[] DataEnd = new byte[] { 0x03, 0x0D, 0X0A };
-
-          
-            bool[] channels = { CH1_EN, CH2_EN, CH3_EN, CH4_EN, CH5_EN, CH6_EN, CH7_EN, CH8_EN, CH9_EN, CH10_EN, CH11_EN, CH12_EN };
-
-            for (int i = 0; i < DataCH.Length; i++)
-            {
-                DataCH[i] = (byte)(channels[i] ? 0x31 : 0x30);
-            }
-
-            
-            byte[] DataSend = new byte[Data01.Length + DataCH.Length + DataEnd.Length];
-            Array.Copy(Data01, 0, DataSend, 0, Data01.Length);
-            Array.Copy(DataCH, 0, DataSend, Data01.Length, DataCH.Length);
-            Array.Copy(DataEnd, 0, DataSend, Data01.Length + DataCH.Length, DataEnd.Length);
-
-            SendBytes(DataSend);
-        }
     }
 }
