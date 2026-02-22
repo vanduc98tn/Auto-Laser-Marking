@@ -272,20 +272,20 @@ namespace Development
 
         public string SendBlockOn(int prg, params int[] values)
         {
-            string repStr = $"D6,{prg},1";
-            string header = $"D6,{prg},1";
+            string repStr = $"D6,0"; //Response send D6 ok
+            string cmd = $"D6,{prg},1";
             //values = new int[] {1};
 
             if (values != null && values.Length > 0)
             {
-                header += "," + string.Join(",", values);
+                cmd += "," + string.Join(",", values);
             }
-            header += "\r";
+            cmd += "\r";
 
             byte[] rep = Encoding.ASCII.GetBytes(repStr);
-            byte[] cmd = Encoding.ASCII.GetBytes(header);
+            byte[] bycmd = Encoding.ASCII.GetBytes(cmd);
 
-            byte[] rec = SendWaitResponse(cmd);
+            byte[] rec = SendWaitResponse(bycmd);
 
             if (rec == rep && rec != null)
             {

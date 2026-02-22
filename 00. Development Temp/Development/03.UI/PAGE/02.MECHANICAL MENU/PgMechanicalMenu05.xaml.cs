@@ -668,9 +668,9 @@ namespace Development
             string rec = UiManager.Instance.laserCOM.SendBlockOn(prg, cmd);
             UpdateLogs($"Receive: {rec?.Replace("\r", "<CR>")}");
 
-            if (rec == "NG")
+            if (rec != "NG")
             {
-                int plc = 700;
+                int plc = 750;
                 UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, plc, true);
                 Thread.Sleep(10);
                 UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, plc, false);
