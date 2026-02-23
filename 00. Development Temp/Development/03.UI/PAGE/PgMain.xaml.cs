@@ -34,8 +34,9 @@ namespace Development
         private readonly CompositeViewModel compositeViewModel;
 
         private bool isUpdate = false;
-        private List<short> D_ListShortDevicePLC_0 = new List<short>();
-        private List<bool> M_ListBitPLC0_500 = new List<bool>();
+        private List<short> D_ListShortDevicePLC_0_299 = new List<short>();
+        private List<bool> M_ListBitPLC_0_99 = new List<bool>();
+        private List<bool> M_ListBitPLC_500_549 = new List<bool>();
         private bool hasClearedError = false;
 
 
@@ -46,26 +47,8 @@ namespace Development
         private object LockRun = new object();
         private bool isRunning = false;
 
-
-
-        #region MAIN MANUAL VISION
-        // --- THÔNG SỐ CẤU HÌNH ---
-        public int TotalRows  = 5;
-        public int TotalCols  = 10;
-        public int VisionRows = 2;
-        public int VisionCols  = 3;
-
-        private int _runDirection = 0;
-        public int RunDirection
-        {
-            get => _runDirection;
-            set { _runDirection = value; ResetSystem(); }
-        }
-
-        private int _stepIndex = 0;
-        private List<List<WorkItem>> InspectionPath = new List<List<WorkItem>>();
-
-        #endregion
+        private PatternSetting pattern = UiManager.appSetting.Pattern;
+        private Brush EM_COLOR = Brushes.Red;
 
         private DataPCB DataPCB;
 
@@ -404,227 +387,147 @@ namespace Development
         }
         private void Running()
         {
-            // x run : D3156 (DWORD)
-            // Y RUN : D3204 (DWORD)
-
-            // X : THUC TE CON HANG D3236
-            // Y : THUC TE CON HANG D3237
-
-            // X : DOC BAO NHIEU CON HANG D3259 (WORD)
-            // Y : DOC BAO NHIEU CON HANG D3260 (WORD)
-
-            // DIEM CHAY :3240 (WORD)
-            // M NEXT : M3854
-            // M BACK : M3855
-
-            // M START M3857:
-            // M END M3856:
-
-            // M DOC CODE : M3850
-            // M CHECK OK : M3851
-            // M CHECK NG : M3852
-
-            // M CHECK SCANNER AGAIN : M3853
-
-
             lock (LockRun)
             {
-                bool M_START = false;  // M3857:
-                bool M_STOP = false;   // M3856:
+                List<bool> M_ListBitPLC_ = new List<bool>();
 
-                bool M_START_SCANNER = false;     // M3850
-                //bool M_SCANNER_CHECK_OK = false;  // M3851
-                //bool M_SCANNER_CHECK_NG = false;  // M3852
-                //bool M_SCANNER_CHECK_SCANNER_AGAIN = false;  // M3853
-                bool M_NEXT_STEP = false; // M3854
-                bool M_BACK_STEP = false; // M3855
-                List<short> D_INDEX_RUNNING = new List<short>();  // D3240 (WORD)
+                bool CLR_ALL_VISION = false;
+                bool TRIGGER1_VISION = false;
+                bool TRIGGER2_VISION = false;
 
-
+                bool CLR_ALL_QR = false;
+                bool TRIGGER_QR = false;
 
                 while (isRunning)
                 {
-                    // START --------------------------------------------------------
-                    UiManager.Instance.PLC.device.ReadBit(DeviceCode.M,3857, out M_START);
-                    if (M_START)
+                    if (UiManager.Instance.PLC.device.isOpen())
                     {
-                        this.addLog("--- Start RunAuto --- ");
-                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3857, false);
-                        this.addLog("Write Bit START M3857 = OFF");
-
-                      
-                        _stepIndex = 0;
-                        Dispatcher.Invoke(() =>
+                        UiManager.Instance.PLC.device.ReadMultiBits(DeviceCode.M, 500, 50, out M_ListBitPLC_);
+                        if (M_ListBitPLC_.Count > 0)
                         {
-                            foreach (var item in compositeViewModel.MasterItems) { item.IsNG = false; item.HasBeenReached = false; item.IsCurrent = false; }
-                        });
-                       
-                        this.UpdateUI();
-                        this.addLog("CLEAR ALL UI ");
+                            CLR_ALL_VISION = M_ListBitPLC_[4];  // M504
+                            TRIGGER1_VISION = M_ListBitPLC_[0];  // M500
+                            TRIGGER2_VISION = M_ListBitPLC_[1];  // M501
+
+                            CLR_ALL_QR = M_ListBitPLC_[12];  // M512
+                            TRIGGER_QR = M_ListBitPLC_[10];  // M510
+                        }
+                    }
 
 
-                        this.UpdateUIQR("",false);
-                        this.UpdateUIMES("START RUNAUTO", Brushes.LightGreen);
+                    if (CLR_ALL_VISION)
+                    {
+                        this.addLog("--- Clear all Vision --- ");
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 504, false);
+                        this.addLog("Write Bit M504 = OFF");
+
+                    }
+                    if (TRIGGER1_VISION)
+                    {
+                        this.addLog("--- Trigger1 Vision --- ");
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 500, false);
+                        this.addLog("Write Bit M500 = OFF");
+
+                    }
+                    if (TRIGGER2_VISION)
+                    {
+                        this.addLog("--- Trigger2 Vision --- ");
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 501, false);
+                        this.addLog("Write Bit M501 = OFF");
+
+                    }
+
+                    if (CLR_ALL_QR)
+                    {
+                        this.addLog("--- Clear all QR --- ");
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 512, false);
+                        this.addLog("Write Bit M512 = OFF");
+
+                        this.UpdateUIQR("", false);
 
                         this.DataPCB = new DataPCB();
-                    
-                    }
-
-                    // CHECK END -------------------------------------------------------
-                    UiManager.Instance.PLC.device.ReadBit(DeviceCode.M,3856, out M_STOP);
-                    if (M_STOP)
-                    {
-
-                        addLog("--- End RunAuto --- ");
-
-                        Dispatcher.Invoke(() =>
-                        {
-                            foreach (var item in compositeViewModel.MasterItems)
-                            {
-                                item.IsCurrent = false;
-                            }
-
-
-                            List<string> resultList = compositeViewModel.MasterItems
-                                .OrderBy(x => x.Index)
-                                .Select(x => x.IsNG ? "NG" : "OK")
-                                .ToList();
-                            System.Diagnostics.Debug.WriteLine(string.Join(", ", resultList));
-
-                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3856, false);
-                            addLog("Write Bit END AUTO M3856 = OFF");
-
-                            this.UpdateUIMES($"END AUTO", Brushes.LightGreen);
-
-                            DataPCB.RESULT_PCB = resultList;
-                        });
-
-                        if(UiManager.appSetting.RUN.MESOnline)
-                        {
-                            this.CheckMESWorkout();
-                        }    
-                       
-
 
                     }
+
+                    //if (M_STOP)
+                    //{
+
+                    //    addLog("--- End RunAuto --- ");
+
+
+                    //    if(UiManager.appSetting.RUN.MESOnline)
+                    //    {
+                    //        this.CheckMESWorkout();
+                    //    }    
+
+
+
+                    //}
 
                     // CHECK START SCANNER ---------------------------------------------------
-                    UiManager.Instance.PLC.device.ReadBit(DeviceCode.M, 3850, out M_START_SCANNER);
-                    if (M_START_SCANNER)
+                    if (TRIGGER_QR)
                     {
 
                         addLog("--- CHECK SCANNER --- ");
                         this.UpdateUIMES("START TRIGGER SCANNER", Brushes.LightGreen);
 
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 510, false);
+                        addLog("Write Bit M510 = OFF");
 
-                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3850, false);
-                        addLog("Write Bit START Scanner  (M3850) = OFF");
-
-                     
-
-                        if(UiManager.appSetting.RUN.CheckScanner)
+                        if (UiManager.appSetting.RUN.CheckScanner)
                         {
-                            string QR = UiManager.Instance.scannerCOM.ReadQRKeyence();
-                            //string QR = "PCBID1234567890";
+                            string QR = UiManager.Instance.scannerTCP.ReadQR();
+                            QR = "PCBID1234567890";
+                            QR = "";
 
                             if (!string.IsNullOrEmpty(QR))
                             {
                                 this.UpdateUIQR(QR, true);
 
-                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3851, true);
-                                addLog("Write Bit Scanner Check OK (M3851) = ON");
+                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, true);
+                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, false);
+                                addLog("Write Bit Scanner Trigger OK M610 = ON");
+                                addLog("Write Bit Scanner Trigger NG M611 = OFF");
 
                                 this.UpdateUIMES($"SCANNER TRIGGER COMPLETE", Brushes.LightGreen);
-
 
                                 /// Check MES S010
                                 this.DataPCB.BARCODE_PCB = QR;
 
-                                if(UiManager.appSetting.RUN.MESOnline)
+                                if (UiManager.appSetting.RUN.MESOnline)
                                 {
                                     this.CheckMESWorkin();
-                                }    
-                                
-
-
+                                }
                             }
                             else
                             {
                                 this.UpdateUIQR("Scanner Error", false);
+
+                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, false);
+                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, true);
+                                addLog("Write Bit Scanner Trigger OK M610 = OFF");
+                                addLog("Write Bit Scanner Trigger NG M611 = ON");
+
                                 this.UpdateUIMES($"ERROR SCANNER  : Unable to Read Code", Brushes.OrangeRed);
 
-                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3852, true);
-                                this.addLog("Write Bit Scanner Check NG (M3852) = ON");
-
-                                // WRITE ERROR PLC LỖI 1000;
-                                UiManager.Instance.PLC.device.WriteWord(DeviceCode.D, 100, 1000);
-
-                                //AddError(1000);
                             }
-                        }    
+                        }
                         else
                         {
-                            addLog("BY PASS CHECK SCANNER ");
+                            addLog("BY PASS SCANNER ");
 
-                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3851, true);
-                            addLog("Write Bit Scanner Check OK (M3851) = ON");
+                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, true);
+                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, false);
+                            addLog("Write Bit Scanner Trigger OK M610 = ON");
+                            addLog("Write Bit Scanner Trigger NG M611 = OFF");
 
                             this.UpdateUIMES($"BY PASS TRIGGER SCANNER", Brushes.LightGreen);
 
-                        }    
-                       
-
-                    }
-
-
-                    // CHECK NEXT STEP ------------------------------------------------------
-                    UiManager.Instance.PLC.device.ReadBit(DeviceCode.M, 3854, out M_NEXT_STEP);
-                    if (M_NEXT_STEP)
-                    {
-
-                        addLog("--- CHECK NEXT STEP --- ");
-
-                        Thread.Sleep(100);
-                        _stepIndex = 0;
-                        UiManager.Instance.PLC.device.ReadMultiWord(DeviceCode.D, 3240,10, out D_INDEX_RUNNING);
-                        if(D_INDEX_RUNNING[0] >=1)
-                        {
-                            _stepIndex = Convert.ToInt32(D_INDEX_RUNNING[0]);
-                            addLog($"--- STEP {_stepIndex}--- ");
-
-                            if (_stepIndex <= InspectionPath.Count)
-                            { 
-                                UpdateUI(); 
-                            }
                         }
-                        this.UpdateUIMES($"START CHECK STEP {_stepIndex}", Brushes.LightGreen);
 
-
-
-                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3854, false);
-                        addLog("Write Bit Next Step (M3854) = OFF");
                     }
 
-                    // CHECK BACK STEP ------------------------------------------------------
-                    UiManager.Instance.PLC.device.ReadBit(DeviceCode.M, 3855, out M_BACK_STEP);
-                    if (M_BACK_STEP)
-                    {
-
-                        addLog("--- CHECK BACK STEP --- ");
-                       
-                        _stepIndex = 0;
-                        UiManager.Instance.PLC.device.ReadMultiWord(DeviceCode.D, 3240, 10, out D_INDEX_RUNNING);
-                        if (D_INDEX_RUNNING[0] >= 1)
-                        {
-                            _stepIndex = Convert.ToInt16(D_INDEX_RUNNING[0]);
-                            addLog($"--- STEP {_stepIndex}--- ");
-                            if (_stepIndex < InspectionPath.Count - 1) { UpdateUI(); }
-                        }
-                        this.UpdateUIMES($"START BACK STEP {_stepIndex}", Brushes.LightGreen);
-                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3855, false);
-                        addLog("Write Bit Back Step (M3855) = OFF");
-                    }
-                    Thread.Sleep(30);
+                    Thread.Sleep(20);
                 }
             }
         }
@@ -664,216 +567,315 @@ namespace Development
                 this.lbMES.Background = color;
             });
         }
-        private void UpdateParammter()
-        {
-            try
-            {
-                int runDirection = 1;
 
-                List<short> Data = new List<short>(new short[30]);
-                
-
-                compositeViewModel.TotalRows = 2; // Ví dụ: 2
-                compositeViewModel.TotalCols = 10; // Ví dụ: 20
-
-                this.TotalRows = 2;
-                this.TotalCols = 10;
-                this.VisionRows = 2;
-                this.VisionCols = 2;
-                this._runDirection = runDirection;
-
-
-                this.ResetSystem();
-               
-            }
-            catch (Exception ex)
-            {
-                logger.Create($"Error UpdateParammter : {ex}", LogLevel.Error);
-                
-            }
-            
-        }
-        #region MAIN MANUAL VISION
-        private void ResetSystem()
-        {
-            _stepIndex = 0;
-            InitializeMasterItems();
-            GeneratePath();
-            UpdateUI();
-        }
-        private void InitializeMasterItems()
-        {
-            compositeViewModel.MasterItems.Clear();
-            for (int r = 0; r < TotalRows; r++)
-                for (int c = 0; c < TotalCols; c++)
-                    compositeViewModel.MasterItems.Add(new WorkItem { PhysR = r, PhysC = c, Index = GetLogicalIndex(r, c) });
-        }
-        private int GetLogicalIndex(int r, int c)
-        {
-            int corner = RunDirection / 4;
-            bool isVert = (RunDirection % 4) / 2 == 1;
-            bool isZig = (RunDirection % 2) == 1;
-            int pR = r, pC = c;
-            if (corner == 1 || corner == 3) pC = (TotalCols - 1) - c;
-            if (corner == 2 || corner == 3) pR = (TotalRows - 1) - r;
-
-            if (!isVert)
-            {
-                if (isZig && pR % 2 != 0) return (pR * TotalCols) + (TotalCols - 1 - pC) + 1;
-                return (pR * TotalCols) + pC + 1;
-            }
-            else
-            {
-                if (isZig && pC % 2 != 0) return (pC * TotalRows) + (TotalRows - 1 - pR) + 1;
-                return (pC * TotalRows) + pR + 1;
-            }
-        }
-        private void GeneratePath()
-        {
-            InspectionPath.Clear();
-            int corner = RunDirection / 4;
-            bool isVert = (RunDirection % 4) / 2 == 1;
-            bool isZigMaster = (RunDirection % 2) == 1;
-            int stepsH = (int)Math.Ceiling((double)TotalCols / VisionCols);
-            int stepsV = (int)Math.Ceiling((double)TotalRows / VisionRows);
-
-
-            //int currentVisionCols = TotalCols;
-            //int currentVisionRows = VisionRows; 
-
-            //int stepsH = (int)Math.Ceiling((double)TotalCols / currentVisionCols);
-            //int stepsV = (int)Math.Ceiling((double)TotalRows / currentVisionRows);
-
-            if (!isVert)
-            {
-                for (int v = 0; v < stepsV; v++)
-                {
-                    bool rev = isZigMaster && (v % 2 != 0);
-                    for (int h = 0; h < stepsH; h++) AddStep(rev ? (stepsH - 1 - h) : h, v, corner);
-                }
-            }
-            else
-            {
-                for (int h = 0; h < stepsH; h++)
-                {
-                    bool rev = isZigMaster && (h % 2 != 0);
-                    for (int v = 0; v < stepsV; v++) AddStep(h, rev ? (stepsV - 1 - v) : v, corner);
-                }
-            }
-        }
-        private void AddStep(int hS, int vS, int corner)
-        {
-            int cMin, cMax;
-            if (corner == 1 || corner == 3)
-            {
-                cMax = (TotalCols - 1) - (hS * VisionCols);
-                cMin = Math.Max(0, cMax - VisionCols + 1);
-            }
-            else
-            {
-                cMin = hS * VisionCols;
-                cMax = Math.Min(TotalCols - 1, cMin + VisionCols - 1);
-            }
-
-            int rMin, rMax;
-            if (corner == 2 || corner == 3)
-            {
-                rMax = (TotalRows - 1) - (vS * VisionRows);
-                rMin = Math.Max(0, rMax - VisionRows + 1);
-            }
-            else
-            {
-                rMin = vS * VisionRows;
-                rMax = Math.Min(TotalRows - 1, rMin + VisionRows - 1);
-            }
-
-            var items = compositeViewModel.MasterItems.Where(x => x.PhysR >= rMin && x.PhysR <= rMax && x.PhysC >= cMin && x.PhysC <= cMax).ToList();
-            if (items.Any()) InspectionPath.Add(items);
-        }
-        private void UpdateUI()
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (_stepIndex == 0)
-                {
-                    foreach (var item in compositeViewModel.MasterItems)
-                    {
-                        item.IsCurrent = false;
-                        item.HasBeenReached = false;
-                    }
-                    compositeViewModel.CurrentCheckItems = null;
-                    compositeViewModel.CurrentDisplayCols = 1;
-                    return;
-                }
-
-                if (InspectionPath == null || !InspectionPath.Any()) return;
-
-
-                foreach (var item in compositeViewModel.MasterItems) item.IsCurrent = false;
-
-                int pathIndex = _stepIndex - 1;
-                if (pathIndex >= InspectionPath.Count) return;
-
-                var currentSet = InspectionPath[pathIndex];
-
-                foreach (var item in currentSet)
-                {
-                    item.HasBeenReached = true;
-                    item.IsCurrent = true;
-                }
-
-
-                compositeViewModel.CurrentDisplayCols = currentSet.Select(x => x.PhysC).Distinct().Count();
-
-
-                compositeViewModel.CurrentCheckItems = new ObservableCollection<WorkItem>(currentSet.OrderBy(x => x.PhysR).ThenBy(x => x.PhysC));
-            });
-            
-        }
         
-
-
-        private void ExportResults_Click(object sender, RoutedEventArgs e)
+        private void generateCells(int rowCnt, int colCnt, int pattern, bool Use2Matrix)
         {
-            
-            foreach (var item in compositeViewModel.MasterItems)
+            //lstButtonPos = new List<Button>();
+            gridPos.Children.Clear();
+            gridPos.RowDefinitions.Clear();
+            gridPos.ColumnDefinitions.Clear();
+
+            // Rows
+            for (int r = 0; r < rowCnt; r++)
             {
-                item.IsCurrent = false;
+                gridPos.RowDefinitions.Add(
+                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) }
+                );
             }
 
-           
-            List<string> resultList = compositeViewModel.MasterItems
-                .OrderBy(x => x.Index)
-                .Select(x => x.IsNG ? "NG" : "OK")
-                .ToList();
+            int matrixCols = Use2Matrix ? colCnt / 2 : colCnt;
+            int gapCols = Use2Matrix ? 1 : 0;
+            int totalCols = Use2Matrix ? matrixCols * 2 + gapCols : colCnt;
 
-            MessageBox.Show(string.Join(", ", resultList));
-            System.Diagnostics.Debug.WriteLine(string.Join(", ", resultList));
-        }
-        private void NextStep_Click(object sender, RoutedEventArgs e)
-        {
-            if (_stepIndex < InspectionPath.Count) // Cho phép tăng đến tối đa số bước
+            // Columns (có GAP)
+            for (int c = 0; c < totalCols; c++)
             {
-                _stepIndex++;
-                UpdateUI();
+                if (Use2Matrix && c == matrixCols)
+                {
+                    // Cột trống giữa 2 matrix
+                    gridPos.ColumnDefinitions.Add(
+                        new ColumnDefinition { Width = new GridLength(5) } // px
+                    );
+                }
+                else
+                {
+                    gridPos.ColumnDefinitions.Add(
+                        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }
+                    );
+                }
+            }
+
+            int matrixSize = rowCnt * matrixCols;
+
+            // Create cells
+            for (int id = 1; id <= rowCnt * colCnt; id++)
+            {
+                int r = GetCellRow(id, pattern, rowCnt, colCnt, Use2Matrix);
+                int c = GetCellColumn(id, pattern, rowCnt, colCnt, Use2Matrix);
+
+                var cell = createCell(id);
+                gridPos.Children.Add(cell);
+                Grid.SetRow(cell, r);
+                Grid.SetColumn(cell, c);
             }
         }
-        private void PrevStep_Click(object sender, RoutedEventArgs e)
+
+        private int GetCellRow(int cellId, int pattern, int row, int column, bool use2Matrix)
         {
-            if (_stepIndex > 0)
-            {
-                _stepIndex--;
-                UpdateUI();
-            }
+            if (!use2Matrix)
+                return GetCellRowCaculator(cellId, pattern, row, column);
+
+            int matrixCols = column / 2;
+            int matrixSize = row * matrixCols;
+
+            int localCellId = (cellId - 1) % matrixSize + 1;
+
+            return GetCellRowCaculator(localCellId, pattern, row, matrixCols);
         }
-        private void ClearData_Click(object sender, RoutedEventArgs e)
+        private int GetCellColumn(int cellId, int pattern, int row, int column, bool use2Matrix)
         {
-            _stepIndex = 0;
-            foreach (var item in compositeViewModel.MasterItems) { item.IsNG = false; item.HasBeenReached = false; item.IsCurrent = false; }
-            UpdateUI();
+            if (!use2Matrix)
+                return GetCellColumnCaculator(cellId, pattern, row, column);
+
+            int matrixCols = column / 2;
+            int matrixSize = row * matrixCols;
+            int gapCols = 1;
+
+            int matrixIndex = (cellId - 1) / matrixSize; // 0 hoặc 1
+            int localCellId = (cellId - 1) % matrixSize + 1;
+
+            int col = GetCellColumnCaculator(localCellId, pattern, row, matrixCols);
+
+            return col + matrixIndex * (matrixCols + gapCols);
+        }
+        private int GetCellRowCaculator(int cellId, int pattern, int row, int column)
+        {
+            int xSize = column;
+            int ySize = row;
+            // new
+            if (pattern == 1 || pattern == 2)
+            {
+                return ySize - 1 - (cellId - 1) / xSize;
+            }
+            else if (pattern == 3 || pattern == 4)
+            {
+                return (cellId - 1) / xSize;
+            }
+            else if (pattern == 5)
+            {
+                if (((cellId - 1) / ySize) % 2 == 0)
+                {
+                    return ySize - 1 - ((cellId - 1) % ySize);
+                }
+                else
+                {
+                    return (cellId - 1) % ySize;
+                }
+            }
+            else if (pattern == 6)
+            {
+                if (((cellId - 1) / ySize) % 2 != 0)
+                {
+                    return ySize - 1 - ((cellId - 1) % ySize);
+                }
+                else
+                {
+                    return (cellId - 1) % ySize;
+                }
+            }
+            else if (pattern == 7)
+            {
+                if ((column - 1) % 2 != 0)
+                {
+                    if ((xSize - 1 - (cellId - 1) / ySize) % 2 != 0)
+                    {
+                        return (cellId - 1) % ySize;
+                    }
+                    else
+                    {
+                        return ySize - 1 - ((cellId - 1) % ySize);
+                    }
+                }
+                else
+                {
+                    if ((xSize - 1 - (cellId - 1) / ySize) % 2 == 0)
+                    {
+                        return (cellId - 1) % ySize;
+                    }
+                    else
+                    {
+                        return ySize - 1 - ((cellId - 1) % ySize);
+                    }
+                }
+            }
+            else if (pattern == 8)
+            {
+                if ((column - 1) % 2 != 0)
+                {
+                    if ((xSize - 1 - (cellId - 1) / ySize) % 2 == 0)
+                    {
+                        return (cellId - 1) % ySize;
+                    }
+                    else
+                    {
+                        return ySize - 1 - ((cellId - 1) % ySize);
+                    }
+                }
+                else
+                {
+                    if ((xSize - 1 - (cellId - 1) / ySize) % 2 != 0)
+                    {
+                        return (cellId - 1) % ySize;
+                    }
+                    else
+                    {
+                        return ySize - 1 - ((cellId - 1) % ySize);
+                    }
+                }
+            }
+            else if (pattern == 9 || pattern == 10)
+            {
+                return ySize - 1 - (cellId - 1) / xSize;
+            }
+            else if (pattern == 11 || pattern == 12)
+            {
+                return (cellId - 1) / xSize;
+            }
+            else if (pattern == 13 || pattern == 15)
+            {
+                return ySize - 1 - ((cellId - 1) % ySize);
+            }
+            else if (pattern == 14 || pattern == 16)
+            {
+                return (cellId - 1) % ySize;
+            }
+            return 0;
+        }
+        private int GetCellColumnCaculator(int cellId, int pattern, int row, int column)
+        {
+            int xSize = column;
+            int ySize = row;
+
+            if (pattern == 1)
+            {
+                if ((row - 1) % 2 != 0)
+                {
+                    if ((ySize - 1 - (cellId - 1) / xSize) % 2 != 0)
+                    {
+                        return (cellId - 1) % xSize;
+                    }
+                    else
+                    {
+                        return xSize - 1 - ((cellId - 1) % xSize);
+                    }
+                }
+                else
+                {
+                    if ((ySize - 1 - (cellId - 1) / xSize) % 2 == 0)
+                    {
+                        return (cellId - 1) % xSize;
+                    }
+                    else
+                    {
+                        return xSize - 1 - ((cellId - 1) % xSize);
+                    }
+                }
+            }
+            else if (pattern == 2)
+            {
+                if ((row - 1) % 2 != 0)
+                {
+                    if ((ySize - 1 - (cellId - 1) / xSize) % 2 == 0)
+                    {
+                        return (cellId - 1) % xSize;
+                    }
+                    else
+                    {
+                        return xSize - 1 - ((cellId - 1) % xSize);
+                    }
+                }
+                else
+                {
+                    if ((ySize - 1 - (cellId - 1) / xSize) % 2 != 0)
+                    {
+                        return (cellId - 1) % xSize;
+                    }
+                    else
+                    {
+                        return xSize - 1 - ((cellId - 1) % xSize);
+                    }
+                }
+            }
+            else if (pattern == 3)
+            {
+                if (((cellId - 1) / xSize) % 2 == 0)
+                {
+                    return (cellId - 1) % xSize;
+                }
+                else
+                {
+                    return xSize - 1 - ((cellId - 1) % xSize);
+                }
+            }
+            else if (pattern == 4)
+            {
+                if (((cellId - 1) / xSize) % 2 != 0)
+                {
+                    return (cellId - 1) % xSize;
+                }
+                else
+                {
+                    return xSize - 1 - ((cellId - 1) % xSize);
+                }
+            }
+            else if (pattern == 5 || pattern == 6)
+            {
+                return (cellId - 1) / ySize;
+            }
+            else if (pattern == 7 || pattern == 8)
+            {
+                return xSize - 1 - (cellId - 1) / ySize;
+            }
+            else if (pattern == 9 || pattern == 12)
+            {
+                return (cellId - 1) % xSize;
+            }
+            else if (pattern == 10 || pattern == 11)
+            {
+                return xSize - 1 - ((cellId - 1) % xSize);
+            }
+            else if (pattern == 13 || pattern == 14)
+            {
+                return (cellId - 1) / ySize;
+            }
+            else if (pattern == 15 || pattern == 16)
+            {
+                return xSize - 1 - (cellId - 1) / ySize;
+            }
+            return 0;
+        }
+        private Label createCell(int number)
+        {
+            var cell = new Label();
+            cell.Content = createCellContent(String.Format("{0}", number));
+            cell.Name = String.Format("lblCell{0:00}", number);
+            cell.HorizontalContentAlignment = HorizontalAlignment.Center;
+            cell.VerticalContentAlignment = VerticalAlignment.Center;
+            cell.Margin = new Thickness(1, 1, 1, 1);
+            cell.FontWeight = FontWeights.Bold;
+            cell.Background = Brushes.LightBlue;
+            return cell;
+        }
+        private object createCellContent(String qr)
+        {
+            var cellText = new TextBlock();
+            cellText.TextWrapping = TextWrapping.Wrap;
+            cellText.Text = String.Format("{0}", qr);
+            cellText.FontSize = 10;
+            return cellText;
         }
 
-        #endregion
         private void PgMain_Unloaded(object sender, RoutedEventArgs e)
         {
             this.isUpdate = false;
@@ -901,7 +903,7 @@ namespace Development
             this.RegisterNotifyMES();
             this.CheckConnectionMES(UiManager.Instance.MES.isAccept);
 
-
+            this.generateCells(pattern.xRow, pattern.yColumn, pattern.CurrentPatern, pattern.Use2Matrix);
 
             this.ThreadUpDatePLC();
             // Start CH1;
@@ -909,7 +911,7 @@ namespace Development
             this.AutoRunThread.IsBackground = true;
             this.AutoRunThread.Start();
 
-            this.UpdateParammter();
+            
 
             this.UpdateUIMES($"WAIT.....", Brushes.Yellow);
 
@@ -923,21 +925,14 @@ namespace Development
         }
         private void ReadPLC()
         {
-            List<short> D_ListShortDevicePLC_6500 = new List<short>();
             while (this.isUpdate)
             {
                 bool flag = UiManager.Instance.PLC.device.isOpen();
                 if (flag)
                 {
-                    UiManager.Instance.PLC.device.ReadMultiWord(DeviceCode.D, 0, 500, out this.D_ListShortDevicePLC_0);
-                    UiManager.Instance.PLC.device.ReadMultiWord(DeviceCode.D, 6500, 10, out D_ListShortDevicePLC_6500);
-                    UiManager.Instance.PLC.device.ReadMultiBits(DeviceCode.M, 6176, 30, out this.M_ListBitPLC0_500);
-                    if(M_ListBitPLC0_500.Count > 0 && M_ListBitPLC0_500[2]  == true)
-                    {
-                        addLog("BUTTON RESET :M3862 = ON ");
-                        addLog("");
-                        UiManager.Instance.PLC.device.WriteWord(DeviceCode.D, 100, 0);
-                    }
+                    UiManager.Instance.PLC.device.ReadMultiWord(DeviceCode.D, 0, 300, out this.D_ListShortDevicePLC_0_299);
+                    UiManager.Instance.PLC.device.ReadMultiBits(DeviceCode.M, 0, 100, out this.M_ListBitPLC_0_99);
+                    UiManager.Instance.PLC.device.ReadMultiBits(DeviceCode.M, 500, 50, out this.M_ListBitPLC_500_549);
 
                     this.UpdateError();
                 }
@@ -948,31 +943,26 @@ namespace Development
        
         private void UpdateError()
         {
-             Dispatcher.Invoke(delegate ()
+            Application.Current.Dispatcher.Invoke(delegate ()
             {
                 bool flag = UiManager.Instance.PLC.device.isOpen();
                 if (flag)
                 {
-                    bool flag2 = this.D_ListShortDevicePLC_0.Count >= 1;
+                    bool flag2 = this.D_ListShortDevicePLC_0_299.Count >= 1;
                     if (flag2)
                     {
-                        this.AddError(this.D_ListShortDevicePLC_0[100]);
-                        this.AddError(this.D_ListShortDevicePLC_0[101]);
-                        this.AddError(this.D_ListShortDevicePLC_0[102]);
-                        this.AddError(this.D_ListShortDevicePLC_0[103]);
-                        this.AddError(this.D_ListShortDevicePLC_0[104]);
-                        this.AddError(this.D_ListShortDevicePLC_0[105]);
-                        this.AddError(this.D_ListShortDevicePLC_0[106]);
-                        this.AddError(this.D_ListShortDevicePLC_0[107]);
-                        this.AddError(this.D_ListShortDevicePLC_0[108]);
-                        this.AddError(this.D_ListShortDevicePLC_0[109]);
-                        this.AddError(this.D_ListShortDevicePLC_0[110]);
-                        this.AddError(this.D_ListShortDevicePLC_0[111]);
-                        this.AddError(this.D_ListShortDevicePLC_0[112]);
-                        this.AddError(this.D_ListShortDevicePLC_0[113]);
-                        this.AddError(this.D_ListShortDevicePLC_0[114]);
-                        this.AddError(this.D_ListShortDevicePLC_0[115]);
-                        bool flag3 = this.D_ListShortDevicePLC_0[100] == 0 && !this.hasClearedError;
+                        this.AddError(this.D_ListShortDevicePLC_0_299[200]);
+                        this.AddError(this.D_ListShortDevicePLC_0_299[201]);
+                        this.AddError(this.D_ListShortDevicePLC_0_299[202]);
+                        this.AddError(this.D_ListShortDevicePLC_0_299[203]);
+                        this.AddError(this.D_ListShortDevicePLC_0_299[204]);
+                        this.AddError(this.D_ListShortDevicePLC_0_299[205]);
+                        this.AddError(this.D_ListShortDevicePLC_0_299[206]);
+                        this.AddError(this.D_ListShortDevicePLC_0_299[207]);
+                        this.AddError(this.D_ListShortDevicePLC_0_299[208]);
+                        this.AddError(this.D_ListShortDevicePLC_0_299[209]);
+
+                        bool flag3 = this.D_ListShortDevicePLC_0_299[200] == 0 && !this.hasClearedError;
                         if (flag3)
                         {
                             this.ClearError();
@@ -980,13 +970,13 @@ namespace Development
                         }
                         else
                         {
-                            bool flag4 = this.D_ListShortDevicePLC_0[100] != 0;
+                            bool flag4 = this.D_ListShortDevicePLC_0_299[200] != 0;
                             if (flag4)
                             {
                                 this.hasClearedError = false;
                             }
                         }
-                        bool flag5 = this.M_ListBitPLC0_500[2];
+                        bool flag5 = this.M_ListBitPLC_0_99[7];
                         if (flag5)
                         {
                             this.ClearError();
@@ -1804,54 +1794,11 @@ namespace Development
         #endregion
     }
 
-    public class CompositeViewModel : INotifyPropertyChanged
+    public class CompositeViewModel
     {
         public ObservableCollection<logEntry> LogEntries { get; set; } = new ObservableCollection<logEntry>();
 
-        #region BANG VISION MANUAL
-        public ObservableCollection<WorkItem> MasterItems { get; set; } = new ObservableCollection<WorkItem>();
-
-        private ObservableCollection<WorkItem> _currentCheckItems;
-        public ObservableCollection<WorkItem> CurrentCheckItems
-        {
-            get => _currentCheckItems;
-            set { _currentCheckItems = value; OnPropertyChanged(nameof(CurrentCheckItems)); }
-        }
-
-        private int _currentDisplayCols;
-        public int CurrentDisplayCols
-        {
-            get => _currentDisplayCols;
-            set { _currentDisplayCols = value; OnPropertyChanged(nameof(CurrentDisplayCols)); }
-        }
-
-    
-        private string _currentStepDisplay;
-        public string CurrentStepDisplay
-        {
-            get => _currentStepDisplay;
-            set { _currentStepDisplay = value; OnPropertyChanged(nameof(CurrentStepDisplay)); }
-        }
-
-
-        private int _totalCols = 10; 
-        public int TotalCols
-        {
-            get => _totalCols;
-            set { _totalCols = value; OnPropertyChanged(nameof(TotalCols)); }
-        }
-
-        private int _totalRows = 5;
-        public int TotalRows
-        {
-            get => _totalRows;
-            set { _totalRows = value; OnPropertyChanged(nameof(TotalRows)); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-        #endregion
+        
     }
     public class logEntry : PropertyChangedBase
     {

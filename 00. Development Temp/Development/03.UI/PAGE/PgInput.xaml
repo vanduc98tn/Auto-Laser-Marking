@@ -16,6 +16,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="220"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+
             <Border Grid.Column="1" Background="{StaticResource HeaderBackground}" Margin="0,5,5,5" CornerRadius="12">
                 <Grid>
                     <StackPanel Margin="10">
@@ -42,8 +43,8 @@
                     <Style TargetType="Button" BasedOn="{StaticResource sButton}">
                         <Setter Property="FontSize" Value="24" />
                         <Setter Property="FontWeight" Value="Bold" />
-                        <Setter Property="Margin" Value="2" />
-                        <Setter Property="Background" Value="#6787c9" />
+                        <Setter Property="Margin" Value="0,5,5,5" />
+                        <Setter Property="Background" Value="#6787c0" />
                         <Setter Property="BorderThickness" Value="0"/>
 
                     </Style>
@@ -53,26 +54,26 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
 
                     <Border Grid.Row="0" Background="{StaticResource HeaderBackground}" Margin="5,5,5,5" CornerRadius="8">
-                        <Label Content="PAGE INPUT/OUTPUT" Foreground="White" FontSize="24" FontWeight="Bold" 
-VerticalAlignment="Center" Margin="20,0,0,0">
+                        <Label Content="PAGE INPUT" Foreground="White" FontSize="24" FontWeight="Bold" 
+                            VerticalAlignment="Center" Margin="20,0,0,0">
                             <Label.Effect>
                                 <DropShadowEffect BlurRadius="5" Opacity="0.2" ShadowDepth="2"/>
                             </Label.Effect>
                         </Label>
                     </Border>
                 </Grid>
-                <Grid Grid.Row="1" Margin="5">
-                    <Grid Background="#879ec0">
+                <Grid Grid.Row="1">
+                    <Grid Background="#879ec0" Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition Height="50"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="1" >
+                        <Grid Grid.Row="1">
                             <Border CornerRadius=" 0 ">
                                 <Border.Background>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -95,34 +96,18 @@ VerticalAlignment="Center" Margin="20,0,0,0">
                                         <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
                                     </Label.Effect> >
                                 </Label>
-                                <!--<Button Name="btnIn1" Content="1" Width="50" Foreground="White" ></Button>
-                            -->
+                                <!--<Button Name="btnIn1" Content="1" Width="80" Foreground="White"></Button>-->
                                 <!--<Button Name="btnOut" Width="80"
-                Content="{Binding ElementName=btnIn, Mode=OneWay,Path=Content}"
-                ></Button>-->
-                                <!--
-                            <Button Name="btnIn2" Content="2" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn3" Content="3" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn4" Content="4" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn5" Content="5" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn6" Content="6" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn7" Content="7" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn8" Content="8" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn9" Content="9" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn10" Content="10" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn11" Content="11" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn12" Content="12" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn13" Content="13" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn14" Content="14" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn15" Content="15" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn16" Content="16" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn17" Content="17" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn18" Content="18" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn19" Content="19" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn20" Content="20" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn21" Content="21" Width="50" Foreground="White"></Button>
-                            <Button Name="btnIn22" Content="22" Width="50" Foreground="White"></Button>-->
-
+         Content="{Binding ElementName=btnIn, Mode=OneWay,Path=Content}"
+         ></Button>-->
+                                <!--<Button Name="btnIn2" Content="2" Width="80" Foreground="White"></Button>
+                         <Button Name="btnIn3" Content="3" Width="80" Foreground="White"></Button>
+                         <Button Name="btnIn4" Content="4" Width="80" Foreground="White"></Button>
+                         <Button Name="btnIn5" Content="5" Width="80" Foreground="White"></Button>
+                         <Button Name="btnIn6" Content="6" Width="80" Foreground="White"></Button>
+                         <Button Name="btnIn7" Content="7" Width="80" Foreground="White"></Button>
+                         <Button Name="btnIn8" Content="8" Width="80" Foreground="White"></Button>
+                         <Button Name="btnIn9" Content="9" Width="80" Foreground="White"></Button>-->
 
                                 <Button Name="btnFirt"  Width="50" Foreground="White">
                                     &lt;&lt;
@@ -130,14 +115,13 @@ VerticalAlignment="Center" Margin="20,0,0,0">
                                 <Button Name="btnBack"  Width="50" Foreground="White">
                                     &lt;
                                 </Button>
-                                <!--<TextBox x:Name="tbPage" Height="45" Width="45" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center" FontSize="20" Style="{StaticResource TextBoxDisplay}">0</TextBox>-->
+                                <!--<TextBox x:Name="tbPage" Height="45" Width="45" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Style="{StaticResource TextBoxDisplay}">0</TextBox>-->
                                 <Button Name="btnNext"  Width="50" Foreground="White">
                                     &gt;
                                 </Button>
                                 <Button Name="btnLate"  Width="50" Foreground="White">
                                     &gt;&gt;
                                 </Button>
-
                             </StackPanel>
                         </Grid>
 
@@ -165,13 +149,14 @@ VerticalAlignment="Center" Margin="20,0,0,0">
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-
-
-
+                    <Border CornerRadius=" 0 ">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#879ec0" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
                 </Grid>
             </Grid>
         </Grid>
