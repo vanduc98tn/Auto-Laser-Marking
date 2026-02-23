@@ -85,8 +85,8 @@ namespace Development
             // Event Page Main
             this.Loaded += PgMain_Loaded;
             this.Unloaded += PgMain_Unloaded;
-            //this.btStart.Click += BtStart_Click;
-            //this.btStop.Click += BtStop_Click;
+            this.btStart.Click += BtStart_Click;
+            this.btStop.Click += BtStop_Click;
             //this.btReset.Click += BtReset_Click;
             //this.btHome.Click += BtHome_Click;
             this.btLotIn.Click += BtLotIn_Click;
@@ -241,7 +241,7 @@ namespace Development
             }
             return new string(result);
         }
-
+        
 
         private Mes00Check GetDataWorkout()
         {
@@ -315,7 +315,7 @@ namespace Development
             }
 
             // Send Workin
-            UpdateUIMES("MES SEND WORKIN...", Brushes.Yellow);
+            UpdateUIMES("MES SEND WORKOUT...", Brushes.Yellow);
 
             var MES = await UiManager.Instance.MES.SendWorkout(Data);
 
@@ -668,24 +668,23 @@ namespace Development
         {
             try
             {
-                int runDirection = UiManager.appSetting.RUN.Patern;
+                int runDirection = 1;
 
                 List<short> Data = new List<short>(new short[30]);
-                if (UiManager.Instance.PLC.device.isOpen())
-                {
-                    UiManager.Instance.PLC.device.ReadMultiWord(DeviceCode.D, 3230, 100, out Data);
-                }
+                
 
-                compositeViewModel.TotalRows = Data[7]; // Ví dụ: 2
-                compositeViewModel.TotalCols = Data[6]; // Ví dụ: 20
+                compositeViewModel.TotalRows = 2; // Ví dụ: 2
+                compositeViewModel.TotalCols = 10; // Ví dụ: 20
 
-                this.TotalRows = Data[7];
-                this.TotalCols = Data[6];
-                this.VisionRows = Data[30];
-                this.VisionCols = Data[29];
+                this.TotalRows = 2;
+                this.TotalCols = 10;
+                this.VisionRows = 2;
+                this.VisionCols = 2;
                 this._runDirection = runDirection;
 
+
                 this.ResetSystem();
+               
             }
             catch (Exception ex)
             {
@@ -939,14 +938,6 @@ namespace Development
                         addLog("");
                         UiManager.Instance.PLC.device.WriteWord(DeviceCode.D, 100, 0);
                     }
-                    if (D_ListShortDevicePLC_6500.Count > 1)
-                    {
-                        Dispatcher.Invoke(() =>
-                        {
-                          this.lbRunNumberCheck.Content = (D_ListShortDevicePLC_6500[4] + 1 ).ToString();
-                        });
-                       
-                    }
 
                     this.UpdateError();
                 }
@@ -1016,7 +1007,7 @@ namespace Development
         }
         private async void BtStart_Click(object sender, RoutedEventArgs e)
         {
-            string QR = txtQRinput.Text.ToString(); ;
+            string QR = "QR1234";
             this.UpdateUIQR(QR, true);
 
             DataPCB = new DataPCB();

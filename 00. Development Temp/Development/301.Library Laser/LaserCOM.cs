@@ -270,15 +270,32 @@ namespace Development
             }
         }
 
-        public string SendBlockOn(int prg, params int[] values)
+        public string SendSwitchPrg(int prg)
         {
-            string repStr = $"D6,0"; //Response send D6 ok
-            string cmd = $"D6,{prg},1";
-            //values = new int[] {1};
+            string repStr = $"GA,0" + "\r"; //Response send GA ok
+            string cmd = $"GA,{prg}";
+            
+            cmd += "\r";
 
-            if (values != null && values.Length > 0)
+            byte[] rep = Encoding.ASCII.GetBytes(repStr);
+            byte[] bycmd = Encoding.ASCII.GetBytes(cmd);
+
+            byte[] rec = SendWaitResponse(bycmd);
+
+            if (rec == rep && rec != null)
             {
-                cmd += "," + string.Join(",", values);
+                return Encoding.ASCII.GetString(rec);
+            }
+            else return "NG";
+        }
+        public string SendBlockOn(int prg, params int[] block)
+        {
+            string repStr = $"D6,0"+"\r"; //Response send D6 ok
+            string cmd = $"D6,{prg},1";
+
+            if (block != null && block.Length > 0)
+            {
+                cmd += "," + string.Join(",", block);
             }
             cmd += "\r";
 

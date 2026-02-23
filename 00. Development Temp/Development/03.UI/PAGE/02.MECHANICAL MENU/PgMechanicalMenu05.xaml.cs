@@ -640,42 +640,53 @@ namespace Development
         }
         private void TriggerManual()
         {
-            List<int> lstPos = new List<int>();
-            foreach (var cell in gridPos.Children)
-            {
-                var btCell = cell as Button;
-
-                if (btCell != null && btCell.Background == EM_COLOR)
-                {
-                    var textcell = btCell.Content as TextBlock;
-                    lstPos.Add(Convert.ToInt32(textcell.Text.ToString()));
-                }
-            }
-            lstPos.Sort();
-
             int prg = Convert.ToInt16(txtPrgLaser.Text);
-            int[] cmd = lstPos.ToArray();
 
-            string header = $"D6,{prg},1";
-            if (cmd != null && cmd.Length > 0)
-            {
-                header += "," + string.Join(",", cmd);
-            }
-            header += "\r";
+            string cmd = $"GA,{prg}";
+            cmd += "\r";
 
-            UpdateLogs($"Send: {header.Replace("\r", "<CR>")}");
-
-            string rec = UiManager.Instance.laserCOM.SendBlockOn(prg, cmd);
+            UpdateLogs($"Send: {cmd.Replace("\r", "<CR>")}");
+            string rec = UiManager.Instance.laserCOM.SendSwitchPrg(prg);
             UpdateLogs($"Receive: {rec?.Replace("\r", "<CR>")}");
-
             if (rec != "NG")
             {
-                int plc = 750;
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, plc, true);
-                Thread.Sleep(10);
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, plc, false);
-                UpdateLogs($"Write bit Trigger: L{plc}");
+                List<int> lstPos = new List<int>();
+                foreach (var cell in gridPos.Children)
+                {
+                    var btCell = cell as Button;
+
+                    if (btCell != null && btCell.Background == EM_COLOR)
+                    {
+                        var textcell = btCell.Content as TextBlock;
+                        lstPos.Add(Convert.ToInt32(textcell.Text.ToString()));
+                    }
+                }
+                lstPos.Sort();
+                int[] block = lstPos.ToArray();
+
+                string cmd1 = $"D6,{prg},1";
+
+                if (block != null && block.Length > 0)
+                {
+                    cmd1 += "," + string.Join(",", block);
+                }
+                cmd1 += "\r";
+
+                UpdateLogs($"Send: {cmd1.Replace("\r", "<CR>")}");
+                string rec1 = UiManager.Instance.laserCOM.SendBlockOn(prg, block);
+                UpdateLogs($"Receive: {rec1?.Replace("\r", "<CR>")}");
+
+                if (rec1 != "NG")
+                {
+                    int plc = 720;
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, plc, true);
+                    Thread.Sleep(10);
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, plc, false);
+                    UpdateLogs($"Write bit Trigger: L{plc}");
+                }
             }
+
+            
 
         }
 
