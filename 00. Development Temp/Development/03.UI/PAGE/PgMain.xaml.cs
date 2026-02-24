@@ -48,7 +48,9 @@ namespace Development
         private bool isRunning = false;
 
         private PatternSetting pattern = UiManager.appSetting.Pattern;
-        private Brush EM_COLOR = Brushes.Red;
+        private Brush MES_COLOR = Brushes.Red;
+        private Brush VISION_COLOR = Brushes.Purple;
+        private Brush BOTH_COLOR;
 
         private DataPCB DataPCB;
 
@@ -63,6 +65,7 @@ namespace Development
             mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
             InitializeErrorCodes();
             InitializeComponent();
+            InitBothColor();
 
 
             // Event Page Main
@@ -194,18 +197,8 @@ namespace Development
                 UpdateUIMES("MES CHECK PCB WORKIN OK", Brushes.LightGreen);
 
 
-                string PreBinCode = DataPCB.PRE_BIN_CODE;
-                List<int> ltsBlock = new List<int>();
-
-                for (int i = 0; i < PreBinCode.Length; i++)
-                {
-                    if (PreBinCode[i] != '0')
-                    {
-                        ltsBlock.Add(i);   // Lưu vị trí index
-                    }
-                }
-                int[] arrBlock = ltsBlock.ToArray();
-                this.UpdateUIMESRESULT(arrBlock);
+                int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE);
+                this.UpdateUIMESRESULT(workinNG);
 
                 if (UiManager.Instance.laserCOM.isConnect)
                 {
@@ -234,17 +227,8 @@ namespace Development
         }
         public void SendLaser()
         {
-            string PreBinCode = DataPCB.PRE_BIN_CODE;
-            List<int> ltsBlock = new List<int>();
-
-            for (int i = 0; i < PreBinCode.Length; i++)
-            {
-                if (PreBinCode[i] != '0')
-                {
-                    ltsBlock.Add(i);   // Lưu vị trí index
-                }
-            }
-            int[] arrBlock = ltsBlock.ToArray();
+            
+            int[] arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE);
 
             string switchprg = UiManager.Instance.laserCOM.SendSwitchPrg(pattern.PrgLaser);
 
@@ -305,6 +289,20 @@ namespace Development
             }
 
             return new string(arr);
+        }
+        public int[] BinCodeNG(string bincode)
+        {
+            List<int> lts = new List<int>();
+
+            for (int i = 0; i < bincode.Length; i++)
+            {
+                if (bincode[i] != '0')
+                {
+                    lts.Add(i);   // Lưu vị trí index
+                }
+            }
+            return lts.ToArray();
+
         }
 
         private Mes00Check GetDataWorkout()
@@ -550,9 +548,9 @@ namespace Development
                         this.addLog("Write Bit M520 = OFF");
                         if (UiManager.appSetting.RUN.MESOnline)
                         {
-                            int[] arr = { 2, 3, 4, 9, 21 };
+                            int[] arr = { 2, 3, 4, 9, 21 , 19, 42};
                             DataPCB.VISION_NG = arr;
-
+                            UpdateUIVISIONRESULT(DataPCB.VISION_NG);
                             this.CheckMESWorkout();
                         }
 
@@ -621,6 +619,26 @@ namespace Development
                 }
             }
         }
+
+
+        private void InitBothColor()
+        {
+            var mesColor = ((SolidColorBrush)MES_COLOR).Color;
+            var visionColor = ((SolidColorBrush)VISION_COLOR).Color;
+
+            var brush = new LinearGradientBrush
+            {
+                StartPoint = new Point(0, 0),
+                EndPoint = new Point(0, 1)
+            };
+
+            brush.GradientStops.Add(new GradientStop(mesColor, 0.0));
+            brush.GradientStops.Add(new GradientStop(visionColor, 0.8));
+
+            brush.Freeze(); // tối ưu render
+
+            BOTH_COLOR = brush;
+        }
         private void UpdateUIQR(string QR,bool Result)
         {
             Dispatcher.Invoke(() =>
@@ -659,31 +677,55 @@ namespace Development
         }
         private void UpdateUIMESRESULT(int[] list)
         {
-            Dispatcher.Invoke(() =>
+            var set = new HashSet<int>(list);
+
+            Dispatcher.BeginInvoke(new Action(() =>
             {
                 foreach (var child in gridPos.Children)
                 {
-                    if (child is Label lbl)
+                    if (child is Label lbl && lbl.Tag is int number)
                     {
-                        // Lấy số từ Name: lblCell01 -> 01
-                        string numberStr = lbl.Name.Replace("lblCell", "");
-
-                        if (int.TryParse(numberStr, out int number))
+                        if (set.Contains(number))
                         {
-                            if (list.Contains(number))
+                            lbl.Background = MES_COLOR;
+                            lbl.Foreground = Brushes.White;
+                        }
+                        else
+                        {
+                            lbl.Background = Brushes.LightBlue;
+                            lbl.Foreground = Brushes.Black;
+                        }
+                    }
+                }
+            }), System.Windows.Threading.DispatcherPriority.Background);
+        }
+        private void UpdateUIVISIONRESULT(int[] list)
+        {
+            var set = new HashSet<int>(list);
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                foreach (var child in gridPos.Children)
+                {
+                    if (child is Label lbl && lbl.Tag is int number)
+                    {
+                        if (set.Contains(number))
+                        {
+                            if (lbl.Background == MES_COLOR)
                             {
-                                lbl.Background = Brushes.Red;
+                                lbl.Background = BOTH_COLOR;
+                                lbl.Foreground = Brushes.White;
                             }
                             else
                             {
-                                lbl.Background = Brushes.LightBlue;
+                                lbl.Background = VISION_COLOR;
+                                lbl.Foreground = Brushes.White;
                             }
                         }
                     }
                 }
-            });
+            }), System.Windows.Threading.DispatcherPriority.Background);
         }
-
 
         private void generateCells(int rowCnt, int colCnt, int pattern, bool Use2Matrix)
         {
@@ -976,12 +1018,14 @@ namespace Development
             var cell = new Label();
             cell.Content = createCellContent(String.Format("{0}", number));
             //cell.Content = number;
-            cell.Name = String.Format("lblCell{0:00}", number);
+            //cell.Name = String.Format("lblCell{0:00}", number);
+            cell.Tag = number;
             cell.HorizontalContentAlignment = HorizontalAlignment.Center;
             cell.VerticalContentAlignment = VerticalAlignment.Center;
             cell.Margin = new Thickness(1, 1, 1, 1);
             cell.FontWeight = FontWeights.Bold;
             cell.Background = Brushes.LightBlue;
+            cell.Foreground = Brushes.Black;
             return cell;
         }
         private object createCellContent(String qr)
@@ -1127,10 +1171,11 @@ namespace Development
         }
         private void BtStop_Click(object sender, RoutedEventArgs e)
         {
-                int[] arr = { 2, 3, 4, 9, 21 };
+            int[] arr = { 2, 3, 4, 9, 21, 19, 42 };
 
-                DataPCB.VISION_NG = arr;
-                CheckMESWorkout();
+            DataPCB.VISION_NG = arr;
+            UpdateUIVISIONRESULT(DataPCB.VISION_NG);
+            CheckMESWorkout();
         }
 
         #region NotifyMES
