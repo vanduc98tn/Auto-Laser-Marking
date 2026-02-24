@@ -276,12 +276,10 @@ namespace Development
             
             cmd += "\r";
 
-            byte[] rep = Encoding.ASCII.GetBytes(repStr);
             byte[] bycmd = Encoding.ASCII.GetBytes(cmd);
-
             byte[] rec = SendWaitResponse(bycmd);
 
-            if (rec == rep && rec != null)
+            if (Encoding.ASCII.GetString(rec) == repStr && rec != null)
             //if (rec != null)
                 {
                 return Encoding.ASCII.GetString(rec);
@@ -299,14 +297,12 @@ namespace Development
             }
             cmd += "\r";
 
-            byte[] rep = Encoding.ASCII.GetBytes(repStr);
             byte[] bycmd = Encoding.ASCII.GetBytes(cmd);
-
             byte[] rec = SendWaitResponse(bycmd);
 
-            if (rec == rep && rec != null)
+            if (Encoding.ASCII.GetString(rec) == repStr && rec != null)
             //if (rec != null)
-                {
+            {
                 return Encoding.ASCII.GetString(rec);
             }
             else return "NG";
