@@ -32,7 +32,7 @@ namespace Development
             this.Use2Matrix = false;
 
             this.positionNGs = new List<int>();
-            this.PrgLaser = 0;
+            this.PrgLaser = 1;
         }
     }
 }

@@ -81,7 +81,7 @@ namespace Development
         {
             TextBox txt = sender as TextBox;
             Keypad keyboardWindow = new Keypad(true);
-            if (keyboardWindow.ShowDialog() == true && Convert.ToInt16(keyboardWindow.Result) >= 0 && Convert.ToInt16(keyboardWindow.Result) <= 20)
+            if (keyboardWindow.ShowDialog() == true && Convert.ToInt16(keyboardWindow.Result) >= 1 && Convert.ToInt16(keyboardWindow.Result) <= 254)
             {
                 txt.Text = keyboardWindow.Result;
                 UpdateLogs($"Changed Laser to Program: {txt.Text}");
@@ -680,7 +680,7 @@ namespace Development
                 {
                     int plc = 720;
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, plc, true);
-                    Thread.Sleep(10);
+                    Thread.Sleep(500);
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, plc, false);
                     UpdateLogs($"Write bit Trigger: L{plc}");
                 }

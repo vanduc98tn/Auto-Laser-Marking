@@ -20,6 +20,9 @@ namespace Development
         public string WORK_OUT_RESULT { get; set; }
         public string WORK_OUT_MSG { get; set; }
 
+        public int[] VISION_NG { get; set; }
+
+
 
 
         public DataPCB()
@@ -35,6 +38,9 @@ namespace Development
             this.WORK_IN_MSG = string.Empty;
             this.WORK_OUT_RESULT = string.Empty;
             this.WORK_OUT_MSG = string.Empty;
+
+            this.VISION_NG = new int[] {};
+
         }
     }
 }

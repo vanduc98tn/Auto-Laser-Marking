@@ -265,38 +265,39 @@ namespace Development
             addLog("Write Bit Laser NG M616 = ON");
 
         }
-        public string MergeResult(List<string> list, string bin, string replaceChar)
+        public string MergeResult(int[] vision, string bin, string replaceChar)
         {
-            char[] result = bin.ToCharArray();
+            if (string.IsNullOrEmpty(bin) || vision == null || string.IsNullOrEmpty(replaceChar))
+                return bin;
 
-            if (string.IsNullOrEmpty(replaceChar))
-                return new string(result);
+            char[] arr = bin.ToCharArray();
+            char newChar = replaceChar[0];
 
-            char replace = replaceChar[0];
-            if (list.Count != bin.Length)
+            foreach (int pos in vision)
             {
-                return new string(result);
+                int index = pos - 1;
+
+                if (index >= 0 && index < arr.Length)
+                {
+                    if (arr[index] == '0')
+                    {
+                        arr[index] = newChar;
+                    }
+                }
+                else
+                {
+                    string message = $"Vision NG position {pos} vượt giới hạn chuỗi (1 → {arr.Length})";
+                    AddErrorMES($"Error: Array Vision NG Error", message);
+                }
             }
 
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (result[i] == '1')
-                {
-                    continue;
-                }
-                if (list[i].Equals("NG", StringComparison.OrdinalIgnoreCase))
-                {
-                    result[i] = replace;
-                }
-
-            }
-            return new string(result);
+            return new string(arr);
         }
 
 
         private Mes00Check GetDataWorkout()
         {
-            var CUR_BIN_MSG = MergeResult(DataPCB.RESULT_PCB, DataPCB.PRE_BIN_CODE, DataPCB.CUR_BIN_CHAR);
+            var CUR_BIN_MSG = MergeResult(DataPCB.VISION_NG, DataPCB.PRE_BIN_CODE, DataPCB.CUR_BIN_CHAR);
 
             Mes00Check DATA = new Mes00Check();
             Dispatcher.Invoke(() =>
@@ -328,14 +329,14 @@ namespace Development
             {
                 AddErrorMES("DataPCB.PRE_BIN_CODE IS ERROR ", "KHÔNG NHẬN DC BINCODE TỪ MES");
             }
-            if (DataPCB.RESULT_PCB.Count != DataPCB.PRE_BIN_CODE.Length)
-            {
-                string message = $"RESULT_PCB.Count = {DataPCB.RESULT_PCB.Count}\r\n" +
-                                 $"PRE_BIN_CODE.Count = {DataPCB.PRE_BIN_CODE.Length}\r\n" +
-                                 $"Số lượng PCB hiện tại không khớp với dữ liệu MES gửi về";
-                AddErrorMES("DATA RESULT_PCB NOT MATCH PRE_BIN_CODE ", message);
-                return;
-            }
+            //if (DataPCB.RESULT_PCB.Count != DataPCB.PRE_BIN_CODE.Length)
+            //{
+            //    string message = $"RESULT_PCB.Count = {DataPCB.RESULT_PCB.Count}\r\n" +
+            //                     $"PRE_BIN_CODE.Count = {DataPCB.PRE_BIN_CODE.Length}\r\n" +
+            //                     $"Số lượng PCB hiện tại không khớp với dữ liệu MES gửi về";
+            //    AddErrorMES("DATA RESULT_PCB NOT MATCH PRE_BIN_CODE ", message);
+            //    return;
+            //}
             var Data = this.GetDataWorkout();
 
             UpdateUIMES("MES SEND READY ", Brushes.Yellow);
@@ -406,7 +407,7 @@ namespace Development
                 DataPCB.CUR_BIN_CHAR = MES.FormatS021.CUR_BIN_CHAR;
                 DataPCB.RECEVIE_CUR_BIN_MSG = MES.FormatS021.CUR_BIN_CODE;
 
-                DataPCB.SEND_CUR_BIN_MSG = MergeResult(DataPCB.RESULT_PCB, DataPCB.PRE_BIN_CODE, DataPCB.CUR_BIN_CHAR);
+                DataPCB.SEND_CUR_BIN_MSG = MergeResult(DataPCB.VISION_NG, DataPCB.PRE_BIN_CODE, DataPCB.CUR_BIN_CHAR);
                 DataPCB.RECEVIE_CUR_BIN_MSG = MES.FormatS021.CUR_BIN_CODE;
 
                 DataPCB.WORK_OUT_RESULT = MES.FormatS021.WORK_OUT_RESULT;
@@ -437,7 +438,7 @@ namespace Development
                 DataPCB.CUR_BIN_CHAR = MES.FormatS021.CUR_BIN_CHAR;
                 DataPCB.RECEVIE_CUR_BIN_MSG = MES.FormatS021.CUR_BIN_CODE;
 
-                DataPCB.SEND_CUR_BIN_MSG = MergeResult(DataPCB.RESULT_PCB, DataPCB.PRE_BIN_CODE, DataPCB.CUR_BIN_CHAR);
+                DataPCB.SEND_CUR_BIN_MSG = MergeResult(DataPCB.VISION_NG, DataPCB.PRE_BIN_CODE, DataPCB.CUR_BIN_CHAR);
                 DataPCB.RECEVIE_CUR_BIN_MSG = MES.FormatS021.CUR_BIN_CODE;
 
                 DataPCB.WORK_OUT_RESULT = MES.FormatS021.WORK_OUT_RESULT;
@@ -1089,14 +1090,9 @@ namespace Development
             }
             if (DataPCB.PRE_BIN_CODE.Length > 0)
             {
-                List<string> list = new List<string>();
-                list.Add("NG");
+                int[] arr = { 2, 3, 4, 9, 21 };
 
-                for (int i = 1; i < DataPCB.PRE_BIN_CODE.Length; i++)
-                {
-                    list.Add("OK");
-                }
-                DataPCB.RESULT_PCB = list;
+                DataPCB.VISION_NG = arr;
                 CheckMESWorkout();
             }
             else

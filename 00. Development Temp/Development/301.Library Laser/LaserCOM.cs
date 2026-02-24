@@ -271,7 +271,7 @@ namespace Development
 
         public string SendSwitchPrg(int prg)
         {
-            string repStr = $"GA,0" + "\r"; //Response send GA ok
+            string repStr = $"GA,0"; //Response send GA ok
             string cmd = $"GA,{prg}";
             
             cmd += "\r";
@@ -282,14 +282,15 @@ namespace Development
             byte[] rec = SendWaitResponse(bycmd);
 
             if (rec == rep && rec != null)
-            {
+            //if (rec != null)
+                {
                 return Encoding.ASCII.GetString(rec);
             }
-            else return "NG1";
+            else return "NG";
         }
         public string SendBlockOn(int prg, params int[] block)
         {
-            string repStr = $"D6,0"+"\r"; //Response send D6 ok
+            string repStr = $"D6,0"; //Response send D6 ok
             string cmd = $"D6,{prg},1";
 
             if (block != null && block.Length > 0)
@@ -304,10 +305,11 @@ namespace Development
             byte[] rec = SendWaitResponse(bycmd);
 
             if (rec == rep && rec != null)
-            {
+            //if (rec != null)
+                {
                 return Encoding.ASCII.GetString(rec);
             }
-            else return "NG1";
+            else return "NG";
         }
 
     }
