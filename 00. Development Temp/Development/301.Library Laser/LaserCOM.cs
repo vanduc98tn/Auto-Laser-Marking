@@ -279,12 +279,15 @@ namespace Development
             byte[] bycmd = Encoding.ASCII.GetBytes(cmd);
             byte[] rec = SendWaitResponse(bycmd);
 
-            if (Encoding.ASCII.GetString(rec) == repStr && rec != null)
+            string recStr = "";
+            if (rec != null) recStr = Encoding.ASCII.GetString(rec);
+
+            if (recStr == repStr && recStr != string.Empty)
             //if (rec != null)
-                {
-                return Encoding.ASCII.GetString(rec);
+            {
+                return recStr;
             }
-            else return "NG";
+            else return "NG1";
         }
         public string SendBlockOn(int prg, params int[] block)
         {
@@ -300,12 +303,15 @@ namespace Development
             byte[] bycmd = Encoding.ASCII.GetBytes(cmd);
             byte[] rec = SendWaitResponse(bycmd);
 
-            if (Encoding.ASCII.GetString(rec) == repStr && rec != null)
+            string recStr = "";
+            if (rec != null) recStr = Encoding.ASCII.GetString(rec);
+
+            if (recStr == repStr && recStr != string.Empty)
             //if (rec != null)
             {
-                return Encoding.ASCII.GetString(rec);
+                return recStr;
             }
-            else return "NG";
+            else return "NG1";
         }
 
     }

@@ -154,6 +154,76 @@
                                 <TextBox Grid.Column="1" x:Name="txtPrgLaser" Background="LightCyan" Margin="2,2,2,2" BorderBrush="Black" BorderThickness="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="22" IsReadOnly="True">0</TextBox>
                             </Grid>
                             <Button Grid.Column="1" Grid.Row="3" x:Name="btTrigger">Run Marking Laser</Button>
+                            <Grid Grid.Column="0" Grid.Row="4">
+                                <UniformGrid Columns="3" Rows="2" Margin="3">
+                                    <local:RectangleLamp
+                                         Margin="1"
+                                         IsTabItem="False"
+                                         DeviceLamp="L" AddressLamp="10720"
+                                         TextON="ERR"
+                                         TextOFF="ERR"
+                                         Background="LightGray"
+                                         FontSize="14"
+                                         Foreground="Black"
+                                         BackgroundLampOFF="Transparent"
+                                         BackgroundLampON="Red"
+>
+                                    </local:RectangleLamp>
+                                    <local:RectangleLamp
+                                         Margin="1"
+                                         IsTabItem="False"
+                                         DeviceLamp="L" AddressLamp="10721"
+                                         TextON="WAR"
+                                         TextOFF="WAR"
+                                         Background="LightGray"
+                                         FontSize="14"
+                                         Foreground="Black"
+                                         BackgroundLampOFF="Transparent"
+                                         BackgroundLampON="Orange"
+>
+                                    </local:RectangleLamp>
+                                    <local:RectangleLamp
+                                         Margin="1"
+                                         IsTabItem="False"
+                                         DeviceLamp="L" AddressLamp="10722"
+                                         TextON="RD"
+                                         TextOFF="RD"
+                                         Background="LightGray"
+                                         FontSize="14"
+                                         Foreground="Black"
+                                         BackgroundLampOFF="Transparent"
+                                         BackgroundLampON="GreenYellow"
+>
+                                    </local:RectangleLamp>
+                                    <local:RectangleLamp
+                                         Margin="1"
+                                         IsTabItem="False"
+                                         DeviceLamp="L" AddressLamp="10723"
+                                         TextON="MARKING"
+                                         TextOFF="MARKING"
+                                         Background="LightGray"
+                                         FontSize="14"
+                                         Foreground="Black"
+                                         BackgroundLampOFF="Transparent"
+                                         BackgroundLampON="Yellow"
+>
+                                    </local:RectangleLamp>
+                                    <local:RectangleLamp
+                                         Margin="1"
+                                         IsTabItem="False"
+                                         DeviceLamp="L" AddressLamp="10724"
+                                         TextON="COMP"
+                                         TextOFF="COMP"
+                                         Background="LightGray"
+                                         FontSize="14"
+                                         Foreground="Black"
+                                         BackgroundLampOFF="Transparent"
+                                         BackgroundLampON="Yellow"
+>
+                                    </local:RectangleLamp>
+                                    
+                                </UniformGrid>
+                            </Grid>
 
                         </Grid>
                     </Grid>

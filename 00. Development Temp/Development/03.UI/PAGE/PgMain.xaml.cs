@@ -193,7 +193,20 @@ namespace Development
                 addLog("MES CHECK PCB WORKIN OK");
                 UpdateUIMES("MES CHECK PCB WORKIN OK", Brushes.LightGreen);
 
-                
+
+                string PreBinCode = DataPCB.PRE_BIN_CODE;
+                List<int> ltsBlock = new List<int>();
+
+                for (int i = 0; i < PreBinCode.Length; i++)
+                {
+                    if (PreBinCode[i] != '0')
+                    {
+                        ltsBlock.Add(i);   // Lưu vị trí index
+                    }
+                }
+                int[] arrBlock = ltsBlock.ToArray();
+                this.UpdateUIMESRESULT(arrBlock);
+
                 if (UiManager.Instance.laserCOM.isConnect)
                 {
                     SendLaser();
@@ -265,12 +278,12 @@ namespace Development
             addLog("Write Bit Laser NG M616 = ON");
 
         }
-        public string MergeResult(int[] vision, string bin, string replaceChar)
+        public string MergeResult(int[] vision, string bincode, string replaceChar)
         {
-            if (string.IsNullOrEmpty(bin) || vision == null || string.IsNullOrEmpty(replaceChar))
-                return bin;
+            if (string.IsNullOrEmpty(bincode) || vision == null || string.IsNullOrEmpty(replaceChar))
+                return bincode;
 
-            char[] arr = bin.ToCharArray();
+            char[] arr = bincode.ToCharArray();
             char newChar = replaceChar[0];
 
             foreach (int pos in vision)
@@ -293,7 +306,6 @@ namespace Development
 
             return new string(arr);
         }
-
 
         private Mes00Check GetDataWorkout()
         {
@@ -538,6 +550,9 @@ namespace Development
                         this.addLog("Write Bit M520 = OFF");
                         if (UiManager.appSetting.RUN.MESOnline)
                         {
+                            int[] arr = { 2, 3, 4, 9, 21 };
+                            DataPCB.VISION_NG = arr;
+
                             this.CheckMESWorkout();
                         }
 
@@ -576,6 +591,7 @@ namespace Development
                                 if (UiManager.appSetting.RUN.MESOnline)
                                 {
                                     this.CheckMESWorkin();
+                                    
                                 }
                             }
                             else
@@ -641,8 +657,34 @@ namespace Development
                 this.lbMES.Background = color;
             });
         }
+        private void UpdateUIMESRESULT(int[] list)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                foreach (var child in gridPos.Children)
+                {
+                    if (child is Label lbl)
+                    {
+                        // Lấy số từ Name: lblCell01 -> 01
+                        string numberStr = lbl.Name.Replace("lblCell", "");
 
-        
+                        if (int.TryParse(numberStr, out int number))
+                        {
+                            if (list.Contains(number))
+                            {
+                                lbl.Background = Brushes.Red;
+                            }
+                            else
+                            {
+                                lbl.Background = Brushes.LightBlue;
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+
         private void generateCells(int rowCnt, int colCnt, int pattern, bool Use2Matrix)
         {
             //lstButtonPos = new List<Button>();
@@ -933,6 +975,7 @@ namespace Development
         {
             var cell = new Label();
             cell.Content = createCellContent(String.Format("{0}", number));
+            //cell.Content = number;
             cell.Name = String.Format("lblCell{0:00}", number);
             cell.HorizontalContentAlignment = HorizontalAlignment.Center;
             cell.VerticalContentAlignment = VerticalAlignment.Center;
@@ -1069,7 +1112,7 @@ namespace Development
             this.ClearError();
           
         }
-        private async void BtStart_Click(object sender, RoutedEventArgs e)
+        private void BtStart_Click(object sender, RoutedEventArgs e)
         {
             string QR = "QR1234";
             this.UpdateUIQR(QR, true);
@@ -1078,28 +1121,16 @@ namespace Development
             DataPCB.BARCODE_PCB = QR;
             CheckMESWorkin();
         }
-        private async void BtHome_Click(object sender, RoutedEventArgs e)
+        private void BtHome_Click(object sender, RoutedEventArgs e)
         {
 
         }
         private void BtStop_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(DataPCB.PRE_BIN_CODE))
-            {
-                return;
-            }
-            if (DataPCB.PRE_BIN_CODE.Length > 0)
-            {
                 int[] arr = { 2, 3, 4, 9, 21 };
 
                 DataPCB.VISION_NG = arr;
                 CheckMESWorkout();
-            }
-            else
-            {
-                addLog($"DataPCB.PRE_BIN_CODE.Length = {DataPCB.PRE_BIN_CODE.Length}");
-                addLog("");
-            }
         }
 
         #region NotifyMES

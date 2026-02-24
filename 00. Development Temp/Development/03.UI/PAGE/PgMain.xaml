@@ -7,7 +7,7 @@
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
       xmlns:Language="clr-namespace:Development.Properties"
       mc:Ignorable="d" 
-     d:DesignHeight="1000" d:DesignWidth="1900"
+     d:DesignHeight="890" d:DesignWidth="1300"
       Title="PgMain">
 
     <Grid Background="#fff0f0f0" Margin="3,3,3,0">
