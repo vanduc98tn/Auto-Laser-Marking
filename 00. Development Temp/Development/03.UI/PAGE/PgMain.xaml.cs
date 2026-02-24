@@ -77,14 +77,14 @@ namespace Development
 
         }
 
-       
+
 
         private Mes00Check GetDataWorkin()
         {
             Mes00Check DATA = new Mes00Check();
-            Dispatcher.Invoke(() => 
+            Dispatcher.Invoke(() =>
             {
-               
+
                 DATA.FormatS010.AUTHORITY = UiManager.UserNameLoginMesOP_ME;
                 DATA.FormatS010.ID = UiManager.CodeUserLoginMesOP_ME;
                 DATA.FormatS010.LOT_NUMBER = UiManager.appSetting.LotinData.LotId;
@@ -101,7 +101,7 @@ namespace Development
                 DATA.CheckSum = "WORKIN";
 
             });
-          
+
             return DATA;
         }
         private async void CheckMESWorkin()
@@ -109,15 +109,17 @@ namespace Development
             var Data = this.GetDataWorkin();
 
             UpdateUIMES("MES SEND READY ", Brushes.Yellow);
-           
+
             // Send Ready
             var MESREADY = await UiManager.Instance.MES.SendReady(Data);
 
             if (!MESREADY)
             {
                 // SEND PLC MES NG
-                addLog("Write Bit MES CHECK NG (M3860) = ON");
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3860, true);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, false);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, true);
+                addLog("Write Bit Workin MES OK M615 = OFF");
+                addLog("Write Bit Workin MES NG M616 = ON");
 
                 string message = "- Check MES connection again:\r\n" +
                                  "  + Verify IP configuration\r\n" +
@@ -130,7 +132,7 @@ namespace Development
                 addLog("MES CHECK READY IS FAIL");
                 AddErrorMES("MES CHECK READY IS FAIL", message);
 
-               
+
                 return;
             }
 
@@ -142,8 +144,10 @@ namespace Development
             if (MES == null)
             {
                 // SEND PLC MES NG
-                addLog("Write Bit MES CHECK NG (M3860) = ON");
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3860, true);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, false);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, true);
+                addLog("Write Bit Workin MES OK M615 = OFF");
+                addLog("Write Bit Workin MES NG M616 = ON");
 
                 string message = "- Check MES connection again / MES not respond. :\r\n" +
                                 "  + Verify IP configuration\r\n" +
@@ -156,7 +160,6 @@ namespace Development
                 addLog("MES SEND WORKIN FAIL . MES NOT RESPOND");
                 AddErrorMES("MES NOT RESPOND", message);
 
-               
                 return;
 
             }
@@ -165,13 +168,15 @@ namespace Development
             if (MES.FormatS011.WORK_IN_RESULT.Contains("NG"))
             {
                 // SEND PLC MES NG
-                addLog("Write Bit MES CHECK NG (M3860) = ON");
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3860, true);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, false);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, true);
+                addLog("Write Bit Workin MES OK M615 = OFF");
+                addLog("Write Bit Workin MES NG M616 = ON");
 
                 UpdateUIMES("MES CHECK PCB WORKIN NG . PLEASE CHECK !!!!!", Brushes.Red);
                 AddErrorMES("MES CHECK PCB WORKIN NG . PLEASE CHECK !!!!! ", MES.FormatS011.WORK_IN_MSG);
 
-           
+
                 return;
 
             }
@@ -179,7 +184,7 @@ namespace Development
             // MES CHECK OK
             else
             {
-                
+
                 DataPCB.WORK_IN_RESULT = MES.FormatS011.WORK_IN_RESULT;
                 DataPCB.WORK_IN_MSG = MES.FormatS011.WORK_IN_MSG;
                 DataPCB.CUR_BIN_CHAR = MES.FormatS011.CUR_BIN_CHAR;
@@ -188,14 +193,77 @@ namespace Development
                 addLog("MES CHECK PCB WORKIN OK");
                 UpdateUIMES("MES CHECK PCB WORKIN OK", Brushes.LightGreen);
 
-                // SEND PLC MES OK
-                addLog("Write Bit MES CHECK OK (M3859) = ON");
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3859, true);
+                
+                if (UiManager.Instance.laserCOM.isConnect)
+                {
+                    SendLaser();
+                }
+                else
+                {
+                    string message = "- Check Laser COM connection again / COM not respond. :\r\n" +
+                                "  + Verify Laser configuration\r\n" +
+                                "  + Verify COM connectivity\r\n" +
+                                "- Kiểm tra lại kết nối Laser COM / COM không phản hồi:\r\n" +
+                                "  + Kiểm tra lại setting Laser\r\n" +
+                                "  + Kiểm tra lại đường truyền COM\r\n";
+                    AddErrorMES($"Error: COM port is not open", message);
 
+                    // SEND PLC LASER OK
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
+                    addLog("Write Bit Laser OK M615 = ON");
+                    addLog("Write Bit Laser NG M616 = OFF");
+
+                }
 
                 return;
-
             }
+        }
+        public void SendLaser()
+        {
+            string PreBinCode = DataPCB.PRE_BIN_CODE;
+            List<int> ltsBlock = new List<int>();
+
+            for (int i = 0; i < PreBinCode.Length; i++)
+            {
+                if (PreBinCode[i] != '0')
+                {
+                    ltsBlock.Add(i);   // Lưu vị trí index
+                }
+            }
+            int[] arrBlock = ltsBlock.ToArray();
+
+            string switchprg = UiManager.Instance.laserCOM.SendSwitchPrg(pattern.PrgLaser);
+
+            if (switchprg != "NG")
+            {
+                string blockon = UiManager.Instance.laserCOM.SendBlockOn(pattern.PrgLaser, arrBlock);
+
+                if (blockon != "NG")
+                {
+                    // SEND PLC LASER OK
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
+                    addLog("Write Bit Laser OK M615 = ON");
+                    addLog("Write Bit Laser NG M616 = OFF");
+                    return;
+                }
+            }
+
+            string message = "- Check Laser COM connection again / COM not respond. :\r\n" +
+                                "  + Verify Laser configuration\r\n" +
+                                "  + Verify COM connectivity\r\n" +
+                                "- Kiểm tra lại kết nối Laser COM / COM không phản hồi:\r\n" +
+                                "  + Kiểm tra lại setting Laser\r\n" +
+                                "  + Kiểm tra lại đường truyền COM\r\n";
+            AddErrorMES($"Error: COM port is not open", message);
+
+            // SEND PLC LASER NG
+            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, false);
+            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, true);
+            addLog("Write Bit Laser OK M615 = OFF");
+            addLog("Write Bit Laser NG M616 = ON");
+
         }
         public string MergeResult(List<string> list, string bin, string replaceChar)
         {
@@ -220,11 +288,11 @@ namespace Development
                 {
                     result[i] = replace;
                 }
-               
+
             }
             return new string(result);
         }
-        
+
 
         private Mes00Check GetDataWorkout()
         {
@@ -250,20 +318,20 @@ namespace Development
                 DATA.Status = "S040";
                 DATA.CheckSum = "WORKOUT";
             });
-            
-           
+
+
             return DATA;
         }
         private async void CheckMESWorkout()
         {
-            if(string.IsNullOrEmpty(DataPCB.PRE_BIN_CODE))
+            if (string.IsNullOrEmpty(DataPCB.PRE_BIN_CODE))
             {
                 AddErrorMES("DataPCB.PRE_BIN_CODE IS ERROR ", "KHÔNG NHẬN DC BINCODE TỪ MES");
-            }    
-            if (DataPCB.RESULT_PCB.Count  != DataPCB.PRE_BIN_CODE.Length)
+            }
+            if (DataPCB.RESULT_PCB.Count != DataPCB.PRE_BIN_CODE.Length)
             {
                 string message = $"RESULT_PCB.Count = {DataPCB.RESULT_PCB.Count}\r\n" +
-                                 $"PRE_BIN_CODE.Count = {DataPCB.PRE_BIN_CODE.Length}\r\n"+
+                                 $"PRE_BIN_CODE.Count = {DataPCB.PRE_BIN_CODE.Length}\r\n" +
                                  $"Số lượng PCB hiện tại không khớp với dữ liệu MES gửi về";
                 AddErrorMES("DATA RESULT_PCB NOT MATCH PRE_BIN_CODE ", message);
                 return;
@@ -286,8 +354,10 @@ namespace Development
 
 
                 // SEND PLC MES NG
-                addLog("Write Bit MES CHECK NG (M3860) = ON");
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3860, true);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 620, false);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 621, true);
+                addLog("Write Bit Workout MES OK M620 = OFF");
+                addLog("Write Bit Workout MES OK M621 = ON");
 
 
                 UpdateUIMES("MES CHECK READY IS FAIL", Brushes.Red);
@@ -313,15 +383,17 @@ namespace Development
 
 
                 // SEND PLC MES NG
-                addLog("Write Bit MES CHECK NG (M3860) = ON");
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3860, true);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 620, false);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 621, true);
+                addLog("Write Bit Workout MES OK M620 = OFF");
+                addLog("Write Bit Workout MES OK M621 = ON");
 
 
                 UpdateUIMES("MES SEND WORKOUT FAIL . MES NOT RESPOND", Brushes.Red);
                 addLog("MES SEND WORKOUT FAIL . MES NOT RESPOND");
                 AddErrorMES("MES NOT RESPOND", message);
 
-                
+
 
 
                 return;
@@ -344,8 +416,10 @@ namespace Development
                 logger.UpdateLogMes(DataPCB);
 
                 // SEND PLC MES NG
-                addLog("Write Bit MES CHECK NG (M3860) = ON");
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3860, true);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 620, false);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 621, true);
+                addLog("Write Bit Workout MES OK M620 = OFF");
+                addLog("Write Bit Workout MES OK M621 = ON");
 
                 UpdateUIMES("MES CHECK PCB WORKOUT NG", Brushes.Red);
                 addLog("MES CHECK PCB WORKOUT NG");
@@ -376,8 +450,10 @@ namespace Development
                 UpdateUIMES("MES CHECK PCB WORKOUT OK", Brushes.LightGreen);
 
                 // SEND PLC MES OK
-                addLog("Write Bit MES CHECK OK (M3859) = ON");
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 3859, true);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 620, true);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 621, false);
+                addLog("Write Bit Workout MES OK M620 = ON");
+                addLog("Write Bit Workout MES OK M621 = OFF");
 
                 UpdateOK_NG(1, 0);
 
@@ -398,6 +474,8 @@ namespace Development
                 bool CLR_ALL_QR = false;
                 bool TRIGGER_QR = false;
 
+                bool WORKOUT_ON = false;
+
                 while (isRunning)
                 {
                     if (UiManager.Instance.PLC.device.isOpen())
@@ -411,6 +489,8 @@ namespace Development
 
                             CLR_ALL_QR = M_ListBitPLC_[12];  // M512
                             TRIGGER_QR = M_ListBitPLC_[10];  // M510
+
+                            WORKOUT_ON = M_ListBitPLC_[20];  // M520
                         }
                     }
 
@@ -449,20 +529,18 @@ namespace Development
 
                     }
 
-                    //if (M_STOP)
-                    //{
+                    if (WORKOUT_ON)
+                    {
 
-                    //    addLog("--- End RunAuto --- ");
+                        addLog("--- Workout MES --- ");
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 520, false);
+                        this.addLog("Write Bit M520 = OFF");
+                        if (UiManager.appSetting.RUN.MESOnline)
+                        {
+                            this.CheckMESWorkout();
+                        }
 
-
-                    //    if(UiManager.appSetting.RUN.MESOnline)
-                    //    {
-                    //        this.CheckMESWorkout();
-                    //    }    
-
-
-
-                    //}
+                    }
 
                     // CHECK START SCANNER ---------------------------------------------------
                     if (TRIGGER_QR)
@@ -478,20 +556,20 @@ namespace Development
                         {
                             string QR = UiManager.Instance.scannerTCP.ReadQR();
                             QR = "PCBID1234567890";
-                            QR = "";
+                            //QR = "";
 
                             if (!string.IsNullOrEmpty(QR))
                             {
                                 this.UpdateUIQR(QR, true);
 
-                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, true);
-                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, false);
-                                addLog("Write Bit Scanner Trigger OK M610 = ON");
-                                addLog("Write Bit Scanner Trigger NG M611 = OFF");
+                                //UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
+                                //UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
+                                //addLog("Write Bit Scanner Trigger OK M615 = ON");
+                                //addLog("Write Bit Scanner Trigger NG M616 = OFF");
 
                                 this.UpdateUIMES($"SCANNER TRIGGER COMPLETE", Brushes.LightGreen);
 
-                                /// Check MES S010
+                                DataPCB = new DataPCB();
                                 this.DataPCB.BARCODE_PCB = QR;
 
                                 if (UiManager.appSetting.RUN.MESOnline)
@@ -503,10 +581,10 @@ namespace Development
                             {
                                 this.UpdateUIQR("Scanner Error", false);
 
-                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, false);
-                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, true);
-                                addLog("Write Bit Scanner Trigger OK M610 = OFF");
-                                addLog("Write Bit Scanner Trigger NG M611 = ON");
+                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, false);
+                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, true);
+                                addLog("Write Bit Scanner Trigger OK M615 = OFF");
+                                addLog("Write Bit Scanner Trigger NG M616 = ON");
 
                                 this.UpdateUIMES($"ERROR SCANNER  : Unable to Read Code", Brushes.OrangeRed);
 
@@ -515,11 +593,6 @@ namespace Development
                         else
                         {
                             addLog("BY PASS SCANNER ");
-
-                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, true);
-                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, false);
-                            addLog("Write Bit Scanner Trigger OK M610 = ON");
-                            addLog("Write Bit Scanner Trigger NG M611 = OFF");
 
                             this.UpdateUIMES($"BY PASS TRIGGER SCANNER", Brushes.LightGreen);
 

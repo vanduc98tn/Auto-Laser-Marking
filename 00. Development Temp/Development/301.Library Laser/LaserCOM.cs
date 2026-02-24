@@ -285,7 +285,7 @@ namespace Development
             {
                 return Encoding.ASCII.GetString(rec);
             }
-            else return "NG";
+            else return "NG1";
         }
         public string SendBlockOn(int prg, params int[] block)
         {
@@ -307,7 +307,7 @@ namespace Development
             {
                 return Encoding.ASCII.GetString(rec);
             }
-            else return "NG";
+            else return "NG1";
         }
 
     }
