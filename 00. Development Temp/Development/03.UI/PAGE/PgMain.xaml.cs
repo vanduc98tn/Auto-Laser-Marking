@@ -671,7 +671,7 @@ namespace Development
             };
 
             brush.GradientStops.Add(new GradientStop(mesColor, 0.0));
-            brush.GradientStops.Add(new GradientStop(visionColor, 0.8));
+            brush.GradientStops.Add(new GradientStop(visionColor, 0.9));
 
             brush.Freeze(); // tối ưu render
 
