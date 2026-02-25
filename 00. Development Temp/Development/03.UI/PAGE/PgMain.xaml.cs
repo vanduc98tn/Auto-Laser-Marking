@@ -596,11 +596,13 @@ namespace Development
             string message = "- Check MES connection again / MES not respond. :\r\n" +
                                 "  + Verify IP configuration\r\n" +
                                 "  + Verify network connectivity\r\n" +
+                                "  + Verify Laser READY status\r\n" +
                                 "  + Verify Laser Command Code\r\n" +
                                 "  + Verify index MES and Vision\r\n" +
                                 "- Kiểm tra lại kết nối MES / MES không phản hồi:\r\n" +
                                 "  + Kiểm tra lại setting IP\r\n" +
                                 "  + Kiểm tra lại đường truyền\r\n" +
+                                "  + Kiểm tra lại trạng thái READY của Laser\r\n" +
                                 "  + Kiểm tra lại chuỗi gửi Laser\r\n" +
                                 "  + Kiểm tra lại giá trị index NG của MES và Vision\r\n";
 
