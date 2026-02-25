@@ -172,7 +172,47 @@
                     </local:PLCButton>
 
                 </UniformGrid>
-                
+                <UniformGrid Grid.Column="1" Columns="1" Rows="10" Margin="0 0 10 0">
+                    <local:PLCButton
+                        Action="Momentary"
+                        DeviceWrite="L" AddressWrite="525"
+                        DeviceLamp="L" AddressLamp="715"
+                        BackgroundLampOFF="Transparent"
+                        BackgroundLampON="GreenYellow"
+                        TextOFF="BYPASS VISION"
+                        TextON="BYPASS VISION"
+                        IsComfrim="True"
+                        IsMesComfrim="Confrim Options Yes/No"
+>
+                    </local:PLCButton>
+                    <local:PLCButton
+                        Action="Momentary"
+                        DeviceWrite="L" AddressWrite="526"
+                        DeviceLamp="L" AddressLamp="716"
+                        BackgroundLampOFF="Transparent"
+                        BackgroundLampON="GreenYellow"
+                        TextOFF="BYPASS SCANNER"
+                        TextON="BYPASS SCANNER"
+                        IsComfrim="True"
+                        IsMesComfrim="Confrim Options Yes/No"
+>
+                    </local:PLCButton>
+                    <local:PLCButton
+                        Action="Momentary"
+                        DeviceWrite="L" AddressWrite="527"
+                        DeviceLamp="L" AddressLamp="717"
+                        BackgroundLampOFF="Transparent"
+                        BackgroundLampON="GreenYellow"
+                        TextOFF="BYPASS LASER"
+                        TextON="BYPASS LASER"
+                        IsComfrim="True"
+                        IsMesComfrim="Confrim Options Yes/No"
+>
+                    </local:PLCButton>
+
+
+                </UniformGrid>
+
             </Grid>
             
         </Grid>
