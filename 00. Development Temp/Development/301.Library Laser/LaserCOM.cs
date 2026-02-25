@@ -287,7 +287,7 @@ namespace Development
             {
                 return recStr;
             }
-            else return "NG1";
+            else return "NG";
         }
         public string SendBlockOn(int prg, params int[] block)
         {
@@ -311,7 +311,7 @@ namespace Development
             {
                 return recStr;
             }
-            else return "NG1";
+            else return "NG";
         }
 
     }

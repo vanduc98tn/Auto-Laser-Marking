@@ -200,19 +200,19 @@ namespace Development
                 int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE);
                 this.UpdateUIMESRESULT(workinNG);
 
-                if (UiManager.Instance.laserCOM.isConnect)
+                if (UiManager.Instance.laserCOM.isOpen())
                 {
                     SendLaser();
                 }
                 else
                 {
-                    string message = "- Check Laser COM connection again / COM not respond. :\r\n" +
+                    string message = "- Check Laser connection again / COM not respond:\r\n" +
                                 "  + Verify Laser configuration\r\n" +
                                 "  + Verify COM connectivity\r\n" +
-                                "- Kiểm tra lại kết nối Laser COM / COM không phản hồi:\r\n" +
+                                "- Kiểm tra lại kết nối Laser / COM không phản hồi:\r\n" +
                                 "  + Kiểm tra lại setting Laser\r\n" +
                                 "  + Kiểm tra lại đường truyền COM\r\n";
-                    AddErrorMES($"Error: COM port is not open", message);
+                    AddErrorMES($"Error: Laser COM port is not open", message);
 
                     // SEND PLC LASER OK
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
