@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -167,6 +168,30 @@ namespace Development
                             {
                                 this.CheckMESWorkin();
                             }
+                            else
+                            {
+                                var numbers = pattern.positionNGs;
+                                var set = new HashSet<int>(numbers);
+
+                                int max = set.Max();
+                                StringBuilder sb = new StringBuilder();
+
+                                for (int i = 1; i <= max; i++)
+                                {
+                                    sb.Append(set.Contains(i) ? '1' : '0');
+                                }
+
+                                string result = sb.ToString();
+
+                                DataPCB.PRE_BIN_CODE = result;
+
+                                int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE);
+                                this.UpdateUIMESRESULT(workinNG);
+
+                                this.isQR = true;
+
+
+                            }    
                         }
                         else
                         {
@@ -186,6 +211,26 @@ namespace Development
                         addLog("BY PASS SCANNER ");
 
                         this.UpdateUIMES($"BY PASS TRIGGER SCANNER", Brushes.LightGreen);
+
+                        var numbers = pattern.positionNGs;
+                        var set = new HashSet<int>(numbers);
+
+                        int max = set.Max();
+                        StringBuilder sb = new StringBuilder();
+
+                        for (int i = 1; i <= max; i++)
+                        {
+                            sb.Append(set.Contains(i) ? '1' : '0');
+                        }
+
+                        string result = sb.ToString();
+
+                        DataPCB.PRE_BIN_CODE = result;
+
+                        int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE);
+                        this.UpdateUIMESRESULT(workinNG);
+
+                        this.isQR = true;
 
                     }
                     

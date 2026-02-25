@@ -650,7 +650,7 @@
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <GroupBox Header="VISION RESULT" FontFamily="Times New Roman (Headings)" FontSize="20" FontWeight="Bold">
+                    <GroupBox Header="VISION RESULT" FontFamily="Times New Roman (Headings)" FontSize="20" FontWeight="Bold" Foreground="Purple">
                         <Border Margin="2,2,2,2" Grid.Row="3" BorderThickness="1" BorderBrush="Gray">
                             
                         </Border>
@@ -658,7 +658,7 @@
                 </Grid>
 
                 <Grid Grid.Row="3">
-                    <GroupBox Header="MES RESULT" FontFamily="Times New Roman (Headings)" FontSize="20" FontWeight="Bold">
+                    <GroupBox Header="MES RESULT" FontFamily="Times New Roman (Headings)" FontSize="20" FontWeight="Bold" Foreground="Red">
                         <Border Margin="2,2,2,2" Grid.Row="3" BorderThickness="1" BorderBrush="Gray">
                             <Grid Background="Gray" Name="gridPos">
                                 <Grid.Resources>
