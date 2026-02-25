@@ -46,6 +46,8 @@ namespace Development
         private Thread AutoRunThread;
         private object LockRun = new object();
         private bool isRunning = false;
+        private bool isQR = false;
+        private bool isVision = false;
 
         private PatternSetting pattern = UiManager.appSetting.Pattern;
         private Brush MES_COLOR = Brushes.Red;
@@ -196,31 +198,10 @@ namespace Development
                 addLog("MES CHECK PCB WORKIN OK");
                 UpdateUIMES("MES CHECK PCB WORKIN OK", Brushes.LightGreen);
 
-
                 int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE);
                 this.UpdateUIMESRESULT(workinNG);
 
-                if (UiManager.Instance.laserCOM.isOpen())
-                {
-                    SendLaser();
-                }
-                else
-                {
-                    string message = "- Check Laser connection again / COM not respond:\r\n" +
-                                "  + Verify Laser configuration\r\n" +
-                                "  + Verify COM connectivity\r\n" +
-                                "- Kiểm tra lại kết nối Laser / COM không phản hồi:\r\n" +
-                                "  + Kiểm tra lại setting Laser\r\n" +
-                                "  + Kiểm tra lại đường truyền COM\r\n";
-                    AddErrorMES($"Error: Laser COM port is not open", message);
-
-                    // SEND PLC LASER OK
-                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
-                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
-                    addLog("Write Bit Laser OK M615 = ON");
-                    addLog("Write Bit Laser NG M616 = OFF");
-
-                }
+                this.isQR = true;
 
                 return;
             }
@@ -479,149 +460,196 @@ namespace Development
         }
         private void Running()
         {
-            lock (LockRun)
+            List<bool> M_ListBitPLC_ = new List<bool>();
+
+            bool CLR_ALL_QR = false;
+            bool TRIGGER_QR = false;
+
+            bool WORKOUT_ON = false;
+
+            while (isRunning)
             {
-                List<bool> M_ListBitPLC_ = new List<bool>();
-
-                bool CLR_ALL_VISION = false;
-                bool TRIGGER1_VISION = false;
-                bool TRIGGER2_VISION = false;
-
-                bool CLR_ALL_QR = false;
-                bool TRIGGER_QR = false;
-
-                bool WORKOUT_ON = false;
-
-                while (isRunning)
+                if (UiManager.Instance.PLC.device.isOpen())
                 {
-                    if (UiManager.Instance.PLC.device.isOpen())
+                    UiManager.Instance.PLC.device.ReadMultiBits(DeviceCode.M, 500, 50, out M_ListBitPLC_);
+                    if (M_ListBitPLC_.Count > 0)
                     {
-                        UiManager.Instance.PLC.device.ReadMultiBits(DeviceCode.M, 500, 50, out M_ListBitPLC_);
-                        if (M_ListBitPLC_.Count > 0)
+                        CLR_ALL_QR = M_ListBitPLC_[12];  // M512
+                        TRIGGER_QR = M_ListBitPLC_[10];  // M510
+
+                        WORKOUT_ON = M_ListBitPLC_[20];  // M520
+                    }
+                }
+
+                if (WORKOUT_ON)
+                {
+
+                    addLog("--- Workout MES --- ");
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 520, false);
+                    this.addLog("Write Bit M520 = OFF");
+                    if (UiManager.appSetting.RUN.MESOnline)
+                    {
+                        int[] arr = { 2, 3, 4, 9, 21, 19, 42 };
+                        DataPCB.VISION_NG = arr;
+                        UpdateUIVISIONRESULT(DataPCB.VISION_NG);
+                        this.CheckMESWorkout();
+                    }
+
+                }
+
+                if (CLR_ALL_QR)
+                {
+                    this.addLog("--- Clear all QR --- ");
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 512, false);
+                    this.addLog("Write Bit M512 = OFF");
+
+                    this.UpdateUIQR("", false);
+
+                    this.DataPCB = new DataPCB();
+                    this.isQR = false;
+
+                }
+
+                // CHECK START SCANNER ---------------------------------------------------
+                if (TRIGGER_QR)
+                {
+
+                    addLog("--- CHECK SCANNER --- ");
+                    this.UpdateUIMES("START TRIGGER SCANNER", Brushes.LightGreen);
+
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 510, false);
+                    addLog("Write Bit M510 = OFF");
+
+                    if (UiManager.appSetting.RUN.CheckScanner)
+                    {
+                        string QR = UiManager.Instance.scannerTCP.ReadQR();
+                        //QR = "PCBID1234567890";
+                        //QR = "";
+
+                        if (!string.IsNullOrEmpty(QR))
                         {
-                            CLR_ALL_VISION = M_ListBitPLC_[4];  // M504
-                            TRIGGER1_VISION = M_ListBitPLC_[0];  // M500
-                            TRIGGER2_VISION = M_ListBitPLC_[1];  // M501
+                            this.UpdateUIQR(QR, true);
 
-                            CLR_ALL_QR = M_ListBitPLC_[12];  // M512
-                            TRIGGER_QR = M_ListBitPLC_[10];  // M510
+                            //UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
+                            //UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
+                            //addLog("Write Bit Scanner Trigger OK M615 = ON");
+                            //addLog("Write Bit Scanner Trigger NG M616 = OFF");
 
-                            WORKOUT_ON = M_ListBitPLC_[20];  // M520
-                        }
-                    }
+                            this.UpdateUIMES($"SCANNER TRIGGER COMPLETE", Brushes.LightGreen);
 
+                            DataPCB = new DataPCB();
+                            this.DataPCB.BARCODE_PCB = QR;
 
-                    if (CLR_ALL_VISION)
-                    {
-                        this.addLog("--- Clear all Vision --- ");
-                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 504, false);
-                        this.addLog("Write Bit M504 = OFF");
-
-                    }
-                    if (TRIGGER1_VISION)
-                    {
-                        this.addLog("--- Trigger1 Vision --- ");
-                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 500, false);
-                        this.addLog("Write Bit M500 = OFF");
-
-                    }
-                    if (TRIGGER2_VISION)
-                    {
-                        this.addLog("--- Trigger2 Vision --- ");
-                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 501, false);
-                        this.addLog("Write Bit M501 = OFF");
-
-                    }
-
-                    if (CLR_ALL_QR)
-                    {
-                        this.addLog("--- Clear all QR --- ");
-                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 512, false);
-                        this.addLog("Write Bit M512 = OFF");
-
-                        this.UpdateUIQR("", false);
-
-                        this.DataPCB = new DataPCB();
-
-                    }
-
-                    if (WORKOUT_ON)
-                    {
-
-                        addLog("--- Workout MES --- ");
-                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 520, false);
-                        this.addLog("Write Bit M520 = OFF");
-                        if (UiManager.appSetting.RUN.MESOnline)
-                        {
-                            int[] arr = { 2, 3, 4, 9, 21 , 19, 42};
-                            DataPCB.VISION_NG = arr;
-                            UpdateUIVISIONRESULT(DataPCB.VISION_NG);
-                            this.CheckMESWorkout();
-                        }
-
-                    }
-
-                    // CHECK START SCANNER ---------------------------------------------------
-                    if (TRIGGER_QR)
-                    {
-
-                        addLog("--- CHECK SCANNER --- ");
-                        this.UpdateUIMES("START TRIGGER SCANNER", Brushes.LightGreen);
-
-                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 510, false);
-                        addLog("Write Bit M510 = OFF");
-
-                        if (UiManager.appSetting.RUN.CheckScanner)
-                        {
-                            string QR = UiManager.Instance.scannerTCP.ReadQR();
-                            //QR = "PCBID1234567890";
-                            //QR = "";
-
-                            if (!string.IsNullOrEmpty(QR))
+                            if (UiManager.appSetting.RUN.MESOnline)
                             {
-                                this.UpdateUIQR(QR, true);
-
-                                //UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
-                                //UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
-                                //addLog("Write Bit Scanner Trigger OK M615 = ON");
-                                //addLog("Write Bit Scanner Trigger NG M616 = OFF");
-
-                                this.UpdateUIMES($"SCANNER TRIGGER COMPLETE", Brushes.LightGreen);
-
-                                DataPCB = new DataPCB();
-                                this.DataPCB.BARCODE_PCB = QR;
-
-                                if (UiManager.appSetting.RUN.MESOnline)
-                                {
-                                    this.CheckMESWorkin();
-                                }
-                            }
-                            else
-                            {
-                                this.UpdateUIQR("Scanner Error", false);
-
-                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, false);
-                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, true);
-                                addLog("Write Bit Scanner Trigger OK M615 = OFF");
-                                addLog("Write Bit Scanner Trigger NG M616 = ON");
-
-                                this.UpdateUIMES($"ERROR SCANNER  : Unable to Read Code", Brushes.OrangeRed);
-
+                                this.CheckMESWorkin();
                             }
                         }
                         else
                         {
-                            addLog("BY PASS SCANNER ");
+                            this.UpdateUIQR("Scanner Error", false);
 
-                            this.UpdateUIMES($"BY PASS TRIGGER SCANNER", Brushes.LightGreen);
+                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, false);
+                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, true);
+                            addLog("Write Bit Scanner Trigger OK M615 = OFF");
+                            addLog("Write Bit Scanner Trigger NG M616 = ON");
+
+                            this.UpdateUIMES($"ERROR SCANNER  : Unable to Read Code", Brushes.OrangeRed);
+
+                        }
+                    }
+                    else
+                    {
+                        addLog("BY PASS SCANNER ");
+
+                        this.UpdateUIMES($"BY PASS TRIGGER SCANNER", Brushes.LightGreen);
+
+                    }
+                    if (this.isQR && this.isVision)
+                    {
+
+
+                        if (UiManager.Instance.laserCOM.isOpen())
+                        {
+                            SendLaser();
+
+                            this.isQR = false;
+                            this.isVision = false;
+                        }
+                        else
+                        {
+                            string message = "- Check Laser connection again / COM not respond:\r\n" +
+                                        "  + Verify Laser configuration\r\n" +
+                                        "  + Verify COM connectivity\r\n" +
+                                        "- Kiểm tra lại kết nối Laser / COM không phản hồi:\r\n" +
+                                        "  + Kiểm tra lại setting Laser\r\n" +
+                                        "  + Kiểm tra lại đường truyền COM\r\n";
+                            AddErrorMES($"Error: Laser COM port is not open", message);
+
+                            // SEND PLC LASER OK
+                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
+                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
+                            addLog("Write Bit Laser OK M615 = ON");
+                            addLog("Write Bit Laser NG M616 = OFF");
 
                         }
 
                     }
-
-
-                    Thread.Sleep(20);
                 }
+
+                Thread.Sleep(20);
+            }
+        }
+        private void VisionRunning()
+        {
+            List<bool> M_ListBitPLC_ = new List<bool>();
+
+            bool CLR_ALL_VISION = false;
+            bool TRIGGER1_VISION = false;
+            bool TRIGGER2_VISION = false;
+
+            while (isRunning)
+            {
+                if (UiManager.Instance.PLC.device.isOpen())
+                {
+                    UiManager.Instance.PLC.device.ReadMultiBits(DeviceCode.M, 500, 50, out M_ListBitPLC_);
+                    if (M_ListBitPLC_.Count > 0)
+                    {
+                        CLR_ALL_VISION = M_ListBitPLC_[4];  // M504
+                        TRIGGER1_VISION = M_ListBitPLC_[0];  // M500
+                        TRIGGER2_VISION = M_ListBitPLC_[1];  // M501
+
+                    }
+                }
+
+
+                if (CLR_ALL_VISION)
+                {
+                    this.addLog("--- Clear all Vision --- ");
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 504, false);
+                    this.addLog("Write Bit M504 = OFF");
+                    this.isVision = false;
+
+                }
+                if (TRIGGER1_VISION)
+                {
+                    this.addLog("--- Trigger1 Vision --- ");
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 500, false);
+                    this.addLog("Write Bit M500 = OFF");
+
+                }
+                if (TRIGGER2_VISION)
+                {
+                    this.addLog("--- Trigger2 Vision --- ");
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 501, false);
+                    this.addLog("Write Bit M501 = OFF");
+
+                    this.isVision = true;
+
+                }
+
+                Thread.Sleep(20);
+
             }
         }
 
@@ -1072,12 +1100,17 @@ namespace Development
             this.generateCells(pattern.xRow, pattern.yColumn, pattern.CurrentPatern, pattern.Use2Matrix);
 
             this.ThreadUpDatePLC();
+
             // Start CH1;
             this.AutoRunThread = new Thread(new ThreadStart(Running));
             this.AutoRunThread.IsBackground = true;
             this.AutoRunThread.Start();
 
-            
+            this.AutoRunThread = new Thread(new ThreadStart(VisionRunning));
+            this.AutoRunThread.IsBackground = true;
+            this.AutoRunThread.Start();
+
+
 
             this.UpdateUIMES($"WAIT.....", Brushes.Yellow);
 
