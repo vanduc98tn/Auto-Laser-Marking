@@ -115,9 +115,7 @@ namespace Development
                     this.addLog("Write Bit M520 = OFF");
                     if (UiManager.appSetting.RUN.MESOnline)
                     {
-                        int[] arr = { 2, 3, 4, 9, 21, 19, 42 };
-                        DataPCB.VISION_NG = arr;
-                        UpdateUIVISIONRESULT(DataPCB.VISION_NG);
+                        
                         this.CheckMESWorkout();
                     }
 
@@ -272,8 +270,11 @@ namespace Development
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 501, false);
                     this.addLog("Write Bit M501 = OFF");
 
-                    this.isVision = true;
+                    int[] arr = {1, 3, 4};
+                    DataPCB.VISION_NG = arr;
+                    UpdateUIVISIONRESULT(DataPCB.VISION_NG);
 
+                    this.isVision = true;
                 }
 
                 Thread.Sleep(20);
