@@ -191,36 +191,38 @@ namespace Development
                         this.UpdateUIMES($"BY PASS TRIGGER SCANNER", Brushes.LightGreen);
 
                     }
-                    if (this.isQR && this.isVision)
+                    
+                }
+
+                if (this.isQR && this.isVision)
+                {
+
+
+                    if (UiManager.Instance.laserCOM.isOpen())
                     {
+                        SendLaser();
 
+                        this.isQR = false;
+                        this.isVision = false;
+                    }
+                    else
+                    {
+                        string message = "- Check Laser connection again / COM not respond:\r\n" +
+                                    "  + Verify Laser configuration\r\n" +
+                                    "  + Verify COM connectivity\r\n" +
+                                    "- Kiểm tra lại kết nối Laser / COM không phản hồi:\r\n" +
+                                    "  + Kiểm tra lại setting Laser\r\n" +
+                                    "  + Kiểm tra lại đường truyền COM\r\n";
+                        AddErrorMES($"Error: Laser COM port is not open", message);
 
-                        if (UiManager.Instance.laserCOM.isOpen())
-                        {
-                            SendLaser();
-
-                            this.isQR = false;
-                            this.isVision = false;
-                        }
-                        else
-                        {
-                            string message = "- Check Laser connection again / COM not respond:\r\n" +
-                                        "  + Verify Laser configuration\r\n" +
-                                        "  + Verify COM connectivity\r\n" +
-                                        "- Kiểm tra lại kết nối Laser / COM không phản hồi:\r\n" +
-                                        "  + Kiểm tra lại setting Laser\r\n" +
-                                        "  + Kiểm tra lại đường truyền COM\r\n";
-                            AddErrorMES($"Error: Laser COM port is not open", message);
-
-                            // SEND PLC LASER OK
-                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
-                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
-                            addLog("Write Bit Laser OK M615 = ON");
-                            addLog("Write Bit Laser NG M616 = OFF");
-
-                        }
+                        // SEND PLC LASER OK
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
+                        addLog("Write Bit Laser OK M615 = ON");
+                        addLog("Write Bit Laser NG M616 = OFF");
 
                     }
+
                 }
 
                 Thread.Sleep(20);
