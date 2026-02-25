@@ -221,7 +221,23 @@
                                          BackgroundLampON="Yellow"
 >
                                     </local:RectangleLamp>
-                                    
+                                    <local:PLCButton
+                                        Grid.Column="1"
+                                        UseLampCodition="True"
+                                        Background="Transparent"
+                                        Foreground="Black"
+                                        FontSize="15"
+                                        Action="Momentary"
+                                        DeviceWrite="L" AddressWrite="7"
+                                        DeviceLamp="L" AddressLamp="10007"
+                                        BackgroundLampOFF="LightGray"
+                                        BackgroundLampON="Yellow"
+                                        Content="RESET"
+                                        IsComfrim="False"
+                                        IsMesComfrim="Confrim Go To POS"
+>
+                                    </local:PLCButton>
+
                                 </UniformGrid>
                             </Grid>
 
