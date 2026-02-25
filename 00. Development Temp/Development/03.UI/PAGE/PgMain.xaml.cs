@@ -247,13 +247,18 @@ namespace Development
                 }
             }
 
-            string message = "- Check Laser connection again / COM not respond:\r\n" +
-                                "  + Verify Laser configuration\r\n" +
-                                "  + Verify COM connectivity\r\n" +
-                                "- Kiểm tra lại kết nối Laser / COM không phản hồi:\r\n" +
-                                "  + Kiểm tra lại setting Laser\r\n" +
-                                "  + Kiểm tra lại đường truyền COM\r\n";
-            AddErrorMES($"Error: Laser COM port is not open", message);
+            string message = "- Check MES connection again / MES not respond. :\r\n" +
+                                "  + Verify IP configuration\r\n" +
+                                "  + Verify network connectivity\r\n" +
+                                "  + Verify Laser Command Code\r\n" +
+                                "  + Verify index MES and Vision\r\n" +
+                                "- Kiểm tra lại kết nối MES / MES không phản hồi:\r\n" +
+                                "  + Kiểm tra lại setting IP\r\n" +
+                                "  + Kiểm tra lại đường truyền\r\n" +
+                                "  + Kiểm tra lại chuỗi gửi Laser\r\n" +
+                                "  + Kiểm tra lại giá trị index NG của MES và Vision\r\n";
+
+            AddErrorMES($"Error: Laser COM Response error!", message);
 
             // SEND PLC LASER NG
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, false);
@@ -298,7 +303,7 @@ namespace Development
             {
                 if (bincode[i] != '0')
                 {
-                    lts.Add(i);   // Lưu vị trí index
+                    lts.Add(i+1);   // Lưu vị trí index
                 }
             }
             return lts.ToArray();
@@ -569,7 +574,7 @@ namespace Development
                         if (UiManager.appSetting.RUN.CheckScanner)
                         {
                             string QR = UiManager.Instance.scannerTCP.ReadQR();
-                            QR = "PCBID1234567890";
+                            //QR = "PCBID1234567890";
                             //QR = "";
 
                             if (!string.IsNullOrEmpty(QR))
