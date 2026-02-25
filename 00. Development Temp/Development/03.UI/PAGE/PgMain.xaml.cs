@@ -55,7 +55,7 @@ namespace Development
         private Brush VISION_COLOR = Brushes.Purple;
         private Brush BOTH_COLOR;
 
-        private DataPCB DataPCB =new DataPCB();
+        private DataPCB DataPCB;
 
         public PgMain()
         {
