@@ -724,13 +724,16 @@ namespace Development
                     {
                         if (set.Contains(number))
                         {
-                            lbl.Background = MES_COLOR;
-                            lbl.Foreground = Brushes.White;
-                        }
-                        else
-                        {
-                            lbl.Background = Brushes.LightBlue;
-                            lbl.Foreground = Brushes.Black;
+                            if (lbl.Background == VISION_COLOR)
+                            {
+                                lbl.Background = BOTH_COLOR;
+                                lbl.Foreground = Brushes.White;
+                            }
+                            else
+                            {
+                                lbl.Background = MES_COLOR;
+                                lbl.Foreground = Brushes.White;
+                            }
                         }
                     }
                 }
