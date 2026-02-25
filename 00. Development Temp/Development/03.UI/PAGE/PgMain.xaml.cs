@@ -589,7 +589,6 @@ namespace Development
                                 if (UiManager.appSetting.RUN.MESOnline)
                                 {
                                     this.CheckMESWorkin();
-                                    
                                 }
                             }
                             else
@@ -614,6 +613,7 @@ namespace Development
                         }
 
                     }
+
 
                     Thread.Sleep(20);
                 }
