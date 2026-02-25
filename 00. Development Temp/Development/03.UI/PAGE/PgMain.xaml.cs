@@ -1176,7 +1176,7 @@ namespace Development
         }
         private void BtStop_Click(object sender, RoutedEventArgs e)
         {
-            int[] arr = { 2, 3, 4, 9, 21, 19, 42 };
+            int[] arr = { 1, 3, 4, 9, 21, 19, 42 };
 
             DataPCB.VISION_NG = arr;
             UpdateUIVISIONRESULT(DataPCB.VISION_NG);
