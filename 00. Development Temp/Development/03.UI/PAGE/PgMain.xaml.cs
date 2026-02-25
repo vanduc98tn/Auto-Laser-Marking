@@ -54,7 +54,7 @@ namespace Development
         private Brush VISION_COLOR = Brushes.Purple;
         private Brush BOTH_COLOR;
 
-        private DataPCB DataPCB;
+        private DataPCB DataPCB =new DataPCB();
 
         public PgMain()
         {
@@ -161,7 +161,6 @@ namespace Development
 
                             this.UpdateUIMES($"SCANNER TRIGGER COMPLETE", Brushes.LightGreen);
 
-                            DataPCB = new DataPCB();
                             this.DataPCB.BARCODE_PCB = QR;
 
                             if (UiManager.appSetting.RUN.MESOnline)
