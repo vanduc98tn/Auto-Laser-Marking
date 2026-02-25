@@ -308,6 +308,8 @@ namespace Development
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 500, false);
                     this.addLog("Write Bit M500 = OFF");
 
+                    UpdateUICLRRESULT();
+
                 }
                 if (TRIGGER2_VISION)
                 {
@@ -809,6 +811,20 @@ namespace Development
                                 lbl.Foreground = Brushes.White;
                             }
                         }
+                    }
+                }
+            }), System.Windows.Threading.DispatcherPriority.Background);
+        }
+        private void UpdateUICLRRESULT()
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                foreach (var child in gridPos.Children)
+                {
+                    if (child is Label lbl)
+                    {
+                        lbl.Background = Brushes.LightBlue;
+                        lbl.Foreground = Brushes.Black;
                     }
                 }
             }), System.Windows.Threading.DispatcherPriority.Background);
