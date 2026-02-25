@@ -298,6 +298,7 @@ namespace Development
                     this.addLog("--- Clear all Vision --- ");
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 504, false);
                     this.addLog("Write Bit M504 = OFF");
+                    this.DataPCB = new DataPCB();
                     this.isVision = false;
 
                 }
