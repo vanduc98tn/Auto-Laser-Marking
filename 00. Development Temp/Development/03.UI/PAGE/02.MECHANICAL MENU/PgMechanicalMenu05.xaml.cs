@@ -81,7 +81,7 @@ namespace Development
         {
             TextBox txt = sender as TextBox;
             Keypad keyboardWindow = new Keypad(true);
-            if (keyboardWindow.ShowDialog() == true && Convert.ToInt16(keyboardWindow.Result) >= 1 && Convert.ToInt16(keyboardWindow.Result) <= 254)
+            if (keyboardWindow.ShowDialog() == true && Convert.ToInt32(keyboardWindow.Result) >= 1 && Convert.ToInt32(keyboardWindow.Result) <= 254)
             {
                 txt.Text = keyboardWindow.Result;
                 UpdateLogs($"Changed Laser to Program: {txt.Text}");

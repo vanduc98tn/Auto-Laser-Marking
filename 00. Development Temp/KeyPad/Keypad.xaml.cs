@@ -20,13 +20,14 @@
  * If you need to check the original source code you can download it here: http://wosk.codeplex.com/
  */
 using System;
-using System.Windows;
-using System.Windows.Controls;
 using System.ComponentModel;
-using System.Windows.Input;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace KeyPad
 {
@@ -58,8 +59,6 @@ namespace KeyPad
         }
 
 
-
-
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool GetCursorPos(ref POINT lpPoint);
@@ -80,6 +79,7 @@ namespace KeyPad
             }
 
         }
+        
         private async void Setposition()
         {
             await PositionWindowUnderCursor();
@@ -181,10 +181,10 @@ namespace KeyPad
         {
             button.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
         }
-        private void button_TouchDown(object sender, TouchEventArgs e)
-        {
-            ButtonClick((Button)sender);
-        }
+        //private void button_TouchDown(object sender, TouchEventArgs e)
+        //{
+        //    ButtonClick((Button)sender);
+        //}
         private void button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -202,7 +202,20 @@ namespace KeyPad
                         if (string.IsNullOrWhiteSpace(Result))
                         {
                             Result = "0"; // gán mặc định là 0
+                            this.DialogResult = false;
+                            break;
                         }
+
+                        // Kiểm tra có phải số hợp lệ không
+                        if (!decimal.TryParse(Result, out decimal value))
+                        {
+                            MessageBox.Show("Value is not number :))",
+                                            "Input error!",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Warning);
+                            return; // không đóng keypad
+                        }
+
                         this.DialogResult = true;
                         break;
 
@@ -215,10 +228,13 @@ namespace KeyPad
                         break;
                     default:
 
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            Result += button.Content.ToString();
-                        });
+                        //Application.Current.Dispatcher.Invoke(() =>
+                        //{
+                        //    Result += button.Content.ToString();
+                        //});
+
+                        Result += button.Content.ToString();
+
                         break;
                 }
             }
@@ -236,14 +252,7 @@ namespace KeyPad
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
         }
 
-
-
-
         #endregion
 
-        private void buttonEsc_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //ButtonClick((Button)sender);
-        }
     }
 }

@@ -461,7 +461,7 @@ namespace Development
                 e.Handled = true;
             }
         }
-        private void txt_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
+        private void txt_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             TextBox txt = sender as TextBox;
 

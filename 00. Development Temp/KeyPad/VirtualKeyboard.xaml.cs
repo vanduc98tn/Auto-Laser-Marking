@@ -325,6 +325,13 @@ namespace KeyPad
                         break;
 
                     case "RETURN":
+                        if (string.IsNullOrWhiteSpace(Result))
+                        {
+                            Result = "0"; // gán mặc định là 0
+                            this.DialogResult = false;
+                            break;
+                        }
+
                         this.DialogResult = true;
                         break;
 
@@ -334,10 +341,12 @@ namespace KeyPad
                         break;
 
                     default:
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            Result += button.Content.ToString();
-                        });
+                        //Application.Current.Dispatcher.Invoke(() =>
+                        //{
+                        //    Result += button.Content.ToString();
+                        //});
+
+                        Result += button.Content.ToString();
 
                         break;
                 }

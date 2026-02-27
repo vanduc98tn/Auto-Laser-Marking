@@ -14,7 +14,7 @@
              IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}}"
              HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
              FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=UserControl}}"
-             FontWeight="Bold" PreviewMouseDown="txt_PreviewMouseDown" PreviewTouchDown="txt_PreviewTouchDown">
+             FontWeight="Bold" PreviewMouseDown="txt_PreviewMouseDown">
         </TextBox>
     </Grid>
 </UserControl>

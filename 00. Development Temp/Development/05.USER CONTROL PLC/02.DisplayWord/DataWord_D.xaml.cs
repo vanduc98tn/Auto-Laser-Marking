@@ -423,6 +423,62 @@ namespace Development
 
             
         }
+        private void txt_PreviewTouchDown(object sender, TouchEventArgs e)
+        {
+
+            TextBox txt = sender as TextBox;
+
+            if (txt.IsReadOnly) return;
+            this.isShowKeypad = true;
+            string numberBefore = txt.Text;
+
+            Keypad keyboardWindow = new Keypad(true);
+            if (keyboardWindow.ShowDialog() == true)
+            {
+                txt.Text = keyboardWindow.Result;
+
+            }
+            var number = txt.Text;
+            string x = "1";
+            string y = x.PadRight(this.NoOfDecimalDigits + 1, '0');
+
+
+            var numberData = number; ;
+
+            Text = txt.Text;
+            if (string.IsNullOrEmpty(numberData)) return;
+            int value = (int)(Convert.ToDouble(numberData) * Convert.ToInt16(y));
+            var address = ushort.Parse(this.Device.ToString());
+
+            //// SELECT DEVICE AND WRITE VALUE
+            if (CodeDevice == NameDevice.D)
+            {
+                if (UiManager.Instance.PLC.device.WriteDoubleWord(DeviceCode.D, address, value))
+                {
+                    this.EventLog(address + " Changed value Word D: ", $"{numberBefore} > {value.ToString()}");
+                }
+            }
+            else if (CodeDevice == NameDevice.ZR)
+            {
+                if (UiManager.Instance.PLC.device.WriteDoubleWord(DeviceCode.ZR, address, value))
+                {
+                    this.EventLog(address + " Changed value Word ZR: ", $"{numberBefore} > {value.ToString()}");
+                }
+            }
+            else if (CodeDevice == NameDevice.R)
+            {
+                if (UiManager.Instance.PLC.device.WriteDoubleWord(DeviceCode.R, address, value))
+                {
+                    this.EventLog(address + " Changed value Word R: ", $"{numberBefore} > {value.ToString()}");
+                }
+            }
+            else
+            {
+                return;
+            }
+            this.isShowKeypad = false;
+
+        }
         private void EventLog(string message, string type)
         {
             try
@@ -498,61 +554,6 @@ namespace Development
                 }
             });
         }
-        private void txt_PreviewTouchDown(object sender, TouchEventArgs e)
-        {
-            
-            TextBox txt = sender as TextBox;
-
-            if (txt.IsReadOnly) return;
-            this.isShowKeypad = true;
-            string numberBefore = txt.Text;
-
-            Keypad keyboardWindow = new Keypad(true);
-            if (keyboardWindow.ShowDialog() == true)
-            {
-                txt.Text = keyboardWindow.Result;
-
-            }
-            var number = txt.Text;
-            string x = "1";
-            string y = x.PadRight(this.NoOfDecimalDigits + 1, '0');
-           
-
-            var numberData = number; ;
-
-            Text = txt.Text;
-            if (string.IsNullOrEmpty(numberData)) return;
-            int value = (int)(Convert.ToDouble(numberData) * Convert.ToInt16(y));
-            var address = ushort.Parse(this.Device.ToString());
-
-            //// SELECT DEVICE AND WRITE VALUE
-            if (CodeDevice == NameDevice.D)
-            {
-                if (UiManager.Instance.PLC.device.WriteDoubleWord(DeviceCode.D, address, value))
-                {
-                    this.EventLog(address + " Changed value Word D: ", $"{numberBefore} > {value.ToString()}");
-                }
-            }
-            else if (CodeDevice == NameDevice.ZR)
-            {
-                if (UiManager.Instance.PLC.device.WriteDoubleWord(DeviceCode.ZR, address, value))
-                {
-                    this.EventLog(address + " Changed value Word ZR: ", $"{numberBefore} > {value.ToString()}");
-                }
-            }
-            else if (CodeDevice == NameDevice.R)
-            {
-                if (UiManager.Instance.PLC.device.WriteDoubleWord(DeviceCode.R, address, value))
-                {
-                    this.EventLog(address + " Changed value Word R: ", $"{numberBefore} > {value.ToString()}");
-                }
-            }
-            else
-            {
-                return;
-            }
-            this.isShowKeypad = false;
-
-        }
+        
     }
 }

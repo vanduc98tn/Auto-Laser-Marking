@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Development
 {
@@ -45,6 +46,7 @@ namespace Development
             // Initialize the system
             try
             {
+                DisableWpfTabletSupport();
                 SystemsManager.Instance.StartUp();
                 UiManager.Instance.Startup();
 
@@ -81,6 +83,28 @@ namespace Development
                 return false;
             }
             return true;
+        }
+        private void DisableWpfTabletSupport()
+        {
+            var inputManagerType = typeof(InputManager);
+            var stylusLogicType = inputManagerType.Assembly.GetType("System.Windows.Input.StylusLogic");
+
+            if (stylusLogicType != null)
+            {
+                var instance = inputManagerType
+                    .GetProperty("StylusLogic", BindingFlags.NonPublic | BindingFlags.Instance)
+                    ?.GetValue(InputManager.Current, null);
+
+                if (instance != null)
+                {
+                    var onTabletRemoved = stylusLogicType.GetMethod("OnTabletRemoved", BindingFlags.NonPublic | BindingFlags.Instance);
+
+                    while (Tablet.TabletDevices.Count > 0)
+                    {
+                        onTabletRemoved?.Invoke(instance, new object[] { (uint)0 });
+                    }
+                }
+            }
         }
 
     }

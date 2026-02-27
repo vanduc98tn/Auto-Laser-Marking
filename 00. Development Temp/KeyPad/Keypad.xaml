@@ -68,6 +68,7 @@
         <Button x:Name="buttonMinus" Grid.Row="4" Grid.Column="0" CommandParameter="MINUS" Content="-" />
         <Button x:Name="buttonDecimal" Grid.Row="4" Grid.Column="2" CommandParameter="DECIMAL" Content="." />
         <Label Grid.Column="0" Grid.ColumnSpan="3" Content="{Binding Result}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontSize="30" Background="WhiteSmoke" FontWeight="Bold" Margin="4" />
-        <Button x:Name="buttonEsc" Grid.Row="0" Grid.Column="3" CommandParameter="ESC" Click="button_Click" PreviewMouseDown="buttonEsc_PreviewMouseDown" TouchDown="button_TouchDown" Content="Esc" />
+        <!--<Button x:Name="buttonEsc" Grid.Row="0" Grid.Column="3" CommandParameter="ESC" Click="button_Click" PreviewMouseDown="buttonEsc_PreviewMouseDown" TouchDown="button_TouchDown" Content="Esc" />-->
+        <Button x:Name="buttonEsc" Grid.Row="0" Grid.Column="3" CommandParameter="ESC" Content="Esc" />
     </Grid>
 </Window>
