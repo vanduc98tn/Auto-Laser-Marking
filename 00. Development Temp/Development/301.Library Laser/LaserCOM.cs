@@ -18,7 +18,7 @@ namespace Development
         private object PLCLock = new object();
         public bool isConnect = false;
 
-        private const int READ_TIMEOUT = 300;
+        private const int READ_TIMEOUT = 1000;
         private byte[] readBuf = new byte[1];
         private volatile bool isReading = false;
         private volatile List<byte> readingBuf;
@@ -61,7 +61,7 @@ namespace Development
             };
             //_serialPort.DataReceived += _serialPort_DataReceived;
         }
-        public bool SendBytes(byte[] data)
+        public bool SendBytes1(byte[] data)
         {
             try
             {
@@ -86,6 +86,48 @@ namespace Development
                 return false;
             }
         }
+        public bool SendBytes(byte[] data)
+        {
+            if (data == null || data.Length == 0)
+            {
+                logger.CreateLaser("Error: data = 0 or is null", LogLevel.Error);
+                return false;
+            }
+            try
+            {
+                lock (PLCLock)
+                {
+                    if (!_serialPort.IsOpen)
+                    {
+                        logger.CreateLaser("Error: COM port is not open", LogLevel.Error);
+                        return false;
+                    }
+
+                    const int MAX_CHUNK_SIZE = 127;
+                    int offset = 0;
+                    _serialPort.WriteTimeout = 5000;
+
+                    while (offset < data.Length)
+                    {
+                        int chunkSize = Math.Min(MAX_CHUNK_SIZE, data.Length - offset);
+                        _serialPort.Write(data, offset, chunkSize);
+                        logger.CreateLaser($"Sent {chunkSize} bytes: {BitConverter.ToString(data, offset, chunkSize)}", LogLevel.Information);
+                        while (_serialPort.BytesToWrite > 0)
+                        {
+                            Thread.Sleep(1);
+                        }
+                        offset += chunkSize;
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.CreateLaser($"Error sending bytes: {ex.Message}", LogLevel.Error);
+                return false;
+            }
+        }
+
         private void _serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             try
@@ -238,6 +280,7 @@ namespace Development
             {
                 if (!_serialPort.IsOpen)
                 {
+                    _serialPort.WriteBufferSize = 8192;
                     _serialPort.Open();
                     isConnect = true;
                     this._serialPort.BaseStream.BeginRead(this.readBuf, 0, 1,

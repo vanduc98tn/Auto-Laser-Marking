@@ -76,8 +76,8 @@ namespace Development
             // Event Page Main
             this.Loaded += PgMain_Loaded;
             this.Unloaded += PgMain_Unloaded;
-            //this.btStart.Click += BtStart_Click;
-            //this.btStop.Click += BtStop_Click;
+            this.btStart.Click += BtStart_Click;
+            this.btStop.Click += BtStop_Click;
             this.btReset.PreviewMouseDown += BtReset_Click;
             //this.btHome.Click += BtHome_Click;
             this.btLotIn.Click += BtLotIn_Click;
@@ -1260,7 +1260,7 @@ namespace Development
         }
         private void BtStart_Click(object sender, RoutedEventArgs e)
         {
-            string QR = "QR1234";
+            string QR = "B0226046110039500172361";
             this.UpdateUIQR(QR, true);
 
             DataPCB = new DataPCB();
