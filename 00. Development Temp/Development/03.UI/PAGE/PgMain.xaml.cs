@@ -76,9 +76,9 @@ namespace Development
             // Event Page Main
             this.Loaded += PgMain_Loaded;
             this.Unloaded += PgMain_Unloaded;
-            this.btStart.Click += BtStart_Click;
-            this.btStop.Click += BtStop_Click;
-            //this.btReset.Click += BtReset_Click;
+            //this.btStart.Click += BtStart_Click;
+            //this.btStop.Click += BtStop_Click;
+            this.btReset.PreviewMouseDown += BtReset_Click;
             //this.btHome.Click += BtHome_Click;
             this.btLotIn.Click += BtLotIn_Click;
             this.btLotOut.Click += BtLotOut_Click;
@@ -1258,12 +1258,6 @@ namespace Development
         {
             //UiManager.Instance.PLC.AddBitAddress("M", 100);
         }
-        private void BtReset_Click(object sender, RoutedEventArgs e)
-        {
-            this.addLog("Click Reset Machine");
-            this.ClearError();
-          
-        }
         private void BtStart_Click(object sender, RoutedEventArgs e)
         {
             string QR = "QR1234";
@@ -1273,10 +1267,6 @@ namespace Development
             DataPCB.BARCODE_PCB = QR;
             CheckMESWorkin();
         }
-        private void BtHome_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void BtStop_Click(object sender, RoutedEventArgs e)
         {
             int[] arr = { 1, 3, 4, 9, 21, 19, 42 };
@@ -1284,6 +1274,16 @@ namespace Development
             DataPCB.VISION_NG = arr;
             UpdateUIVISIONRESULT(DataPCB.VISION_NG);
             CheckMESWorkout();
+        }
+        private void BtReset_Click(object sender, RoutedEventArgs e)
+        {
+            this.addLog("Click Reset Machine");
+            this.ClearError();
+          
+        }
+        private void BtHome_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         #region NotifyMES

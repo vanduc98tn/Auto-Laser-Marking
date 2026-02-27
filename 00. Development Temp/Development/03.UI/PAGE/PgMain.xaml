@@ -926,31 +926,31 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Name="btStart">
+                        <!--<Button Grid.Column="0" Name="btStart">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/01.Image/Start.png" Height="40"></Image>
                                 <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" Foreground="Black" Text="{x:Static Language:Resources.PG_MAIN_btStart}"></TextBlock>
                             </StackPanel>
-                        </Button>
+                        </Button>-->
                         <!--<Button Grid.Column="0" Name="btStart">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/01.Image/Start.png" Height="40"></Image>
                                 <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" Foreground="Black" Text="TEST WORKIN"></TextBlock>
                             </StackPanel>
                         </Button>-->
-                        <Button Grid.Column="1" Name="btStop" >
+                        <!--<Button Grid.Column="1" Name="btStop" >
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/01.Image/Stop.png" Height="40"></Image>
                                 <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" Foreground="Black" Text="{x:Static Language:Resources.PG_MAIN_btStop}"></TextBlock>
                             </StackPanel>
-                        </Button>
+                        </Button>-->
                         <!--<Button Grid.Column="1" Name="btStop" >
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/01.Image/Stop.png" Height="40"></Image>
                                 <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" Foreground="Black" Text="TEST WORKOUT"></TextBlock>
                             </StackPanel>
                         </Button>-->
-                        <!--<local:PLCButton
+                        <local:PLCButton
                             Grid.Column="0"
                             Action="Momentary"
                             UseLampCodition="True"
@@ -964,8 +964,8 @@
                             BackgroundLampON="GreenYellow"
 >
 
-                        </local:PLCButton>-->
-                        <!--<local:PLCButton
+                        </local:PLCButton>
+                        <local:PLCButton
                             Grid.Column="1"
                             Action="Momentary"
                             UseLampCodition="True"
@@ -979,7 +979,7 @@
                             BackgroundLampON="Red"
 >
 
-                        </local:PLCButton>-->
+                        </local:PLCButton>
 
                     </Grid>
                     <Grid Grid.Row="1">
@@ -1018,6 +1018,7 @@
                         </local:PLCButton>
                         <local:PLCButton
                             Grid.Column="1"
+                            x:Name="btReset"
                             Action="Momentary"
                             UseLampCodition="True"
                             DeviceWrite="L" AddressWrite="7"
