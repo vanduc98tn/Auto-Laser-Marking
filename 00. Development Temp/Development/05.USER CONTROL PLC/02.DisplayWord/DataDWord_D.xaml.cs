@@ -477,7 +477,7 @@ namespace Development
             isShowKeypad = true;
             string numberBefore = txt.Text;
 
-            Keypad keyboardWindow = new Keypad(false);
+            Keypad keyboardWindow = new Keypad(true, txt.Text);
             if (keyboardWindow.ShowDialog() == true)
             {
                 txt.Text = keyboardWindow.Result;
@@ -537,7 +537,7 @@ namespace Development
             isShowKeypad = true;
             string numberBefore = txt.Text;
 
-            Keypad keyboardWindow = new Keypad(true);
+            Keypad keyboardWindow = new Keypad(true, txt.Text);
             if (keyboardWindow.ShowDialog() == true)
             {
                 txt.Text = keyboardWindow.Result;

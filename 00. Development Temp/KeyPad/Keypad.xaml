@@ -67,8 +67,24 @@
         <Button x:Name="button0" Grid.Row="4" Grid.Column="1" CommandParameter="NUMPAD0" Content="0" />
         <Button x:Name="buttonMinus" Grid.Row="4" Grid.Column="0" CommandParameter="MINUS" Content="-" />
         <Button x:Name="buttonDecimal" Grid.Row="4" Grid.Column="2" CommandParameter="DECIMAL" Content="." />
-        <Label Grid.Column="0" Grid.ColumnSpan="3" Content="{Binding Result}" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontSize="30" Background="WhiteSmoke" FontWeight="Bold" Margin="4" />
-        <!--<Button x:Name="buttonEsc" Grid.Row="0" Grid.Column="3" CommandParameter="ESC" Click="button_Click" PreviewMouseDown="buttonEsc_PreviewMouseDown" TouchDown="button_TouchDown" Content="Esc" />-->
+        <TextBox x:Name="txtDisplay"
+                 Grid.Column="0" Grid.ColumnSpan="3"
+                 Text="{Binding Result, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 FontSize="30"
+                 HorizontalContentAlignment="Right"
+                 VerticalContentAlignment="Center"
+                 Background="WhiteSmoke"
+                 FontWeight="Bold"
+                 Margin="4"
+                 Padding="0 0 10 0"
+                 CaretBrush="Red"
+                 IsReadOnly="False"
+                 UseLayoutRounding="True"
+                 SnapsToDevicePixels="True"
+                 
+                 PreviewKeyDown="TxtDisplay_PreviewKeyDown"
+>
+        </TextBox>
         <Button x:Name="buttonEsc" Grid.Row="0" Grid.Column="3" CommandParameter="ESC" Content="Esc" />
     </Grid>
 </Window>

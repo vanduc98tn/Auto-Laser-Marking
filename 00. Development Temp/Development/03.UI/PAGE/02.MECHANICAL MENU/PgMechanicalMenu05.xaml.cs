@@ -80,7 +80,7 @@ namespace Development
         private void TxtPrgLaser_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             TextBox txt = sender as TextBox;
-            Keypad keyboardWindow = new Keypad(true);
+            Keypad keyboardWindow = new Keypad(true, txt.Text);
             if (keyboardWindow.ShowDialog() == true && Convert.ToInt32(keyboardWindow.Result) >= 1 && Convert.ToInt32(keyboardWindow.Result) <= 254)
             {
                 txt.Text = keyboardWindow.Result;

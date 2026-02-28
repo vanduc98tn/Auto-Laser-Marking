@@ -39,23 +39,29 @@ namespace KeyPad
     {
         #region Public Properties
 
-        private string _result;
+        public string _result;
         public string Result
         {
             get { return _result; }
-            private set { _result = value; this.OnPropertyChanged("Result"); }
+            set
+            {
+                _result = value;
+                OnPropertyChanged(nameof(Result));
+            }
         }
 
         #endregion
 
-        public Keypad(bool useTouch)
+        public Keypad(bool useTouch = false, string currentValue = "")
         {
             InitializeComponent();
             this.DataContext = this;
-            Result = "";
+            Result = currentValue ?? "";
             if (!useTouch)
             {
             }
+
+            this.Loaded += Keypad_Loaded;
 
         }
 
@@ -70,8 +76,18 @@ namespace KeyPad
             public int X;
             public int Y;
         }
+        private void TxtDisplay_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;   // chặn nhập từ keyboard
+        }
         private void Keypad_Loaded(object sender, RoutedEventArgs e)
         {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                txtDisplay.SelectAll();
+                txtDisplay.Focus();
+            }), System.Windows.Threading.DispatcherPriority.Render);
+
             // Chỉ đặt vị trí dưới con trỏ chuột nếu không có sự kiện cảm ứng
             if (!TouchesOver.Any())
             {
@@ -116,6 +132,7 @@ namespace KeyPad
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+
 
             switch (e.Key)
             {
@@ -192,6 +209,9 @@ namespace KeyPad
             try
             {
                 Button button = sender as Button;
+                int start = txtDisplay.SelectionStart;
+                int length = txtDisplay.SelectionLength;
+
                 switch (button.CommandParameter.ToString())
                 {
 
@@ -221,20 +241,50 @@ namespace KeyPad
                         break;
 
                     case "BACK":
-                        if (Result.Length > 0)
-                            Result = Result.Remove(Result.Length - 1);
+                        
+                        if (length > 0)
+                        {
+                            // Có bôi → xoá vùng chọn
+                            Result = Result.Remove(start, length);
+                            txtDisplay.SelectionStart = start;
+                        }
+                        else if (start > 0)
+                        {
+                            // Không bôi → xoá ký tự bên trái caret
+                            Result = Result.Remove(start - 1, 1);
+                            txtDisplay.SelectionStart = start - 1;
+                        }
+
+                        txtDisplay.SelectionLength = 0;
+                        txtDisplay.Focus();
                         break;
-                    case "MINUS":
-                        Result += "-";
-                        break;
+
+                    //case "MINUS":
+                    //    Result += "-";
+                    //    break;
+
                     default:
 
-                        //Application.Current.Dispatcher.Invoke(() =>
-                        //{
-                        //    Result += button.Content.ToString();
-                        //});
+                        string input = button.Content.ToString();
 
-                        Result += button.Content.ToString();
+                        if (length > 0)
+                        {
+                            // Có bôi đen → thay thế đúng đoạn đó
+                            Result = Result.Remove(start, length).Insert(start, input);
+                        }
+                        else
+                        {
+                            // Không bôi → chèn tại vị trí con trỏ
+                            Result = Result.Insert(start, input);
+                        }
+
+                        // Đưa con trỏ về sau ký tự vừa nhập
+                        txtDisplay.SelectionStart = start + input.Length;
+                        txtDisplay.SelectionLength = 0;
+
+                        txtDisplay.Focus();
+                        txtDisplay.CaretIndex = start + input.Length;
+
 
                         break;
                 }
