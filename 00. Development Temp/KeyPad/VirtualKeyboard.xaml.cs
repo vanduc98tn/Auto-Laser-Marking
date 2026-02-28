@@ -19,9 +19,14 @@
  */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -31,10 +36,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.ComponentModel;
-using System.Text.RegularExpressions;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 
 
 
@@ -54,17 +55,21 @@ namespace KeyPad
             set { _showNumericKeyboard = value; this.OnPropertyChanged("ShowNumericKeyboard"); }
         }
 
-        private string _result;
+        public string _result;
         public string Result
         {
             get { return _result; }
-            private set { _result = value; this.OnPropertyChanged("Result"); }
+            set
+            {
+                _result = value;
+                OnPropertyChanged(nameof(Result));
+            }
         }
 
         #endregion
 
         #region Constructor
-       
+
         public VirtualKeyboard()
         {
             InitializeComponent();         
@@ -78,6 +83,9 @@ namespace KeyPad
        
         private async  void VirtualKeyboard_Loaded(object sender, RoutedEventArgs e)
         {
+            txtDisplay.SelectAll();
+            txtDisplay.Focus();
+
             //// Chỉ đặt vị trí dưới con trỏ chuột nếu không có sự kiện cảm ứng
             //if (!TouchesOver.Any())
             //{
@@ -285,8 +293,10 @@ namespace KeyPad
         }
         private void button_Click(object sender, RoutedEventArgs e)
         {
-
             Button button = sender as Button;
+            int start = txtDisplay.SelectionStart;
+            int length = txtDisplay.SelectionLength;
+
             if (button != null)
             {
 
@@ -336,17 +346,43 @@ namespace KeyPad
                         break;
 
                     case "BACK":
-                        if (Result.Length > 0)
-                            Result = Result.Remove(Result.Length - 1);
+                        if (length > 0)
+                        {
+                            // Có bôi → xoá vùng chọn
+                            Result = Result.Remove(start, length);
+                            txtDisplay.SelectionStart = start;
+                        }
+                        else if (start > 0)
+                        {
+                            // Không bôi → xoá ký tự bên trái caret
+                            Result = Result.Remove(start - 1, 1);
+                            txtDisplay.SelectionStart = start - 1;
+                        }
+
+                        txtDisplay.SelectionLength = 0;
+                        txtDisplay.Focus();
                         break;
 
                     default:
-                        //Application.Current.Dispatcher.Invoke(() =>
-                        //{
-                        //    Result += button.Content.ToString();
-                        //});
+                        string input = button.Content.ToString();
 
-                        Result += button.Content.ToString();
+                        if (length > 0)
+                        {
+                            // Có bôi đen → thay thế đúng đoạn đó
+                            Result = Result.Remove(start, length).Insert(start, input);
+                        }
+                        else
+                        {
+                            // Không bôi → chèn tại vị trí con trỏ
+                            Result = Result.Insert(start, input);
+                        }
+
+                        // Đưa con trỏ về sau ký tự vừa nhập
+                        txtDisplay.SelectionStart = start + input.Length;
+                        txtDisplay.SelectionLength = 0;
+
+                        txtDisplay.Focus();
+                        txtDisplay.CaretIndex = start + input.Length;
 
                         break;
                 }

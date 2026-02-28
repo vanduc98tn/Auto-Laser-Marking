@@ -66,8 +66,27 @@
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
 			<Button Grid.Column="0" CommandParameter="ESC" Content="Esc" Height="50" Width="80" IsCancel="True"/>
-			<Label Content="{Binding Result, ElementName=Keyboard }" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Margin="5,5,5,5" FontWeight="Bold" FontSize="25" HorizontalAlignment="Stretch"/>
-		</Grid>		
+			<!--<Label Content="{Binding Result, ElementName=Keyboard }" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="1" Grid.Column="1" Margin="5,5,5,5" FontWeight="Bold" FontSize="25" HorizontalAlignment="Stretch"/>-->
+            <TextBox x:Name="txtDisplay"
+					 Grid.Column="1"
+					 Text="{Binding Result, ElementName=Keyboard,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					 FontSize="30"
+					 HorizontalContentAlignment="Left"
+					 VerticalContentAlignment="Center"
+					 Background="WhiteSmoke"
+					 FontWeight="Bold"
+					 Margin="5"
+					 BorderThickness="1"
+					 Padding="10 0 0 0"
+					 CaretBrush="Red"
+					 IsReadOnly="False"
+					 UseLayoutRounding="True"
+					 SnapsToDevicePixels="True"
+                 
+					 
+>
+            </TextBox>
+        </Grid>		
 		<Grid Grid.Row="1" VerticalAlignment="Stretch" x:Name="AlfaKeyboard" Background="{DynamicResource IPhoneSteelBackground}"  >
 			<Grid.RowDefinitions>
 				<RowDefinition Height="0" />
