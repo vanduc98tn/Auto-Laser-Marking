@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Development"
         mc:Ignorable="d"
         Title="Development - Auto Team / ITM"
-        Height="1024" Width="1284" 
+        Height="960" Width="1284" 
         WindowStyle="SingleBorderWindow"
         WindowState="Maximized">
 

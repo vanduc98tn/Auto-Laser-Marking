@@ -336,6 +336,9 @@
     <Compile Include="03.UI\WND\01.WND SETTING\WndPatern.xaml.cs">
       <DependentUpon>WndPatern.xaml</DependentUpon>
     </Compile>
+    <Compile Include="03.UI\WND\WndUnitControl1.xaml.cs">
+      <DependentUpon>WndUnitControl1.xaml</DependentUpon>
+    </Compile>
     <Page Include="02.LIBRARY\13.Vision\02.Vision UI\RegionCreatMatrix.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -571,6 +574,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="03.UI\WND\01.WND SETTING\WndPatern.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="03.UI\WND\WndUnitControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

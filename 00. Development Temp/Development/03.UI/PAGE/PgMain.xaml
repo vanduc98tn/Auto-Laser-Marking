@@ -14,7 +14,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="90" />
-            <RowDefinition Height="5*" />
+            <RowDefinition Height="4*" />
             <RowDefinition Height="3"/>
             <RowDefinition Height="*" MinHeight="150"/>
         </Grid.RowDefinitions>
@@ -191,11 +191,11 @@
             <Grid Grid.Column="1">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="1.8*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="0.5*"></RowDefinition>
                     <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="0*"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.Resources>
                     <Style TargetType="Button" BasedOn="{StaticResource sButton}">
@@ -217,8 +217,8 @@
                         <Border Margin="0,2,0,0" BorderBrush="Silver" Background="#EEEEEE" BorderThickness="1" CornerRadius="8,8,8,8" Grid.Row="0">
                             <Grid Grid.Row="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition Height="6*"></RowDefinition>
+                                    <RowDefinition Height="25"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
                                     <Border Margin="15,0,0,0" Background="#333333" HorizontalAlignment="Left" BorderBrush="Silver" BorderThickness="1" CornerRadius="0,0,8,8" Grid.Row="0" >
@@ -312,8 +312,8 @@
                     <Border Margin="0,0,0,0" BorderBrush="Silver" Background="#EEEEEE" BorderThickness="1" CornerRadius="8,8,8,8" Grid.Row="1">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="2*"></RowDefinition>
-                                <RowDefinition Height="7*"></RowDefinition>
+                                <RowDefinition Height="25"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Border Margin="10,0,0,0" Background="#333333" HorizontalAlignment="Left" BorderBrush="Silver" BorderThickness="1" CornerRadius="0,0,8,8" Grid.Row="0" >
                                 <StackPanel>
@@ -389,8 +389,8 @@
                     <Border Margin="0,5,0,0" BorderBrush="Silver" Background="#EEEEEE" BorderThickness="1" CornerRadius="8,8,8,8" Grid.Row="1">
                         <Grid Grid.Row="1" >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="28"></RowDefinition>
-                                <RowDefinition Height="7*"></RowDefinition>
+                                <RowDefinition Height="25"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <Border Margin="15,0,0,0" Background="#333333" HorizontalAlignment="Left" BorderBrush="Silver" BorderThickness="1" CornerRadius="0,0,8,8" Grid.Row="0" >
@@ -552,13 +552,12 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0" Margin="2" >
                                 <Button x:Name="btLotIn">
                                     <StackPanel Orientation="Horizontal">
                                         <!--<Image Source="/Resource/Image/lotin.png"></Image>-->
-                                        <TextBlock  Padding="20,0,0,0"  FontWeight="Bold" FontSize="20"><Run Text="LotIn"/></TextBlock>
+                                        <TextBlock  Padding="40,0,0,0"  FontWeight="Bold" FontSize="20"><Run Text="LotIn"/></TextBlock>
                                         <!--<Image Source="/Resource/Image/lotin.png"></Image>-->
                                     </StackPanel>
                                 </Button>
@@ -567,28 +566,9 @@
                                 <Button x:Name="btLotOut" >
                                     <StackPanel Orientation="Horizontal">
                                         <!--<Image Source="/Resource/Image/lotEnd.png"></Image>-->
-                                        <TextBlock  Padding="10,0,0,0" FontWeight="Bold" FontSize="20">LotOut</TextBlock>
+                                        <TextBlock  Padding="30,0,0,0" FontWeight="Bold" FontSize="20">LotOut</TextBlock>
                                     </StackPanel>
                                 </Button>
-                            </Grid>
-                            <Grid Grid.Column="2" Margin="3" >
-                                <local:PLCButton
-                                    Grid.Column="0"
-                                    Action="Momentary"
-                                    UseLampCodition="True"
-                                    DeviceWrite="L" AddressWrite="6"
-                                    DeviceLamp="L" AddressLamp="10006"
-                                    Content="LOTEND"
-                                    Background="Transparent"
-                                    Foreground="Black"
-                                    FontSize="18"
-                                    BackgroundLampOFF="LightGray"
-                                    BackgroundLampON="Orange"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Home All Machine?"
->
-
-                                </local:PLCButton>
                             </Grid>
 
                         </Grid>
@@ -610,13 +590,23 @@
                                     </StackPanel>
                                 </Button>
                             </Grid>
-                            <Grid Grid.Column="1" Margin="2" >
-                                <Button x:Name="btLotEnd">
-                                    <StackPanel Orientation="Horizontal">
-                                        <!--<Image Source="/Resource/Image/lotEnd.png"></Image>-->
-                                        <TextBlock VerticalAlignment="Center" Foreground="Black" Padding="20,0,0,0" FontWeight="Bold" FontSize="20" Text="Lot End"></TextBlock>
-                                    </StackPanel>
-                                </Button>
+                            <Grid Grid.Column="1">
+                                <local:PLCButton
+                                    Action="Momentary"
+                                    UseLampCodition="True"
+                                    DeviceWrite="L" AddressWrite="6"
+                                    DeviceLamp="L" AddressLamp="10006"
+                                    Content="LOTEND"
+                                    Background="Transparent"
+                                    Foreground="Black"
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    BackgroundLampOFF="LightGray"
+                                    BackgroundLampON="Orange"
+                                    IsComfrim="True"
+                                    IsMesComfrim="Confrim to LotEnd?"
+>
+                                </local:PLCButton>
                             </Grid>
                         </Grid>
                     </Border>
@@ -627,15 +617,15 @@
             <!--////////////// GIAO DIEN MAIN  ///////////////-->
             <Grid Margin="5,5,5,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="0.8*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
 
                 <Grid Grid.Row="0" Background="White">
-                    <Grid Grid.Row="0" Margin="0 2 0 0">
+                    <Grid Grid.Row="0" Margin="0">
                         <Grid.Background>
                             <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                                 <GradientStop Color="Gray" Offset="1"/>
@@ -658,8 +648,8 @@
                                HorizontalContentAlignment="Center" Background="Transparent">
                         </Label>
 
-                        <Border Grid.Column="1" Grid.Row="0" x:Name="BdQR" Margin="5" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10">
-                            <Label x:Name="lbQRPcb" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 0 0 0" Foreground="#333333" Content="QR000000000000000000000000" FontFamily="Bahnschrift SemiBold Condensed" FontSize="26"/>
+                        <Border Grid.Column="1" Grid.Row="0" x:Name="BdQR" Margin="3" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10">
+                            <Label x:Name="lbQRPcb" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="20 2 0 0" Foreground="#333333" Content="QR000000000000000000000000" FontFamily="Bahnschrift SemiBold Condensed" FontSize="26"/>
                         </Border>
                         
                     </Grid>
@@ -667,20 +657,23 @@
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    <Label Grid.Column="1" x:Name="lbMES" Background="CadetBlue" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#333333" Content="MESSENGER MES" FontFamily="Bahnschrift SemiBold Condensed" FontSize="40" Margin="0,1,0,1"></Label>
+                    <Label Grid.Column="1" x:Name="lbMES" Background="CadetBlue" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#333333" Content="MESSENGER MES" FontFamily="Bahnschrift SemiBold Condensed" FontSize="30" Margin="0,1,0,1"></Label>
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <GroupBox Header="VISION RESULT" FontFamily="Times New Roman (Headings)" FontSize="20" FontWeight="Bold" Foreground="Purple">
-                        <Border Margin="2,2,2,2" Grid.Row="3" BorderThickness="1" BorderBrush="Gray">
+                    <GroupBox Header="VISION RESULT" FontFamily="Times New Roman (Headings)" FontSize="16" FontWeight="Bold" Foreground="Purple">
+                        <Border Margin="0" Grid.Row="3" BorderThickness="1" BorderBrush="Gray">
+                            <Grid Background="Gray">
+                                
+                            </Grid>
                             
                         </Border>
                     </GroupBox>
                 </Grid>
 
                 <Grid Grid.Row="3">
-                    <GroupBox Header="MES RESULT" FontFamily="Times New Roman (Headings)" FontSize="20" FontWeight="Bold" Foreground="Red">
-                        <Border Margin="2,2,2,2" Grid.Row="3" BorderThickness="1" BorderBrush="Gray">
+                    <GroupBox Header="MES RESULT" FontFamily="Times New Roman (Headings)" FontSize="16" FontWeight="Bold" Foreground="Red">
+                        <Border Margin="0" Grid.Row="3" BorderThickness="1" BorderBrush="Gray">
                             <Grid Background="Gray" Name="gridPos">
                                 <Grid.Resources>
                                     <Style TargetType="{x:Type Label}">

@@ -1,4 +1,5 @@
 ﻿using ITM_Semiconductor;
+using KeyPad;
 using Newtonsoft.Json.Converters;
 using System;
 using System.CodeDom;
@@ -82,6 +83,7 @@ namespace Development
             //this.btHome.Click += BtHome_Click;
             this.btLotIn.Click += BtLotIn_Click;
             this.btLotOut.Click += BtLotOut_Click;
+            this.btUnitControl.Click += BtUnitControl_Click;
 
         }
 
@@ -1300,6 +1302,11 @@ namespace Development
         private void BtHome_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void BtUnitControl_Click(object sender, RoutedEventArgs e)
+        {
+            WndUnitControl1 unitControl1 = new WndUnitControl1();
+            unitControl1.ShowDialog();
         }
 
         #region NotifyMES
