@@ -115,7 +115,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition Width="150"></ColumnDefinition>
-                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
                             <ColumnDefinition Width="150"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="UNIT CONTROL" Foreground="White" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0">
@@ -154,7 +154,145 @@
                     </StackPanel>
                 </Button>-->
             </Grid>
-            
+
+            <Grid Grid.Row="1">
+                <Grid.Resources>
+                    <Style TargetType="GroupBox">
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="Margin" Value="1"/>
+                        <Setter Property="Padding" Value="-3"/>
+                    </Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource ssButton}">
+                        <Setter Property="FontSize" Value="24"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Margin" Value="1"/>
+                        <Setter Property="Background" Value="White"/>
+                    </Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Margin" Value="5,5,5,5"/>
+                    </Style>
+                    <Style TargetType="TextBlock" x:Key="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="Foreground" Value="black"/>
+                    </Style>
+                    <Style TargetType="TextBlock" x:Key="TextBlock2">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontWeight" Value="Medium"/>
+                        <Setter Property="Margin" Value="10,0,0,0"/>
+                    </Style>
+                    <Style TargetType="Rectangle" x:Key="Rect2">
+                        <Setter Property="Width" Value="25"/>
+                        <Setter Property="Height" Value="18"/>
+                        <Setter Property="Fill" Value="White"/>
+                        <Setter Property="StrokeThickness" Value="2"/>
+                        <Setter Property="Stroke" Value="Silver"/>
+                    </Style>
+                    <Style TargetType="Rectangle">
+                        <Setter Property="Width" Value="100"/>
+                        <Setter Property="Height" Value="10"/>
+                        <Setter Property="Fill" Value="White"/>
+                        <Setter Property="StrokeThickness" Value="2"/>
+                        <Setter Property="Stroke" Value="Gray"/>
+                    </Style>
+                    <Style TargetType="CheckBox">
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <Setter Property="Margin" Value="4,2,4,2"/>
+                    </Style>
+                    <Style TargetType="local:PLCButton">
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="UseLampCodition" Value="True"/>
+                        <Setter Property="Margin" Value="1"/>
+                    </Style>
+                </Grid.Resources>
+
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <UniformGrid Grid.Column="0" Columns="1" VerticalAlignment="Top">
+                    <Border  BorderThickness="1" BorderBrush="CadetBlue" Margin="2" CornerRadius="10" VerticalAlignment="Top">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" CornerRadius=" 10 10 0 0 " Margin="1">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#879ec0" Offset="0"/>
+                                        <GradientStop Color="White" Offset="1.5"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Label FontWeight="Bold" Foreground="White" FontSize="20"  Margin="0" Content="LOADER WORK" >
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
+                                    </Label.Effect>
+                                </Label>
+                            </Border>
+                            <UniformGrid Grid.Row="1" Margin="0" Columns="1">
+                                <GroupBox Height="140" Header="[INPUT]">
+                                    <UniformGrid Columns="2">
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="1002"
+                                            DeviceLamp="L" AddressLamp="11002"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="Green"
+                                            Content="START"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="1003"
+                                            DeviceLamp="L" AddressLamp="11003"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="DarkRed"
+                                            Content="STOP"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="1003"
+                                            DeviceLamp="L" AddressLamp="11003"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="Yellow"
+                                            Content="INITIAL"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                    </UniformGrid>
+                                </GroupBox>
+                                
+
+                            </UniformGrid>
+                        </Grid>
+                    </Border>
+
+                </UniformGrid>
+                
+            </Grid>
+
         </Grid>
 
 
