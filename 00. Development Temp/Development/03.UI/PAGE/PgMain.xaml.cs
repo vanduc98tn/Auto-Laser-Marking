@@ -85,6 +85,7 @@ namespace Development
 
         }
 
+
         private void Running()
         {
             List<bool> M_ListBitPLC_ = new List<bool>();

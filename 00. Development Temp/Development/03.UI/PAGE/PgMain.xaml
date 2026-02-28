@@ -14,8 +14,9 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="90" />
-            <RowDefinition Height="620*" />
-            <RowDefinition Height="120*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="*" MinHeight="150"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -122,12 +123,11 @@
                         </LinearGradientBrush>
                     </Grid.Background>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.6*"></ColumnDefinition>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                        <ColumnDefinition Width="0*"></ColumnDefinition>
-                        <ColumnDefinition Width="0*"></ColumnDefinition>
-                        <ColumnDefinition Width="0*"></ColumnDefinition>
-                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                        <ColumnDefinition Width="120"></ColumnDefinition>
+                        <ColumnDefinition Width="140"></ColumnDefinition>
+                        <ColumnDefinition Width="120"></ColumnDefinition>
+                        <ColumnDefinition Width="400"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
 
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0"
@@ -148,10 +148,10 @@
                             HorizontalContentAlignment="Center"  Background="Transparent">Model</Label>
 
                     <Border Margin="0,5,5,5" Grid.Column="3" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
-                        <Label Name="lblModel" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" Content="Model Name 01" FontFamily="Bahnschrift SemiBold Condensed" FontSize="20"></Label>
+                        <Label Name="lblModel" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="10 0 0 0" Foreground="#333333" Content="Model Name 01" FontFamily="Bahnschrift SemiBold Condensed" FontSize="20"></Label>
                     </Border>
                     <Border Margin="0,5,5,5" Grid.Column="4" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
-                        <Label Name="lblStatust" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Green" Content="Update Statust Current Machine : Thông báo trạng thái máy " FontFamily="Bahnschrift SemiBold Condensed" FontSize="18"></Label>
+                        <Label Name="lblStatust" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="10 0 0 0" Foreground="Green" Content="Update Statust Current Machine : Thông báo trạng thái máy " FontFamily="Bahnschrift SemiBold Condensed" FontSize="18"></Label>
                     </Border>
 
                     <!--Hien thi Thiet bi-->
@@ -625,10 +625,10 @@
             
             
             <!--////////////// GIAO DIEN MAIN  ///////////////-->
-            <Grid Margin="10,20,10,0">
+            <Grid Margin="5,5,5,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -709,8 +709,19 @@
 
 
         </Grid>
-
-        <Border Grid.Row="2" BorderThickness="1" BorderBrush="Gray" Margin="0,3,0,3">
+        
+        <GridSplitter
+            Grid.Row="2"
+            Height="10"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            ResizeDirection="Rows"
+            ResizeBehavior="PreviousAndNext"
+            ShowsPreview="True">
+        </GridSplitter>
+        
+        <Border Grid.Row="3" BorderThickness="0" BorderBrush="Gray" Margin="0,3,0,3">
             <Grid Background="#eeeeee">
                 <Grid.Resources>
                     <Style TargetType="Button" BasedOn="{StaticResource sButton}">
@@ -722,7 +733,6 @@
                         <Setter Property="BorderBrush" Value="Gray"/>
                         <Setter Property="Foreground" Value="Black"/>
                     </Style>
-
 
                     <Style TargetType="{x:Type Image}">
                         <Setter Property="Effect">
@@ -773,7 +783,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition  Height="1*"></RowDefinition>
+                        <RowDefinition  Height="30"></RowDefinition>
                         <RowDefinition Height="3*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" Grid.Column="0" Background="White" >
@@ -782,7 +792,7 @@
 
                             <Border Margin="15,0,0,0" Background="#333333" HorizontalAlignment="Left" BorderBrush="Silver" BorderThickness="1" CornerRadius="0,0,8,8" Grid.Row="0" >
                                 <StackPanel>
-                                    <Label Grid.Row="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="White" Content=" Event Message  " FontSize="15"></Label>
+                                    <Label Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Content="  Event Message  " FontSize="13"></Label>
                                 </StackPanel>
                             </Border>
                             <CheckBox x:Name="CbLog"  Margin="10 0 0 0" Unchecked="WriteLog_Unchecked" Checked="WriteLog_Checked" Content="Write Log" Foreground="White" FontSize="12"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -812,11 +822,20 @@
 
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Foreground="White" FontFamily="Arial">
+                                        <!--<TextBlock Foreground="White" FontFamily="Arial" TextWrapping="Wrap" TextTrimming="None">
                                             <Run Text="{Binding logTime}" />
                                             <Run Text=" - " />
                                             <Run Text="{Binding logMessage}" />
-                                        </TextBlock>
+                                        </TextBlock>-->
+                                        <TextBox Foreground="White" Background="Black" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Disabled">
+                                            <TextBox.Text>
+                                                <MultiBinding StringFormat="{}{0} - {1}">
+                                                    <Binding Path="logTime"/>
+                                                    <Binding Path="logMessage"/>
+                                                </MultiBinding>
+                                            </TextBox.Text>
+                                        </TextBox>
+
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -827,10 +846,10 @@
                     <Grid Grid.Row="0" Grid.Column="1"  Background="White" MouseDown="Grid_MouseDown" >
                         <Border Margin="0 0 1 0" CornerRadius=" 10 10 0 0 " Background="#696969" />
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox x:Name="CbShow"  Margin="10 0 0 0" Unchecked="AlarmCheckBox_Unchecked" Checked="AlarmCheckBox_Checked" Content="Not Show" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="CbShow"  Margin="10 0 0 0" Unchecked="AlarmCheckBox_Unchecked" Checked="AlarmCheckBox_Checked" Content="Not Show" Foreground="White" FontSize="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <Border Margin="10,0,0,0" Background="#333333" HorizontalAlignment="Left" BorderBrush="Silver" BorderThickness="1" CornerRadius="0,0,8,8" Grid.Row="0" >
                                 <StackPanel>
-                                    <Label Grid.Row="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="White" Content=" Event Alarm  " FontSize="16"></Label>
+                                    <Label Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Content="  Event Alarm  " FontSize="13"></Label>
                                 </StackPanel>
                             </Border>
                             <Label Grid.Row="0" Padding="20 0 0 0"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="White" FontSize="15">
