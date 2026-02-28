@@ -119,6 +119,19 @@ namespace Development
                         
                         this.CheckMESWorkout();
                     }
+                    else
+                    {
+                        addLog("BYPASS MES CHECK ");
+                        this.UpdateUIMES($"BYPASS MES CHECK", Brushes.LightGreen);
+
+                        // SEND PLC MES OK
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 620, true);
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 621, false);
+                        addLog("Write Bit Workout MES OK M620 = ON");
+                        addLog("Write Bit Workout MES OK M621 = OFF");
+
+
+                    }    
 
                 }
 
@@ -170,6 +183,9 @@ namespace Development
                             }
                             else
                             {
+                                addLog("BYPASS MES CHECK ");
+                                this.UpdateUIMES($"BYPASS MES CHECK", Brushes.LightGreen);
+
                                 var numbers = pattern.positionNGs;
                                 var set = new HashSet<int>(numbers);
 
@@ -208,9 +224,9 @@ namespace Development
                     }
                     else
                     {
-                        addLog("BY PASS SCANNER ");
+                        addLog("BYPASS SCANNER");
 
-                        this.UpdateUIMES($"BY PASS TRIGGER SCANNER", Brushes.LightGreen);
+                        this.UpdateUIMES($"BYPASS TRIGGER SCANNER", Brushes.LightGreen);
 
                         var numbers = pattern.positionNGs;
                         var set = new HashSet<int>(numbers);
@@ -317,9 +333,9 @@ namespace Development
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 501, false);
                     this.addLog("Write Bit M501 = OFF");
 
-                    int[] arr = {1, 3, 4};
-                    DataPCB.VISION_NG = arr;
-                    UpdateUIVISIONRESULT(DataPCB.VISION_NG);
+                    //int[] arr = {1, 3, 4};
+                    //DataPCB.VISION_NG = arr;
+                    //UpdateUIVISIONRESULT(DataPCB.VISION_NG);
 
                     this.isVision = true;
                 }
@@ -621,7 +637,6 @@ namespace Development
 
         public void SendLaser()
         {
-
             int[] arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE);
 
             string switchprg = UiManager.Instance.laserCOM.SendSwitchPrg(pattern.PrgLaser);
@@ -1260,7 +1275,7 @@ namespace Development
         }
         private void BtStart_Click(object sender, RoutedEventArgs e)
         {
-            string QR = "B0226046110039500172361";
+            string QR = "B0226007100039500172361";
             this.UpdateUIQR(QR, true);
 
             DataPCB = new DataPCB();
@@ -1269,10 +1284,10 @@ namespace Development
         }
         private void BtStop_Click(object sender, RoutedEventArgs e)
         {
-            int[] arr = { 1, 3, 4, 9, 21, 19, 42 };
+            //int[] arr = { 1, 3, 4, 9, 21, 19, 42 };
 
-            DataPCB.VISION_NG = arr;
-            UpdateUIVISIONRESULT(DataPCB.VISION_NG);
+            //DataPCB.VISION_NG = arr;
+            //UpdateUIVISIONRESULT(DataPCB.VISION_NG);
             CheckMESWorkout();
         }
         private void BtReset_Click(object sender, RoutedEventArgs e)

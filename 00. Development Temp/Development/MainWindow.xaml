@@ -13,11 +13,11 @@
     <Grid MouseLeftButtonDown="Grid_MouseDown"  >
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
+            <RowDefinition Height="0" />
             <RowDefinition Height="65" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#2C3E50" Margin="1" >
+        <!--<Grid Grid.Row="0" Background="#2C3E50" Margin="1" >
             <Grid.Resources>
 
                 <Style TargetType="Button" BasedOn="{StaticResource ButtonMain50}">
@@ -60,7 +60,7 @@
 
 
             </Grid>
-        </Grid>
+        </Grid>-->
         <Grid Grid.Row="1" Background="#f5f5f5">
             <Grid.Resources>
                 <Style TargetType="{x:Type Label}">

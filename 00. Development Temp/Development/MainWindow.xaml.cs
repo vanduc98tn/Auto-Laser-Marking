@@ -41,9 +41,9 @@ namespace Development
             this.btIO.Click += BtIO_Click;
             this.btLastJam.Click += BtLastJam_Click;
 
-            this.bthide.Click += Bthide_Click;
-            this.btminimized.Click += Btminimized_Click;
-            this.btClose.Click += BtClose_Click;
+            //this.bthide.Click += Bthide_Click;
+            //this.btminimized.Click += Btminimized_Click;
+            //this.btClose.Click += BtClose_Click;
 
 
         }
