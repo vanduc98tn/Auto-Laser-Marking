@@ -153,7 +153,7 @@
 
                     </UniformGrid>
 
-                    <UniformGrid Grid.Column="1" Columns="1" Rows="7" Height="630" VerticalAlignment="Top">
+                    <!--<UniformGrid Grid.Column="1" Columns="1" Rows="7" Height="630" VerticalAlignment="Top">
 
                         <GroupBox Header="[SETTING PATERN]" Height="90">
                             <Grid>
@@ -163,7 +163,7 @@
 
                        
 
-                    </UniformGrid>
+                    </UniformGrid>-->
 
                     <UniformGrid Grid.Column="2" Columns="1" Rows="7">
 

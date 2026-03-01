@@ -128,8 +128,8 @@
                         DeviceLamp="L" AddressLamp="10502"
                         BackgroundLampOFF="Transparent"
                         BackgroundLampON="Red"
-                        TextOFF="ENA BUZZER"
-                        TextON="DIS BUZZER"
+                        TextOFF="ENA KACON"
+                        TextON="DIS KACON"
                         IsComfrim="True"
                         IsMesComfrim="Confrim Options Yes/No"
 >
@@ -140,8 +140,8 @@
                         DeviceLamp="L" AddressLamp="10503"
                         BackgroundLampOFF="Transparent"
                         BackgroundLampON="Red"
-                        TextOFF="ENA KACON"
-                        TextON="DIS KACON"
+                        TextOFF="ENA BUZZER"
+                        TextON="DIS BUZZER"
                         IsComfrim="True"
                         IsMesComfrim="Confrim Options Yes/No"
 >
@@ -210,6 +210,33 @@
 >
                     </local:PLCButton>
 
+
+                </UniformGrid>
+                <UniformGrid Grid.Column="2" Columns="1" Rows="10" Margin="0 0 10 0">
+                    <local:PLCButton
+                        Action="Momentary"
+                        DeviceWrite="L" AddressWrite="542"
+                        DeviceLamp="L" AddressLamp="732"
+                        BackgroundLampOFF="Transparent"
+                        BackgroundLampON="GreenYellow"
+                        TextOFF="LOADER FIX BYPASS"
+                        TextON="LOADER FIX BYPASS"
+                        IsComfrim="True"
+                        IsMesComfrim="Confrim Options Yes/No"
+>
+                    </local:PLCButton>
+                    <local:PLCButton
+                        Action="Momentary"
+                        DeviceWrite="L" AddressWrite="543"
+                        DeviceLamp="L" AddressLamp="733"
+                        BackgroundLampOFF="Transparent"
+                        BackgroundLampON="GreenYellow"
+                        TextOFF="UNLOADER FIX BYPASS"
+                        TextON="UNLOADER FIX BYPASS"
+                        IsComfrim="True"
+                        IsMesComfrim="Confrim Options Yes/No"
+>
+                    </local:PLCButton>
 
                 </UniformGrid>
 

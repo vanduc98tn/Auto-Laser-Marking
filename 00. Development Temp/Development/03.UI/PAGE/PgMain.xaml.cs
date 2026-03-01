@@ -1314,6 +1314,7 @@ namespace Development
                         if (flag5)
                         {
                             this.ClearError();
+                            this.hasClearedError = true;
                         }
                     }
                 }
