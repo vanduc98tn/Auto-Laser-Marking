@@ -71,7 +71,7 @@
                              BackgroundLampON="GreenYellow" >
                     </local:RectangleLamp>-->
 
-                    <Label Grid.Column="0"
+                    <!--<Label Grid.Column="0"
                            x:Name="lbVS1"
                            FontSize="20" 
                            FontWeight="Bold" 
@@ -86,7 +86,7 @@
                            VerticalContentAlignment="Center" 
                            Foreground="White"
                            HorizontalContentAlignment="Center" 
-                           Background="Transparent">QR</Label>  
+                           Background="Transparent">QR</Label>-->  
 
                 </Grid>
                 <Grid Grid.Column="1">

@@ -243,14 +243,6 @@ namespace Development
                     
                 }
 
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    if (this.isQR) lbQR1.Content = "QR = True";
-                    else lbQR1.Content = "QR = False";
-                    if (this.isVision) lbVS1.Content = "VS = True";
-                    else lbVS1.Content = "VS = False";
-                }));
-
                 if ((this.isQR && this.isVision) || RETRY_LASER)
                 {
                     this.addLog("--- Send data Laser COM --- ");
