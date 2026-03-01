@@ -166,6 +166,12 @@ namespace Development
                                 addLog("BYPASS MES CHECK ");
                                 this.UpdateUIMES($"BYPASS MES CHECK", Brushes.LightGreen);
 
+                                // SEND PLC MES OK
+                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 620, true);
+                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 621, false);
+                                addLog("Write Bit Workout MES OK M620 = ON");
+                                addLog("Write Bit Workout MES OK M621 = OFF");
+
                                 var numbers = pattern.positionNGs;
                                 var set = new HashSet<int>(numbers);
 
