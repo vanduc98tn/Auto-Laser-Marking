@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Development"
         mc:Ignorable="d" WindowStyle="None" WindowStartupLocation="CenterScreen" Topmost="False"
-        Title="WndUnitControl1" Height="600" Width="800" ResizeMode="NoResize" BorderThickness="5" BorderBrush="Yellow"
+        Title="WndUnitControl1" Height="600" Width="800" ResizeMode="NoResize" BorderThickness="4" BorderBrush="Orange"
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -226,7 +226,7 @@
                     <Border  BorderThickness="1" BorderBrush="CadetBlue" Margin="2" CornerRadius="10" VerticalAlignment="Top">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="30"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0" CornerRadius=" 10 10 0 0 " Margin="1">
@@ -236,7 +236,7 @@
                                         <GradientStop Color="White" Offset="1.5"/>
                                     </LinearGradientBrush>
                                 </Border.Background>
-                                <Label FontWeight="Bold" Foreground="White" FontSize="20"  Margin="0" Content="LOADER WORK" >
+                                <Label FontWeight="Bold" Foreground="White" HorizontalContentAlignment="Center" FontSize="18" Padding="0" Margin="0" Content="LOADER WORK" >
                                     <Label.Effect>
                                         <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
                                     </Label.Effect>

@@ -664,7 +664,13 @@
                     <GroupBox Header="VISION RESULT" FontFamily="Times New Roman (Headings)" FontSize="16" FontWeight="Bold" Foreground="Purple">
                         <Border Margin="0" Grid.Row="3" BorderThickness="1" BorderBrush="Gray">
                             <Grid Background="Gray">
-                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="2" x:Name="lbVsTrigg1" Content=". . ." FontSize="30" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="2" BorderBrush="Black"/>
+                                <Label Grid.Column="0" x:Name="lbVsTrigg2" Content=". . ." FontSize="30" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="2" BorderBrush="Black"/>
                             </Grid>
                             
                         </Border>
