@@ -6,6 +6,8 @@
       xmlns:local="clr-namespace:Development"
       mc:Ignorable="d" 
       d:DesignHeight="790" d:DesignWidth="1300"
+      Focusable="True"
+      PreviewMouseDown ="Page_PreviewMouseDown"
       Title="PgSystemMenu01">
 
     <Grid Background="White">
@@ -127,7 +129,7 @@
                     </Grid.ColumnDefinitions>
 
 
-                    <UniformGrid Grid.Column="0" Columns="1" Rows="7" Height="630" VerticalAlignment="Top">
+                    <UniformGrid Grid.Column="0" Columns="1" Rows="7" VerticalAlignment="Top">
                         <GroupBox Header="[MES ONLINE]" Height="90">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -153,17 +155,43 @@
 
                     </UniformGrid>
 
-                    <!--<UniformGrid Grid.Column="1" Columns="1" Rows="7" Height="630" VerticalAlignment="Top">
+                    <UniformGrid Grid.Column="1" Columns="1" Rows="7" VerticalAlignment="Top">
 
-                        <GroupBox Header="[SETTING PATERN]" Height="90">
+                        <GroupBox Header="[MES EXCLUTSION]" Height="90">
                             <Grid>
-                                <Button x:Name="btSettingPatern" Grid.Column="0" FontSize="20" BorderThickness="0.1">SETTING PATERN</Button>
+                                <TextBox x:Name="tbExclusion" Padding="10,0,0,0" VerticalContentAlignment="Center" BorderBrush="Black">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="TextBox">
+                                                        <Grid>
+                                                            <ScrollViewer x:Name="PART_ContentHost"/>
+                                                            <TextBlock Text="A;B;C;1;2;3..." Foreground="Gray" Margin="10,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </Grid>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
                             </Grid>
                         </GroupBox>
 
                        
 
-                    </UniformGrid>-->
+                    </UniformGrid>
 
                     <UniformGrid Grid.Column="2" Columns="1" Rows="7">
 

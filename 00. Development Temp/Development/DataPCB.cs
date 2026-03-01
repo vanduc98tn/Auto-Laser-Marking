@@ -21,6 +21,7 @@ namespace Development
         public string WORK_OUT_MSG { get; set; }
 
         public int[] VISION_NG { get; set; }
+        
 
 
 
@@ -40,6 +41,7 @@ namespace Development
             this.WORK_OUT_MSG = string.Empty;
 
             this.VISION_NG = new int[] {};
+            
 
         }
     }
