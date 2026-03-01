@@ -43,12 +43,12 @@
                 <Grid Grid.Row="0">
 
                 </Grid>
-                <!--<Grid Grid.Column="0">
+                <Grid Grid.Column="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0"
+                    <!--<Label Grid.Column="0"
                            FontSize="20" 
                            FontWeight="Bold" 
                            VerticalContentAlignment="Center" 
@@ -69,9 +69,26 @@
                              Foreground="Black"
                              BackgroundLampOFF="RED"
                              BackgroundLampON="GreenYellow" >
-                    </local:RectangleLamp>
+                    </local:RectangleLamp>-->
 
-                </Grid>-->
+                    <Label Grid.Column="0"
+                           x:Name="lbVS1"
+                           FontSize="20" 
+                           FontWeight="Bold" 
+                           VerticalContentAlignment="Center" 
+                           Foreground="White"
+                           HorizontalContentAlignment="Center" 
+                           Background="Transparent">VS</Label>
+                    <Label Grid.Column="2"
+                           x:Name="lbQR1"
+                           FontSize="20" 
+                           FontWeight="Bold" 
+                           VerticalContentAlignment="Center" 
+                           Foreground="White"
+                           HorizontalContentAlignment="Center" 
+                           Background="Transparent">QR</Label>  
+
+                </Grid>
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.3*"></ColumnDefinition>
@@ -965,7 +982,7 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Name="btStart">
+                        <!--<Button Grid.Column="0" Name="btStart">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/01.Image/Start.png" Height="40"></Image>
                                 <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" Foreground="Black" Text="{x:Static Language:Resources.PG_MAIN_btStart}"></TextBlock>
@@ -977,9 +994,9 @@
                                 <Image Source="/01.Image/Stop.png" Height="40"></Image>
                                 <TextBlock VerticalAlignment="Center" Padding="20,0,0,0" Foreground="Black" Text="{x:Static Language:Resources.PG_MAIN_btStop}"></TextBlock>
                             </StackPanel>
-                        </Button>
+                        </Button>-->
                         
-                        <!--<local:PLCButton
+                        <local:PLCButton
                             Grid.Column="0"
                             Action="Momentary"
                             UseLampCodition="True"
@@ -1008,7 +1025,7 @@
                             BackgroundLampON="Red"
 >
 
-                        </local:PLCButton>-->
+                        </local:PLCButton>
 
                     </Grid>
                     <Grid Grid.Row="1">

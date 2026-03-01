@@ -77,8 +77,8 @@ namespace Development
             // Event Page Main
             this.Loaded += PgMain_Loaded;
             this.Unloaded += PgMain_Unloaded;
-            this.btStart.Click += BtStart_Click;
-            this.btStop.Click += BtStop_Click;
+            //this.btStart.Click += BtStart_Click;
+            //this.btStop.Click += BtStop_Click;
             this.btReset.PreviewMouseDown += BtReset_Click;
             //this.btHome.Click += BtHome_Click;
             this.btLotIn.Click += BtLotIn_Click;
@@ -243,18 +243,26 @@ namespace Development
                     
                 }
 
-                if (this.isQR && this.isVision || RETRY_LASER)
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    if (this.isQR) lbQR1.Content = "QR = True";
+                    else lbQR1.Content = "QR = False";
+                    if (this.isVision) lbVS1.Content = "VS = True";
+                    else lbVS1.Content = "VS = False";
+                }));
+
+                if ((this.isQR && this.isVision) || RETRY_LASER)
                 {
                     this.addLog("--- Send data Laser COM --- ");
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 515, false);
                     this.addLog("Write Bit M515 = OFF");
+                    this.isQR = false;
+                    this.isVision = false;
 
                     if (UiManager.Instance.laserCOM.isOpen())
                     {
+                        this.addLog("--- Send data Laser checking --- ");
                         SendLaser();
-
-                        this.isQR = false;
-                        this.isVision = false;
                     }
                     else
                     {

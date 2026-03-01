@@ -290,7 +290,46 @@
                     </Border>
 
                 </UniformGrid>
-                
+
+
+
+                <UniformGrid Grid.Column="2" Columns="1" VerticalAlignment="Top">
+                    <Border  BorderThickness="1" BorderBrush="CadetBlue" Margin="2" CornerRadius="10" VerticalAlignment="Top">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" CornerRadius=" 10 10 0 0 " Margin="1">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#879ec0" Offset="0"/>
+                                        <GradientStop Color="White" Offset="1.5"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Label FontWeight="Bold" Foreground="White" HorizontalContentAlignment="Center" FontSize="18" Padding="0" Margin="0" Content="MES MANUAL" >
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
+                                    </Label.Effect>
+                                </Label>
+                            </Border>
+                            <UniformGrid Grid.Row="1" Margin="0" Columns="1">
+                                <GroupBox Height="80" Header="[INPUT]">
+                                    <UniformGrid Columns="2">
+                                        <Button Name="btWorkIn" Content="">
+                                        </Button>
+                                        
+                                        
+                                    </UniformGrid>
+                                </GroupBox>
+
+
+                            </UniformGrid>
+                        </Grid>
+                    </Border>
+
+                </UniformGrid>
+
             </Grid>
 
         </Grid>

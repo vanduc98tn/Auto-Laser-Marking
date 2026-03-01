@@ -35,7 +35,7 @@ namespace Development
             this.btOnScanner.Click += BtOnScanner_Click;
             this.btOffScanner.Click += BtOffScanner_Click;
 
-            this.btSettingPatern.Click += BtSettingPatern_Click;
+            //this.btSettingPatern.Click += BtSettingPatern_Click;
         }
 
         private void PgSystemMenu01_Unloaded(object sender, RoutedEventArgs e)
