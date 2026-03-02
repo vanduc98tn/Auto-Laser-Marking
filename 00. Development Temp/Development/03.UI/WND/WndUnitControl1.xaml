@@ -280,6 +280,7 @@
                                             Background="Transparent"
                                             Foreground="Black"
                                             IsComfrim="True"
+                                            IsMesComfrim="Confrim initial Unit?"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -350,6 +351,7 @@
                                             Background="Transparent"
                                             Foreground="Black"
                                             IsComfrim="True"
+                                            IsMesComfrim="Confrim initial Unit?"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -518,6 +520,7 @@
                                             Background="Transparent"
                                             Foreground="Black"
                                             IsComfrim="True"
+                                            IsMesComfrim="Confrim initial Unit?"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -616,6 +619,7 @@
                                             Background="Transparent"
                                             Foreground="Black"
                                             IsComfrim="True"
+                                            IsMesComfrim="Confrim initial Unit?"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -686,6 +690,7 @@
                                             Background="Transparent"
                                             Foreground="Black"
                                             IsComfrim="True"
+                                            IsMesComfrim="Confrim initial Unit?"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
