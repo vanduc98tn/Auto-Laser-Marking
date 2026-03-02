@@ -243,15 +243,15 @@
                                 </Label>
                             </Border>
                             <UniformGrid Grid.Row="1" Margin="0" Columns="1">
-                                <GroupBox Height="120" Header="[INPUT]">
+                                <GroupBox Height="110" Header="[UNIT 1; 2 LOADER C/V]" FontSize="14">
                                     <UniformGrid Columns="2">
                                         <local:PLCButton
                                             Action="Momentary"
                                             IsTabItem="False"
-                                            DeviceWrite="L" AddressWrite="1002"
-                                            DeviceLamp="L" AddressLamp="11002"
+                                            DeviceWrite="L" AddressWrite="200"
+                                            DeviceLamp="L" AddressLamp="10200"
                                             BackgroundLampOFF="Transparent"
-                                            BackgroundLampON="Green"
+                                            BackgroundLampON="GreenYellow"
                                             Content="START"
                                             Background="Transparent"
                                             Foreground="Black"
@@ -260,10 +260,10 @@
                                         <local:PLCButton
                                             Action="Momentary"
                                             IsTabItem="False"
-                                            DeviceWrite="L" AddressWrite="1003"
-                                            DeviceLamp="L" AddressLamp="11003"
+                                            DeviceWrite="L" AddressWrite="201"
+                                            DeviceLamp="L" AddressLamp="10201"
                                             BackgroundLampOFF="Transparent"
-                                            BackgroundLampON="DarkRed"
+                                            BackgroundLampON="Red"
                                             Content="STOP"
                                             Background="Transparent"
                                             Foreground="Black"
@@ -272,8 +272,8 @@
                                         <local:PLCButton
                                             Action="Momentary"
                                             IsTabItem="False"
-                                            DeviceWrite="L" AddressWrite="1003"
-                                            DeviceLamp="L" AddressLamp="11003"
+                                            DeviceWrite="L" AddressWrite="203"
+                                            DeviceLamp="L" AddressLamp="10203"
                                             BackgroundLampOFF="Transparent"
                                             BackgroundLampON="Orange"
                                             Content="INITIAL"
@@ -281,22 +281,439 @@
                                             Foreground="Black"
 >
                                         </local:PLCButton>
-                                        <local:DataWord_D
-                                            Margin="3"
-                                            IsTabItem="False" 
-                                            FontFamily="Arial" 
-                                            FontSize="20"
-                                            NoOfDisplay="3"
-                                            NoOfDecimalDigits="0" 
-                                            CodeDevice="D" Device="2582" 
-                                            IsReadOnly="True" 
-                                            Background="Black" 
-                                            Foreground="Red"
+                                        <UniformGrid Margin="1" Columns="1">
+                                            <local:DataWord_D
+                                                Margin="0 0 0 0.5"
+                                                IsTabItem="False" 
+                                                FontFamily="Arial" 
+                                                FontSize="18"
+                                                NoOfDisplay="3"
+                                                NoOfDecimalDigits="0" 
+                                                CodeDevice="D" Device="801" 
+                                                IsReadOnly="True" 
+                                                Background="Black" 
+                                                Foreground="Red"
 >
-                                        </local:DataWord_D>
+                                            </local:DataWord_D>
+                                            <local:DataWord_D
+                                                Margin="0 0.5 0 0"
+                                                IsTabItem="False" 
+                                                FontFamily="Arial" 
+                                                FontSize="18"
+                                                NoOfDisplay="3"
+                                                NoOfDecimalDigits="0" 
+                                                CodeDevice="D" Device="803" 
+                                                IsReadOnly="True" 
+                                                Background="Black" 
+                                                Foreground="Red"
+>
+                                            </local:DataWord_D>
+                                        </UniformGrid>
+                                        
                                     </UniformGrid>
                                 </GroupBox>
-                                
+                                <GroupBox Height="110" Header="[UNIT 3 LOADER MGZ]" FontSize="14">
+                                    <UniformGrid Columns="2">
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="208"
+                                            DeviceLamp="L" AddressLamp="10208"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="GreenYellow"
+                                            Content="START"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="209"
+                                            DeviceLamp="L" AddressLamp="10209"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="Red"
+                                            Content="STOP"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="211"
+                                            DeviceLamp="L" AddressLamp="10211"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="Orange"
+                                            Content="INITIAL"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <UniformGrid Margin="1" Columns="1">
+                                            <local:DataWord_D
+                                                Margin="0 0 0 0.5"
+                                                IsTabItem="False" 
+                                                FontFamily="Arial" 
+                                                FontSize="18"
+                                                NoOfDisplay="3"
+                                                NoOfDecimalDigits="0" 
+                                                CodeDevice="D" Device="805" 
+                                                IsReadOnly="True" 
+                                                Background="Black" 
+                                                Foreground="Red"
+>
+                                            </local:DataWord_D>
+                                            <!--<local:DataWord_D
+                                                Margin="0 0.5 0 0"
+                                                IsTabItem="False" 
+                                                FontFamily="Arial" 
+                                                FontSize="18"
+                                                NoOfDisplay="3"
+                                                NoOfDecimalDigits="0" 
+                                                CodeDevice="D" Device="803" 
+                                                IsReadOnly="True" 
+                                                Background="Black" 
+                                                Foreground="Red"
+>
+                                            </local:DataWord_D>-->
+                                        </UniformGrid>
+
+                                    </UniformGrid>
+                                </GroupBox>
+
+
+                            </UniformGrid>
+                        </Grid>
+                    </Border>
+
+                </UniformGrid>
+                <UniformGrid Grid.Column="0" Columns="1" VerticalAlignment="Bottom">
+                    <Border  BorderThickness="1" BorderBrush="CadetBlue" Margin="2" CornerRadius="10" VerticalAlignment="Top">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" CornerRadius=" 10 10 0 0 " Margin="1">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#879ec0" Offset="0"/>
+                                        <GradientStop Color="White" Offset="1.5"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Label FontWeight="Bold" Foreground="White" HorizontalContentAlignment="Center" FontSize="18" Padding="0" Margin="0" Content="LANCE WORK" >
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
+                                    </Label.Effect>
+                                </Label>
+                            </Border>
+                            <UniformGrid Grid.Row="1" Margin="0" Columns="1">
+                                <GroupBox Height="110" Header="[UNIT 4 LANCE1]" FontSize="14">
+                                    <UniformGrid Columns="2">
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="212"
+                                            DeviceLamp="L" AddressLamp="10212"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="GreenYellow"
+                                            Content="START"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="213"
+                                            DeviceLamp="L" AddressLamp="10213"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="Red"
+                                            Content="STOP"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="215"
+                                            DeviceLamp="L" AddressLamp="10215"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="Orange"
+                                            Content="INITIAL"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <UniformGrid Margin="1" Columns="1">
+                                            <local:DataWord_D
+                                                Margin="0 0 0 0.5"
+                                                IsTabItem="False" 
+                                                FontFamily="Arial" 
+                                                FontSize="18"
+                                                NoOfDisplay="3"
+                                                NoOfDecimalDigits="0" 
+                                                CodeDevice="D" Device="811" 
+                                                IsReadOnly="True" 
+                                                Background="Black" 
+                                                Foreground="Red"
+>
+                                            </local:DataWord_D>
+                                            <!--<local:DataWord_D
+                                                Margin="0 0.5 0 0"
+                                                IsTabItem="False" 
+                                                FontFamily="Arial" 
+                                                FontSize="18"
+                                                NoOfDisplay="3"
+                                                NoOfDecimalDigits="0" 
+                                                CodeDevice="D" Device="803" 
+                                                IsReadOnly="True" 
+                                                Background="Black" 
+                                                Foreground="Red"
+>
+                                            </local:DataWord_D>-->
+                                        </UniformGrid>
+
+                                    </UniformGrid>
+                                </GroupBox>
+                                <GroupBox Height="110" Header="[UNIT 5 LANCE2]" FontSize="14">
+                                    <UniformGrid Columns="2">
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="216"
+                                            DeviceLamp="L" AddressLamp="10216"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="GreenYellow"
+                                            Content="START"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="217"
+                                            DeviceLamp="L" AddressLamp="10217"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="Red"
+                                            Content="STOP"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="219"
+                                            DeviceLamp="L" AddressLamp="10219"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="Orange"
+                                            Content="INITIAL"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <UniformGrid Margin="1" Columns="1">
+                                            <local:DataWord_D
+                                                Margin="0 0 0 0.5"
+                                                IsTabItem="False" 
+                                                FontFamily="Arial" 
+                                                FontSize="18"
+                                                NoOfDisplay="3"
+                                                NoOfDecimalDigits="0" 
+                                                CodeDevice="D" Device="813" 
+                                                IsReadOnly="True" 
+                                                Background="Black" 
+                                                Foreground="Red"
+>
+                                            </local:DataWord_D>
+                                            <!--<local:DataWord_D
+                                                Margin="0 0.5 0 0"
+                                                IsTabItem="False" 
+                                                FontFamily="Arial" 
+                                                FontSize="18"
+                                                NoOfDisplay="3"
+                                                NoOfDecimalDigits="0" 
+                                                CodeDevice="D" Device="803" 
+                                                IsReadOnly="True" 
+                                                Background="Black" 
+                                                Foreground="Red"
+>
+                                            </local:DataWord_D>-->
+                                        </UniformGrid>
+
+                                    </UniformGrid>
+                                </GroupBox>
+
+
+                            </UniformGrid>
+                        </Grid>
+                    </Border>
+
+                </UniformGrid>
+                <UniformGrid Grid.Column="1" Columns="1" VerticalAlignment="Top">
+                    <Border  BorderThickness="1" BorderBrush="CadetBlue" Margin="2" CornerRadius="10" VerticalAlignment="Top">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" CornerRadius=" 10 10 0 0 " Margin="1">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#879ec0" Offset="0"/>
+                                        <GradientStop Color="White" Offset="1.5"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Label FontWeight="Bold" Foreground="White" HorizontalContentAlignment="Center" FontSize="18" Padding="0" Margin="0" Content="UNLOADER WORK" >
+                                    <Label.Effect>
+                                        <DropShadowEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.3"/>
+                                    </Label.Effect>
+                                </Label>
+                            </Border>
+                            <UniformGrid Grid.Row="1" Margin="0" Columns="1">
+                                <GroupBox Height="110" Header="[UNIT 6; 7 UNLOADER C/V]" FontSize="14">
+                                    <UniformGrid Columns="2">
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="220"
+                                            DeviceLamp="L" AddressLamp="10220"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="GreenYellow"
+                                            Content="START"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="221"
+                                            DeviceLamp="L" AddressLamp="10221"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="Red"
+                                            Content="STOP"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="223"
+                                            DeviceLamp="L" AddressLamp="10223"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="Orange"
+                                            Content="INITIAL"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <UniformGrid Margin="1" Columns="1">
+                                            <local:DataWord_D
+                                                Margin="0 0 0 0.5"
+                                                IsTabItem="False" 
+                                                FontFamily="Arial" 
+                                                FontSize="18"
+                                                NoOfDisplay="3"
+                                                NoOfDecimalDigits="0" 
+                                                CodeDevice="D" Device="821" 
+                                                IsReadOnly="True" 
+                                                Background="Black" 
+                                                Foreground="Red"
+>
+                                            </local:DataWord_D>
+                                            <local:DataWord_D
+                                                Margin="0 0.5 0 0"
+                                                IsTabItem="False" 
+                                                FontFamily="Arial" 
+                                                FontSize="18"
+                                                NoOfDisplay="3"
+                                                NoOfDecimalDigits="0" 
+                                                CodeDevice="D" Device="823" 
+                                                IsReadOnly="True" 
+                                                Background="Black" 
+                                                Foreground="Red"
+>
+                                            </local:DataWord_D>
+                                        </UniformGrid>
+
+                                    </UniformGrid>
+                                </GroupBox>
+                                <GroupBox Height="110" Header="[UNIT 8 UNLOADER MGZ]" FontSize="14">
+                                    <UniformGrid Columns="2">
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="228"
+                                            DeviceLamp="L" AddressLamp="10228"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="GreenYellow"
+                                            Content="START"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="229"
+                                            DeviceLamp="L" AddressLamp="10229"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="Red"
+                                            Content="STOP"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <local:PLCButton
+                                            Action="Momentary"
+                                            IsTabItem="False"
+                                            DeviceWrite="L" AddressWrite="231"
+                                            DeviceLamp="L" AddressLamp="10231"
+                                            BackgroundLampOFF="Transparent"
+                                            BackgroundLampON="Orange"
+                                            Content="INITIAL"
+                                            Background="Transparent"
+                                            Foreground="Black"
+>
+                                        </local:PLCButton>
+                                        <UniformGrid Margin="1" Columns="1">
+                                            <local:DataWord_D
+                                                Margin="0 0 0 0.5"
+                                                IsTabItem="False" 
+                                                FontFamily="Arial" 
+                                                FontSize="18"
+                                                NoOfDisplay="3"
+                                                NoOfDecimalDigits="0" 
+                                                CodeDevice="D" Device="825" 
+                                                IsReadOnly="True" 
+                                                Background="Black" 
+                                                Foreground="Red"
+>
+                                            </local:DataWord_D>
+                                            <!--<local:DataWord_D
+                                                Margin="0 0.5 0 0"
+                                                IsTabItem="False" 
+                                                FontFamily="Arial" 
+                                                FontSize="18"
+                                                NoOfDisplay="3"
+                                                NoOfDecimalDigits="0" 
+                                                CodeDevice="D" Device="803" 
+                                                IsReadOnly="True" 
+                                                Background="Black" 
+                                                Foreground="Red"
+>
+                                            </local:DataWord_D>-->
+                                        </UniformGrid>
+
+                                    </UniformGrid>
+                                </GroupBox>
+
 
                             </UniformGrid>
                         </Grid>
@@ -306,7 +723,7 @@
 
 
 
-                <UniformGrid Grid.Column="2" Columns="1" VerticalAlignment="Top">
+                <UniformGrid Grid.Column="2" Columns="1" VerticalAlignment="Bottom">
                     <Border  BorderThickness="1" BorderBrush="CadetBlue" Margin="2" CornerRadius="10" VerticalAlignment="Top">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -327,7 +744,7 @@
                                 </Label>
                             </Border>
                             <UniformGrid Grid.Row="1" Margin="0" Columns="1">
-                                <GroupBox Height="120" Header="[INPUT]">
+                                <GroupBox Height="110" Header="[INPUT]">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition/>

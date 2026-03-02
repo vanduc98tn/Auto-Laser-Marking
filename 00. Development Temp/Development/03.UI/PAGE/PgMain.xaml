@@ -619,7 +619,7 @@
                                     FontSize="18"
                                     FontWeight="Bold"
                                     BackgroundLampOFF="LightGray"
-                                    BackgroundLampON="Orange"
+                                    BackgroundLampON="Purple"
                                     IsComfrim="True"
                                     IsMesComfrim="Confrim to LotEnd?"
 >
@@ -1056,7 +1056,7 @@
                             Foreground="Black"
                             FontSize="30"
                             BackgroundLampOFF="LightGray"
-                            BackgroundLampON="BlueViolet"
+                            BackgroundLampON="Orange"
                             IsComfrim="True"
                             IsMesComfrim="Confrim Home All Machine?"
 >

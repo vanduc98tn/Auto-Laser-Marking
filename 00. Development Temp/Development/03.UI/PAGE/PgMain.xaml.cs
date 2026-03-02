@@ -219,22 +219,23 @@ namespace Development
 
                         this.UpdateUIMES($"BYPASS TRIGGER SCANNER", Brushes.LightGreen);
 
-                        var numbers = pattern.positionNGs;
-                        var set = new HashSet<int>(numbers);
+                        //var numbers = pattern.positionNGs;
+                        //var set = new HashSet<int>(numbers);
 
-                        int max = set.Max();
-                        StringBuilder sb = new StringBuilder();
+                        //int max = set.Max();
+                        //StringBuilder sb = new StringBuilder();
 
-                        for (int i = 1; i <= max; i++)
-                        {
-                            sb.Append(set.Contains(i) ? '1' : '0');
-                        }
+                        //for (int i = 1; i <= max; i++)
+                        //{
+                        //    sb.Append(set.Contains(i) ? '1' : '0');
+                        //}
 
-                        string result = sb.ToString();
+                        //string result = sb.ToString();
 
-                        DataPCB.PRE_BIN_CODE = result;
+                        //DataPCB.PRE_BIN_CODE = result;
 
-                        int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE);
+                        //int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE);
+                        int[] workinNG = pattern.positionNGs.ToArray();
                         this.UpdateUIMESRESULT(workinNG);
 
                         this.isQR = true;
@@ -253,7 +254,6 @@ namespace Development
 
                     if (UiManager.Instance.laserCOM.isOpen())
                     {
-                        this.addLog("--- Send data Laser checking --- ");
                         SendLaser();
                     }
                     else
