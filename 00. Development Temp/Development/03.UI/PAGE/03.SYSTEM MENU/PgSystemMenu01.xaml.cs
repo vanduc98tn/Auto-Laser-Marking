@@ -55,7 +55,6 @@ namespace Development
             }
             else
             {
-
                 string[] arr = input.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray();
                 UiManager.appSetting.RUN.MES_EXCLUSION = arr;
             }    
