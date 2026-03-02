@@ -55,11 +55,9 @@ namespace Development
             }
             else
             {
-                if (!string.IsNullOrWhiteSpace(input))
-                {
-                    string[] arr = input.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray();
-                    UiManager.appSetting.RUN.MES_EXCLUSION = arr;
-                }
+
+                string[] arr = input.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray();
+                UiManager.appSetting.RUN.MES_EXCLUSION = arr;
             }    
             
         }
@@ -136,8 +134,9 @@ namespace Development
         }
         private bool IsValidFormat(string input)
         {
-            if (string.IsNullOrWhiteSpace(input))
-                return true;
+            if (input == null)  return false;
+            if (input == "") return true;
+            if (string.IsNullOrWhiteSpace(input)) return false;
 
             string pattern = @"^[A-Za-z0-9]+(;[A-Za-z0-9]+)*$";
 
