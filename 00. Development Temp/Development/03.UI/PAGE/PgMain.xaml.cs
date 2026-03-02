@@ -141,7 +141,7 @@ namespace Development
                     if (UiManager.appSetting.RUN.CheckScanner)
                     {
                         string QR = UiManager.Instance.scannerTCP.ReadQR();
-                        //QR = "PCBID1234567890";
+                        //QR = "B0226007100039500172361";
                         //QR = "";
 
                         if (!string.IsNullOrEmpty(QR))
@@ -172,23 +172,10 @@ namespace Development
                                 addLog("Write Bit Workout MES OK M620 = ON");
                                 addLog("Write Bit Workout MES OK M621 = OFF");
 
-                                var numbers = pattern.positionNGs;
-                                var set = new HashSet<int>(numbers);
-
-                                int max = set.Max();
-                                StringBuilder sb = new StringBuilder();
-
-                                for (int i = 1; i <= max; i++)
-                                {
-                                    sb.Append(set.Contains(i) ? '1' : '0');
-                                }
-
-                                string result = sb.ToString();
-
-                                DataPCB.PRE_BIN_CODE = result;
-
-                                int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE);
+                                int[] workinNG = pattern.positionNGs.ToArray();
                                 this.UpdateUIMESRESULT(workinNG);
+
+                                DataPCB.PRE_BIN_CODE = GetBinCode(pattern.positionNGs.ToArray());
 
                                 this.isQR = true;
 
@@ -219,24 +206,10 @@ namespace Development
 
                         this.UpdateUIMES($"BYPASS TRIGGER SCANNER", Brushes.LightGreen);
 
-                        //var numbers = pattern.positionNGs;
-                        //var set = new HashSet<int>(numbers);
-
-                        //int max = set.Max();
-                        //StringBuilder sb = new StringBuilder();
-
-                        //for (int i = 1; i <= max; i++)
-                        //{
-                        //    sb.Append(set.Contains(i) ? '1' : '0');
-                        //}
-
-                        //string result = sb.ToString();
-
-                        //DataPCB.PRE_BIN_CODE = result;
-
-                        //int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE);
                         int[] workinNG = pattern.positionNGs.ToArray();
                         this.UpdateUIMESRESULT(workinNG);
+
+                        DataPCB.PRE_BIN_CODE = GetBinCode(pattern.positionNGs.ToArray());
 
                         this.isQR = true;
 
@@ -688,6 +661,7 @@ namespace Development
         public void SendLaser()
         {
             int[] arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE, UiManager.appSetting.RUN.MES_EXCLUSION);
+            addLog($"Send data ready: Prg<{pattern.PrgLaser}>; Data<{string.Join(",", arrBlock)}>");
 
             string switchprg = UiManager.Instance.laserCOM.SendSwitchPrg(pattern.PrgLaser);
 
@@ -706,18 +680,18 @@ namespace Development
                 }
             }
 
-            string message = "- Check MES connection again / MES not respond. :\r\n" +
-                                "  + Verify IP configuration\r\n" +
-                                "  + Verify network connectivity\r\n" +
-                                "  + Verify Laser READY status\r\n" +
-                                "  + Verify Laser Command Code\r\n" +
-                                "  + Verify index MES and Vision\r\n" +
-                                "- Kiểm tra lại kết nối MES / MES không phản hồi:\r\n" +
-                                "  + Kiểm tra lại setting IP\r\n" +
-                                "  + Kiểm tra lại đường truyền\r\n" +
-                                "  + Kiểm tra lại trạng thái READY của Laser\r\n" +
-                                "  + Kiểm tra lại chuỗi gửi Laser\r\n" +
-                                "  + Kiểm tra lại giá trị index NG của MES và Vision\r\n";
+            string message = "- Check Laser connection again / COM not respond:\r\n" +
+                            "  + Verify Laser configuration\r\n" +
+                            "  + Verify COM connectivity\r\n" +
+                            "  + Verify Laser READY status\r\n" +
+                            "  + Verify Laser Command Code\r\n" +
+                            "  + Verify index MES and Vision\r\n" +
+                            "- Kiểm tra lại kết nối Laser / COM không phản hồi:\r\n" +
+                            "  + Kiểm tra lại setting Laser\r\n" +
+                            "  + Kiểm tra lại đường truyền COM\r\n" +
+                            "  + Kiểm tra lại trạng thái READY của Laser\r\n" +
+                            "  + Kiểm tra lại chuỗi gửi Laser\r\n" +
+                            "  + Kiểm tra lại giá trị index NG của MES và Vision\r\n";
 
             AddErrorMES($"Error: Laser COM Response error!", message);
 
@@ -781,6 +755,20 @@ namespace Development
             }
 
             return lts.ToArray();
+        }
+        public string GetBinCode(int[] arr)
+        {
+            var set = new HashSet<int>(arr);
+
+            int max = set.Max();
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 1; i <= max; i++)
+            {
+                sb.Append(set.Contains(i) ? '1' : '0');
+            }
+
+            return sb.ToString();
         }
 
 
