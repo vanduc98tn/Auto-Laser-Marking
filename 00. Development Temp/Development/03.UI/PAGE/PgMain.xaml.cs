@@ -509,7 +509,7 @@ namespace Development
                 addLog("MES CHECK PCB WORKIN OK");
                 UpdateUIMES("MES CHECK PCB WORKIN OK", Brushes.LightGreen);
 
-                int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE);
+                int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE, UiManager.appSetting.RUN.MES_EXCLUSION);
                 this.UpdateUIMESRESULT(workinNG);
 
                 this.isQR = true;
@@ -687,7 +687,7 @@ namespace Development
 
         public void SendLaser()
         {
-            int[] arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE);
+            int[] arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE, UiManager.appSetting.RUN.MES_EXCLUSION);
 
             string switchprg = UiManager.Instance.laserCOM.SendSwitchPrg(pattern.PrgLaser);
 
@@ -756,19 +756,31 @@ namespace Development
 
             return new string(arr);
         }
-        public int[] BinCodeNG(string bincode)
+        public int[] BinCodeNG(string bincode, string[] exclusion = null)
         {
             List<int> lts = new List<int>();
 
+            HashSet<char> excludeSet = null;
+
+            if (exclusion != null && exclusion.Length > 0)
+            {
+                excludeSet = new HashSet<char>(
+                    exclusion.SelectMany(x => x)
+                );
+            }
+
             for (int i = 0; i < bincode.Length; i++)
             {
-                if (bincode[i] != '0')
+                char current = bincode[i];
+
+                if (current != '0' &&
+                    (excludeSet == null || !excludeSet.Contains(current)))
                 {
-                    lts.Add(i + 1);   // Lưu vị trí index
+                    lts.Add(i + 1);
                 }
             }
-            return lts.ToArray();
 
+            return lts.ToArray();
         }
 
 
