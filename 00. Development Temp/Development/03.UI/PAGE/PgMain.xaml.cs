@@ -1274,7 +1274,8 @@ namespace Development
                 Thread.Sleep(20);
             }
         }
-       
+
+        
         private void UpdateError()
         {
             Application.Current.Dispatcher.Invoke(delegate ()
@@ -1324,6 +1325,26 @@ namespace Development
         {
             //UiManager.Instance.PLC.AddBitAddress("M", 100);
         }
+        public void WorkinManual()
+        {
+            //WndUnitControl1 wnd1 = new WndUnitControl1();
+            //string QR = wnd1.tbQRManual.Text;
+            string QR = "B0226007100039500172361";
+            this.UpdateUIQR(QR, true);
+
+            DataPCB = new DataPCB();
+            DataPCB.BARCODE_PCB = QR;
+            CheckMESWorkin();
+        }
+        public void WorkOutManual()
+        {
+            //int[] arr = { 1, 3, 4, 9, 21, 19, 42 };
+
+            //DataPCB.VISION_NG = arr;
+            //UpdateUIVISIONRESULT(DataPCB.VISION_NG);
+            CheckMESWorkout();
+        }
+
         private void BtStart_Click(object sender, RoutedEventArgs e)
         {
             string QR = "B0226007100039500172361";

@@ -20,6 +20,9 @@ namespace Development
     /// </summary>
     public partial class WndUnitControl1 : Window
     {
+        PgMain pgMain = new PgMain();
+
+
         public WndUnitControl1()
         {
             InitializeComponent();
@@ -34,14 +37,26 @@ namespace Development
             //this.btMenuTab04.Click += BtMenuTab04_Click;
 
             this.btClose.Click += BtClose_Click;
+
+            this.btWorkIn.Click += BtWorkIn_Click;
+            this.btWorkOut.Click += BtWorkOut_Click;
         }
 
+
+
+        private void BtWorkOut_Click(object sender, RoutedEventArgs e)
+        {
+            pgMain.WorkOutManual();
+
+        }
+        private void BtWorkIn_Click(object sender, RoutedEventArgs e)
+        {
+            pgMain.WorkinManual();
+        }
         private void BtClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
-
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
 

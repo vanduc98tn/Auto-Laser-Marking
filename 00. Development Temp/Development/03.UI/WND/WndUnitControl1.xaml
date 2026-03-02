@@ -275,12 +275,25 @@
                                             DeviceWrite="L" AddressWrite="1003"
                                             DeviceLamp="L" AddressLamp="11003"
                                             BackgroundLampOFF="Transparent"
-                                            BackgroundLampON="Yellow"
+                                            BackgroundLampON="Orange"
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
 >
                                         </local:PLCButton>
+                                        <local:DataWord_D
+                                            Margin="3"
+                                            IsTabItem="False" 
+                                            FontFamily="Arial" 
+                                            FontSize="20"
+                                            NoOfDisplay="3"
+                                            NoOfDecimalDigits="0" 
+                                            CodeDevice="D" Device="2582" 
+                                            IsReadOnly="True" 
+                                            Background="Black" 
+                                            Foreground="Red"
+>
+                                        </local:DataWord_D>
                                     </UniformGrid>
                                 </GroupBox>
                                 
@@ -314,13 +327,48 @@
                                 </Label>
                             </Border>
                             <UniformGrid Grid.Row="1" Margin="0" Columns="1">
-                                <GroupBox Height="80" Header="[INPUT]">
-                                    <UniformGrid Columns="2" Margin="4">
-                                        <Button Name="btWorkIn" Content="WorkIn" BorderThickness="1" FontSize="18"/>
-                                        <Button Name="btWorkOut" Content="WorkOut" BorderThickness="1" FontSize="18"/>
+                                <GroupBox Height="120" Header="[INPUT]">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <UniformGrid Grid.Row="0" Columns="2" Margin="4">
+                                            <Button Name="btWorkIn" Content="WorkIn" BorderThickness="1" FontSize="18"/>
+                                            <Button Name="btWorkOut" Content="WorkOut" BorderThickness="1" FontSize="18"/>
+                                        </UniformGrid>
+                                        <TextBox Grid.Row="1" x:Name="tbQRManual" Padding="10,0,0,0" Margin="5 10 5 5" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="Black">
+                                            <TextBox.Style>
+                                                <Style TargetType="TextBox">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="TextBox">
+                                                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                                                                    <Grid>
+                                                                        <ScrollViewer x:Name="PART_ContentHost"/>
+                                                                        <TextBlock Text="QR Code input" Foreground="Gray" Margin="10,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False">
+                                                                            <TextBlock.Style>
+                                                                                <Style TargetType="TextBlock">
+                                                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                                                    <Style.Triggers>
+                                                                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                                        </DataTrigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </TextBlock.Style>
+                                                                        </TextBlock>
+                                                                    </Grid>
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </TextBox.Style>
+                                        </TextBox>
+                                    </Grid>
 
-
-                                    </UniformGrid>
+                                    
                                 </GroupBox>
 
 
