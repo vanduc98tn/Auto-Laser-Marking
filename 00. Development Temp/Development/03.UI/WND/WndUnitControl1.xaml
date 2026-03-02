@@ -141,7 +141,7 @@
                         </local:PLCButton>
                         <Button Grid.Column="3" x:Name="btClose" Margin="2">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="01.Image/Close.png" Margin="2"></Image>
+                                <Image Source="/01.IMAGE/Close.png" Margin="4"></Image>
                                 <TextBlock VerticalAlignment="Center" Padding="5,0,0,0">Close</TextBlock>
                             </StackPanel>
                         </Button>
@@ -243,7 +243,7 @@
                                 </Label>
                             </Border>
                             <UniformGrid Grid.Row="1" Margin="0" Columns="1">
-                                <GroupBox Height="140" Header="[INPUT]">
+                                <GroupBox Height="120" Header="[INPUT]">
                                     <UniformGrid Columns="2">
                                         <local:PLCButton
                                             Action="Momentary"
@@ -315,11 +315,11 @@
                             </Border>
                             <UniformGrid Grid.Row="1" Margin="0" Columns="1">
                                 <GroupBox Height="80" Header="[INPUT]">
-                                    <UniformGrid Columns="2">
-                                        <Button Name="btWorkIn" Content="">
-                                        </Button>
-                                        
-                                        
+                                    <UniformGrid Columns="2" Margin="4">
+                                        <Button Name="btWorkIn" Content="WorkIn" BorderThickness="1" FontSize="18"/>
+                                        <Button Name="btWorkOut" Content="WorkOut" BorderThickness="1" FontSize="18"/>
+
+
                                     </UniformGrid>
                                 </GroupBox>
 
