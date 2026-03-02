@@ -279,6 +279,7 @@
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
+                                            IsComfrim="True"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -348,6 +349,7 @@
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
+                                            IsComfrim="True"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -445,6 +447,7 @@
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
+                                            IsComfrim="True"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -514,6 +517,7 @@
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
+                                            IsComfrim="True"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -611,6 +615,7 @@
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
+                                            IsComfrim="True"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -680,6 +685,7 @@
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
+                                            IsComfrim="True"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
