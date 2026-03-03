@@ -25,7 +25,7 @@
                 <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                     <GradientStop Color="#879ec0" Offset="1"/>
                     <GradientStop Color="White" Offset="1"/>
-                    
+
                 </LinearGradientBrush>
             </Grid.Background>
             <Grid.RowDefinitions>
@@ -86,7 +86,7 @@
                            VerticalContentAlignment="Center" 
                            Foreground="White"
                            HorizontalContentAlignment="Center" 
-                           Background="Transparent">QR</Label>-->  
+                           Background="Transparent">QR</Label>-->
 
                 </Grid>
                 <Grid Grid.Column="1">
@@ -132,59 +132,59 @@
             </Grid>
 
             <Grid Grid.Row="1" Background="White">
-    <Grid Grid.Row="0" Margin="0 2 0 0">
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                <GradientStop Color="White" Offset="0"/>
-                <GradientStop Color="#879ec0" Offset="1.1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.8*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="0.6*"></ColumnDefinition>
-            <ColumnDefinition Width="0.3*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="3.5*"></ColumnDefinition>
+                <Grid Grid.Row="0" Margin="0 2 0 0">
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                            <GradientStop Color="White" Offset="0"/>
+                            <GradientStop Color="#879ec0" Offset="1.1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.6*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="3.5*"></ColumnDefinition>
 
-        </Grid.ColumnDefinitions>
-        <Label Grid.Column="0"
-                FontSize="20" 
-                FontWeight="Bold" 
-                VerticalContentAlignment="Center" 
-                HorizontalContentAlignment="Right"  Background="Transparent">Equipment:</Label>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                            FontSize="20" 
+                            FontWeight="Bold" 
+                            VerticalContentAlignment="Center" 
+                            HorizontalContentAlignment="Right"  Background="Transparent">Equipment:</Label>
 
-        <Border Margin="5,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
-            <Label Name="lbEquipmentId" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" Content="Equipment ID" FontFamily="Bahnschrift SemiBold Condensed" FontSize="20" ></Label>
-        </Border>
+                    <Border Margin="5,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
+                        <Label Name="lbEquipmentId" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" Content="Equipment ID" FontFamily="Bahnschrift SemiBold Condensed" FontSize="20" ></Label>
+                    </Border>
 
                     <Label Grid.Column="2" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0 0 5 0" Background="Transparent">Model:</Label>
 
-        <Border Margin="0,5,2,5" Grid.Column="3" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,2,2,10" Grid.Row="0" >
+                    <Border Margin="0,5,2,5" Grid.Column="3" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,2,2,10" Grid.Row="0" >
                         <Label Name="lblModelNo" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#333333" Content="No." FontFamily="Bahnschrift SemiBold Condensed" FontSize="20"></Label>
-        </Border>
-        <Border Margin="0,5,5,5" Grid.Column="4" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="2,10,10,2" Grid.Row="0" >
+                    </Border>
+                    <Border Margin="0,5,5,5" Grid.Column="4" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="2,10,10,2" Grid.Row="0" >
                         <Label Name="lblModelName" Grid.Row="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10 0 0 0" Foreground="#333333" Content="Model Name..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="20"></Label>
-        </Border>
-        <Border Margin="0,5,5,5" Grid.Column="5" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
+                    </Border>
+                    <Border Margin="0,5,5,5" Grid.Column="5" Background="White" BorderBrush="#444444" BorderThickness="1" CornerRadius="10,10,10,10" Grid.Row="0" >
                         <Label Name="lblStatust" Grid.Row="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10 0 0 0" Foreground="Green" Content="Update Statust Current Machine : Thông báo trạng thái máy " FontFamily="Bahnschrift SemiBold Condensed" FontSize="18"></Label>
-        </Border>
+                    </Border>
 
-        <!--Hien thi Thiet bi-->
-        <!--<Grid Grid.Column="5">
-            <UniformGrid Grid.Column="3" Columns="3" Rows="2" >
-                <Label Margin="0,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">MES</Label>
-                <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">PLC</Label>
-                <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">Scanner</Label>
+                    <!--Hien thi Thiet bi-->
+                    <!--<Grid Grid.Column="5">
+                    <UniformGrid Grid.Column="3" Columns="3" Rows="2" >
+                        <Label Margin="0,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">MES</Label>
+                        <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">PLC</Label>
+                        <Label Margin="1,0,0,0" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#6787c0" FontSize="9">Scanner</Label>
 
-                <Label Margin="0,0,0,0" x:Name="lbMesConnect1" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9" >Disconnect</Label>
-                <Label Margin="1,0,0,0" x:Name="lbPlcConnect1" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
-                <Label Margin="1,0,0,0" x:Name="lbScannerConnect1" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
-            </UniformGrid>
-        </Grid>-->
-    </Grid>
+                        <Label Margin="0,0,0,0" x:Name="lbMesConnect1" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9" >Disconnect</Label>
+                        <Label Margin="1,0,0,0" x:Name="lbPlcConnect1" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
+                        <Label Margin="1,0,0,0" x:Name="lbScannerConnect1" Background="Orange" Foreground="White" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="9">Disconnect</Label>
+                    </UniformGrid>
+                </Grid>-->
+                </Grid>
 
-</Grid>
+            </Grid>
 
 
         </Grid>

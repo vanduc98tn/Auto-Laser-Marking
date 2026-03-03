@@ -141,7 +141,7 @@ namespace Development
                     wndMes0.MessengerShow($"Cannot find Model {modelDelete.modelName}!!!", Window.GetWindow(this));
                     return;
                 }
-                if (String.Equals(modelDelete.modelName, this.lblModel.Content.ToString()))
+                if (String.Equals(modelDelete.modelName, this.lblModelName.Content.ToString()))
                 {
                     wndMes0.MessengerShow("You Cannot Delete Current Model !!!", Window.GetWindow(this));
                     return;
@@ -154,7 +154,8 @@ namespace Development
         private void BtLoadModel_Click(object sender, RoutedEventArgs e)
         {
             WndComfirm wnd = new WndComfirm();
-            if (wnd.DoComfirmYesNo($"Do you want to Load Model {SelectNumberModel}"))
+            if (wnd.DoComfirmYesNo($"Do you want to Load Model {SelectNumberModel}\n\r" +
+                                    $"Sẽ ghi đè toàn bộ dữ liệu Model {SelectNumberModel} vào dữ liệu hiện tại của máy đang chạy"))
             {
                 try
                 {
@@ -216,7 +217,7 @@ namespace Development
                     if (loadedModel != null)
                     {
                         UiManager.ReplaceModel(loadedModel);
-                        lblModel.Content = loadedModel.modelName;
+                        lblModelName.Content = loadedModel.modelName;
                         lblModelNo.Content = $"{loadedModel.indexModel:D2}";
                     }
                     else
@@ -235,7 +236,8 @@ namespace Development
         private void BtSaveModel_Click(object sender, RoutedEventArgs e)
         {
             WndComfirm wnd = new WndComfirm();
-            if (wnd.DoComfirmYesNo("Do you want to Save Model"))
+            if (wnd.DoComfirmYesNo($"Do you want to Save Model {SelectNumberModel}\n\r" +
+                                    $"Sẽ ghi đè toàn bộ dữ liệu hiện tại của máy đang chạy vào Model {SelectNumberModel}"))
             {
                 this.SaveModel();
             }
@@ -430,7 +432,7 @@ namespace Development
 
         private void PgModel_Loaded(object sender, RoutedEventArgs e)
         {
-            this.lblModel.Content = UiManager.appSetting.currentModel;
+            this.lblModelName.Content = UiManager.appSetting.currentModel;
             this.txbModel1.Text = "Model Null";
             this.txbModel2.Text = "Model Null";
             this.txbModel3.Text = "Model Null";

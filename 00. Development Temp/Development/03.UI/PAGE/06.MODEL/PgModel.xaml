@@ -90,12 +90,14 @@
                         <ColumnDefinition Width="3.5*"></ColumnDefinition>
 
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"   Content="Curent Model Name " Foreground="Black" FontSize="21" FontWeight="Bold"></Label>
-                    <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                        <Label Name="lblModelNo" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" Content="00" FontFamily="Bahnschrift SemiBold Condensed" FontSize="35"></Label>
+                    
+                    <Label Grid.Column="0" FontSize="26" FontWeight="Bold" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0 0 5 0" Background="Transparent">Current model:</Label>
+
+                    <Border Margin="0,5,2,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,2,2,10" Grid.Row="0" >
+                        <Label Name="lblModelNo" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#333333" Content="No." FontFamily="Bahnschrift SemiBold Condensed" FontSize="35"></Label>
                     </Border>
-                    <Border Margin="0,5,5,5" Grid.Column="2" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                        <Label Name="lblModel" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" Content="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="35"></Label>
+                    <Border Margin="0,5,5,5" Grid.Column="2" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="2,10,10,2" Grid.Row="0" >
+                        <Label Name="lblModelName" Grid.Row="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="10 0 0 0" Foreground="#333333" Content="Model Name..." FontFamily="Bahnschrift SemiBold Condensed" FontSize="35"></Label>
                     </Border>
 
                 </Grid>
@@ -133,7 +135,7 @@
                             </Label.Effect>
                         </Label>
                     </Border>
-                    <Grid Grid.Row="1" Margin=" 0 0 0 0">
+                    <Grid Grid.Row="1" Margin=" 0 0 0 0" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -143,7 +145,7 @@
                             <TextBox Name="txbModel1" Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="2" Margin=" 0 0 0 0">
+                    <Grid Grid.Row="2" Margin=" 0 0 0 0" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -153,7 +155,7 @@
                             <TextBox Name="txbModel2"   Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="3" Margin=" 0 0 0 0">
+                    <Grid Grid.Row="3" Margin=" 0 0 0 0" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -163,7 +165,7 @@
                             <TextBox Name="txbModel3"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="4" Margin=" 0 0 0 0">
+                    <Grid Grid.Row="4" Margin=" 0 0 0 0" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -173,7 +175,7 @@
                             <TextBox Name="txbModel4"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="5" Margin=" 0 0 0 0">
+                    <Grid Grid.Row="5" Margin=" 0 0 0 0" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -183,7 +185,7 @@
                             <TextBox Name="txbModel5"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="6" Margin=" 0 0 0 0">
+                    <Grid Grid.Row="6" Margin=" 0 0 0 0" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -193,7 +195,7 @@
                             <TextBox Name="txbModel6"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="7" Margin=" 0 0 0 0">
+                    <Grid Grid.Row="7" Margin=" 0 0 0 0" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -203,7 +205,7 @@
                             <TextBox Name="txbModel7"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="8" Margin=" 0 0 0 0">
+                    <Grid Grid.Row="8" Margin=" 0 0 0 0" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -213,7 +215,7 @@
                             <TextBox Name="txbModel8"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="9" Margin=" 0 0 0 0">
+                    <Grid Grid.Row="9" Margin=" 0 0 0 0" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -223,7 +225,7 @@
                             <TextBox Name="txbModel9"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="10" Margin=" 0 0 0 0">
+                    <Grid Grid.Row="10" Margin=" 0 0 0 0" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
@@ -293,7 +295,7 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label  Grid.Column="0" Margin="2,2,2,2" Content="Select Model No"></Label>
+                        <Label  Grid.Column="0" Margin="2,2,2,2" Content="Select Model No."></Label>
                         <Border Grid.Column="1" Margin="10" Background="Black">
                             <TextBlock x:Name="txtSelectModel" Text="0" Padding="0"></TextBlock>
                         </Border>
@@ -351,9 +353,9 @@
                             <ColumnDefinition Width="90"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label  Grid.Column="0" Margin="2,2,2,2" Content="Select Model No"></Label>
+                        <Label  Grid.Column="0" Margin="2,2,2,2" Content="No. Copy from"></Label>
                         <TextBox x:Name="TbxModelCopy"  Grid.Column="1" Margin="10" Text="0"></TextBox>
-                        <Label  Grid.Column="2" Margin="2,2,2,2" Content="Select Model No"></Label>
+                        <Label  Grid.Column="2" Margin="2,2,2,2" Content="No. Copy to"></Label>
                         <TextBox x:Name="TbxModelPaste"  Grid.Column="3" Margin="10" Text="0"></TextBox>
                         <Button x:Name="BtnCopyData" Grid.Column="4" Margin="10">Copy Data</Button>
                     </Grid>
