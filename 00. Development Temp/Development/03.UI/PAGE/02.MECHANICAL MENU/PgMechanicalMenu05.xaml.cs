@@ -668,28 +668,24 @@ namespace Development
                 string rec1 = "";
                 if (block == null || block.Length == 0)
                 {
-                    cmd1 = $"D6,{prg},0,999";
+                    cmd1 = $"D6,{prg},1,999";
                     cmd1 += "\r";
 
                     UpdateLogs($"Send: {cmd1.Replace("\r", "<CR>")}");
                     rec1 = UiManager.Instance.laserCOM.SendBlockOff(prg);
-                    UpdateLogs($"Receive: {rec1?.Replace("\r", "<CR>")}");
-                }   
+                }
                 else
                 {
                     cmd1 = $"D6,{prg},1";
 
-                    if (block != null && block.Length > 0)
-                    {
-                        cmd1 += "," + string.Join(",", block);
-                    }
+                    cmd1 += "," + string.Join(",", block);
                     cmd1 += "\r";
 
                     UpdateLogs($"Send: {cmd1.Replace("\r", "<CR>")}");
                     rec1 = UiManager.Instance.laserCOM.SendBlockOn(prg, block);
-                    UpdateLogs($"Receive: {rec1?.Replace("\r", "<CR>")}");
-
                 }
+
+                UpdateLogs($"Receive: {rec1?.Replace("\r", "<CR>")}");
 
                 if (rec1 != "NG")
                 {
@@ -697,7 +693,7 @@ namespace Development
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, plc, true);
                     Thread.Sleep(500);
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, plc, false);
-                    UpdateLogs($"Write bit Trigger: L{plc}");
+                    UpdateLogs($"Write bit Trigger: L{plc} 500ms");
                 }
             }
 

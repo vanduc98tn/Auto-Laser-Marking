@@ -359,7 +359,7 @@ namespace Development
         public string SendBlockOff(int prg, params int[] block)
         {
             string repStr = $"D6,0"; //Response send D6 ok
-            string cmd = $"D6,{prg},0,999";
+            string cmd = $"D6,{prg},1,999";
 
             cmd += "\r";
 

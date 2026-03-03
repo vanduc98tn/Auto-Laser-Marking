@@ -670,7 +670,12 @@ namespace Development
                 if (arrBlock == null || arrBlock.Length == 0)
                 {
                     addLog("--- Workin MES return all OK --- ");
+                    // SEND PLC LASER OK
+                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 617, true);
+                    addLog("Write Bit Laser all OK M617 = ON");
+
                     blockon = UiManager.Instance.laserCOM.SendBlockOff(pattern.PrgLaser);
+                   
                 }
                 else
                 {
