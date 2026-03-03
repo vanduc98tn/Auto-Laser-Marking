@@ -356,6 +356,26 @@ namespace Development
             }
             else return "NG";
         }
+        public string SendBlockOff(int prg, params int[] block)
+        {
+            string repStr = $"D6,0"; //Response send D6 ok
+            string cmd = $"D6,{prg},0,999";
+
+            cmd += "\r";
+
+            byte[] bycmd = Encoding.ASCII.GetBytes(cmd);
+            byte[] rec = SendWaitResponse(bycmd);
+
+            string recStr = "";
+            if (rec != null) recStr = Encoding.ASCII.GetString(rec);
+
+            if (recStr == repStr && recStr != string.Empty)
+            //if (rec != null)
+            {
+                return recStr;
+            }
+            else return "NG";
+        }
 
     }
 }

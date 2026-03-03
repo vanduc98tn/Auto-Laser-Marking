@@ -660,25 +660,23 @@ namespace Development
 
         public void SendLaser()
         {
+            string blockon = "NG";
             int[] arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE, UiManager.appSetting.RUN.MES_EXCLUSION);
-            addLog($"Send data ready: Prg<{pattern.PrgLaser}>; Data<{string.Join(",", arrBlock)}>");
-
-            if (arrBlock == null || arrBlock.Length == 0)
-            {
-                addLog("--- Workin MES return all OK --- ");
-                // SEND PLC LASER OK
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
-                addLog("Write Bit Laser OK M615 = ON");
-                addLog("Write Bit Laser NG M616 = OFF");
-                return;
-            }    
 
             string switchprg = UiManager.Instance.laserCOM.SendSwitchPrg(pattern.PrgLaser);
 
             if (switchprg != "NG")
             {
-                string blockon = UiManager.Instance.laserCOM.SendBlockOn(pattern.PrgLaser, arrBlock);
+                if (arrBlock == null || arrBlock.Length == 0)
+                {
+                    addLog("--- Workin MES return all OK --- ");
+                    blockon = UiManager.Instance.laserCOM.SendBlockOff(pattern.PrgLaser);
+                }
+                else
+                {
+                    addLog($"Send data ready: Prg<{pattern.PrgLaser}>; Data<{string.Join(",", arrBlock)}>");
+                    blockon = UiManager.Instance.laserCOM.SendBlockOn(pattern.PrgLaser, arrBlock);
+                }    
 
                 if (blockon != "NG")
                 {
