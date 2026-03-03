@@ -76,7 +76,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS9")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5272, 9);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15776, true);
@@ -88,7 +88,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS8")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5272, 8);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15776, true);
@@ -100,7 +100,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS7")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5272, 7);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15776, true);
@@ -112,7 +112,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS6")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5272, 6);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15776, true);
@@ -124,7 +124,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS5")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5272, 5);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15776, true);
@@ -136,7 +136,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS4")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5272, 4);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15776, true);
@@ -148,7 +148,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS3")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5272, 3);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15776, true);
@@ -160,7 +160,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS2")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5272, 2);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15776, true);
@@ -172,7 +172,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS1")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5272, 1);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15776, true);
@@ -184,7 +184,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS0")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5272, 0);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15776, true);
@@ -200,7 +200,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS12")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 12);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -212,7 +212,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS11")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 11);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -224,7 +224,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS10")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 10);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -236,7 +236,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS9")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 9);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -248,7 +248,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS8")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 8);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -260,7 +260,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS7")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 7);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -272,7 +272,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS6")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 6);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -284,7 +284,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS5")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 5);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -296,7 +296,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS4")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 4);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -308,7 +308,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS3")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 3);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -320,7 +320,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS2")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 2);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -332,7 +332,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS1")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 1);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -344,7 +344,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS0")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5242, 0);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15746, true);
@@ -359,7 +359,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS12")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 12);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
@@ -371,7 +371,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS11")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 11);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
@@ -383,7 +383,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS10")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 10);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
@@ -395,7 +395,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS9")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 9);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
@@ -407,7 +407,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS8")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 8);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
@@ -419,7 +419,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS7")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 7);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
@@ -431,7 +431,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS6")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 6);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
@@ -443,7 +443,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS5")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 5);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
@@ -455,7 +455,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS4")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 4);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
@@ -467,7 +467,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS3")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 3);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
@@ -479,7 +479,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS2")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 2);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
@@ -491,7 +491,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS1")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 1);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
@@ -503,7 +503,7 @@ namespace Development
         {
 
             WndComfirm comfirmYesNo = new WndComfirm();
-            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS")) return;
+            if (!comfirmYesNo.DoComfirmYesNo($"Confrim Load Current to POS0")) return;
             UiManager.Instance.PLC.device.WriteWord(DeviceCode.R, 5232, 0);
             Thread.Sleep(10);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 15736, true);
