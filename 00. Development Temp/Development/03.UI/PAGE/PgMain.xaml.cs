@@ -219,7 +219,7 @@ namespace Development
 
                 if ((this.isQR && this.isVision) || RETRY_LASER)
                 {
-                    this.addLog("--- Send data Laser COM --- ");
+                    this.addLog("--- Checking data Laser COM --- ");
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 515, false);
                     this.addLog("Write Bit M515 = OFF");
                     this.isQR = false;
