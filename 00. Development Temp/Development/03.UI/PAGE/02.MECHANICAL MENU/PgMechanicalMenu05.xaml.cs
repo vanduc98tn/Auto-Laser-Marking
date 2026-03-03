@@ -664,17 +664,32 @@ namespace Development
                 lstPos.Sort();
                 int[] block = lstPos.ToArray();
 
-                string cmd1 = $"D6,{prg},1";
-
-                if (block != null && block.Length > 0)
+                string cmd1 = "";
+                string rec1 = "";
+                if (block == null || block.Length == 0)
                 {
-                    cmd1 += "," + string.Join(",", block);
-                }
-                cmd1 += "\r";
+                    cmd1 = $"D6,{prg},0,999";
+                    cmd1 += "\r";
 
-                UpdateLogs($"Send: {cmd1.Replace("\r", "<CR>")}");
-                string rec1 = UiManager.Instance.laserCOM.SendBlockOn(prg, block);
-                UpdateLogs($"Receive: {rec1?.Replace("\r", "<CR>")}");
+                    UpdateLogs($"Send: {cmd1.Replace("\r", "<CR>")}");
+                    rec1 = UiManager.Instance.laserCOM.SendBlockOff(prg);
+                    UpdateLogs($"Receive: {rec1?.Replace("\r", "<CR>")}");
+                }   
+                else
+                {
+                    cmd1 = $"D6,{prg},1";
+
+                    if (block != null && block.Length > 0)
+                    {
+                        cmd1 += "," + string.Join(",", block);
+                    }
+                    cmd1 += "\r";
+
+                    UpdateLogs($"Send: {cmd1.Replace("\r", "<CR>")}");
+                    rec1 = UiManager.Instance.laserCOM.SendBlockOn(prg, block);
+                    UpdateLogs($"Receive: {rec1?.Replace("\r", "<CR>")}");
+
+                }
 
                 if (rec1 != "NG")
                 {
