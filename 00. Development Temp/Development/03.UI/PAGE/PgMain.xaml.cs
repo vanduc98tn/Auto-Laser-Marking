@@ -141,7 +141,7 @@ namespace Development
                     if (UiManager.appSetting.RUN.CheckScanner)
                     {
                         string QR = UiManager.Instance.scannerTCP.ReadQR();
-                        //QR = "B0226007100039500172361";
+                        QR = "B0226007100039500172361";
                         //QR = "";
 
                         if (!string.IsNullOrEmpty(QR))
@@ -242,8 +242,10 @@ namespace Development
                         // SEND PLC LASER NG
                         UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, false);
                         UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, true);
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 617, false);
                         addLog("Write Bit Laser OK M615 = OFF");
                         addLog("Write Bit Laser NG M616 = ON");
+                        addLog("Write Bit Laser all OK M617 = OFF");
 
                     }
 
@@ -660,38 +662,51 @@ namespace Development
 
         public void SendLaser()
         {
+            string switchprg = "NG";
             string blockon = "NG";
             int[] arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE, UiManager.appSetting.RUN.MES_EXCLUSION);
-
-            string switchprg = UiManager.Instance.laserCOM.SendSwitchPrg(pattern.PrgLaser);
-
-            if (switchprg != "NG")
+            
+            if (arrBlock == null || arrBlock.Length == 0)
             {
-                if (arrBlock == null || arrBlock.Length == 0)
-                {
-                    addLog("--- Workin MES return all OK --- ");
-                    // SEND PLC LASER OK
-                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 617, true);
-                    addLog("Write Bit Laser all OK M617 = ON");
+                addLog("--- Workin MES return all OK --- ");
+                // SEND PLC LASER all OK
+                //UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, false);
+                //UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 617, true);
+                //addLog("Write Bit Laser OK M615 = OFF");
+                //addLog("Write Bit Laser NG M616 = OFF");
+                addLog("Write Bit Laser all OK M617 = ON");
+                
+                //return;
 
+                switchprg = UiManager.Instance.laserCOM.SendSwitchPrg(pattern.PrgLaser);
+                if (switchprg != "NG")
+                {
                     blockon = UiManager.Instance.laserCOM.SendBlockOff(pattern.PrgLaser);
-                   
                 }
-                else
-                {
-                    addLog($"Send data ready: Prg<{pattern.PrgLaser}>; Data<{string.Join(",", arrBlock)}>");
-                    blockon = UiManager.Instance.laserCOM.SendBlockOn(pattern.PrgLaser, arrBlock);
-                }    
+            }
+            else
+            {
+                addLog($"Send data ready: Prg<{pattern.PrgLaser}>; Data<{string.Join(",", arrBlock)}>");
 
-                if (blockon != "NG")
+                switchprg = UiManager.Instance.laserCOM.SendSwitchPrg(pattern.PrgLaser);
+                if (switchprg != "NG")
                 {
-                    // SEND PLC LASER OK
-                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
-                    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
-                    addLog("Write Bit Laser OK M615 = ON");
-                    addLog("Write Bit Laser NG M616 = OFF");
-                    return;
+                    blockon = UiManager.Instance.laserCOM.SendBlockOn(pattern.PrgLaser, arrBlock);
                 }
+            }
+
+            if (blockon != "NG")
+            {
+                // SEND PLC LASER OK
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, true);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, false);
+                //UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 617, false);
+                addLog("Write Bit Laser OK M615 = ON");
+                addLog("Write Bit Laser NG M616 = OFF");
+                //addLog("Write Bit Laser all OK M617 = OFF");
+
+                return;
             }
 
             string message = "- Check Laser connection again / COM not respond:\r\n" +
@@ -712,8 +727,11 @@ namespace Development
             // SEND PLC LASER NG
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 615, false);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 616, true);
+            //UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 617, false);
             addLog("Write Bit Laser OK M615 = OFF");
             addLog("Write Bit Laser NG M616 = ON");
+            //addLog("Write Bit Laser all OK M617 = OFF");
+
 
         }
         public string MergeResult(int[] vision, string bincode, string replaceChar)
