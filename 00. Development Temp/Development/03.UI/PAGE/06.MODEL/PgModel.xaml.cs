@@ -49,7 +49,8 @@ namespace Development
         private void BtnDeleteModel_Click(object sender, RoutedEventArgs e)
         {
             WndComfirm wnd = new WndComfirm();
-            if (wnd.DoComfirmYesNo($"Do you want to Delete Model {SelectNumberModel}"))
+            if (wnd.DoComfirmYesNo($"Do you want to Delete Model {SelectNumberModel}\n\r" +
+                                    $"Sẽ xoá toàn bộ dữ liệu Model {SelectNumberModel}, dữ liệu hiện tại của máy đang chạy không ảnh hưởng"))
             {
                 WndMessenger wndMes0 = new WndMessenger();
                 ModelSettings modelDelete = null;

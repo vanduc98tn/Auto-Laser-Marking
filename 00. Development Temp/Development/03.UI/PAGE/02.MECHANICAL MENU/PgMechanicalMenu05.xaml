@@ -233,8 +233,7 @@
                                         BackgroundLampOFF="LightGray"
                                         BackgroundLampON="Yellow"
                                         Content="RESET"
-                                        IsComfrim="False"
-                                        IsMesComfrim="Confrim Go To POS"
+                                        IsConfirm="False"
 >
                                     </local:PLCButton>
 

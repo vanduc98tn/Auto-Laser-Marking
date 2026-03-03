@@ -135,8 +135,7 @@
                             BackgroundLampOFF="LightGray"
                             BackgroundLampON="Yellow"
                             Content="RESET"
-                            IsComfrim="False"
-                            IsMesComfrim="Confrim Go To POS"
+                            IsConfirm="False"
 >
                         </local:PLCButton>
                         <Button Grid.Column="3" x:Name="btClose" Margin="2">
@@ -279,8 +278,8 @@
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
-                                            IsComfrim="True"
-                                            IsMesComfrim="Confrim initial Unit?"
+                                            IsConfirm="True"
+                                            IsMesConfirm="Confrim initial Unit?"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -350,8 +349,8 @@
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
-                                            IsComfrim="True"
-                                            IsMesComfrim="Confrim initial Unit?"
+                                            IsConfirm="True"
+                                            IsMesConfirm="Confrim initial Unit?"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -449,7 +448,7 @@
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
-                                            IsComfrim="True"
+                                            IsConfirm="True"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -519,8 +518,8 @@
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
-                                            IsComfrim="True"
-                                            IsMesComfrim="Confrim initial Unit?"
+                                            IsConfirm="True"
+                                            IsMesConfirm="Confrim initial Unit?"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -618,8 +617,8 @@
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
-                                            IsComfrim="True"
-                                            IsMesComfrim="Confrim initial Unit?"
+                                            IsConfirm="True"
+                                            IsMesConfirm="Confrim initial Unit?"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">
@@ -689,8 +688,8 @@
                                             Content="INITIAL"
                                             Background="Transparent"
                                             Foreground="Black"
-                                            IsComfrim="True"
-                                            IsMesComfrim="Confrim initial Unit?"
+                                            IsConfirm="True"
+                                            IsMesConfirm="Confrim initial Unit?"
 >
                                         </local:PLCButton>
                                         <UniformGrid Margin="1" Columns="1">

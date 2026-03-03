@@ -81,11 +81,11 @@ namespace Development
         public static readonly DependencyProperty IsTabItemProperty = DependencyProperty.Register(
             "IsTabItem", typeof(bool), typeof(PLCButton), new PropertyMetadata(false));
 
-        public static readonly DependencyProperty IsComfirm = DependencyProperty.Register(
-           "IsComfirm", typeof(bool), typeof(PLCButton), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsConfirmProperty = DependencyProperty.Register(
+           "IsConfirm", typeof(bool), typeof(PLCButton), new PropertyMetadata(false));
 
-        public static readonly DependencyProperty IsMesComfirmProperty = DependencyProperty.Register(
-           "IsMesComfirm", typeof(string), typeof(PLCButton), new PropertyMetadata(""));
+        public static readonly DependencyProperty IsMesConfirmProperty = DependencyProperty.Register(
+           "IsMesConfirm", typeof(string), typeof(PLCButton), new PropertyMetadata(""));
 
         public static new readonly DependencyProperty HorizontalContentAlignmentProperty = DependencyProperty.Register(
            "HorizontalContentAlignment", typeof(HorizontalAlignment), typeof(PLCButton), new PropertyMetadata(HorizontalAlignment.Center));
@@ -112,15 +112,15 @@ namespace Development
             get { return (HorizontalAlignment)GetValue(HorizontalContentAlignmentProperty); }
             set { SetValue(HorizontalContentAlignmentProperty, value); }
         }
-        public string IsMesComfrim
+        public string IsMesConfirm
         {
-            get { return (string)GetValue(IsMesComfirmProperty); }
-            set { SetValue(IsMesComfirmProperty, value); }
+            get { return (string)GetValue(IsMesConfirmProperty); }
+            set { SetValue(IsMesConfirmProperty, value); }
         }
-        public bool IsComfrim
+        public bool IsConfirm
         {
-            get { return (bool)GetValue(IsComfirm); }
-            set { SetValue(IsComfirm, value); }
+            get { return (bool)GetValue(IsConfirmProperty); }
+            set { SetValue(IsConfirmProperty, value); }
         }
         public bool IsTabItem
         {
@@ -346,6 +346,10 @@ namespace Development
             {
                 TextOFF = Content;
             }
+            if (IsMesConfirm == (object)string.Empty)
+            {
+                IsMesConfirm = "Confirm to " + Content.ToString() + "..?";
+            }
             this.btn.Background = BackgroundLampOFF;
             this.btn.Content = TextOFF;
             this.SetImagePath(ImageOFF);
@@ -473,20 +477,20 @@ namespace Development
             var address = ushort.Parse(this.AddressWrite.ToString());
             if (!isToggled)
             {
-                if (IsComfrim)
+                if (IsConfirm)
                 {
                     WndComfirm comfirmYesNo = new WndComfirm();
-                    if (!comfirmYesNo.DoComfirmYesNo($"{IsMesComfrim}")) return;
+                    if (!comfirmYesNo.DoComfirmYesNo($"{IsMesConfirm}")) return;
                 }
                 UiManager.Instance.PLC.device.WriteBit(DeviceWrite, address, true);
                 this.EventLog("AlternativeBtn Address('" + DeviceWrite.ToString() + address + "') - " + this.Content, "true");
             }
             else
             {
-                if (IsComfrim)
+                if (IsConfirm)
                 {
                     WndComfirm comfirmYesNo = new WndComfirm();
-                    if (!comfirmYesNo.DoComfirmYesNo($"{IsMesComfrim}")) return;
+                    if (!comfirmYesNo.DoComfirmYesNo($"{IsMesConfirm}")) return;
                 }
                 UiManager.Instance.PLC.device.WriteBit(DeviceWrite, address, false);
                 this.EventLog("AlternativeBtn Address('" + DeviceWrite.ToString() + address + "') - " + this.Content, "false");
@@ -499,10 +503,10 @@ namespace Development
         //SET.
         private void Set_Click()
         {
-            if (IsComfrim)
+            if (IsConfirm)
             {
                 WndComfirm comfirmYesNo = new WndComfirm();
-                if (!comfirmYesNo.DoComfirmYesNo($"{IsMesComfrim}")) return;
+                if (!comfirmYesNo.DoComfirmYesNo($"{IsMesConfirm}")) return;
             }
             if (this.AddressWrite == null) return;
             var address = ushort.Parse(this.AddressWrite.ToString());
@@ -516,10 +520,10 @@ namespace Development
         //Reset
         private void Reset_Click()
         {
-            if (IsComfrim)
+            if (IsConfirm)
             {
                 WndComfirm comfirmYesNo = new WndComfirm();
-                if (!comfirmYesNo.DoComfirmYesNo($"{IsMesComfrim}")) return;
+                if (!comfirmYesNo.DoComfirmYesNo($"{IsMesConfirm}")) return;
             }
             if (this.AddressWrite == null) return;
             var address = ushort.Parse(this.AddressWrite.ToString());
@@ -538,10 +542,10 @@ namespace Development
             if (this.Action != ActionType.Momentary) return;
             if (this.AddressWrite == null) return;
 
-            if (IsComfrim)
+            if (IsConfirm)
             {
                 WndComfirm comfirmYesNo = new WndComfirm();
-                if (!comfirmYesNo.DoComfirmYesNo($"{IsMesComfrim}")) return;
+                if (!comfirmYesNo.DoComfirmYesNo($"{IsMesConfirm}")) return;
             }
             if (e.StylusDevice != null && e.StylusDevice.TabletDevice.Type == TabletDeviceType.Touch)
             {
@@ -556,7 +560,7 @@ namespace Development
             UiManager.Instance.PLC.device.WriteBit(DeviceWrite, address, true);
             this.EventLog("MomentaryBtn Address('" + DeviceWrite.ToString() + address + "') - " + this.Content, "true");
 
-            if (IsComfrim)
+            if (IsConfirm)
             {
                 Thread.Sleep(40);
                 UiManager.Instance.PLC.device.WriteBit(DeviceWrite, address, false);
@@ -613,10 +617,10 @@ namespace Development
                 btnTarget.CaptureTouch(e.TouchDevice);
                 if (this.AddressWrite == null) return;
 
-                if (IsComfrim)
+                if (IsConfirm)
                 {
                     WndComfirm comfirmYesNo = new WndComfirm();
-                    if (!comfirmYesNo.DoComfirmYesNo($"{IsMesComfrim}")) return;
+                    if (!comfirmYesNo.DoComfirmYesNo($"{IsMesConfirm}")) return;
                 }
 
                 isMousePressed = true;
@@ -626,7 +630,7 @@ namespace Development
                 UiManager.Instance.PLC.device.WriteBit(DeviceWrite, address, true);
                 this.EventLog("MomentaryBtn Address('" + DeviceWrite.ToString() + address + "') - " + this.Content, "true");
 
-                if (IsComfrim)
+                if (IsConfirm)
                 {
                     Thread.Sleep(40);
                     UiManager.Instance.PLC.device.WriteBit(DeviceWrite, address, false);

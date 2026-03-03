@@ -106,8 +106,7 @@
                         BackgroundLampON="Red"
                         TextOFF="DRYRUN OFF"
                         TextON="DRYRUN ON"
-                        IsComfrim="True"
-                        IsMesComfrim="Confrim Options Yes/No"
+                        IsConfirm="True"
 >
                     </local:PLCButton>
                     <local:PLCButton
@@ -118,8 +117,7 @@
                         BackgroundLampON="Red"
                         TextOFF="STEPRUN OFF"
                         TextON="STEPRUN ON"
-                        IsComfrim="True"
-                        IsMesComfrim="Confrim Options Yes/No"
+                        IsConfirm="True"
 >
                     </local:PLCButton>
                     <local:PLCButton
@@ -130,8 +128,7 @@
                         BackgroundLampON="Red"
                         TextOFF="ENA KACON"
                         TextON="DIS KACON"
-                        IsComfrim="True"
-                        IsMesComfrim="Confrim Options Yes/No"
+                        IsConfirm="True"
 >
                     </local:PLCButton>
                     <local:PLCButton
@@ -142,8 +139,7 @@
                         BackgroundLampON="Red"
                         TextOFF="ENA BUZZER"
                         TextON="DIS BUZZER"
-                        IsComfrim="True"
-                        IsMesComfrim="Confrim Options Yes/No"
+                        IsConfirm="True"
 >
                     </local:PLCButton>
                     <local:PLCButton
@@ -154,8 +150,7 @@
                         BackgroundLampON="Red"
                         TextOFF="ENA LOCKDOOR"
                         TextON="DIS LOCKDOOR"
-                        IsComfrim="True"
-                        IsMesComfrim="Confrim Options Yes/No"
+                        IsConfirm="True"
 >
                     </local:PLCButton>
                     <local:PLCButton
@@ -166,8 +161,7 @@
                         BackgroundLampON="Red"
                         TextOFF="ENA SAFETY SEN"
                         TextON="DIS SAFETY SEN"
-                        IsComfrim="True"
-                        IsMesComfrim="Confrim Options Yes/No"
+                        IsConfirm="True"
 >
                     </local:PLCButton>
 
@@ -181,8 +175,7 @@
                         BackgroundLampON="GreenYellow"
                         TextOFF="BYPASS VISION"
                         TextON="BYPASS VISION"
-                        IsComfrim="True"
-                        IsMesComfrim="Confrim Options Yes/No"
+                        IsConfirm="True"
 >
                     </local:PLCButton>
                     <local:PLCButton
@@ -193,8 +186,7 @@
                         BackgroundLampON="GreenYellow"
                         TextOFF="BYPASS SCANNER"
                         TextON="BYPASS SCANNER"
-                        IsComfrim="True"
-                        IsMesComfrim="Confrim Options Yes/No"
+                        IsConfirm="True"
 >
                     </local:PLCButton>
                     <local:PLCButton
@@ -205,8 +197,7 @@
                         BackgroundLampON="GreenYellow"
                         TextOFF="BYPASS LASER"
                         TextON="BYPASS LASER"
-                        IsComfrim="True"
-                        IsMesComfrim="Confrim Options Yes/No"
+                        IsConfirm="True"
 >
                     </local:PLCButton>
 
@@ -221,8 +212,7 @@
                         BackgroundLampON="GreenYellow"
                         TextOFF="LOADER FIX BYPASS"
                         TextON="LOADER FIX BYPASS"
-                        IsComfrim="True"
-                        IsMesComfrim="Confrim Options Yes/No"
+                        IsConfirm="True"
 >
                     </local:PLCButton>
                     <local:PLCButton
@@ -233,8 +223,7 @@
                         BackgroundLampON="GreenYellow"
                         TextOFF="UNLOADER FIX BYPASS"
                         TextON="UNLOADER FIX BYPASS"
-                        IsComfrim="True"
-                        IsMesComfrim="Confrim Options Yes/No"
+                        IsConfirm="True"
 >
                     </local:PLCButton>
 

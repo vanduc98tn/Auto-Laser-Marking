@@ -619,8 +619,7 @@
                                     FontWeight="Bold"
                                     BackgroundLampOFF="LightGray"
                                     BackgroundLampON="Purple"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim to LotEnd?"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                             </Grid>
@@ -1056,8 +1055,8 @@
                             FontSize="30"
                             BackgroundLampOFF="LightGray"
                             BackgroundLampON="Orange"
-                            IsComfrim="True"
-                            IsMesComfrim="Confrim Home All Machine?"
+                            IsConfirm="True"
+                            IsMesConfirm="Confrim Home All Machine?"
 >
 
                         </local:PLCButton>

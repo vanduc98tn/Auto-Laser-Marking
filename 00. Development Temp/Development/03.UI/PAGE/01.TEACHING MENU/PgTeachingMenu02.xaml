@@ -138,8 +138,7 @@
                             BackgroundLampOFF="LightGray"
                             BackgroundLampON="Yellow"
                             Content="RESET"
-                            IsComfrim="False"
-                            IsMesComfrim="Confrim Go To POS"
+                            IsConfirm="False"
 >
                         </local:PLCButton>
                     </Grid>
@@ -331,8 +330,7 @@
                                             Background="Transparent"
                                             Foreground="Black"
                                             FontSize="16"
-                                            IsComfrim="True"
-                                            IsMesComfrim="Confrim Go Home Machine"
+                                            IsConfirm="True"
 >
                                         </local:PLCButton>
                                         <local:PLCButton
@@ -351,8 +349,7 @@
                                             Background="Transparent"
                                             Foreground="Black"
                                             FontSize="16"
-                                            IsComfrim="False"
-                                            IsMesComfrim="Confrim Change Speed"
+                                            IsConfirm="False"
 >
                                         </local:PLCButton>
                                     </Grid>
@@ -591,8 +588,7 @@
                                             Background="Transparent"
                                             Foreground="Black"
                                             FontSize="16"
-                                            IsComfrim="True"
-                                            IsMesComfrim="Confrim Go Home Machine"
+                                            IsConfirm="True"
 >
                                         </local:PLCButton>
                                         <local:PLCButton
@@ -611,8 +607,7 @@
                                             Background="Transparent"
                                             Foreground="Black"
                                             FontSize="16"
-                                            IsComfrim="False"
-                                            IsMesComfrim="Confrim Change Speed"
+                                            IsConfirm="False"
 >
                                         </local:PLCButton>
                                     </Grid>
@@ -827,8 +822,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="WAIT POS0 L1X"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -838,8 +832,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="INPUT PCB HIGHTSP POS1"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -849,8 +842,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="INPUT PCB LOWSP POS2"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -860,8 +852,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="VISION P1 POS3"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -871,8 +862,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="VISION P2 POS4"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -882,8 +872,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="SCANNER QR POS5"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -893,8 +882,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="LASER POS6"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -904,8 +892,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="OUTPUT PREPARE1 POS7"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
 
@@ -916,8 +903,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content=""
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>-->
 
@@ -932,8 +918,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="OUTPUT PREPARE2 POS8"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -943,8 +928,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="OUTPUT PREPARE3 POS9"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -954,8 +938,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="OUTPUT PCB HIGHTSP POS10"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -965,8 +948,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="OUTPUT PCB LOWSP POS11"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
 
@@ -1410,8 +1392,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="WAIT POS0 L2X"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -1421,8 +1402,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="INPUT PCB HIGHTSP POS1"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -1432,8 +1412,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="INPUT PCB LOWSP POS2"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -1443,8 +1422,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="VISION P1 POS3"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -1454,8 +1432,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="VISION P2 POS4"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -1465,8 +1442,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="SCANNER QR POS5"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -1476,8 +1452,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="LASER POS6"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -1487,8 +1462,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="OUTPUT PREPARE1 POS7"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
 
@@ -1499,8 +1473,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content=""
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>-->
 
@@ -1515,8 +1488,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="OUTPUT PREPARE2 POS8"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -1526,8 +1498,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="OUTPUT PREPARE3 POS9"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -1537,8 +1508,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="OUTPUT PCB HIGHTSP POS10"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
                                 <local:PLCButton
@@ -1548,8 +1518,7 @@
                                     BackgroundLampOFF="Transparent"
                                     BackgroundLampON="GreenYellow"
                                     Content="OUTPUT PCB LOWSP POS11"
-                                    IsComfrim="True"
-                                    IsMesComfrim="Confrim Go To POS"
+                                    IsConfirm="True"
 >
                                 </local:PLCButton>
 
