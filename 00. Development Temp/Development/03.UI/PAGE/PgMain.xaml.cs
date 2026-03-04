@@ -146,6 +146,8 @@ namespace Development
 
                         if (!string.IsNullOrEmpty(QR))
                         {
+                            addLog($"QR: {QR}");
+
                             this.UpdateUIQR(QR, true);
 
                             this.UpdateUIMES($"SCANNER TRIGGER COMPLETE", Brushes.LightGreen);
@@ -178,6 +180,8 @@ namespace Development
                         }
                         else
                         {
+                            addLog($"QR: Error");
+
                             this.UpdateUIQR("Scanner Error", false);
 
                             // SEND PLC QR NG
@@ -682,13 +686,15 @@ namespace Development
                             "  + Verify COM connectivity\r\n" +
                             "  + Verify Laser READY status\r\n" +
                             "  + Verify Laser Command Code\r\n" +
-                            "  + Verify index MES and Vision\r\n" +
+                            "  + Verify Laser Program No.\r\n" +
+                            "  + Verify Block No. marking\r\n" +
                             "- Kiểm tra lại kết nối Laser / COM không phản hồi:\r\n" +
                             "  + Kiểm tra lại setting Laser\r\n" +
                             "  + Kiểm tra lại đường truyền COM\r\n" +
                             "  + Kiểm tra lại trạng thái READY của Laser\r\n" +
                             "  + Kiểm tra lại chuỗi gửi Laser\r\n" +
-                            "  + Kiểm tra lại giá trị index NG của MES và Vision\r\n";
+                            "  + Kiểm tra lại số Program đã nạp trong Laser\r\n" +
+                            "  + Kiểm tra lại các block marking đã cài đặt của Laser\r\n";
 
             AddErrorMES($"Error: Laser COM Response error!", message);
 
