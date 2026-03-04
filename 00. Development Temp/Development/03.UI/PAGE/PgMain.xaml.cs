@@ -141,7 +141,7 @@ namespace Development
                     if (UiManager.appSetting.RUN.CheckScanner)
                     {
                         string QR = UiManager.Instance.scannerTCP.ReadQR();
-                        QR = "B0226007100039500172361";
+                        //QR = "B0226007100039500172361";
                         //QR = "";
 
                         if (!string.IsNullOrEmpty(QR))
@@ -167,10 +167,12 @@ namespace Development
                                 this.UpdateUIMES($"BYPASS MES CHECK", Brushes.LightGreen);
 
                                 // SEND PLC MES OK
-                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 620, true);
-                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 621, false);
-                                addLog("Write Bit Workout MES OK M620 = ON");
-                                addLog("Write Bit Workout MES OK M621 = OFF");
+                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, true);
+                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, false);
+                                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 612, false);
+                                addLog("Write Bit Workin MES OK M610 = ON");
+                                addLog("Write Bit Workin QR NG M611 = OFF");
+                                addLog("Write Bit Workin MES NG M611 = OFF");
 
                                 int[] workinNG = pattern.positionNGs.ToArray();
                                 this.UpdateUIMESRESULT(workinNG);
@@ -186,10 +188,13 @@ namespace Development
                         {
                             this.UpdateUIQR("Scanner Error", false);
 
+                            // SEND PLC QR NG
                             UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, false);
                             UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, true);
-                            addLog("Write Bit Scanner Trigger OK M610 = OFF");
-                            addLog("Write Bit Scanner Trigger NG M611 = ON");
+                            UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 612, false);
+                            addLog("Write Bit Workin QR OK M610 = OFF");
+                            addLog("Write Bit Workin QR NG M611 = ON");
+                            addLog("Write Bit Workin MES NG M611 = OFF");
 
                             this.UpdateUIMES($"ERROR SCANNER  : Unable to Read Code", Brushes.OrangeRed);
 
@@ -199,10 +204,13 @@ namespace Development
                     {
                         addLog("BYPASS SCANNER");
 
+                        // SEND PLC QR OK
                         UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, true);
                         UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, false);
-                        addLog("Write Bit Scanner Trigger OK M610 = ON");
-                        addLog("Write Bit Scanner Trigger NG M611 = OFF");
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 612, false);
+                        addLog("Write Bit Workin OR OK M610 = ON");
+                        addLog("Write Bit Workin QR NG M611 = OFF");
+                        addLog("Write Bit Workin MES NG M611 = OFF");
 
                         this.UpdateUIMES($"BYPASS TRIGGER SCANNER", Brushes.LightGreen);
 
@@ -402,8 +410,10 @@ namespace Development
             {
                 // SEND PLC MES NG
                 UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, false);
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, true);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, false);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 612, true);
                 addLog("Write Bit Workin MES OK M610 = OFF");
+                addLog("Write Bit Workin QR NG M611 = OFF");
                 addLog("Write Bit Workin MES NG M611 = ON");
 
                 string message = "- Check MES connection again:\r\n" +
@@ -430,8 +440,10 @@ namespace Development
             {
                 // SEND PLC MES NG
                 UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, false);
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, true);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, false);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 612, true);
                 addLog("Write Bit Workin MES OK M610 = OFF");
+                addLog("Write Bit Workin QR NG M611 = OFF");
                 addLog("Write Bit Workin MES NG M611 = ON");
 
                 string message = "- Check MES connection again / MES not respond. :\r\n" +
@@ -454,8 +466,10 @@ namespace Development
             {
                 // SEND PLC MES NG
                 UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, false);
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, true);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, false);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 612, true);
                 addLog("Write Bit Workin MES OK M610 = OFF");
+                addLog("Write Bit Workin QR NG M611 = OFF");
                 addLog("Write Bit Workin MES NG M611 = ON");
 
                 UpdateUIMES("MES CHECK PCB WORKIN NG . PLEASE CHECK !!!!!", Brushes.Red);
@@ -473,7 +487,9 @@ namespace Development
                 // SEND PLC MES OK
                 UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, true);
                 UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, false);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 612, false);
                 addLog("Write Bit Workin MES OK M610 = ON");
+                addLog("Write Bit Workin QR NG M611 = OFF");
                 addLog("Write Bit Workin MES NG M611 = OFF");
 
                 DataPCB.WORK_IN_RESULT = MES.FormatS011.WORK_IN_RESULT;
