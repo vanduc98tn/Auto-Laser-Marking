@@ -15,6 +15,8 @@ namespace Development
         public StopBits stopBits { get; set; }
         public Parity parity { get; set; }
         public Handshake Handshake { get; set; }
+        public int timeout { get; set; }
+
         public COMSetting()
         {
             this.portName = "COM#";
@@ -23,6 +25,7 @@ namespace Development
             this.stopBits = StopBits.One;
             this.parity = Parity.None;
             this.Handshake = Handshake.None;
+            this.timeout = 1000;
         }
         public static StopBits ParseStopBits(string s)
         {

@@ -380,6 +380,12 @@ namespace Development
         #region Connect Scanner TCP
         public void ConnectScannerTCP()
         {
+            if (scannerTCP != null)
+            {
+                scannerTCP.Stop();
+                scannerTCP = null;
+            }
+
             var Setting = UiManager.appSetting.settingDevice.ScannerTCP;
             scannerTCP = new KeyenceScannerTCP(UiManager.appSetting.settingDevice.ScannerTCP);
             scannerTCP.Start();
@@ -393,6 +399,12 @@ namespace Development
         #region Connect Laser COM
         public void ConnectLaserCOM()
         {
+            if (laserCOM != null)
+            {
+                laserCOM.Close();
+                laserCOM = null;
+            }
+
             var Setting = UiManager.appSetting.settingDevice.COMLaser;
             laserCOM = new LaserCOM(Setting);
             laserCOM.Open();

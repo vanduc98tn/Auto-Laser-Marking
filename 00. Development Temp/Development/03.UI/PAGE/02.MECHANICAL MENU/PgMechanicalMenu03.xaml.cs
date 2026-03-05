@@ -57,12 +57,12 @@ namespace Development
         
         private void BtClose_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.Instance.scannerTCP.Stop();
+            UiManager.Instance.DisconnectScannerTCP();
             UpdateUiButton();
         }
         private void BtOpen_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.Instance.scannerTCP.Start();
+            UiManager.Instance.ConnectScannerTCP();
             UpdateUiButton();
         }
         private void BtSave_Click(object sender, RoutedEventArgs e)
@@ -84,6 +84,10 @@ namespace Development
                 UpdateLogs($"Device Seting Port :{settingNew.Port}");
 
                 UpdateLogs($"Click Button Save to Complete");
+
+                UiManager.Instance.DisconnectScannerTCP();
+                UpdateUiButton();
+
             }
         }
         private void BtLogClear_Click(object sender, RoutedEventArgs e)

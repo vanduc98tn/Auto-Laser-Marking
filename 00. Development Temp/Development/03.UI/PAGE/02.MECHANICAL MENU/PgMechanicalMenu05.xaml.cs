@@ -67,7 +67,7 @@ namespace Development
             WndComfirm comfirmYesNo = new WndComfirm();
             if (!comfirmYesNo.DoComfirmYesNo("You Want To..?")) return;
 
-            if (UiManager.Instance.laserCOM.isConnect)
+            if (UiManager.Instance.laserCOM.isOpen())
             {
                 TriggerManual();
             }
@@ -134,44 +134,51 @@ namespace Development
         }
         private void BtSend_Click(object sender, RoutedEventArgs e)
         {
-            string strResult = "";
-            string strData = "Test";
-
-            UpdateLogs($"Send: {strData}");
-
-            byte[] arr1 = Encoding.UTF8.GetBytes(strData).ToArray();
-            byte[] arr2 = { 0x0D };
-
-            byte[] byData = new byte[arr1.Length + arr2.Length];
-
-            Array.Copy(arr1, 0, byData, 0, arr1.Length);
-            Array.Copy(arr2, 0, byData, arr1.Length, arr2.Length);
-
-
-            byte[] byResult = UiManager.Instance.laserCOM.SendWaitResponse(byData);
-
-
-            if (byResult != null)
+            if (UiManager.Instance.laserCOM.isOpen())
             {
-                strResult = ASCIIEncoding.ASCII.GetString(byResult.ToArray());
+                string strResult = "";
+                string strData = "Test";
+
+                UpdateLogs($"Send: {strData}");
+
+                byte[] arr1 = Encoding.UTF8.GetBytes(strData).ToArray();
+                byte[] arr2 = { 0x0D };
+
+                byte[] byData = new byte[arr1.Length + arr2.Length];
+
+                Array.Copy(arr1, 0, byData, 0, arr1.Length);
+                Array.Copy(arr2, 0, byData, arr1.Length, arr2.Length);
+
+
+                byte[] byResult = UiManager.Instance.laserCOM.SendWaitResponse(byData);
+
+
+                if (byResult != null)
+                {
+                    strResult = ASCIIEncoding.ASCII.GetString(byResult.ToArray());
+                }
+                else
+                {
+                    strResult = "Time out!";
+                }
+
+                UpdateLogs($"Receive: {strResult}");
             }
             else
             {
-                strResult = "Time out!";
+                UpdateLogs($"Error: COM port is not open");
             }
-
-            UpdateLogs($"Receive: {strResult}");
 
         }
 
         private void BtClose_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.Instance.laserCOM.Close();
+            UiManager.Instance.DisconnectLaserCOM();
             UpdateUiButton();
         }
         private void BtOpen_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.Instance.laserCOM.Open();
+            UiManager.Instance.ConnectLaserCOM();
             UpdateUiButton();
         }
         private void BtSave_Click(object sender, RoutedEventArgs e)
@@ -190,12 +197,18 @@ namespace Development
             if (settingNew != null)
             {
                 this.settingDevice.COMLaser = settingNew;
+                
                 UpdateLogs($"Device Seting PortName :{settingNew.portName.ToString()}");
                 UpdateLogs($"Device Seting Parity :{settingNew.parity}");
                 UpdateLogs($"Device Seting Databis :{settingNew.dataBits.ToString()}");
                 UpdateLogs($"Device Seting Stopbit :{settingNew.stopBits.ToString()}");
                 UpdateLogs($"Device Seting Handshake :{settingNew.Handshake.ToString()}");
+                UpdateLogs($"Device Seting Timeout :{settingNew.timeout} ms");
                 UpdateLogs($"Click Button Save to Complete");
+
+                UiManager.Instance.DisconnectLaserCOM();
+                UpdateUiButton();
+
             }
         }
         private void BtLogClear_Click(object sender, RoutedEventArgs e)
@@ -232,13 +245,13 @@ namespace Development
         {
             if (UiManager.Instance.laserCOM.isOpen())
             {
-                UpdateLogs("Connect Tester Complete");
+                UpdateLogs("Connected LaserCOM Complete");
                 btClose.Background = Brushes.White;
                 btOpen.Background = Brushes.LightGreen;
             }
             else
             {
-                UpdateLogs("Disconnect Tester");
+                UpdateLogs("Disconnected LaserCOM");
                 btClose.Background = Brushes.OrangeRed;
                 btOpen.Background = Brushes.White;
             }

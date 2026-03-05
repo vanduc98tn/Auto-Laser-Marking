@@ -568,45 +568,6 @@ namespace Development
             }
 
         }
-        private void Button_PreviewMouseMove(object sender, MouseEventArgs e)
-        {
-
-            if (this.Action != ActionType.Momentary) return;
-            Point position = e.GetPosition(btn);
-            if (isMousePressed)
-            {
-                Button btn = sender as Button;
-                Point pos = e.GetPosition(btn);
-                if (pos.X < 0 || pos.X > btn.ActualWidth || pos.Y < 0 || pos.Y > btn.ActualHeight)
-                {
-                    isMousePressed = false;
-                    btn.ReleaseMouseCapture();
-                    var address = ushort.Parse(this.AddressWrite.ToString());
-                    UiManager.Instance.PLC.device.WriteBit(DeviceWrite, address, false);
-                    this.EventLog("MomentaryBtn Address('" + DeviceWrite.ToString() + address + "') - " + this.Content, "false");
-                    btnTarget = null;
-                }
-            }
-
-        }
-        private void Button_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (this.Action != ActionType.Momentary) return;
-
-            if (isMousePressed)
-            {
-                isMousePressed = false;
-                if (this.AddressWrite == null) return;
-                var address = ushort.Parse(this.AddressWrite.ToString());
-                UiManager.Instance.PLC.device.WriteBit(DeviceWrite, address, false);
-                this.EventLog("MomentaryBtn Address('" + DeviceWrite.ToString() + address + "') - " + this.Content, "false");
-                (sender as Button).ReleaseMouseCapture();
-                btnTarget = null;
-            }
-        }
-
-
-
         private void Button_PreviewTouchDown(object sender, TouchEventArgs e)
         {
             if (this.Action != ActionType.Momentary) return;
@@ -640,6 +601,43 @@ namespace Development
             }
 
         }
+
+        private void Button_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (this.Action != ActionType.Momentary) return;
+
+            if (isMousePressed)
+            {
+                isMousePressed = false;
+                if (this.AddressWrite == null) return;
+                var address = ushort.Parse(this.AddressWrite.ToString());
+                UiManager.Instance.PLC.device.WriteBit(DeviceWrite, address, false);
+                this.EventLog("MomentaryBtn Address('" + DeviceWrite.ToString() + address + "') - " + this.Content, "false");
+                (sender as Button).ReleaseMouseCapture();
+                btnTarget = null;
+            }
+        }
+        private void Button_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+
+            if (this.Action != ActionType.Momentary) return;
+            Point position = e.GetPosition(btn);
+            if (isMousePressed)
+            {
+                Button btn = sender as Button;
+                Point pos = e.GetPosition(btn);
+                if (pos.X < 0 || pos.X > btn.ActualWidth || pos.Y < 0 || pos.Y > btn.ActualHeight)
+                {
+                    isMousePressed = false;
+                    btn.ReleaseMouseCapture();
+                    var address = ushort.Parse(this.AddressWrite.ToString());
+                    UiManager.Instance.PLC.device.WriteBit(DeviceWrite, address, false);
+                    this.EventLog("MomentaryBtn Address('" + DeviceWrite.ToString() + address + "') - " + this.Content, "false");
+                    btnTarget = null;
+                }
+            }
+
+        }
         private void Button_PreviewTouchUp(object sender, TouchEventArgs e)
         {
             if (this.Action != ActionType.Momentary) return;
@@ -652,18 +650,6 @@ namespace Development
                 UiManager.Instance.PLC.device.WriteBit(DeviceWrite, address, false);
                 this.EventLog("MomentaryBtn Address('" + DeviceWrite.ToString() + address + "') - " + this.Content, "false");
                 (sender as Button).ReleaseTouchCapture(e.TouchDevice);
-                btnTarget = null;
-            }
-
-        }
-        private void Button_LostTouchCapture(object sender, TouchEventArgs e)
-        {
-            if (this.Action != ActionType.Momentary) return;
-
-            if (activeTouchDevices.Contains(e.TouchDevice))
-            {
-                activeTouchDevices.Remove(e.TouchDevice);
-                Button_PreviewTouchUp(sender, e);
                 btnTarget = null;
             }
 
@@ -686,7 +672,34 @@ namespace Development
                 }
             }
         }
+        private void Button_LostTouchCapture(object sender, TouchEventArgs e)
+        {
+            if (this.Action != ActionType.Momentary) return;
 
+            if (activeTouchDevices.Contains(e.TouchDevice))
+            {
+                activeTouchDevices.Remove(e.TouchDevice);
+                Button_PreviewTouchUp(sender, e);
+                btnTarget = null;
+            }
+
+        }
+        private void Button_LostMouseCapture(object sender, MouseEventArgs e)
+        {
+            if (this.Action != ActionType.Momentary) return;
+
+            if (isMousePressed)
+            {
+                isMousePressed = false;
+                if (this.AddressWrite == null) return;
+                var address = ushort.Parse(this.AddressWrite.ToString());
+                UiManager.Instance.PLC.device.WriteBit(DeviceWrite, address, false);
+                this.EventLog("MomentaryBtn Address('" + DeviceWrite.ToString() + address + "') - " + this.Content, "false");
+                (sender as Button).ReleaseMouseCapture();
+                btnTarget = null;
+            }
+
+        }
 
 
         private void Timer_Tick(object sender, EventArgs e)

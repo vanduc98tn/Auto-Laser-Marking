@@ -205,7 +205,7 @@ namespace Development
                 logger.Create("Failed to reconnect after maximum attempts.", LogLevel.Error);
             }
         }
-        public void Stop()
+        public void Stop1()
         {
             try
             {
@@ -223,6 +223,36 @@ namespace Development
             catch (Exception ex)
             {
                 logger.Create(String.Format("Stop error:" + ex.Message), LogLevel.Error);
+            }
+        }
+        public void Stop()
+        {
+            try
+            {
+                IsStarted = false;
+
+                if (tcpClient != null)
+                {
+                    try
+                    {
+                        tcpClient.Shutdown(SocketShutdown.Both);
+                    }
+                    catch { }
+
+                    tcpClient.Close();
+                    tcpClient.Dispose();
+                    tcpClient = null;
+                }
+
+                if (threadMonitor != null)
+                {
+                    threadMonitor.Join(1000); // chờ tối đa 1s
+                    threadMonitor = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Create("Stop error: " + ex.Message, LogLevel.Error);
             }
         }
         public String ReadQR() // String bankId

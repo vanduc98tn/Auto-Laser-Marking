@@ -53,6 +53,7 @@ namespace Development
                 this.comSetting.stopBits = COMSetting.ParseStopBits(this.cbStopBits.SelectedValue.ToString());
                 this.comSetting.parity = COMSetting.ParseParity(this.cbParity.SelectedValue.ToString());
                 this.comSetting.Handshake = Handshake.None;
+                this.comSetting.timeout = Convert.ToInt32(tbTimeout.Text);
                 this.Close();
             }
             catch (Exception ex)
@@ -95,6 +96,7 @@ namespace Development
                 this.cbParity.SelectedValue = s;
                 s = this.comSetting.stopBits.ToString();
                 this.cbStopBits.SelectedValue = s;
+                this.tbTimeout.Text = this.comSetting.timeout.ToString();
                 this.ShowDialog();
             }
             catch (Exception ex)

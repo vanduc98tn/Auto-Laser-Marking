@@ -38,7 +38,13 @@
                     </Style>
 
                     <Style TargetType="ComboBox">
-                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="10,0"/>
+                        <Setter Property="Margin" Value="0,8"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Height" Value="30"/>
                         <Setter Property="VerticalContentAlignment" Value="Center"/>
                         <Setter Property="Padding" Value="10,0"/>
                         <Setter Property="Margin" Value="0,8"/>
@@ -51,6 +57,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -98,6 +105,11 @@
                     <ComboBoxItem Tag="3">Mark</ComboBoxItem>
                     <ComboBoxItem Tag="4">Space</ComboBoxItem>
                 </ComboBox>
+
+                <TextBlock Grid.Row="5" Grid.Column="0">Timeout</TextBlock>
+                <TextBox Grid.Row="5" Grid.Column="1" x:Name="tbTimeout" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Text="1000">
+                    
+                </TextBox>
             </Grid>
         </Border>
 

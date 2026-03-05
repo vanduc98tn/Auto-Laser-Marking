@@ -18,7 +18,7 @@ namespace Development
         private object PLCLock = new object();
         public bool isConnect = false;
 
-        private const int READ_TIMEOUT = 2000;
+        private int READ_TIMEOUT = 3000;
         private byte[] readBuf = new byte[1];
         private volatile bool isReading = false;
         private volatile List<byte> readingBuf;
@@ -33,7 +33,7 @@ namespace Development
 
         public LaserCOM( COMSetting comSetting) 
         {
-            
+
             _serialPort = new SerialPort
             {
                 PortName = comSetting.portName,
@@ -44,6 +44,7 @@ namespace Development
                 ReadTimeout = 50,
                 WriteTimeout = 50
             };
+            READ_TIMEOUT = comSetting.timeout;
             //_serialPort.DataReceived += _serialPort_DataReceived;
         }
         public LaserCOM()
@@ -56,9 +57,10 @@ namespace Development
                 Parity = Parity.None,
                 DataBits = 8,
                 StopBits = StopBits.One,
-                ReadTimeout = 50,
-                WriteTimeout = 50
+                ReadTimeout = 1000,
+                WriteTimeout = 1000
             };
+            READ_TIMEOUT = 3000;
             //_serialPort.DataReceived += _serialPort_DataReceived;
         }
         public bool SendBytes1(byte[] data)
@@ -97,7 +99,7 @@ namespace Development
             {
                 lock (PLCLock)
                 {
-                    if (!_serialPort.IsOpen)
+                    if (_serialPort == null || !_serialPort.IsOpen)
                     {
                         logger.CreateLaser("Error: COM port is not open", LogLevel.Error);
                         return false;
@@ -105,7 +107,6 @@ namespace Development
 
                     const int MAX_CHUNK_SIZE = 127;
                     int offset = 0;
-                    _serialPort.WriteTimeout = 5000;
 
                     while (offset < data.Length)
                     {
@@ -295,7 +296,7 @@ namespace Development
                 isConnect = false;
             }
         }
-        public void Close()
+        public void Close1()
         {
             try
             {
@@ -305,6 +306,26 @@ namespace Development
                     isConnect = false;
 
                 }
+            }
+            catch (Exception ex)
+            {
+                logger.CreateLaser($"Error Close COM {ex}", LogLevel.Error);
+            }
+        }
+        public void Close()
+        {
+            try
+            {
+                if (_serialPort != null)
+                {
+                    if (_serialPort.IsOpen)
+                        _serialPort.Close();
+
+                    _serialPort.Dispose();
+                    _serialPort = null;
+                }
+
+                isConnect = false;
             }
             catch (Exception ex)
             {
