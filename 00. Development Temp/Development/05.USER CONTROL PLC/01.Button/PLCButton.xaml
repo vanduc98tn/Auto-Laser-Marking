@@ -73,8 +73,8 @@
                 Click="Button_Click" IsManipulationEnabled="True" TouchDown="Button_TouchDown"
                 Style="{StaticResource ThreeDButtonStyle}"
         
-                PreviewMouseDown="Button_PreviewMouseDown"
-                PreviewMouseUp  ="Button_PreviewMouseUp"
+                PreviewMouseLeftButtonDown="Button_PreviewMouseDown"
+                PreviewMouseLeftButtonUp  ="Button_PreviewMouseUp"
                 PreviewMouseMove="Button_PreviewMouseMove"
                 LostMouseCapture="Button_LostMouseCapture"
                 >
