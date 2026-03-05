@@ -1809,6 +1809,11 @@ namespace Development
             
 
         }
+        private void AddErrorPC(string Messenger, string Solution)
+        {
+
+
+        }
         #endregion
         #region ALARM LOG
 
