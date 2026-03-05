@@ -642,7 +642,17 @@ namespace Development
         {
             string switchprg = "NG";
             string blockon = "NG";
-            int[] arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE, UiManager.appSetting.RUN.MES_EXCLUSION);
+            int[] arrBlock = null;
+
+            if (!UiManager.appSetting.RUN.CheckScanner || !UiManager.appSetting.RUN.MESOnline)
+            {
+                arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE);
+            }
+            else
+            {
+                arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE, UiManager.appSetting.RUN.MES_EXCLUSION);
+            }    
+                
             
             if (arrBlock == null || arrBlock.Length == 0)
             {
