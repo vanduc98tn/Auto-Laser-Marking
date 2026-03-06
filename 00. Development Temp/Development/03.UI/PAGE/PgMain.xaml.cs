@@ -57,7 +57,6 @@ namespace Development
         private Brush BOTH_COLOR;
 
         private DataPCB DataPCB;
-
         public PgMain()
         {
             // ON Binding addlog
