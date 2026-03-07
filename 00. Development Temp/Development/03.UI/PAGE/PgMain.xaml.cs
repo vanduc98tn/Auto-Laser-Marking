@@ -770,6 +770,9 @@ namespace Development
         }
         public string GetBinCode(int[] arr)
         {
+            if (arr == null || arr.Length == 0)
+                return string.Empty;
+
             var set = new HashSet<int>(arr);
 
             int max = set.Max();
