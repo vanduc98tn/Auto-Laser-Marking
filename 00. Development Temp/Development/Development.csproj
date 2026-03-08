@@ -161,29 +161,29 @@
     <Compile Include="02.LIBRARY\10.MES\01.MES Json\MES00SendPCB.cs" />
     <Compile Include="02.LIBRARY\10.MES\01.MES Json\MES00Service.cs" />
     <Compile Include="02.LIBRARY\10.MES\MESSetting.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\01.Camera\CameraOperator.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\01.Camera\HikCam.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\01.Camera\HikCamDevice.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\01.Camera\HikCamParameter.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\01.Camera\Region.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\01.Camera\VisionAL.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\02.Vision UI\RegionCreatMatrix.xaml.cs">
+    <Compile Include="300.Library Vision\01.Camera\CameraOperator.cs" />
+    <Compile Include="300.Library Vision\01.Camera\HikCam.cs" />
+    <Compile Include="300.Library Vision\01.Camera\HikCamDevice.cs" />
+    <Compile Include="300.Library Vision\01.Camera\HikCamParameter.cs" />
+    <Compile Include="300.Library Vision\01.Camera\Region.cs" />
+    <Compile Include="300.Library Vision\01.Camera\VisionAL.cs" />
+    <Compile Include="300.Library Vision\02.Vision UI\RegionCreatMatrix.xaml.cs">
       <DependentUpon>RegionCreatMatrix.xaml</DependentUpon>
     </Compile>
-    <Compile Include="02.LIBRARY\13.Vision\02.Vision UI\RegionProperty.xaml.cs">
+    <Compile Include="300.Library Vision\02.Vision UI\RegionProperty.xaml.cs">
       <DependentUpon>RegionProperty.xaml</DependentUpon>
     </Compile>
-    <Compile Include="02.LIBRARY\13.Vision\02.Vision UI\SetupPLCBitROI.xaml.cs">
+    <Compile Include="300.Library Vision\02.Vision UI\SetupPLCBitROI.xaml.cs">
       <DependentUpon>SetupPLCBitROI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="02.LIBRARY\13.Vision\Vision Setting\CamSettings.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\Vision Setting\ConnectionSettings.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\Vision Setting\ImageLoggerManager.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\Vision Setting\ImageLoggerSetting.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\Vision Setting\ModelSettings.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\Vision Setting\ModelStore.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\Vision Setting\ROISettings.cs" />
-    <Compile Include="02.LIBRARY\13.Vision\Vision Setting\VisionModel.cs" />
+    <Compile Include="300.Library Vision\Vision Setting\CamSettings.cs" />
+    <Compile Include="300.Library Vision\Vision Setting\ConnectionSettings.cs" />
+    <Compile Include="300.Library Vision\Vision Setting\ImageLoggerManager.cs" />
+    <Compile Include="300.Library Vision\Vision Setting\ImageLoggerSetting.cs" />
+    <Compile Include="300.Library Vision\Vision Setting\ModelSettings.cs" />
+    <Compile Include="300.Library Vision\Vision Setting\ModelStore.cs" />
+    <Compile Include="300.Library Vision\Vision Setting\ROISettings.cs" />
+    <Compile Include="300.Library Vision\Vision Setting\VisionModel.cs" />
     <Compile Include="03.UI\PAGE\09.CAMERA\PgCamera.xaml.cs">
       <DependentUpon>PgCamera.xaml</DependentUpon>
     </Compile>
@@ -291,7 +291,7 @@
     <Compile Include="301.Library Laser\IOLaser.cs" />
     <Compile Include="301.Library Laser\NotifyEvenLaser.cs" />
     <Compile Include="301.Library Laser\LaserCOM.cs" />
-    <Compile Include="300.Library Tester\TesterCOM.cs" />
+    <Compile Include="302.Library Tester\TesterCOM.cs" />
     <Compile Include="200.Server TCP Vision\TcpImageServer.cs" />
     <Compile Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu02.xaml.cs">
       <DependentUpon>PgMechanicalMenu02.xaml</DependentUpon>
@@ -300,9 +300,6 @@
       <DependentUpon>PgMechanicalMenu05.xaml</DependentUpon>
     </Compile>
     <Compile Include="200.Vision ZoomBorder\ZoomBorder.cs" />
-    <Compile Include="400.ECIGA WEIGHT\Scale.cs" />
-    <Compile Include="400.ECIGA WEIGHT\Scanner.cs" />
-    <Compile Include="400.ECIGA WEIGHT\ScannerLogger.cs" />
     <Compile Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu04.xaml.cs">
       <DependentUpon>PgMechanicalMenu04.xaml</DependentUpon>
     </Compile>
@@ -331,7 +328,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="50.MANUAL VISION\WorkItem.cs" />
+    <Compile Include="300.Library Vision\03.Manual Vision\WorkItem.cs" />
     <Compile Include="RUNMachine.cs" />
     <Compile Include="03.UI\WND\01.WND SETTING\WndPatern.xaml.cs">
       <DependentUpon>WndPatern.xaml</DependentUpon>
@@ -339,15 +336,15 @@
     <Compile Include="03.UI\WND\WndUnitControl1.xaml.cs">
       <DependentUpon>WndUnitControl1.xaml</DependentUpon>
     </Compile>
-    <Page Include="02.LIBRARY\13.Vision\02.Vision UI\RegionCreatMatrix.xaml">
+    <Page Include="300.Library Vision\02.Vision UI\RegionCreatMatrix.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="02.LIBRARY\13.Vision\02.Vision UI\RegionProperty.xaml">
+    <Page Include="300.Library Vision\02.Vision UI\RegionProperty.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="02.LIBRARY\13.Vision\02.Vision UI\SetupPLCBitROI.xaml">
+    <Page Include="300.Library Vision\02.Vision UI\SetupPLCBitROI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -383,7 +380,7 @@
     <Compile Include="02.LIBRARY\11.Scanner\01.Keyence\01.Scanner COM\KeyenceScannerCom.cs" />
     <Compile Include="02.LIBRARY\07.PLC\01.Mitsubishi\RS232 Modbus\FX_RS232_MODBUS.cs" />
     <Compile Include="02.LIBRARY\05.SQLLite\EventLog.cs" />
-    <Compile Include="300.Library Tester\IOTester.cs" />
+    <Compile Include="302.Library Tester\IOTester.cs" />
     <Compile Include="200.Server TCP Vision\DATACheck.cs" />
     <Compile Include="200.Server TCP Vision\FormatVision.cs" />
     <Compile Include="200.Server TCP Vision\IObserverDataVision.cs" />
@@ -632,7 +629,7 @@
     <Compile Include="03.UI\PAGE\01.TEACHING MENU\PgTeachingMenu04.xaml.cs">
       <DependentUpon>PgTeachingMenu04.xaml</DependentUpon>
     </Compile>
-    <Compile Include="300.Library Tester\NotifyEvenTester.cs" />
+    <Compile Include="302.Library Tester\NotifyEvenTester.cs" />
     <Compile Include="02.LIBRARY\12.PLCStore\PLCStore.cs" />
     <Compile Include="200.Server TCP Vision\NotifyEvenDataVision.cs" />
     <Compile Include="02.LIBRARY\08.SystemsManager\07.NotifyPLCWord_R\NotifyPLCDWord_R.cs" />
