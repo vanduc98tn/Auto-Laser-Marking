@@ -21,7 +21,7 @@ namespace Development
     public partial class WndPatern : Window
     {
         private MyLogger logger = new MyLogger("WndPatern");
-        private PatternSetting pattern = UiManager.appSetting.Pattern;
+        private PatternSetting pattern = UiManager.currentModel.LaserModel.pattern;
         private Boolean isConfirmYes = false;
 
         public WndPatern()
@@ -141,6 +141,8 @@ namespace Development
                 //pattern.offsetX = Convert.ToDouble(txtOffsetX.Text);
                 //pattern.offsetY = Convert.ToDouble(txtOffsetY.Text);
                 pattern.Use2Matrix = Convert.ToBoolean(cb2Matrix.IsChecked);
+
+                UiManager.SaveCurrentModelSettings();
                 UiManager.SaveAppSetting();
                 this.isConfirmYes = true;
                 this.Close();
