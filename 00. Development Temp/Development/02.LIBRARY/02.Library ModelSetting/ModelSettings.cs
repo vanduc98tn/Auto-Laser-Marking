@@ -13,12 +13,14 @@ namespace Development
         public String modelName { get; set; }
         public int indexModel { get; set; }
         public VisionModel VisionModel { get; set; }
+        public LaserModel LaserModel { get; set; }
         public ModelSettings()
         {
             this.indexModel = 0;
             this.updatedTime = DateTime.Now;
             this.modelName = DEFAULT_MODEL_NAME;
             this.VisionModel = new VisionModel();
+            this.LaserModel = new LaserModel();
         }
         public ModelSettings Clone()
         {
@@ -27,7 +29,8 @@ namespace Development
                 indexModel = this.indexModel,
                 updatedTime = this.updatedTime,
                 modelName = string.Copy(this.modelName),
-                VisionModel = this.VisionModel.Clone()
+                VisionModel = this.VisionModel.Clone(),
+                LaserModel = this.LaserModel.Clone()
             };
         }
         public Boolean HasSameModel(ModelSettings x)

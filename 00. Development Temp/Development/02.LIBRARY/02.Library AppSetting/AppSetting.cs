@@ -20,11 +20,11 @@ namespace Development
         public SaveDevice selectDevice;
         public LotInData LotinData;
         public MESSetting MESSettings;
+        public string currentModel; // Machine Run Model
+
         public RUNMachine RUN;
         public PatternSetting Pattern;
-
-
-        public string currentModel; // Machine Run Model
+        
         public ROIProperty RoiProperty;
         public ConnectionSettings connection;
         public AppSetting()
@@ -33,10 +33,11 @@ namespace Development
             this.selectDevice = SaveDevice.Mitsubishi_MC_Protocol_Binary_TCP;
             this.LotinData = new LotInData();
             this.MESSettings = new MESSetting();
+            this.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
+
             this.RUN = new RUNMachine();
             this.Pattern = new PatternSetting();
-
-            this.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
+            
             this.RoiProperty = new ROIProperty();
             this.connection = new ConnectionSettings();
         }
@@ -64,6 +65,10 @@ namespace Development
             {
                 _appSettings.MESSettings = new MESSetting();
             }
+            if (_appSettings.currentModel == null)
+            {
+                _appSettings.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
+            }
             if (_appSettings.RUN == null)
             {
                 _appSettings.RUN = new RUNMachine();
@@ -72,10 +77,6 @@ namespace Development
             {
                 _appSettings.Pattern = new PatternSetting();
             }    
-            if(_appSettings.currentModel == null)
-            {
-                _appSettings.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
-            }  
             if(_appSettings.RoiProperty == null)
             {
                 _appSettings.RoiProperty = new ROIProperty();
