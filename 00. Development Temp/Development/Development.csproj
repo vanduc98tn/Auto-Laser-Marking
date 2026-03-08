@@ -142,25 +142,25 @@
     </ApplicationDefinition>
     <Compile Include="02.LIBRARY\03.Library ManagerSetting\AssignSystem.cs" />
     <Compile Include="02.LIBRARY\02.Library AppSetting\AppSetting.cs" />
-    <Compile Include="02.LIBRARY\04.LogFile\MyLogger.cs" />
+    <Compile Include="02.LIBRARY\05.LogFile\MyLogger.cs" />
     <Compile Include="02.LIBRARY\03.Library ManagerSetting\ManagerSetting.cs" />
-    <Compile Include="02.LIBRARY\05.SQLLite\Dba.cs" />
-    <Compile Include="02.LIBRARY\05.SQLLite\DbRead.cs" />
-    <Compile Include="02.LIBRARY\05.SQLLite\DbWrite.cs" />
-    <Compile Include="02.LIBRARY\07.PLC\01.Mitsubishi\RS 422 SC09\FX3_SC09.cs" />
-    <Compile Include="02.LIBRARY\07.PLC\01.Mitsubishi\TCP MC Protocol\TCP_MCProtocol.cs" />
-    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatMes.cs" />
-    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatS000.cs" />
-    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatS001.cs" />
-    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatS010.cs" />
-    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatS011.cs" />
-    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatS020.cs" />
-    <Compile Include="02.LIBRARY\10.MES\01.MES Json\FormatS021.cs" />
-    <Compile Include="02.LIBRARY\10.MES\01.MES Json\Mes00Check.cs" />
-    <Compile Include="02.LIBRARY\10.MES\MESCheckLogIn.cs" />
-    <Compile Include="02.LIBRARY\10.MES\01.MES Json\MES00SendPCB.cs" />
-    <Compile Include="02.LIBRARY\10.MES\01.MES Json\MES00Service.cs" />
-    <Compile Include="02.LIBRARY\10.MES\MESSetting.cs" />
+    <Compile Include="02.LIBRARY\06.SQLLite\Dba.cs" />
+    <Compile Include="02.LIBRARY\06.SQLLite\DbRead.cs" />
+    <Compile Include="02.LIBRARY\06.SQLLite\DbWrite.cs" />
+    <Compile Include="02.LIBRARY\11.PLC\01.Mitsubishi\RS 422 SC09\FX3_SC09.cs" />
+    <Compile Include="02.LIBRARY\11.PLC\01.Mitsubishi\TCP MC Protocol\TCP_MCProtocol.cs" />
+    <Compile Include="02.LIBRARY\12.MES\01.MES Json\FormatMes.cs" />
+    <Compile Include="02.LIBRARY\12.MES\01.MES Json\FormatS000.cs" />
+    <Compile Include="02.LIBRARY\12.MES\01.MES Json\FormatS001.cs" />
+    <Compile Include="02.LIBRARY\12.MES\01.MES Json\FormatS010.cs" />
+    <Compile Include="02.LIBRARY\12.MES\01.MES Json\FormatS011.cs" />
+    <Compile Include="02.LIBRARY\12.MES\01.MES Json\FormatS020.cs" />
+    <Compile Include="02.LIBRARY\12.MES\01.MES Json\FormatS021.cs" />
+    <Compile Include="02.LIBRARY\12.MES\01.MES Json\Mes00Check.cs" />
+    <Compile Include="02.LIBRARY\12.MES\MESCheckLogIn.cs" />
+    <Compile Include="02.LIBRARY\12.MES\01.MES Json\MES00SendPCB.cs" />
+    <Compile Include="02.LIBRARY\12.MES\01.MES Json\MES00Service.cs" />
+    <Compile Include="02.LIBRARY\12.MES\MESSetting.cs" />
     <Compile Include="300.Library Vision\01.Camera\CameraOperator.cs" />
     <Compile Include="300.Library Vision\01.Camera\HikCam.cs" />
     <Compile Include="300.Library Vision\01.Camera\HikCamDevice.cs" />
@@ -180,8 +180,6 @@
     <Compile Include="300.Library Vision\Vision Setting\ConnectionSettings.cs" />
     <Compile Include="300.Library Vision\Vision Setting\ImageLoggerManager.cs" />
     <Compile Include="300.Library Vision\Vision Setting\ImageLoggerSetting.cs" />
-    <Compile Include="300.Library Vision\Vision Setting\ModelSettings.cs" />
-    <Compile Include="300.Library Vision\Vision Setting\ModelStore.cs" />
     <Compile Include="300.Library Vision\Vision Setting\ROISettings.cs" />
     <Compile Include="300.Library Vision\Vision Setting\VisionModel.cs" />
     <Compile Include="03.UI\PAGE\09.CAMERA\PgCamera.xaml.cs">
@@ -218,19 +216,19 @@
     <Compile Include="03.UI\WND\03.WND LOGIN\WndLoginMES.xaml.cs">
       <DependentUpon>WndLoginMES.xaml</DependentUpon>
     </Compile>
-    <Compile Include="02.LIBRARY\06.Alarm\AlarmList.cs" />
-    <Compile Include="02.LIBRARY\06.Alarm\EllipseInfo.cs" />
+    <Compile Include="02.LIBRARY\07.Alarm\AlarmList.cs" />
+    <Compile Include="02.LIBRARY\07.Alarm\EllipseInfo.cs" />
     <Compile Include="03.UI\PAGE\08.ASSIGN MENU\PgAssignAlarmSetting.xaml.cs">
       <DependentUpon>PgAssignAlarmSetting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="02.LIBRARY\06.Alarm\StatusMachine.cs" />
+    <Compile Include="02.LIBRARY\07.Alarm\StatusMachine.cs" />
     <Compile Include="03.UI\WND\02.WND ALARM\WndAlarm.xaml.cs">
       <DependentUpon>WndAlarm.xaml</DependentUpon>
     </Compile>
     <Compile Include="03.UI\PAGE\02.MECHANICAL MENU\PgMechanicalMenu01.xaml.cs">
       <DependentUpon>PgMechanicalMenu01.xaml</DependentUpon>
     </Compile>
-    <Compile Include="02.LIBRARY\07.PLC\01.Mitsubishi\TCP MC Protocol\ServiceTCPMCProtocolBinary.cs" />
+    <Compile Include="02.LIBRARY\11.PLC\01.Mitsubishi\TCP MC Protocol\ServiceTCPMCProtocolBinary.cs" />
     <Compile Include="02.LIBRARY\02.Library AppSetting\SettingDevice.cs" />
     <Compile Include="02.LIBRARY\02.Library AppSetting\TCPSetting.cs" />
     <Compile Include="03.UI\WND\WndComfirm.xaml.cs">
@@ -241,11 +239,11 @@
     </Compile>
     <Compile Include="02.LIBRARY\02.Library AppSetting\SaveDevice.cs" />
     <Compile Include="02.LIBRARY\02.Library AppSetting\SC09Setting.cs" />
-    <Compile Include="02.LIBRARY\07.PLC\00.Common PLC\SelectDevice.cs" />
+    <Compile Include="02.LIBRARY\11.PLC\00.Common PLC\SelectDevice.cs" />
     <Compile Include="03.UI\WND\01.WND SETTING\WndSC09Setting.xaml.cs">
       <DependentUpon>WndSC09Setting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="02.LIBRARY\07.PLC\01.Mitsubishi\RS 422 SC09\ServiceRs422Fx.cs" />
+    <Compile Include="02.LIBRARY\11.PLC\01.Mitsubishi\RS 422 SC09\ServiceRs422Fx.cs" />
     <Compile Include="02.LIBRARY\02.Library AppSetting\COMSetting.cs" />
     <Compile Include="03.UI\WND\02.WND ALARM\WndAlarmMES.xaml.cs">
       <DependentUpon>WndAlarmMES.xaml</DependentUpon>
@@ -276,18 +274,18 @@
     <Compile Include="05.USER CONTROL PLC\04.RetangleLamp\RectangleLamp.xaml.cs">
       <DependentUpon>RectangleLamp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="02.LIBRARY\07.PLC\02.PLC LS\01.TCP XGT Server\ServiceXGTServerTCP.cs" />
-    <Compile Include="02.LIBRARY\07.PLC\02.PLC LS\04.LS XGTServer COM\ServiceLSXGTServerCOM.cs" />
-    <Compile Include="02.LIBRARY\05.SQLLite\SQLimageAlarm.cs" />
+    <Compile Include="02.LIBRARY\11.PLC\02.PLC LS\01.TCP XGT Server\ServiceXGTServerTCP.cs" />
+    <Compile Include="02.LIBRARY\11.PLC\02.PLC LS\04.LS XGTServer COM\ServiceLSXGTServerCOM.cs" />
+    <Compile Include="02.LIBRARY\06.SQLLite\SQLimageAlarm.cs" />
     <Compile Include="03.UI\WND\01.WND SETTING\WndModbusComSetting.xaml.cs">
       <DependentUpon>WndModbusComSetting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="02.LIBRARY\07.PLC\02.PLC LS\04.LS XGTServer COM\XGTServerCom.cs" />
-    <Compile Include="02.LIBRARY\07.PLC\02.PLC LS\01.TCP XGT Server\XGTServerTCP.cs" />
+    <Compile Include="02.LIBRARY\11.PLC\02.PLC LS\04.LS XGTServer COM\XGTServerCom.cs" />
+    <Compile Include="02.LIBRARY\11.PLC\02.PLC LS\01.TCP XGT Server\XGTServerTCP.cs" />
     <Compile Include="03.UI\WND\WndMessenger.xaml.cs">
       <DependentUpon>WndMessenger.xaml</DependentUpon>
     </Compile>
-    <Compile Include="02.LIBRARY\04.LogFile\LogLevel.cs" />
+    <Compile Include="02.LIBRARY\05.LogFile\LogLevel.cs" />
     <Compile Include="301.Library Laser\IOLaser.cs" />
     <Compile Include="301.Library Laser\NotifyEvenLaser.cs" />
     <Compile Include="301.Library Laser\LaserCOM.cs" />
@@ -308,6 +306,8 @@
       <DependentUpon>PgMechanicalMenu03.xaml</DependentUpon>
     </Compile>
     <Compile Include="02.LIBRARY\02.Library AppSetting\PatternSetting.cs" />
+    <Compile Include="02.LIBRARY\02.Library ModelSetting\ModelSettings.cs" />
+    <Compile Include="02.LIBRARY\02.Library ModelSetting\ModelStore.cs" />
     <Compile Include="Properties\Resources.ko.Designer.cs">
       <DependentUpon>Resources.ko.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -364,22 +364,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="02.LIBRARY\05.SQLLite\AlarmInfo.cs" />
+    <Compile Include="02.LIBRARY\06.SQLLite\AlarmInfo.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="02.LIBRARY\07.PLC\00.Common PLC\Device.cs" />
+    <Compile Include="02.LIBRARY\11.PLC\00.Common PLC\Device.cs" />
     <Compile Include="02.LIBRARY\08.SystemsManager\04.NotifyPLCDWord_ZR\IObserverChangeDWord_ZR.cs" />
     <Compile Include="02.LIBRARY\08.SystemsManager\05.NotifyPLCWord_ZR\IObserverChangeWord_ZR.cs" />
     <Compile Include="02.LIBRARY\08.SystemsManager\06.NotifyEvenMES\IObserverMES.cs" />
-    <Compile Include="02.LIBRARY\10.MES\02.MES COM\Mes01Repository.cs" />
-    <Compile Include="02.LIBRARY\10.MES\02.MES COM\MES01Check.cs" />
-    <Compile Include="02.LIBRARY\10.MES\02.MES COM\MES01Service.cs" />
-    <Compile Include="02.LIBRARY\11.Scanner\01.Keyence\02.Scanner TCP\KeyenceScannerTCP.cs" />
-    <Compile Include="02.LIBRARY\11.Scanner\01.Keyence\01.Scanner COM\KeyenceScannerCom.cs" />
-    <Compile Include="02.LIBRARY\07.PLC\01.Mitsubishi\RS232 Modbus\FX_RS232_MODBUS.cs" />
-    <Compile Include="02.LIBRARY\05.SQLLite\EventLog.cs" />
+    <Compile Include="02.LIBRARY\12.MES\02.MES COM\Mes01Repository.cs" />
+    <Compile Include="02.LIBRARY\12.MES\02.MES COM\MES01Check.cs" />
+    <Compile Include="02.LIBRARY\12.MES\02.MES COM\MES01Service.cs" />
+    <Compile Include="02.LIBRARY\13.Scanner\01.Keyence\02.Scanner TCP\KeyenceScannerTCP.cs" />
+    <Compile Include="02.LIBRARY\13.Scanner\01.Keyence\01.Scanner COM\KeyenceScannerCom.cs" />
+    <Compile Include="02.LIBRARY\11.PLC\01.Mitsubishi\RS232 Modbus\FX_RS232_MODBUS.cs" />
+    <Compile Include="02.LIBRARY\06.SQLLite\EventLog.cs" />
     <Compile Include="302.Library Tester\IOTester.cs" />
     <Compile Include="200.Server TCP Vision\DATACheck.cs" />
     <Compile Include="200.Server TCP Vision\FormatVision.cs" />
@@ -630,7 +630,7 @@
       <DependentUpon>PgTeachingMenu04.xaml</DependentUpon>
     </Compile>
     <Compile Include="302.Library Tester\NotifyEvenTester.cs" />
-    <Compile Include="02.LIBRARY\12.PLCStore\PLCStore.cs" />
+    <Compile Include="02.LIBRARY\10.PLCStore\PLCStore.cs" />
     <Compile Include="200.Server TCP Vision\NotifyEvenDataVision.cs" />
     <Compile Include="02.LIBRARY\08.SystemsManager\07.NotifyPLCWord_R\NotifyPLCDWord_R.cs" />
     <Compile Include="02.LIBRARY\08.SystemsManager\08.NotifyPLCWord_R\NotifyPLCWord_R.cs" />
@@ -743,8 +743,8 @@
     <Resource Include="01.IMAGE\Minion1.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="02.LIBRARY\07.PLC\02.PLC LS\02.TCP Modbus LS\" />
-    <Folder Include="02.LIBRARY\07.PLC\02.PLC LS\03.COM Modbus LS\" />
+    <Folder Include="02.LIBRARY\11.PLC\02.PLC LS\02.TCP Modbus LS\" />
+    <Folder Include="02.LIBRARY\11.PLC\02.PLC LS\03.COM Modbus LS\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
