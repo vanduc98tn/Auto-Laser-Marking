@@ -20,6 +20,8 @@ namespace Development
         public double Yield { get; set; }
         public int OKCount { get; set; }
         public int NGCount { get; set; }
+        public double OKCountPer { get; set; }
+        public double NGCountPer { get; set; }
         public LotInData()
         {
             this.WorkGroup = "ITM Group";
@@ -30,6 +32,8 @@ namespace Development
             this.Yield = 0;
             this.OKCount = 0;
             this.NGCount = 0;
+            this.OKCountPer = 0;
+            this.NGCountPer = 0;
             this.IsConfigOK = false;
         }
     }

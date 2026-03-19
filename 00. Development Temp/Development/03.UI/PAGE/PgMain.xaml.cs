@@ -909,6 +909,20 @@ namespace Development
                 }
             }), System.Windows.Threading.DispatcherPriority.Background);
         }
+        private void UpdateUIMODEL()
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                this.lblModelName.Content = UiManager.appSetting.currentModel;
+                ModelSettings currentModel = ModelStore.GetModelSettings(UiManager.appSetting.currentModel);
+                if (currentModel == null)
+                {
+                    logger.Create("Cannot find current model settings: " + UiManager.appSetting.currentModel, LogLevel.Error);
+                    return;
+                }
+                this.lblModelNo.Content = currentModel.indexModel.ToString("D2");
+            }), System.Windows.Threading.DispatcherPriority.Background);
+        }
 
         private void generateCells(int rowCnt, int colCnt, int pattern, bool Use2Matrix)
         {
@@ -1243,6 +1257,7 @@ namespace Development
             this.StartTimer();
             this.LoadLotData();
             this.RegisterDevicePLC();
+            this.UpdateUIMODEL();
 
             this.RegisterNotifyMES();
             this.CheckConnectionMES(UiManager.Instance.MES.isAccept);
@@ -1708,6 +1723,8 @@ namespace Development
             lotInData.NGCount = 0;
             lotInData.TotalCount = 0;
             lotInData.Yield = 0;
+            lotInData.OKCountPer = 0;
+            lotInData.NGCountPer = 0;
             lotInData.LotQty = 0;
             lotInData.DeviceId = "";
             lotInData.LotId = "";
@@ -1719,6 +1736,8 @@ namespace Development
             this.lbNgCount.Content = lotInData.NGCount.ToString();
             this.lbTotalCount.Content = lotInData.TotalCount.ToString();
             this.lbYield.Content = lotInData.Yield.ToString();
+            this.lbOkCountPer.Content = lotInData.OKCountPer.ToString() + "%";
+            this.lbNgCountPer.Content = lotInData.NGCountPer.ToString() + "%";
             UiManager.appSetting.LotinData = lotInData;
             UiManager.SaveAppSetting();
         }
@@ -1731,12 +1750,16 @@ namespace Development
                 lotInData.NGCount = lotInData.NGCount + NG;
                 lotInData.TotalCount = lotInData.TotalCount + OK + NG;
                 lotInData.Yield = Math.Round((double)lotInData.OKCount / lotInData.TotalCount * 100, 2);
+                lotInData.OKCountPer = Math.Round((double)lotInData.OKCount / lotInData.TotalCount * 100, 2);
+                lotInData.NGCountPer = Math.Round((double)lotInData.NGCount / lotInData.TotalCount * 100, 2);
 
                 this.lbQty.Content = lotInData.LotQty.ToString();
                 this.lbOkCount.Content = lotInData.OKCount.ToString();
                 this.lbNgCount.Content = lotInData.NGCount.ToString();
                 this.lbTotalCount.Content = lotInData.TotalCount.ToString();
                 this.lbYield.Content = lotInData.Yield.ToString();
+                this.lbOkCountPer.Content = lotInData.OKCountPer.ToString()+"%";
+                this.lbNgCountPer.Content = lotInData.NGCountPer.ToString()+"%";
             });
         }
         private void UpdateInformationLOTIN(LotInData lotin)
@@ -1746,6 +1769,8 @@ namespace Development
             lotin.NGCount = 0;
             lotin.TotalCount = 0;
             lotin.Yield = 0;
+            lotin.OKCountPer = 0;
+            lotin.NGCountPer = 0;
 
             this.lbLotID.Content = lotin.LotId?.ToString();
             this.lbConfig.Content = lotin.DeviceId?.ToString();
@@ -1755,6 +1780,8 @@ namespace Development
             this.lbNgCount.Content = lotin.NGCount.ToString();
             this.lbTotalCount.Content = lotin.TotalCount.ToString();
             this.lbYield.Content = lotin.Yield.ToString();
+            this.lbOkCountPer.Content = lotin.OKCountPer.ToString() + "%";
+            this.lbNgCountPer.Content = lotin.NGCountPer.ToString() + "%";
             UiManager.appSetting.LotinData = lotin;
             UiManager.SaveAppSetting();
         }
@@ -1772,6 +1799,8 @@ namespace Development
             this.lbNgCount.Content = lotInData.NGCount.ToString();
             this.lbTotalCount.Content = lotInData.TotalCount.ToString();
             this.lbYield.Content = lotInData.Yield.ToString();
+            this.lbOkCountPer.Content = lotInData.OKCountPer.ToString() + "%";
+            this.lbNgCountPer.Content = lotInData.NGCountPer.ToString() + "%";
         }
         #endregion
 
