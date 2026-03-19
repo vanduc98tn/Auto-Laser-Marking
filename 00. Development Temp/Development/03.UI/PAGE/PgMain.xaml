@@ -223,6 +223,49 @@
                         <Setter Property="BorderBrush" Value="Gray"/>
                         <Setter Property="Foreground" Value="Black"/>
                     </Style>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <Grid>
+                                        <Border Name="Border"
+                         Background="LightGray"
+                         BorderBrush="#333333"
+                         BorderThickness="0.5"
+                         CornerRadius="0 0 8 8"
+                         Margin="1"
+                         SnapsToDevicePixels="True">
+                                            <Grid>
+                                                <ContentPresenter x:Name="ContentSite"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               ContentSource="Header"
+                               Margin="10,2"/>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="#333333" />
+                                            <Setter TargetName="Border" Property="BorderBrush" Value="#333333" />
+                                            <Setter Property="Foreground" Value="White" />
+
+                                            <Setter TargetName="Border" Property="BorderThickness" Value="2" />
+
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter TargetName="Border" Property="Background" Value="LightGray" />
+                                            <Setter TargetName="Border" Property="BorderBrush" Value="Gray" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter TargetName="Border" Property="BorderThickness" Value="1" />
+
+                                        </Trigger>
+
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
                 </Grid.Resources>
                 <Grid Grid.Row="0" Margin="0" x:Name="GirdInfor">
                     <Grid.ColumnDefinitions>
@@ -233,91 +276,172 @@
                         <Border Margin="0,2,0,0" BorderBrush="Silver" Background="#EEEEEE" BorderThickness="1" CornerRadius="8,8,8,8" Grid.Row="0">
                             <Grid Grid.Row="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="25"></RowDefinition>
+                                    <!--<RowDefinition Height="25"></RowDefinition>-->
                                     <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <Grid Grid.Row="0">
+                                <!--<Grid Grid.Row="0">
                                     <Border Margin="15,0,0,0" Background="#333333" HorizontalAlignment="Left" BorderBrush="Silver" BorderThickness="1" CornerRadius="0,0,8,8" Grid.Row="0" >
                                         <StackPanel>
                                             <Label Grid.Row="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="White" Content="  Count Infor  " FontSize="13"></Label>
                                         </StackPanel>
                                     </Border>
-                                </Grid>
-                                <Grid Grid.Row="1">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <Grid Grid.Row="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">NG Count (EA)</Label>
-                                        <Grid Grid.Row="0" Grid.Column="3" Margin="1">
-                                            <UniformGrid Columns="2" Margin="0">
-                                                <Label x:Name="lbNgCount" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
-                                                <Label x:Name="lbNgCountPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
-                                            </UniformGrid>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">OK Count (EA)</Label>
-                                        <Grid Grid.Row="0" Grid.Column="3" Margin="0">
-                                            <Grid Grid.Row="0" Grid.Column="3" Margin="1">
-                                                <UniformGrid Columns="2" Margin="0">
-                                                    <Label x:Name="lbOkCount" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
-                                                    <Label x:Name="lbOkCountPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
-                                                </UniformGrid>
+                                </Grid>-->
+                                <TabControl  Grid.Row="1" FontSize="10" BorderThickness="1" FontFamily="Arial" FontWeight="SemiBold" Margin="4 0 0 2">
+                                    <TabItem FontSize="10" Header="COUNTER PCB" Height="30" >
+                                        <Grid Grid.Row="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid Grid.Row="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">NG Count (EA)</Label>
+                                                <Grid Grid.Row="0" Grid.Column="3" Margin="1">
+                                                    <UniformGrid Columns="2" Margin="0">
+                                                        <Label x:Name="lbNgCount1" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                        <Label x:Name="lbNgCountPer1" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
+                                                    </UniformGrid>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">OK Count (EA)</Label>
+                                                <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                                    <Grid Grid.Row="0" Grid.Column="3" Margin="1">
+                                                        <UniformGrid Columns="2" Margin="0">
+                                                            <Label x:Name="lbOkCount1" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                            <Label x:Name="lbOkCountPer1" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
+                                                        </UniformGrid>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Grid.Row="2" Visibility="Hidden">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="135*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="62*"/>
+                                                    <ColumnDefinition Width="197*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Margin="1,1,1,1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2">Yield (%)</Label>
+                                                <Grid Grid.Row="0" Grid.Column="2" Margin="1,1,1,1">
+                                                    <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                                        <Label x:Name="lbYield1" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">Total Count (EA)</Label>
+                                                <Grid Grid.Row="0" Grid.Column="3" Margin="1">
+                                                    <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                                        <Label x:Name="lbTotalCount1" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Grid.Row="4">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="135*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="62*"/>
+                                                    <ColumnDefinition Width="197*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Margin="1,1,1,1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2">Qty Lot (EA)</Label>
+                                                <Grid Grid.Row="0" Grid.Column="2" Margin="1">
+                                                    <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                                        <Label x:Name="lbQty1" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                    </Grid>
+                                                </Grid>
                                             </Grid>
                                         </Grid>
-                                    </Grid>
-                                    <Grid Grid.Row="2" Visibility="Hidden">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="135*"></ColumnDefinition>
-                                            <ColumnDefinition Width="62*"/>
-                                            <ColumnDefinition Width="197*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Margin="1,1,1,1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2">Yield (%)</Label>
-                                        <Grid Grid.Row="0" Grid.Column="2" Margin="1,1,1,1">
-                                            <Grid Grid.Row="0" Grid.Column="3" Margin="0">
-                                                <Label x:Name="lbYield" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                    </TabItem>
+                                    <TabItem FontSize="10" Header="COUNTER FPCB" Height="30" >
+                                        <Grid Grid.Row="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid Grid.Row="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">NG Count (EA)</Label>
+                                                <Grid Grid.Row="0" Grid.Column="3" Margin="1">
+                                                    <UniformGrid Columns="2" Margin="0">
+                                                        <Label x:Name="lbNgCount" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                        <Label x:Name="lbNgCountPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
+                                                    </UniformGrid>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">OK Count (EA)</Label>
+                                                <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                                    <Grid Grid.Row="0" Grid.Column="3" Margin="1">
+                                                        <UniformGrid Columns="2" Margin="0">
+                                                            <Label x:Name="lbOkCount" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                            <Label x:Name="lbOkCountPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
+                                                        </UniformGrid>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Grid.Row="2" Visibility="Hidden">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="135*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="62*"/>
+                                                    <ColumnDefinition Width="197*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Margin="1,1,1,1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2">Yield (%)</Label>
+                                                <Grid Grid.Row="0" Grid.Column="2" Margin="1,1,1,1">
+                                                    <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                                        <Label x:Name="lbYield" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">Total Count (EA)</Label>
+                                                <Grid Grid.Row="0" Grid.Column="3" Margin="1">
+                                                    <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                                        <Label x:Name="lbTotalCount" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Grid.Row="4">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="135*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="62*"/>
+                                                    <ColumnDefinition Width="197*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Margin="1,1,1,1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2">Qty Lot (EA)</Label>
+                                                <Grid Grid.Row="0" Grid.Column="2" Margin="1">
+                                                    <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                                        <Label x:Name="lbQty" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                    </Grid>
+                                                </Grid>
                                             </Grid>
                                         </Grid>
-                                    </Grid>
-                                    <Grid Grid.Row="2">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">Total Count (EA)</Label>
-                                        <Grid Grid.Row="0" Grid.Column="3" Margin="1">
-                                            <Grid Grid.Row="0" Grid.Column="3" Margin="0">
-                                                <Label x:Name="lbTotalCount" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid Grid.Row="4">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="135*"></ColumnDefinition>
-                                            <ColumnDefinition Width="62*"/>
-                                            <ColumnDefinition Width="197*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Margin="1,1,1,1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2">Qty Lot (EA)</Label>
-                                        <Grid Grid.Row="0" Grid.Column="2" Margin="1">
-                                            <Grid Grid.Row="0" Grid.Column="3" Margin="0">
-                                                <Label x:Name="lbQty" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
+                                    </TabItem>
+                                </TabControl>
                             </Grid>
 
                         </Border>
