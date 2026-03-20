@@ -12,6 +12,7 @@ namespace Development
         public string ID { get; set; }
         public string EquimentID { get; set; }
         public string Repice { get; set; }
+        public int SendReadyTime { get; set; }
         public MESSetting()
         {
            
@@ -19,6 +20,7 @@ namespace Development
             this.Repice = "recipe1234";
             this.AUTHORITY = "No AUTHORITY";
             this.ID = "No ID";
+            this.SendReadyTime = 10;
         }
     }
 }

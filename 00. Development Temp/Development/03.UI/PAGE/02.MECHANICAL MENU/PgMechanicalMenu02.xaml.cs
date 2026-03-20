@@ -69,6 +69,7 @@ namespace Development
             this.tbPortMES.Text = UiManager.appSetting.MESSettings.Port.ToString();
             this.tbEquipment.Text = UiManager.appSetting.MESSettings.EquimentID.ToString();
             this.tbRecipe.Text = UiManager.appSetting.MESSettings.Repice.ToString();
+            this.tbSendReadyTime.Text = UiManager.appSetting.MESSettings.SendReadyTime.ToString();
 
         }
         private void UpdateLogs(string notify)
@@ -90,12 +91,14 @@ namespace Development
             UiManager.appSetting.MESSettings.Port = Convert.ToInt32(this.tbPortMES.Text);
             UiManager.appSetting.MESSettings.EquimentID = this.tbEquipment.Text;
             UiManager.appSetting.MESSettings.Repice = this.tbRecipe.Text;
+            UiManager.appSetting.MESSettings.SendReadyTime = Convert.ToInt32(this.tbSendReadyTime.Text);
 
             UiManager.SaveAppSetting();
             UpdateLogs($"Setting Ip : {UiManager.appSetting.MESSettings.Ip}");
             UpdateLogs($"Setting Port : {UiManager.appSetting.MESSettings.Port}");
             UpdateLogs($"Setting Equipment : {UiManager.appSetting.MESSettings.EquimentID}");
             UpdateLogs($"Setting Recipe : {UiManager.appSetting.MESSettings.Repice}");
+            UpdateLogs($"Setting Send ready time : {UiManager.appSetting.MESSettings.SendReadyTime}");
 
             UpdateLogs($"Save Setting Complete !");
 

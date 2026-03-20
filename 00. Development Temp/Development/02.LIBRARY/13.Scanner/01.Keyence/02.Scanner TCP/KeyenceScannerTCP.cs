@@ -16,7 +16,7 @@ namespace Development
         public const String BANK_ID_PCB = "03";
 
         private const int CONNECT_TIMEOUT = 100;
-        private const int READ_TIMEOUT = 300;
+        private const int READ_TIMEOUT = 3000;
 
         private static MyLogger logger = new MyLogger("ScannerCommTcp");
 

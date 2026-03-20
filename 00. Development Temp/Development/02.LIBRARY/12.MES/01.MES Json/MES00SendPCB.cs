@@ -5,11 +5,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Threading;
 using System.Xml.Linq;
-using System.Windows;
 
 
 namespace Development
@@ -31,9 +32,11 @@ namespace Development
         public bool isAccept = false;
         public string IpServer;
         public string PortServer;
+        private int SEND_READY_TIME = 10000;
         //
         protected bool isReceiver = false;
         protected string DataReceiver { get; set; }
+        private Thread AutoRunThread;
 
         public MES00SendPCB(string ip, int port)
         {
@@ -93,6 +96,7 @@ namespace Development
                         this.notifyEvenMES.GetInformationFromClientConnect(clientIP, clientPort);
                         this.isAccept = true;
                         this.notifyEvenMES.NotifyToUI($"Notify : Client connected from {clientIP}:{clientPort}");
+                        this.InitializationAutoSend();
                         await Task.Run(() => HandleMesClient(mesClients));
                     }
                     else
@@ -110,6 +114,38 @@ namespace Development
                 logger.Create("MES Connect Faild " + ex.Message, LogLevel.Error);
                 this.notifyEvenMES.NotifyMESConnect(false);
                 this.isAccept = false;
+            }
+        }
+        private void InitializationAutoSend()
+        {
+            this.AutoRunThread = new Thread(new ThreadStart(SendHeartM001));
+            this.AutoRunThread.IsBackground = true;
+            this.AutoRunThread.Start();
+        }
+        private async void SendHeartM001()
+        {
+
+            while (mesClients != null && mesClients.Connected)
+            {
+                try
+                {
+                    SEND_READY_TIME = UiManager.appSetting.MESSettings.SendReadyTime  * 1000;
+                    string equip = UiManager.appSetting.MESSettings.EquimentID.PadRight(9, ' ');
+                    string msg = equip + "M001";
+
+                    byte[] txBuf = Encoding.ASCII.GetBytes(msg);
+
+                    await SendToMes(txBuf);
+
+                    logger.Create($@"MES.SEND:" + ASCIIEncoding.ASCII.GetString(txBuf), LogLevel.Information);
+
+                }
+                catch (Exception ex)
+                {
+                    logger.Create("Heartbeat error: " + ex.Message, LogLevel.Error);
+                }
+
+                Thread.Sleep(SEND_READY_TIME);
             }
         }
         public void Stop()

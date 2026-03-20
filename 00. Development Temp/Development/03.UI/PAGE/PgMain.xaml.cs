@@ -124,6 +124,7 @@ namespace Development
                     this.UpdateUIQR("", false);
 
                     this.DataPCB = new DataPCB();
+                    this.FpcbData = new FpcbData();
                     this.isQR = false;
 
                 }
@@ -137,6 +138,8 @@ namespace Development
 
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 510, false);
                     addLog("Write Bit M510 = OFF");
+
+                    this.FpcbData = new FpcbData();
 
                     if (UiManager.appSetting.RUN.CheckScanner)
                     {
@@ -385,32 +388,32 @@ namespace Development
         {
             var Data = this.GetDataWorkin();
 
-            UpdateUIMES("MES SEND READY ", Brushes.Yellow);
+            //UpdateUIMES("MES SEND READY ", Brushes.Yellow);
 
-            // Send Ready
-            var MESREADY = await UiManager.Instance.MES.SendReady(Data);
+            //// Send Ready
+            //var MESREADY = await UiManager.Instance.MES.SendReady(Data);
 
-            if (!MESREADY)
-            {
-                // SEND PLC MES NG
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, false); addLog("Write Bit Workin MES OK M610 = OFF");
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, false); addLog("Write Bit Workin QR NG M611 = OFF");
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 612, true ); addLog("Write Bit Workin MES NG M611 = ON");
+            //if (!MESREADY)
+            //{
+            //    // SEND PLC MES NG
+            //    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 610, false); addLog("Write Bit Workin MES OK M610 = OFF");
+            //    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 611, false); addLog("Write Bit Workin QR NG M611 = OFF");
+            //    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 612, true ); addLog("Write Bit Workin MES NG M611 = ON");
 
-                string message = "- Check MES connection again:\r\n" +
-                                 "  + Verify IP configuration\r\n" +
-                                 "  + Verify network connectivity\r\n" +
-                                 "- Kiểm tra lại kết nối MES:\r\n" +
-                                 "  + Kiểm tra lại setting IP\r\n" +
-                                 "  + Kiểm tra lại đường truyền\r\n";
+            //    string message = "- Check MES connection again:\r\n" +
+            //                     "  + Verify IP configuration\r\n" +
+            //                     "  + Verify network connectivity\r\n" +
+            //                     "- Kiểm tra lại kết nối MES:\r\n" +
+            //                     "  + Kiểm tra lại setting IP\r\n" +
+            //                     "  + Kiểm tra lại đường truyền\r\n";
 
-                UpdateUIMES("MES CHECK READY IS FAIL", Brushes.Red);
-                addLog("MES CHECK READY IS FAIL");
-                AddErrorMES("MES CHECK READY IS FAIL", message);
+            //    UpdateUIMES("MES CHECK READY IS FAIL", Brushes.Red);
+            //    addLog("MES CHECK READY IS FAIL");
+            //    AddErrorMES("MES CHECK READY IS FAIL", message);
 
 
-                return;
-            }
+            //    return;
+            //}
 
             // Send Workin
             UpdateUIMES("MES SEND WORKIN...", Brushes.Yellow);
@@ -523,31 +526,31 @@ namespace Development
             //}
             var Data = this.GetDataWorkout();
 
-            UpdateUIMES("MES SEND READY ", Brushes.Yellow);
+            //UpdateUIMES("MES SEND READY ", Brushes.Yellow);
 
-            // Send Ready
-            var MESREADY = await UiManager.Instance.MES.SendReady(Data);
+            //// Send Ready
+            //var MESREADY = await UiManager.Instance.MES.SendReady(Data);
 
-            if (!MESREADY)
-            {
-                string message = "- Check MES connection again:\r\n" +
-                                 "  + Verify IP configuration\r\n" +
-                                 "  + Verify network connectivity\r\n" +
-                                 "- Kiểm tra lại kết nối MES:\r\n" +
-                                 "  + Kiểm tra lại setting IP\r\n" +
-                                 "  + Kiểm tra lại đường truyền\r\n";
+            //if (!MESREADY)
+            //{
+            //    string message = "- Check MES connection again:\r\n" +
+            //                     "  + Verify IP configuration\r\n" +
+            //                     "  + Verify network connectivity\r\n" +
+            //                     "- Kiểm tra lại kết nối MES:\r\n" +
+            //                     "  + Kiểm tra lại setting IP\r\n" +
+            //                     "  + Kiểm tra lại đường truyền\r\n";
 
 
-                // SEND PLC MES NG
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 620, false); addLog("Write Bit Workout MES OK M620 = OFF");
-                UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 621, true ); addLog("Write Bit Workout MES OK M621 = ON");
+            //    // SEND PLC MES NG
+            //    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 620, false); addLog("Write Bit Workout MES OK M620 = OFF");
+            //    UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 621, true ); addLog("Write Bit Workout MES OK M621 = ON");
 
-                UpdateUIMES("MES CHECK READY IS FAIL", Brushes.Red);
-                addLog("MES CHECK READY IS FAIL");
+            //    UpdateUIMES("MES CHECK READY IS FAIL", Brushes.Red);
+            //    addLog("MES CHECK READY IS FAIL");
 
-                AddErrorMES("MES CHECK READY IS FAIL", message);
-                return;
-            }
+            //    AddErrorMES("MES CHECK READY IS FAIL", message);
+            //    return;
+            //}
 
             // Send Workin
             UpdateUIMES("MES SEND WORKOUT...", Brushes.Yellow);
@@ -780,8 +783,9 @@ namespace Development
                 return string.Empty;
 
             var set = new HashSet<int>(arr);
-
+            int total = pattern.xRow * pattern.yColumn;
             int max = set.Max();
+            if (total > set.Max()) max = total;
             StringBuilder sb = new StringBuilder();
 
             for (int i = 1; i <= max; i++)
@@ -1724,7 +1728,7 @@ namespace Development
         private void LotOut()
         {
             lotInData = UiManager.appSetting.LotinData;
-            FpcbData = UiManager.appSetting.FpcbData;
+            //FpcbData = UiManager.appSetting.FpcbData;
 
             lotInData.OKCount = 0;
             lotInData.NGCount = 0;
@@ -1765,7 +1769,7 @@ namespace Development
             this.lbOKCountFpcbPer.Content = FpcbData.OKCountPer.ToString() + "%";
 
             UiManager.appSetting.LotinData = lotInData;
-            UiManager.appSetting.FpcbData = FpcbData;
+            //UiManager.appSetting.FpcbData = FpcbData;
             UiManager.SaveAppSetting();
         }
         private void UpdateOK_NG(int OK, int NG)
@@ -1777,9 +1781,9 @@ namespace Development
                 lotInData.NGCount = lotInData.NGCount + NG;
                 lotInData.TotalCount = lotInData.TotalCount + OK + NG;
 
-                lotInData.Yield = Math.Round((double)lotInData.OKCount / lotInData.TotalCount * 100, 2);
-                lotInData.OKCountPer = Math.Round((double)lotInData.OKCount / lotInData.TotalCount * 100, 2);
-                lotInData.NGCountPer = Math.Round((double)lotInData.NGCount / lotInData.TotalCount * 100, 2);
+                lotInData.Yield = Math.Round((double)lotInData.OKCount / lotInData.TotalCount * 100, 1);
+                lotInData.OKCountPer = Math.Round((double)lotInData.OKCount / lotInData.TotalCount * 100, 1);
+                lotInData.NGCountPer = Math.Round((double)lotInData.NGCount / lotInData.TotalCount * 100, 1);
 
                 this.lbQty.Content = lotInData.LotQty.ToString();
                 this.lbOkCount.Content = lotInData.OKCount.ToString();
@@ -1796,14 +1800,14 @@ namespace Development
             Dispatcher.Invoke(() =>
             {
 
-                FpcbData.NGmarked = FpcbData.NGmarked + NGmarked;
-                FpcbData.NGmarking = FpcbData.NGmarking + NGmarking;
+                FpcbData.NGmarked = NGmarked;
+                FpcbData.NGmarking = NGmarking;
                 FpcbData.TotalCountFpcb = Total;
-                FpcbData.OKCount = FpcbData.TotalCountFpcb - (FpcbData.NGmarked + FpcbData.NGmarking);
+                FpcbData.OKCount = FpcbData.TotalCountFpcb - FpcbData.NGmarked - FpcbData.NGmarking;
 
-                FpcbData.NGmarkedPer = Math.Round((double)FpcbData.NGmarked / FpcbData.TotalCountFpcb * 100, 2);
-                FpcbData.NGmarkingPer = Math.Round((double)FpcbData.NGmarking / FpcbData.TotalCountFpcb * 100, 2);
-                FpcbData.OKCountPer = Math.Round((double)FpcbData.OKCount / FpcbData.TotalCountFpcb * 100, 2);
+                FpcbData.NGmarkedPer = Math.Round((double)FpcbData.NGmarked / FpcbData.TotalCountFpcb * 100, 1);
+                FpcbData.NGmarkingPer = Math.Round((double)FpcbData.NGmarking / FpcbData.TotalCountFpcb * 100, 1);
+                FpcbData.OKCountPer = Math.Round((double)FpcbData.OKCount / FpcbData.TotalCountFpcb * 100, 1);
 
                 this.lbNgMarked.Content = FpcbData.NGmarked.ToString();
                 this.lbNgMarking.Content = FpcbData.NGmarking.ToString();
@@ -1842,7 +1846,7 @@ namespace Development
         private void LoadLotData()
         {
             lotInData = UiManager.appSetting.LotinData;
-            FpcbData = UiManager.appSetting.FpcbData;
+            //FpcbData = UiManager.appSetting.FpcbData;
 
             this.lbLotID.Content = lotInData.LotId?.ToString();
             this.lbConfig.Content = lotInData.DeviceId?.ToString();
@@ -1859,14 +1863,14 @@ namespace Development
             this.lbNgCountPer.Content = lotInData.NGCountPer.ToString() + "%";
 
 
-            this.lbNgMarked.Content = FpcbData.NGmarked.ToString();
-            this.lbNgMarking.Content = FpcbData.NGmarking.ToString();
-            this.lbOKCountFpcb.Content = FpcbData.OKCount.ToString();
-            this.lbTotalCountFpcb.Content = FpcbData.TotalCountFpcb.ToString();
+            //this.lbNgMarked.Content = FpcbData.NGmarked.ToString();
+            //this.lbNgMarking.Content = FpcbData.NGmarking.ToString();
+            //this.lbOKCountFpcb.Content = FpcbData.OKCount.ToString();
+            //this.lbTotalCountFpcb.Content = FpcbData.TotalCountFpcb.ToString();
 
-            this.lbNgMarkedPer.Content = FpcbData.NGmarkedPer.ToString() + "%";
-            this.lbNgMarkingPer.Content = FpcbData.NGmarkingPer.ToString() + "%";
-            this.lbOKCountFpcbPer.Content = FpcbData.OKCountPer.ToString() + "%";
+            //this.lbNgMarkedPer.Content = FpcbData.NGmarkedPer.ToString() + "%";
+            //this.lbNgMarkingPer.Content = FpcbData.NGmarkingPer.ToString() + "%";
+            //this.lbOKCountFpcbPer.Content = FpcbData.OKCountPer.ToString() + "%";
 
 
         }

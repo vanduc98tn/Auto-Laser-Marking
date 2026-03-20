@@ -180,6 +180,7 @@
                                 <RowDefinition Height="40"></RowDefinition>
                                 <RowDefinition Height="40"></RowDefinition>
                                 <RowDefinition Height="40"></RowDefinition>
+                                <RowDefinition Height="40"></RowDefinition>
                                 <RowDefinition Height="80"></RowDefinition>
                                 <RowDefinition Height="40"></RowDefinition>
                                 <RowDefinition ></RowDefinition>
@@ -224,10 +225,19 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
 
                                 </Grid.ColumnDefinitions>
-                                <Label Content="Recipe" Style="{StaticResource SectionHeader}" Opacity="0.9" Margin="4" HorizontalContentAlignment="Left" Padding="20,0,0,0"/>
+                                <Label Content="RECIPE" Style="{StaticResource SectionHeader}" Opacity="0.9" Margin="4" HorizontalContentAlignment="Left" Padding="20,0,0,0"/>
                                 <TextBox x:Name="tbRecipe" Grid.Column="2" Margin="2" Height="30" Text="Recipe" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
                             <Grid Grid.Row="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="220"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+
+                                </Grid.ColumnDefinitions>
+                                <Label Content="SEND READY TIME (S)" Style="{StaticResource SectionHeader}" Opacity="0.9" Margin="4" HorizontalContentAlignment="Left" Padding="20,0,0,0"/>
+                                <TextBox x:Name="tbSendReadyTime" Grid.Column="2" Margin="2" Height="30" Text="10" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Grid Grid.Row="5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
