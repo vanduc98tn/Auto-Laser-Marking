@@ -304,8 +304,8 @@
                                                 <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">NG Marked (PCS)</Label>
                                                 <Grid Grid.Row="0" Grid.Column="3" Margin="1">
                                                     <UniformGrid Columns="2" Margin="0">
-                                                        <Label x:Name="lbNgMarked" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
-                                                        <Label x:Name="lbNgMarkedPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
+                                                        <Label x:Name="lbNgMarked" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                        <Label x:Name="lbNgMarkedPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
                                                     </UniformGrid>
                                                 </Grid>
                                             </Grid>
@@ -314,12 +314,12 @@
                                                     <ColumnDefinition></ColumnDefinition>
                                                     <ColumnDefinition></ColumnDefinition>
                                                 </Grid.ColumnDefinitions>
-                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">NG New (PCS)</Label>
+                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">NG Marking (PCS)</Label>
                                                 <Grid Grid.Row="0" Grid.Column="3" Margin="0">
                                                     <Grid Grid.Row="0" Grid.Column="3" Margin="1">
                                                         <UniformGrid Columns="2" Margin="0">
-                                                            <Label x:Name="lbNgNew" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
-                                                            <Label x:Name="lbNgNewPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
+                                                            <Label x:Name="lbNgMarking" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                            <Label x:Name="lbNgMarkingPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
                                                         </UniformGrid>
                                                     </Grid>
                                                 </Grid>
@@ -329,10 +329,25 @@
                                                     <ColumnDefinition></ColumnDefinition>
                                                     <ColumnDefinition></ColumnDefinition>
                                                 </Grid.ColumnDefinitions>
+                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">OK Count (PCS)</Label>
+                                                <Grid Grid.Row="0" Grid.Column="3" Margin="0">
+                                                    <Grid Grid.Row="0" Grid.Column="3" Margin="1">
+                                                        <UniformGrid Columns="2" Margin="0">
+                                                            <Label x:Name="lbOKCountFpcb" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                            <Label x:Name="lbOKCountFpcbPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
+                                                        </UniformGrid>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                            <Grid Grid.Row="3">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
                                                 <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Total Count (PCS)</Label>
                                                 <Grid Grid.Row="0" Grid.Column="3" Margin="1">
                                                     <Grid Grid.Row="0" Grid.Column="3" Margin="0">
-                                                        <Label x:Name="lbTotalPCS" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                        <Label x:Name="lbTotalCountFpcb" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
                                                     </Grid>
                                                 </Grid>
                                             </Grid>
@@ -357,8 +372,8 @@
                                                 <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">NG Count (EA)</Label>
                                                 <Grid Grid.Row="0" Grid.Column="3" Margin="1">
                                                     <UniformGrid Columns="2" Margin="0">
-                                                        <Label x:Name="lbNgCount" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
-                                                        <Label x:Name="lbNgCountPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
+                                                        <Label x:Name="lbNgCount" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                        <Label x:Name="lbNgCountPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
                                                     </UniformGrid>
                                                 </Grid>
                                             </Grid>
@@ -371,8 +386,8 @@
                                                 <Grid Grid.Row="0" Grid.Column="3" Margin="0">
                                                     <Grid Grid.Row="0" Grid.Column="3" Margin="1">
                                                         <UniformGrid Columns="2" Margin="0">
-                                                            <Label x:Name="lbOkCount" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
-                                                            <Label x:Name="lbOkCountPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
+                                                            <Label x:Name="lbOkCount" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                            <Label x:Name="lbOkCountPer" Margin="1 0 0 0" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">100%</Label>
                                                         </UniformGrid>
                                                     </Grid>
                                                 </Grid>
@@ -398,7 +413,7 @@
                                                 <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">Total Count (EA)</Label>
                                                 <Grid Grid.Row="0" Grid.Column="3" Margin="1">
                                                     <Grid Grid.Row="0" Grid.Column="3" Margin="0">
-                                                        <Label x:Name="lbTotalCount" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                        <Label x:Name="lbTotalCount" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
                                                     </Grid>
                                                 </Grid>
                                             </Grid>
@@ -411,7 +426,7 @@
                                                 <Label Margin="1,1,1,1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.ColumnSpan="2">Qty Lot (EA)</Label>
                                                 <Grid Grid.Row="0" Grid.Column="2" Margin="1">
                                                     <Grid Grid.Row="0" Grid.Column="3" Margin="0">
-                                                        <Label x:Name="lbQty" Background="Black" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
+                                                        <Label x:Name="lbQty" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
                                                     </Grid>
                                                 </Grid>
                                             </Grid>

@@ -19,6 +19,7 @@ namespace Development
         public SettingDevice settingDevice;
         public SaveDevice selectDevice;
         public LotInData LotinData;
+        public FpcbData FpcbData;
         public MESSetting MESSettings;
         public string currentModel; // Machine Run Model
 
@@ -32,6 +33,7 @@ namespace Development
             this.settingDevice = new SettingDevice();
             this.selectDevice = SaveDevice.Mitsubishi_MC_Protocol_Binary_TCP;
             this.LotinData = new LotInData();
+            this.FpcbData = new FpcbData();
             this.MESSettings = new MESSetting();
             this.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
 
@@ -60,6 +62,10 @@ namespace Development
             if (_appSettings.LotinData == null)
             {
                 _appSettings.LotinData = new LotInData();
+            }
+            if (_appSettings.FpcbData == null)
+            {
+                _appSettings.FpcbData = new FpcbData();
             }
             if (_appSettings.MESSettings == null)
             {

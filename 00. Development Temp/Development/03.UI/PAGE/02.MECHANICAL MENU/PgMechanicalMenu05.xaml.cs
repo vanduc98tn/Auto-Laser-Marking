@@ -27,7 +27,8 @@ namespace Development
     public partial class PgMechanicalMenu05 : Page
     {
         private MyLogger logger = new MyLogger("PgMechanical05Menu");
-        private PatternSetting pattern = UiManager.currentModel.LaserModel.pattern;
+        private PatternSetting pattern = UiManager.appSetting.Pattern;
+        //private PatternSetting pattern = UiManager.currentModel.LaserModel.pattern;
         private SettingDevice settingDevice;
         private Brush EM_COLOR = Brushes.Red;
 

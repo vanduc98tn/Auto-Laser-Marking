@@ -21,7 +21,8 @@ namespace Development
     public partial class WndPatern : Window
     {
         private MyLogger logger = new MyLogger("WndPatern");
-        private PatternSetting pattern = UiManager.currentModel.LaserModel.pattern;
+        private PatternSetting pattern = UiManager.appSetting.Pattern;
+        //private PatternSetting pattern = UiManager.currentModel.LaserModel.pattern;
         private Boolean isConfirmYes = false;
 
         public WndPatern()

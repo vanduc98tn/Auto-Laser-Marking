@@ -16,12 +16,12 @@ namespace Development
 
         public int LotQty { get; set; }
         public int TotalCount { get; set; }
-
         public double Yield { get; set; }
         public int OKCount { get; set; }
         public int NGCount { get; set; }
         public double OKCountPer { get; set; }
         public double NGCountPer { get; set; }
+
         public LotInData()
         {
             this.WorkGroup = "ITM Group";

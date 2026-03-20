@@ -309,6 +309,7 @@
     <Compile Include="02.LIBRARY\02.Library ModelSetting\ModelSettings.cs" />
     <Compile Include="02.LIBRARY\02.Library ModelSetting\ModelStore.cs" />
     <Compile Include="301.Library Laser\LaserModel.cs" />
+    <Compile Include="02.LIBRARY\02.Library AppSetting\FpcbData.cs" />
     <Compile Include="Properties\Resources.ko.Designer.cs">
       <DependentUpon>Resources.ko.resx</DependentUpon>
       <AutoGen>True</AutoGen>
