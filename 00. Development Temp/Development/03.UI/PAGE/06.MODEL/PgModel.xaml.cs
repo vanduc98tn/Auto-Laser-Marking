@@ -56,6 +56,10 @@ namespace Development
                 ModelSettings modelDelete = null;
                 switch (this.SelectNumberModel)
                 {
+                    case 0:
+                        WndMessenger wnd1 = new WndMessenger();
+                        wnd1.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
+                        return;
                     case 1:
                         if (this.txbModel1.Text == "Model Null")
                         {
@@ -149,6 +153,15 @@ namespace Development
                 }
                 ModelStore.DeleteModel(modelDelete.modelName);
                 this.PgModel_Loaded(null, null);
+
+                UiManager.Instance.PLC.device.WriteDoubleWord(DeviceCode.R, 10600, SelectNumberModel);
+                Thread.Sleep(10);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 804, true);
+                Thread.Sleep(20);
+                UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 804, false);
+                logger.Create($"Delete Model {SelectNumberModel} ok!", LogLevel.Information);
+                WndMessenger wnd2 = new WndMessenger();
+                wnd2.MessengerShow($"Delete of Model {SelectNumberModel} ok!", Window.GetWindow(this));
             }
         }
 
@@ -163,6 +176,10 @@ namespace Development
                     ModelSettings loadedModel = null;
                     switch (this.SelectNumberModel)
                     {
+                        case 0:
+                            WndMessenger wnd1 = new WndMessenger();
+                            wnd1.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
+                            return;
                         case 1:
                             if (this.txbModel1.Text == "Model Null")
                                 return;
@@ -220,11 +237,20 @@ namespace Development
                         UiManager.ReplaceModel(loadedModel);
                         lblModelName.Content = loadedModel.modelName;
                         lblModelNo.Content = $"{loadedModel.indexModel:D2}";
+
+                        UiManager.Instance.PLC.device.WriteDoubleWord(DeviceCode.R, 10600, SelectNumberModel);
+                        Thread.Sleep(10);
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 802, true);
+                        Thread.Sleep(20);
+                        UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 802, false);
+                        logger.Create($"Load Model {SelectNumberModel} ok!", LogLevel.Information);
+                        WndMessenger wnd2 = new WndMessenger();
+                        wnd2.MessengerShow($"Load data from Model {SelectNumberModel} ok!", Window.GetWindow(this));
                     }
                     else
                     {
-                        WndMessenger wnd1 = new WndMessenger();
-                        wnd1.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
+                        WndMessenger wnd3 = new WndMessenger();
+                        wnd3.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
                     }
                 }
                 catch (Exception ex)
@@ -248,6 +274,10 @@ namespace Development
             // Save:
             switch (SelectNumberModel)
             {
+                case 0:
+                    WndMessenger wnd = new WndMessenger();
+                    wnd.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
+                    return;
                 case 1:
                     if (this.txbModel1.Text == "Model Null")
                     {
@@ -429,6 +459,16 @@ namespace Development
                     }
                     break;
             }
+
+            UiManager.Instance.PLC.device.WriteDoubleWord(DeviceCode.R, 10600, SelectNumberModel);
+            Thread.Sleep(10);
+            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 800, true);
+            Thread.Sleep(20);
+            UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 800, false);
+            logger.Create($"Save Model {SelectNumberModel} ok!", LogLevel.Information);
+            WndMessenger wnd1 = new WndMessenger();
+            wnd1.MessengerShow($"Save data to Model {SelectNumberModel} ok!", Window.GetWindow(this));
+
         }
 
         private void PgModel_Loaded(object sender, RoutedEventArgs e)
