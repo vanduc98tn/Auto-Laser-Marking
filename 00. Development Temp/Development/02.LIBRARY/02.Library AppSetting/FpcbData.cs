@@ -9,9 +9,11 @@ namespace Development
     internal class FpcbData
     {
         public int TotalCountFpcb { get; set; }
+        public int NGmes { get; set; }
         public int NGmarked { get; set; }
         public int NGmarking { get; set; }
         public int OKCount { get; set; }
+        public double NGmesPer { get; set; }
         public double NGmarkedPer { get; set; }
         public double NGmarkingPer { get; set; }
         public double OKCountPer { get; set; }
@@ -19,9 +21,11 @@ namespace Development
         public FpcbData()
         {
             this.TotalCountFpcb = 0;
+            this.NGmes = 0;
             this.NGmarked = 0;
             this.NGmarking = 0;
             this.OKCount = 0;
+            this.NGmesPer = 0;
             this.NGmarkedPer = 0;
             this.NGmarkingPer = 0;
             this.OKCountPer = 0;

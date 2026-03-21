@@ -98,7 +98,7 @@ namespace Development
             UpdateLogs($"Setting Port : {UiManager.appSetting.MESSettings.Port}");
             UpdateLogs($"Setting Equipment : {UiManager.appSetting.MESSettings.EquimentID}");
             UpdateLogs($"Setting Recipe : {UiManager.appSetting.MESSettings.Repice}");
-            UpdateLogs($"Setting Send ready time : {UiManager.appSetting.MESSettings.SendReadyTime}");
+            UpdateLogs($"Setting Send ready time : {UiManager.appSetting.MESSettings.SendReadyTime}ms");
 
             UpdateLogs($"Save Setting Complete !");
 

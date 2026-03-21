@@ -82,6 +82,7 @@ namespace Development
                 this.settingDevice.ScannerTCP = settingNew;
                 UpdateLogs($"Device Seting IP :{settingNew.Ip.ToString()}");
                 UpdateLogs($"Device Seting Port :{settingNew.Port}");
+                UpdateLogs($"Device Seting Timeout :{settingNew.Timeout}ms");
 
                 UpdateLogs($"Click Button Save to Complete");
 

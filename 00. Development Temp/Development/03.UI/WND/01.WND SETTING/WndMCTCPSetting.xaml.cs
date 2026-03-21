@@ -40,6 +40,7 @@ namespace Development
         {
             this.txtIp.Text = UiManager.appSetting.settingDevice.MC_TCP_Binary.Ip;
             this.txtPort.Text = UiManager.appSetting.settingDevice.MC_TCP_Binary.Port.ToString();
+            this.txtTimeout.Text = UiManager.appSetting.settingDevice.MC_TCP_Binary.Timeout.ToString();
         }
         private void BtnCancle_Click(object sender, RoutedEventArgs e)
         {
@@ -52,6 +53,7 @@ namespace Development
             {
                 this.McSetting.Ip = this.txtIp.Text;
                 this.McSetting.Port = ushort.Parse(this.txtPort.Text);
+                this.McSetting.Timeout = ushort.Parse(this.txtTimeout.Text);
                 this.Close();
             }
             catch (Exception ex)
@@ -67,6 +69,7 @@ namespace Development
               
                 this.txtIp.Text = this.McSetting.Ip.ToString();
                 this.txtPort.Text = this.McSetting.Port.ToString();
+                this.txtTimeout.Text = this.McSetting.Timeout.ToString();
 
                 this.ShowDialog();
             }

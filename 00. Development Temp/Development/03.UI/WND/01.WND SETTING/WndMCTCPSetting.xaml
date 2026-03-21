@@ -22,18 +22,21 @@
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
 
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                         <ColumnDefinition Width="2*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
+                    
                     <Label Margin="1" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" BorderBrush="Black" BorderThickness="1">IP</Label>
                     <Label Margin="1" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" BorderBrush="Black" BorderThickness="1">PORT</Label>
-
+                    <Label Margin="1" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" BorderBrush="Black" BorderThickness="1">TIMEOUT</Label>
 
                     <TextBox x:Name="txtIp" Margin="1" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" BorderBrush="Black" BorderThickness="1">127.0.0.1</TextBox>
                     <TextBox x:Name="txtPort" Margin="1" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" BorderBrush="Black" BorderThickness="1">6000</TextBox>
+                    <TextBox x:Name="txtTimeout" Margin="1" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" BorderBrush="Black" BorderThickness="1">300</TextBox>
 
                 </Grid>
 

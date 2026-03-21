@@ -20,7 +20,7 @@ namespace Development
             this.Repice = "recipe1234";
             this.AUTHORITY = "No AUTHORITY";
             this.ID = "No ID";
-            this.SendReadyTime = 10;
+            this.SendReadyTime = 10000;
         }
     }
 }

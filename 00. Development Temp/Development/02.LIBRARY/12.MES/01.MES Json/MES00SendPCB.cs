@@ -129,7 +129,7 @@ namespace Development
             {
                 try
                 {
-                    SEND_READY_TIME = UiManager.appSetting.MESSettings.SendReadyTime  * 1000;
+                    SEND_READY_TIME = UiManager.appSetting.MESSettings.SendReadyTime;
                     string equip = UiManager.appSetting.MESSettings.EquimentID.PadRight(9, ' ');
                     string msg = equip + "M001";
 

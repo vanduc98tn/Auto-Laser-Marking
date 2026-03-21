@@ -16,7 +16,7 @@ namespace Development
         public const String BANK_ID_PCB = "03";
 
         private const int CONNECT_TIMEOUT = 100;
-        private const int READ_TIMEOUT = 3000;
+        private int READ_TIMEOUT = 300;
 
         private static MyLogger logger = new MyLogger("ScannerCommTcp");
 
@@ -83,6 +83,7 @@ namespace Development
             {
                 this.ipAdress = TCP.Ip;
                 this.portNo = TCP.Port;
+                READ_TIMEOUT = TCP.Timeout;
             }
             catch (Exception ex)
             {
@@ -95,6 +96,7 @@ namespace Development
             {
                 this.ipAdress = _IpAdress;
                 this.portNo = _PortNo;
+                READ_TIMEOUT = 300;
             }
             catch (Exception ex)
             {
@@ -107,6 +109,7 @@ namespace Development
             {
                 this.ipAdress = "192.168.0.1";
                 this.portNo = 1000;
+                READ_TIMEOUT = 300;
             }
             catch (Exception ex)
             {

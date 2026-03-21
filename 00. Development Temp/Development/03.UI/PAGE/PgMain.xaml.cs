@@ -685,9 +685,10 @@ namespace Development
 
             //UPDATE DATA FPCB COUNT
             int Total = DataPCB.PRE_BIN_CODE.Length;
-            int NGmarked = BinCodeNG(DataPCB.PRE_BIN_CODE).Length - arrBlock.Length;
+            int NGmes = BinCodeNG(DataPCB.PRE_BIN_CODE).Length;
             int NGmaring = arrBlock.Length;
-            UpdateFPCB(Total, NGmarked, NGmaring);
+            int NGmarked = NGmes - NGmaring;
+            UpdateFPCB(Total, NGmes, NGmarked, NGmaring);
 
             if (blockon != "NG")
             {
@@ -1795,25 +1796,29 @@ namespace Development
                 this.lbNgCountPer.Content = lotInData.NGCountPer.ToString()+"%";
             });
         }
-        private void UpdateFPCB(int Total, int NGmarked, int NGmarking)
+        private void UpdateFPCB(int Total, int NGmes, int NGmarked, int NGmarking)
         {
             Dispatcher.Invoke(() =>
             {
 
+                FpcbData.NGmes = NGmes;
                 FpcbData.NGmarked = NGmarked;
                 FpcbData.NGmarking = NGmarking;
                 FpcbData.TotalCountFpcb = Total;
-                FpcbData.OKCount = FpcbData.TotalCountFpcb - FpcbData.NGmarked - FpcbData.NGmarking;
+                FpcbData.OKCount = FpcbData.TotalCountFpcb - FpcbData.NGmes;
 
+                FpcbData.NGmesPer = Math.Round((double)FpcbData.NGmes / FpcbData.TotalCountFpcb * 100, 1);
                 FpcbData.NGmarkedPer = Math.Round((double)FpcbData.NGmarked / FpcbData.TotalCountFpcb * 100, 1);
                 FpcbData.NGmarkingPer = Math.Round((double)FpcbData.NGmarking / FpcbData.TotalCountFpcb * 100, 1);
                 FpcbData.OKCountPer = Math.Round((double)FpcbData.OKCount / FpcbData.TotalCountFpcb * 100, 1);
 
+                this.lbNgMes.Content = FpcbData.NGmes.ToString();
                 this.lbNgMarked.Content = FpcbData.NGmarked.ToString();
                 this.lbNgMarking.Content = FpcbData.NGmarking.ToString();
                 this.lbOKCountFpcb.Content = FpcbData.OKCount.ToString();
                 this.lbTotalCountFpcb.Content = FpcbData.TotalCountFpcb.ToString();
 
+                this.lbNgMesPer.Content = FpcbData.NGmesPer.ToString() + "%";
                 this.lbNgMarkedPer.Content = FpcbData.NGmarkedPer.ToString() + "%";
                 this.lbNgMarkingPer.Content = FpcbData.NGmarkingPer.ToString() + "%";
                 this.lbOKCountFpcbPer.Content = FpcbData.OKCountPer.ToString() + "%";

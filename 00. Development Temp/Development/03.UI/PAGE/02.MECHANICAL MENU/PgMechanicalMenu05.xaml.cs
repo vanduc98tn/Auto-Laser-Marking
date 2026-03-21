@@ -205,7 +205,7 @@ namespace Development
                 UpdateLogs($"Device Seting Databis :{settingNew.dataBits.ToString()}");
                 UpdateLogs($"Device Seting Stopbit :{settingNew.stopBits.ToString()}");
                 UpdateLogs($"Device Seting Handshake :{settingNew.Handshake.ToString()}");
-                UpdateLogs($"Device Seting Timeout :{settingNew.timeout} ms");
+                UpdateLogs($"Device Seting Timeout :{settingNew.timeout}ms");
                 UpdateLogs($"Click Button Save to Complete");
 
                 UiManager.Instance.DisconnectLaserCOM();

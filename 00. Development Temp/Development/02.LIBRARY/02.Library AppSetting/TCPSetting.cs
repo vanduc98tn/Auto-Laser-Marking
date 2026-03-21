@@ -11,10 +11,12 @@ namespace Development
 
         public string Ip { get; set; }
         public int Port { get; set; }
+        public int Timeout { get; set; }
         public TCPSetting()
         {
             this.Ip = "127.0.0.1";
             this.Port = 6000;
+            this.Timeout = 300;
         }
     }
 }

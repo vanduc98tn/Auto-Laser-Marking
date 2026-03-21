@@ -234,8 +234,8 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
 
                                 </Grid.ColumnDefinitions>
-                                <Label Content="SEND READY TIME (S)" Style="{StaticResource SectionHeader}" Opacity="0.9" Margin="4" HorizontalContentAlignment="Left" Padding="20,0,0,0"/>
-                                <TextBox x:Name="tbSendReadyTime" Grid.Column="2" Margin="2" Height="30" Text="10" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                                <Label Content="SEND READY TIME" Style="{StaticResource SectionHeader}" Opacity="0.9" Margin="4" HorizontalContentAlignment="Left" Padding="20,0,0,0"/>
+                                <TextBox x:Name="tbSendReadyTime" Grid.Column="2" Margin="2" Height="30" Text="10000" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
                             <Grid Grid.Row="5">
                                 <Grid.ColumnDefinitions>
