@@ -301,7 +301,7 @@
                                                     <ColumnDefinition></ColumnDefinition>
                                                     <ColumnDefinition></ColumnDefinition>
                                                 </Grid.ColumnDefinitions>
-                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">NG MES (PCS)</Label>
+                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">MES NG (PCS)</Label>
                                                 <Grid Grid.Row="0" Grid.Column="3" Margin="1">
                                                     <UniformGrid Columns="2" Margin="0">
                                                         <Label x:Name="lbNgMes" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
@@ -314,7 +314,7 @@
                                                     <ColumnDefinition></ColumnDefinition>
                                                     <ColumnDefinition></ColumnDefinition>
                                                 </Grid.ColumnDefinitions>
-                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">NG SMT (PCS)</Label>
+                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">SMT NG (PCS)</Label>
                                                 <Grid Grid.Row="0" Grid.Column="3" Margin="1">
                                                     <UniformGrid Columns="2" Margin="0">
                                                         <Label x:Name="lbNgMarked" Margin="0 0 1 0" Background="Black" Foreground="White" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold">00000</Label>
@@ -327,7 +327,7 @@
                                                     <ColumnDefinition></ColumnDefinition>
                                                     <ColumnDefinition></ColumnDefinition>
                                                 </Grid.ColumnDefinitions>
-                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">NG WBD (PCS)</Label>
+                                                <Label Margin="1" FontWeight="Bold" Grid.Column="0" FontSize="13" Background="White" FontFamily="arial" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">WD NG (PCS)</Label>
                                                 <Grid Grid.Row="0" Grid.Column="3" Margin="0">
                                                     <Grid Grid.Row="0" Grid.Column="3" Margin="1">
                                                         <UniformGrid Columns="2" Margin="0">
