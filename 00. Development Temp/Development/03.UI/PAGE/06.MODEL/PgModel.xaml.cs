@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace Development
     public partial class PgModel : Page
     {
         private static MyLogger logger = new MyLogger("Page Model");
-        private int SelectNumberModel = 0;
+        private int SelectNumberModel = 1;
         public PgModel()
         {
             InitializeComponent();
@@ -146,7 +147,7 @@ namespace Development
                     wndMes0.MessengerShow($"Cannot find Model {modelDelete.modelName}!!!", Window.GetWindow(this));
                     return;
                 }
-                if (String.Equals(modelDelete.modelName, this.lblModelName.Content.ToString()))
+                if (String.Equals(this.SelectNumberModel.ToString("D2"), this.lblModelNo.Content.ToString()))
                 {
                     wndMes0.MessengerShow("You Cannot Delete Current Model !!!", Window.GetWindow(this));
                     return;
@@ -446,6 +447,8 @@ namespace Development
         {
             this.lblModelNo.Content = UiManager.appSetting.currentModelNo.ToString("D2");
             this.lblModelName.Content = UiManager.appSetting.currentModelName;
+            SelectModel();
+
             this.txbModel1.Text = "Model Null";
             this.txbModel2.Text = "Model Null";
             this.txbModel3.Text = "Model Null";
@@ -555,6 +558,77 @@ namespace Development
         private void SelectModel()
         {
             this.txtSelectModel.Text = SelectNumberModel.ToString();
+
+            Button[] buttons = {
+                                    btSelectModel01, btSelectModel02, btSelectModel03, btSelectModel04, btSelectModel05,
+                                    btSelectModel06, btSelectModel07, btSelectModel08, btSelectModel09, btSelectModel10
+                                };
+            var bg = (Brush)new BrushConverter().ConvertFromString("#333333");
+            var border = (Brush)new BrushConverter().ConvertFromString("#1ba1e2");
+            var fg = (Brush)new BrushConverter().ConvertFromString("#ffffff");
+            foreach (var btn in buttons)
+            {
+                btn.Background = bg;
+                btn.BorderBrush = border;
+                btn.Foreground = fg;
+            }
+
+            var bg1 = (Brush)new BrushConverter().ConvertFromString("#1ba1e2");
+            var border1 = (Brush)new BrushConverter().ConvertFromString("#1ba1e2");
+            var fg1 = (Brush)new BrushConverter().ConvertFromString("#ffffff");
+            switch (txtSelectModel.Text)
+            {
+                case "1":
+                    btSelectModel01.Background = bg1;
+                    btSelectModel01.BorderBrush = border1;
+                    btSelectModel01.Foreground = fg1;
+                    break;
+                case "2":
+                    btSelectModel02.Background = bg1;
+                    btSelectModel02.BorderBrush = border1;
+                    btSelectModel02.Foreground = fg1;
+                    break;
+                case "3":
+                    btSelectModel03.Background = bg1;
+                    btSelectModel03.BorderBrush = border1;
+                    btSelectModel03.Foreground = fg1;
+                    break;
+                case "4":
+                    btSelectModel04.Background = bg1;
+                    btSelectModel04.BorderBrush = border1;
+                    btSelectModel04.Foreground = fg1;
+                    break;
+                case "5":
+                    btSelectModel05.Background = bg1;
+                    btSelectModel05.BorderBrush = border1;
+                    btSelectModel05.Foreground = fg1;
+                    break;
+                case "6":
+                    btSelectModel06.Background = bg1;
+                    btSelectModel06.BorderBrush = border1;
+                    btSelectModel06.Foreground = fg1;
+                    break;
+                case "7":
+                    btSelectModel07.Background = bg1;
+                    btSelectModel07.BorderBrush = border1;
+                    btSelectModel07.Foreground = fg1;
+                    break;
+                case "8":
+                    btSelectModel08.Background = bg1;
+                    btSelectModel08.BorderBrush = border1;
+                    btSelectModel08.Foreground = fg1;
+                    break;
+                case "9":
+                    btSelectModel09.Background = bg1;
+                    btSelectModel09.BorderBrush = border1;
+                    btSelectModel09.Foreground = fg1;
+                    break;
+                case "10":
+                    btSelectModel10.Background = bg1;
+                    btSelectModel10.BorderBrush = border1;
+                    btSelectModel10.Foreground = fg1;
+                    break;
+            }
         }
     }
 }
