@@ -21,6 +21,7 @@ namespace Development
     /// </summary>
     public partial class PgSystemMenu01 : Page
     {
+        RUNMachine run = UiManager.appSetting.laserModel.run;
         public PgSystemMenu01()
         {
             InitializeComponent();
@@ -56,7 +57,7 @@ namespace Development
             else
             {
                 string[] arr = input.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray();
-                UiManager.appSetting.RUN.MES_EXCLUSION = arr;
+                run.MES_EXCLUSION = arr;
             }    
             
         }
@@ -68,31 +69,31 @@ namespace Development
         }
         private void BtOffScanner_Click(object sender, RoutedEventArgs e)
         {
-            if(UiManager.appSetting.RUN.MESOnline == false)
+            if(run.MESOnline == false)
             {
-                UiManager.appSetting.RUN.CheckScanner = false;
+                run.CheckScanner = false;
                 UpdateUI();
             }
            
         }
         private void BtOnScanner_Click(object sender, RoutedEventArgs e)
         {
-            if (UiManager.appSetting.RUN.MESOnline == false)
+            if (run.MESOnline == false)
             {
-                UiManager.appSetting.RUN.CheckScanner = true;
+                run.CheckScanner = true;
                 UpdateUI();
             }
             
         }
         private void BtMesOn_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.appSetting.RUN.MESOnline = true;
-            UiManager.appSetting.RUN.CheckScanner = true;
+            run.MESOnline = true;
+            run.CheckScanner = true;
             UpdateUI();
         }
         private void BtMesOff_Click(object sender, RoutedEventArgs e)
         {
-            UiManager.appSetting.RUN.MESOnline = false;
+            run.MESOnline = false;
             UpdateUI();
 
         }
@@ -108,7 +109,7 @@ namespace Development
         
         private void UpdateUI()
         {
-            if (UiManager.appSetting.RUN.MESOnline)
+            if (run.MESOnline)
             {
                 this.btMesOn.Background = Brushes.LightGreen;
                 this.btMesOff.Background = Brushes.LightGray;
@@ -118,7 +119,7 @@ namespace Development
                 this.btMesOn.Background = Brushes.LightGray;
                 this.btMesOff.Background = Brushes.LightCoral;
             }
-            if (UiManager.appSetting.RUN.CheckScanner)
+            if (run.CheckScanner)
             {
                 this.btOnScanner.Background = Brushes.LightGreen;
                 this.btOffScanner.Background = Brushes.LightGray;
@@ -129,7 +130,7 @@ namespace Development
                 this.btOffScanner.Background = Brushes.LightCoral;
             }
 
-            tbExclusion.Text = string.Join(";", UiManager.appSetting.RUN.MES_EXCLUSION);
+            tbExclusion.Text = string.Join(";", run.MES_EXCLUSION);
         }
         private bool IsValidFormat(string input)
         {

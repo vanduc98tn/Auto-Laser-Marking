@@ -358,7 +358,7 @@
                                 <DropShadowEffect ShadowDepth="7" Color="Black" Opacity="0.2" Direction="315"/>
                             </Image.Effect>
                         </Image>
-                        <TextBlock Text="{x:Static Language:Resources.PG_MN_Super_User_Menu}" VerticalAlignment="Center" Padding="20,0,0,0">
+                        <TextBlock Text="{x:Static Language:Resources.PG_MN_Assign_Menu}" VerticalAlignment="Center" Padding="20,0,0,0">
                             <TextBlock.Effect>
                                 <DropShadowEffect ShadowDepth="7" Color="Black" Opacity="0.2" Direction="315"/>
                             </TextBlock.Effect></TextBlock>

@@ -35,6 +35,7 @@ namespace Development
         private int SEND_READY_TIME = 10000;
         //
         protected bool isReceiver = false;
+        private bool isHeartRunning = false;
         protected string DataReceiver { get; set; }
         private Thread AutoRunThread;
 
@@ -118,46 +119,61 @@ namespace Development
         }
         private void InitializationAutoSend()
         {
-            this.AutoRunThread = new Thread(new ThreadStart(SendHeartM001));
+            if (isHeartRunning) return;
+
+            isHeartRunning = true;
+
+            this.AutoRunThread = new Thread(() =>
+            {
+                SendHeartM001().Wait();
+            });
+
             this.AutoRunThread.IsBackground = true;
             this.AutoRunThread.Start();
         }
-        private async void SendHeartM001()
+        private async Task SendHeartM001()
         {
-
-            while (mesClients != null && mesClients.Connected)
+            while (isHeartRunning)
             {
                 try
                 {
                     SEND_READY_TIME = UiManager.appSetting.MESSettings.SendReadyTime;
-                    string equip = UiManager.appSetting.MESSettings.EquimentID.PadRight(9, ' ');
-                    string msg = equip + "M001";
 
-                    byte[] txBuf = Encoding.ASCII.GetBytes(msg);
+                    if (mesClients != null && mesClients.Connected)
+                    {
+                        string equip = UiManager.appSetting.MESSettings.EquimentID.PadRight(9, ' ');
+                        string msg = equip + "M001";
 
-                    await SendToMes(txBuf);
+                        byte[] txBuf = Encoding.ASCII.GetBytes(msg);
 
-                    logger.Create($@"MES.SEND:" + ASCIIEncoding.ASCII.GetString(txBuf), LogLevel.Information);
-
+                        await SendToMes(txBuf);
+                        logger.Create("MES.SEND:" + msg, LogLevel.Information);
+                    }
                 }
                 catch (Exception ex)
                 {
                     logger.Create("Heartbeat error: " + ex.Message, LogLevel.Error);
                 }
 
-                Thread.Sleep(SEND_READY_TIME);
+                await Task.Delay(SEND_READY_TIME);
             }
         }
+
         public void Stop()
         {
             if (isRunning)
             {
                 isRunning = false;
+                isHeartRunning = false;
+
                 listener.Stop();
-                mesClients.Close();
-                mesClients = null;
-                //this.notifyEvenMES.NotifyToUI("Notify : Server Is Closed!!!");
-                //this.notifyEvenMES.NotifyMESConnect(false);
+
+                if (mesClients != null)
+                {
+                    mesClients.Close();
+                    mesClients = null;
+                }
+
                 this.isAccept = false;
             }
         }
@@ -187,10 +203,10 @@ namespace Development
                     string responseData = requestData;
                     string equip = UiManager.appSetting.LotinData.WorkGroup;
                     equip = equip.PadRight(9, ' ');
-                    if (!responseData.Contains(equip + "M001"))
+                    if (!responseData.Contains(equip + "M002") || !requestData.Contains(equip + "M001"))
                     {
                         this.DataReceiver = responseData;
-                        this.isReceiver = true;
+                        this.isReceiver = true; 
                     }
 
                     this.notifyEvenMES.NotifyMESResult($"MES RECEIVED :"+responseData);

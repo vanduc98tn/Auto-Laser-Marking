@@ -23,8 +23,9 @@ namespace Development
         public MESSetting MESSettings;
         public string currentModel; // Machine Run Model
 
-        public RUNMachine RUN;
-        public PatternSetting Pattern;
+        //public RUNMachine RUN;
+        //public PatternSetting Pattern;
+        public LaserModel laserModel;
         
         public ROIProperty RoiProperty;
         public ConnectionSettings connection;
@@ -35,10 +36,11 @@ namespace Development
             this.LotinData = new LotInData();
             //this.FpcbData = new FpcbData();
             this.MESSettings = new MESSetting();
-            this.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
 
-            this.RUN = new RUNMachine();
-            this.Pattern = new PatternSetting();
+            this.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
+            //this.RUN = new RUNMachine();
+            //this.Pattern = new PatternSetting();
+            laserModel = new LaserModel();
             
             this.RoiProperty = new ROIProperty();
             this.connection = new ConnectionSettings();
@@ -75,15 +77,19 @@ namespace Development
             {
                 _appSettings.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
             }
-            if (_appSettings.RUN == null)
+            //if (_appSettings.RUN == null)
+            //{
+            //    _appSettings.RUN = new RUNMachine();
+            //}
+            //if ( _appSettings.Pattern == null)
+            //{
+            //    _appSettings.Pattern = new PatternSetting();
+            //}
+            if (_appSettings.laserModel == null)
             {
-                _appSettings.RUN = new RUNMachine();
+                _appSettings.laserModel = new LaserModel();
             }
-            if ( _appSettings.Pattern == null)
-            {
-                _appSettings.Pattern = new PatternSetting();
-            }    
-            if(_appSettings.RoiProperty == null)
+            if (_appSettings.RoiProperty == null)
             {
                 _appSettings.RoiProperty = new ROIProperty();
             }

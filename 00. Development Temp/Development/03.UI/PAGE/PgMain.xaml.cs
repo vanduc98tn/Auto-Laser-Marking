@@ -52,7 +52,8 @@ namespace Development
         private bool isQR = false;
         private bool isVision = false;
 
-        private PatternSetting pattern = UiManager.appSetting.Pattern;
+        private PatternSetting pattern = UiManager.appSetting.laserModel.pattern;
+        private RUNMachine run = UiManager.appSetting.laserModel.run;
         private Brush MES_COLOR = Brushes.Red;
         private Brush VISION_COLOR = Brushes.Purple;
         private Brush BOTH_COLOR;
@@ -141,7 +142,7 @@ namespace Development
 
                     this.FpcbData = new FpcbData();
 
-                    if (UiManager.appSetting.RUN.CheckScanner)
+                    if (run.CheckScanner)
                     {
                         string QR = UiManager.Instance.scannerTCP.ReadQR();
                         //QR = "B0226007100039500172361";
@@ -157,7 +158,7 @@ namespace Development
 
                             this.DataPCB.BARCODE_PCB = QR;
 
-                            if (UiManager.appSetting.RUN.MESOnline)
+                            if (run.MESOnline)
                             {
                                 this.CheckMESWorkin();
                             }
@@ -255,7 +256,7 @@ namespace Development
                     addLog("--- Workout MES --- ");
                     UiManager.Instance.PLC.device.WriteBit(DeviceCode.M, 520, false);
                     this.addLog("Write Bit M520 = OFF");
-                    if (UiManager.appSetting.RUN.MESOnline)
+                    if (run.MESOnline)
                     {
 
                         this.CheckMESWorkout();
@@ -474,7 +475,7 @@ namespace Development
                 addLog("MES CHECK PCB WORKIN OK");
                 UpdateUIMES("MES CHECK PCB WORKIN OK", Brushes.LightGreen);
 
-                int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE, UiManager.appSetting.RUN.MES_EXCLUSION);
+                int[] workinNG = BinCodeNG(DataPCB.PRE_BIN_CODE, run.MES_EXCLUSION);
                 this.UpdateUIMESRESULT(workinNG);
 
                 this.isQR = true;
@@ -646,13 +647,13 @@ namespace Development
             string blockon = "NG";
             int[] arrBlock = {};
 
-            if (!UiManager.appSetting.RUN.CheckScanner || !UiManager.appSetting.RUN.MESOnline)
+            if (!run.CheckScanner || !run.MESOnline)
             {
                 arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE);
             }
             else
             {
-                arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE, UiManager.appSetting.RUN.MES_EXCLUSION);
+                arrBlock = BinCodeNG(DataPCB.PRE_BIN_CODE, run.MES_EXCLUSION);
             }    
                 
             
@@ -1449,7 +1450,7 @@ namespace Development
         }
         public void CheckConnectionMES(bool connected)
         {
-            if(UiManager.appSetting.RUN.MESOnline)
+            if(run.MESOnline)
             {
                 if (connected)
                 {
@@ -1659,7 +1660,7 @@ namespace Development
             }
             else
             {
-                if(UiManager.appSetting.RUN.MESOnline)
+                if(run.MESOnline)
                 {
                     
 

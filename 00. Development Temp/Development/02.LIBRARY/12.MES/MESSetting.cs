@@ -17,7 +17,7 @@ namespace Development
         {
            
             this.EquimentID = "AUTO1234";
-            this.Repice = "recipe1234";
+            this.Repice = "ITM";
             this.AUTHORITY = "No AUTHORITY";
             this.ID = "No ID";
             this.SendReadyTime = 10000;
