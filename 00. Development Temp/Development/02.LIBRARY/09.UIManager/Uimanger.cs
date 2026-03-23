@@ -427,7 +427,8 @@ namespace Development
                 if (model != null)
                 {
                     currentModel = model;
-                    appSetting.currentModel = model.modelName;
+                    appSetting.currentModelNo = model.indexModel;
+                    appSetting.currentModelName = model.modelName;
                     appSetting.laserModel = model.LaserModel;
                     appSetting.visionModel = model.VisionModel;
                     SaveAppSetting();

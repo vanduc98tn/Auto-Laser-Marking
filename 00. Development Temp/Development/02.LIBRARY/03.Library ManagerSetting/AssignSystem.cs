@@ -22,7 +22,7 @@ namespace Development
             this.NameMachine = "Auto Team";
             this.LoginMes = false;
             this.LoginApp = false;
-            this.AutoCheckUpdate = true;
+            this.AutoCheckUpdate = false;
             this.LockSettingplc = false;
             this.Language = "en";
             this.WriteLog = true;

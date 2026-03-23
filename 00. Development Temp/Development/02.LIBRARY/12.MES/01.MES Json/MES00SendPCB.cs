@@ -203,7 +203,10 @@ namespace Development
                     string responseData = requestData;
                     string equip = UiManager.appSetting.LotinData.WorkGroup;
                     equip = equip.PadRight(9, ' ');
-                    if (!responseData.Contains(equip + "M002") || !requestData.Contains(equip + "M001"))
+                    string first20 = responseData.Length >= 20 ? responseData.Substring(0, 20) : responseData;
+                    bool hasM001 = first20.Contains("M001");
+                    bool hasM002 = first20.Contains("M002");
+                    if ( !(hasM001 || hasM002) )
                     {
                         this.DataReceiver = responseData;
                         this.isReceiver = true; 

@@ -57,8 +57,8 @@ namespace Development
             updateROI();
             try
             {
-                string pathTplCh1 = String.Format(@"Images\{0}\CH1Template.png", UiManager.appSetting.currentModel);
-                string pathTplCh2 = String.Format(@"Images\{0}\CH2Template.png", UiManager.appSetting.currentModel);
+                string pathTplCh1 = String.Format(@"Images\{0}\CH1Template.png", UiManager.appSetting.currentModelName);
+                string pathTplCh2 = String.Format(@"Images\{0}\CH2Template.png", UiManager.appSetting.currentModelName);
                 tplCh1 = Cv2.ImRead(pathTplCh1, ImreadModes.Color);
                 tplCh2 = Cv2.ImRead(pathTplCh2, ImreadModes.Color);
             }
@@ -369,8 +369,8 @@ namespace Development
             List<bool> ret = new List<bool> { false, true };
             try
             {
-                string pathTplCh1 = String.Format(@"Images\{0}\CH1Template.png", UiManager.appSetting.currentModel);
-                string pathTplCh2 = String.Format(@"Images\{0}\CH2Template.png", UiManager.appSetting.currentModel);
+                string pathTplCh1 = String.Format(@"Images\{0}\CH1Template.png", UiManager.appSetting.currentModelName);
+                string pathTplCh2 = String.Format(@"Images\{0}\CH2Template.png", UiManager.appSetting.currentModelName);
                 if(Curchanel == Chanel.Ch1)
                 {
                     tplCh1 = Cv2.ImRead(pathTplCh1, ImreadModes.Color);

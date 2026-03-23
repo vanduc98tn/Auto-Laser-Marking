@@ -143,7 +143,6 @@ namespace Development
                 //pattern.offsetY = Convert.ToDouble(txtOffsetY.Text);
                 pattern.Use2Matrix = Convert.ToBoolean(cb2Matrix.IsChecked);
 
-                UiManager.SaveCurrentModelSettings();
                 UiManager.SaveAppSetting();
                 this.isConfirmYes = true;
                 this.Close();

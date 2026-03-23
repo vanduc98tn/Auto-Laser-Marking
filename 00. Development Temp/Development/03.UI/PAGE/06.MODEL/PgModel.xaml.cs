@@ -353,6 +353,81 @@ namespace Development
                         ModelStore.UpdateModelSettings(UiManager.currentModel.Appsetting());
                     }
                     break;
+                case 6:
+                    if (this.txbModel6.Text == "Model Null")
+                    {
+                        WndMessenger wnd2 = new WndMessenger();
+                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        return;
+                    }
+                    else
+                    {
+                        UiManager.currentModel.modelName = this.txbModel6.Text;
+                        UiManager.currentModel.indexModel = SelectNumberModel;
+                        UiManager.currentModel.updatedTime = DateTime.Now;
+                        ModelStore.UpdateModelSettings(UiManager.currentModel.Appsetting());
+                    }
+                    break;
+                case 7:
+                    if (this.txbModel7.Text == "Model Null")
+                    {
+                        WndMessenger wnd2 = new WndMessenger();
+                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        return;
+                    }
+                    else
+                    {
+                        UiManager.currentModel.modelName = this.txbModel7.Text;
+                        UiManager.currentModel.indexModel = SelectNumberModel;
+                        UiManager.currentModel.updatedTime = DateTime.Now;
+                        ModelStore.UpdateModelSettings(UiManager.currentModel.Appsetting());
+                    }
+                    break;
+                case 8:
+                    if (this.txbModel8.Text == "Model Null")
+                    {
+                        WndMessenger wnd2 = new WndMessenger();
+                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        return;
+                    }
+                    else
+                    {
+                        UiManager.currentModel.modelName = this.txbModel8.Text;
+                        UiManager.currentModel.indexModel = SelectNumberModel;
+                        UiManager.currentModel.updatedTime = DateTime.Now;
+                        ModelStore.UpdateModelSettings(UiManager.currentModel.Appsetting());
+                    }
+                    break;
+                case 9:
+                    if (this.txbModel9.Text == "Model Null")
+                    {
+                        WndMessenger wnd2 = new WndMessenger();
+                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        return;
+                    }
+                    else
+                    {
+                        UiManager.currentModel.modelName = this.txbModel9.Text;
+                        UiManager.currentModel.indexModel = SelectNumberModel;
+                        UiManager.currentModel.updatedTime = DateTime.Now;
+                        ModelStore.UpdateModelSettings(UiManager.currentModel.Appsetting());
+                    }
+                    break;
+                case 10:
+                    if (this.txbModel10.Text == "Model Null")
+                    {
+                        WndMessenger wnd2 = new WndMessenger();
+                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        return;
+                    }
+                    else
+                    {
+                        UiManager.currentModel.modelName = this.txbModel10.Text;
+                        UiManager.currentModel.indexModel = SelectNumberModel;
+                        UiManager.currentModel.updatedTime = DateTime.Now;
+                        ModelStore.UpdateModelSettings(UiManager.currentModel.Appsetting());
+                    }
+                    break;
 
             }
 
@@ -369,7 +444,8 @@ namespace Development
 
         private void PgModel_Loaded(object sender, RoutedEventArgs e)
         {
-            this.lblModelName.Content = UiManager.appSetting.currentModel;
+            this.lblModelNo.Content = UiManager.appSetting.currentModelNo.ToString("D2");
+            this.lblModelName.Content = UiManager.appSetting.currentModelName;
             this.txbModel1.Text = "Model Null";
             this.txbModel2.Text = "Model Null";
             this.txbModel3.Text = "Model Null";
@@ -381,13 +457,12 @@ namespace Development
             this.txbModel9.Text = "Model Null";
             this.txbModel10.Text = "Model Null";
 
-            ModelSettings currentModel = ModelStore.GetModelSettings(UiManager.appSetting.currentModel);
-            if(currentModel == null)
-            {
-                logger.Create("Cannot find current model settings: " + UiManager.appSetting.currentModel, LogLevel.Error);
-                return;
-            }
-            this.lblModelNo.Content = currentModel.indexModel.ToString("D2");
+            //ModelSettings currentModel = ModelStore.GetModelSettings(UiManager.appSetting.currentModelName);
+            //if(currentModel == null)
+            //{
+            //    logger.Create("Cannot find current model settings: " + UiManager.appSetting.currentModelName, LogLevel.Error);
+            //    return;
+            //}
 
             List<ModelInfo> modelInfoList = ModelStore.GetModelInfoList();
             for (int i = 0; i < modelInfoList.Count; i++)

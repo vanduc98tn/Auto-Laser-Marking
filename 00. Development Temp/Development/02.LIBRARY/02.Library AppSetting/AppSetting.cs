@@ -21,7 +21,8 @@ namespace Development
         public LotInData LotinData;
         //public FpcbData FpcbData;
         public MESSetting MESSettings;
-        public string currentModel; // Machine Run Model
+        public int currentModelNo; // Machine Run Model
+        public string currentModelName; // Machine Run Model
 
         //public RUNMachine RUN;
         //public PatternSetting Pattern;
@@ -37,7 +38,8 @@ namespace Development
             this.LotinData = new LotInData();
             //this.FpcbData = new FpcbData();
             this.MESSettings = new MESSetting();
-            this.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
+            this.currentModelNo = ModelSettings.DEFAULT_MODEL_NO;
+            this.currentModelName = ModelSettings.DEFAULT_MODEL_NAME;
 
             laserModel = new LaserModel();
 
@@ -74,9 +76,13 @@ namespace Development
             {
                 _appSettings.MESSettings = new MESSetting();
             }
-            if (_appSettings.currentModel == null)
+            if (_appSettings.currentModelNo == null)
             {
-                _appSettings.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
+                _appSettings.currentModelNo = ModelSettings.DEFAULT_MODEL_NO;
+            }
+            if (_appSettings.currentModelName == null)
+            {
+                _appSettings.currentModelName = ModelSettings.DEFAULT_MODEL_NAME;
             }
             if (_appSettings.laserModel == null)
             {

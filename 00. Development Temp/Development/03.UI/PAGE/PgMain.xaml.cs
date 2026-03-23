@@ -925,14 +925,8 @@ namespace Development
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                this.lblModelName.Content = UiManager.appSetting.currentModel;
-                ModelSettings currentModel = ModelStore.GetModelSettings(UiManager.appSetting.currentModel);
-                if (currentModel == null)
-                {
-                    logger.Create("Cannot find current model settings: " + UiManager.appSetting.currentModel, LogLevel.Error);
-                    return;
-                }
-                this.lblModelNo.Content = currentModel.indexModel.ToString("D2");
+                this.lblModelNo.Content = UiManager.appSetting.currentModelNo.ToString("D2");
+                this.lblModelName.Content = UiManager.appSetting.currentModelName;
             }), System.Windows.Threading.DispatcherPriority.Background);
         }
 
