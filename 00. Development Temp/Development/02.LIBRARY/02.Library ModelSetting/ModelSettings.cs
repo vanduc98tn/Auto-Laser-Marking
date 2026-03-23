@@ -12,15 +12,28 @@ namespace Development
         public DateTime updatedTime { get; set; }
         public String modelName { get; set; }
         public int indexModel { get; set; }
-        public VisionModel VisionModel { get; set; }
         public LaserModel LaserModel { get; set; }
+        public VisionModel VisionModel { get; set; }
         public ModelSettings()
         {
             this.indexModel = 0;
             this.updatedTime = DateTime.Now;
             this.modelName = DEFAULT_MODEL_NAME;
-            this.VisionModel = new VisionModel();
             this.LaserModel = new LaserModel();
+            this.VisionModel = new VisionModel();
+            
+        }
+        public ModelSettings Appsetting()
+        {
+            return new ModelSettings
+            {
+                indexModel = this.indexModel,
+                updatedTime = this.updatedTime,
+                modelName = string.Copy(this.modelName),
+                LaserModel = UiManager.appSetting.laserModel,
+                VisionModel = UiManager.appSetting.visionModel,
+
+            };
         }
         public ModelSettings Clone()
         {
@@ -29,8 +42,9 @@ namespace Development
                 indexModel = this.indexModel,
                 updatedTime = this.updatedTime,
                 modelName = string.Copy(this.modelName),
+                LaserModel = this.LaserModel.Clone(),
                 VisionModel = this.VisionModel.Clone(),
-                LaserModel = this.LaserModel.Clone()
+
             };
         }
         public Boolean HasSameModel(ModelSettings x)

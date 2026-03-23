@@ -52,8 +52,8 @@ namespace Development
         private bool isQR = false;
         private bool isVision = false;
 
-        private PatternSetting pattern = UiManager.appSetting.laserModel.pattern;
-        private RUNMachine run = UiManager.appSetting.laserModel.run;
+        private PatternSetting pattern;
+        private RUNMachine run;
         private Brush MES_COLOR = Brushes.Red;
         private Brush VISION_COLOR = Brushes.Purple;
         private Brush BOTH_COLOR;
@@ -1260,6 +1260,8 @@ namespace Development
         }
         private void PgMain_Loaded(object sender, RoutedEventArgs e)
         {
+            pattern = UiManager.appSetting.laserModel.pattern;
+            run = UiManager.appSetting.laserModel.run;
             // Event Write Log - Addlog()
             isWriteLog = UiManager.managerSetting.assignSystem.WriteLog;
             this.CbLog.IsChecked = isWriteLog;

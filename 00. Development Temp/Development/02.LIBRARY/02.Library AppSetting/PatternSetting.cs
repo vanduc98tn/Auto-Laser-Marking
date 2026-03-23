@@ -34,5 +34,23 @@ namespace Development
             this.positionNGs = new List<int>();
             this.PrgLaser = 1;
         }
+        public PatternSetting Clone()
+        {
+            return new PatternSetting()
+            {
+                CurrentPatern = this.CurrentPatern,
+                PitchX = this.PitchX,
+                PitchY = this.PitchY,
+                xRow = this.xRow,
+                yColumn = this.yColumn,
+                offsetX = this.offsetX,
+                offsetY = this.offsetY,
+                Use2Matrix = this.Use2Matrix,
+
+                positionNGs = this.positionNGs,
+                PrgLaser = this.PrgLaser,
+
+            };
+        }
     }
 }

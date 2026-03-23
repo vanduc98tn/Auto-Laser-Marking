@@ -20,5 +20,16 @@ namespace Development
             this.CheckScanner = false;
             this.MES_EXCLUSION = new string[] { };
         }
+        public RUNMachine Clone()
+        {
+            return new RUNMachine()
+            {
+                Patern = this.Patern,
+                MESOnline = this.MESOnline,
+                CheckScanner = this.CheckScanner,
+                MES_EXCLUSION = this.MES_EXCLUSION,
+
+            };
+        }
     }
 }

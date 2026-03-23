@@ -27,8 +27,7 @@ namespace Development
     public partial class PgMechanicalMenu05 : Page
     {
         private MyLogger logger = new MyLogger("PgMechanical05Menu");
-        private PatternSetting pattern = UiManager.appSetting.laserModel.pattern;
-        //private PatternSetting pattern = UiManager.currentModel.LaserModel.pattern;
+        private PatternSetting pattern;
         private SettingDevice settingDevice;
         private Brush EM_COLOR = Brushes.Red;
 
@@ -189,7 +188,6 @@ namespace Development
             UiManager.appSetting.settingDevice.COMLaser = settingDevice.COMLaser;
             this.SaveSelectPositon();
             UpdateLogs($"Save Setting Com Laser Complete");
-            UiManager.SaveCurrentModelSettings();
             UiManager.SaveAppSetting();
         }
         private void BtSetting_Click(object sender, RoutedEventArgs e)
@@ -230,6 +228,8 @@ namespace Development
             try
             {
                 settingDevice = UiManager.appSetting.settingDevice;
+                pattern = UiManager.appSetting.laserModel.pattern;
+
                 this.UpdateUiButton();
                 this.UpdateLaser();
 

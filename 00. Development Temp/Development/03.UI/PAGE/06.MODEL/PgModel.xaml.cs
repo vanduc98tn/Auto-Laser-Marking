@@ -281,183 +281,79 @@ namespace Development
                 case 1:
                     if (this.txbModel1.Text == "Model Null")
                     {
-                        this.txbModel1.Text = $"Model {SelectNumberModel}";
-                        var model = UiManager.currentModel.Clone();
-                        model.modelName = this.txbModel1.Text;
-                        model.indexModel = SelectNumberModel;
-                        model.updatedTime = DateTime.Now;
-                        ModelStore.UpdateModelSettings(model);
+                        WndMessenger wnd2 = new WndMessenger();
+                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        return;
                     }
                     else
                     {
-                        UiManager.currentModel.updatedTime = DateTime.Now;
                         UiManager.currentModel.modelName = this.txbModel1.Text;
                         UiManager.currentModel.indexModel = SelectNumberModel;
-                        ModelStore.UpdateModelSettings(UiManager.currentModel);
+                        UiManager.currentModel.updatedTime = DateTime.Now;
+                        ModelStore.UpdateModelSettings(UiManager.currentModel.Appsetting());
                     }
                     break;
                 case 2:
                     if (this.txbModel2.Text == "Model Null")
                     {
-                        this.txbModel2.Text = $"Model {SelectNumberModel}";
-                        var model = UiManager.currentModel.Clone();
-                        model.modelName = this.txbModel2.Text;
-                        model.indexModel = SelectNumberModel;
-                        model.updatedTime = DateTime.Now;
-                        ModelStore.UpdateModelSettings(model);
+                        WndMessenger wnd2 = new WndMessenger();
+                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        return;
                     }
                     else
                     {
-                        UiManager.currentModel.updatedTime = DateTime.Now;
                         UiManager.currentModel.modelName = this.txbModel2.Text;
                         UiManager.currentModel.indexModel = SelectNumberModel;
-                        ModelStore.UpdateModelSettings(UiManager.currentModel);
+                        UiManager.currentModel.updatedTime = DateTime.Now;
+                        ModelStore.UpdateModelSettings(UiManager.currentModel.Appsetting());
                     }
                     break;
                 case 3:
                     if (this.txbModel3.Text == "Model Null")
                     {
-                        this.txbModel3.Text = $"Model {SelectNumberModel}";
-                        var model = UiManager.currentModel.Clone();
-                        model.modelName = this.txbModel3.Text;
-                        model.indexModel = SelectNumberModel;
-                        model.updatedTime = DateTime.Now;
-                        ModelStore.UpdateModelSettings(model);
+                        WndMessenger wnd2 = new WndMessenger();
+                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        return;
                     }
                     else
                     {
-                        UiManager.currentModel.updatedTime = DateTime.Now;
                         UiManager.currentModel.modelName = this.txbModel3.Text;
                         UiManager.currentModel.indexModel = SelectNumberModel;
-                        ModelStore.UpdateModelSettings(UiManager.currentModel);
+                        UiManager.currentModel.updatedTime = DateTime.Now;
+                        ModelStore.UpdateModelSettings(UiManager.currentModel.Appsetting());
                     }
                     break;
                 case 4:
                     if (this.txbModel4.Text == "Model Null")
                     {
-                        this.txbModel4.Text = $"Model {SelectNumberModel}";
-                        var model = UiManager.currentModel.Clone();
-                        model.modelName = this.txbModel4.Text;
-                        model.indexModel = SelectNumberModel;
-                        model.updatedTime = DateTime.Now;
-                        ModelStore.UpdateModelSettings(model);
+                        WndMessenger wnd2 = new WndMessenger();
+                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        return;
                     }
                     else
                     {
-                        UiManager.currentModel.updatedTime = DateTime.Now;
                         UiManager.currentModel.modelName = this.txbModel4.Text;
                         UiManager.currentModel.indexModel = SelectNumberModel;
-                        ModelStore.UpdateModelSettings(UiManager.currentModel);
+                        UiManager.currentModel.updatedTime = DateTime.Now;
+                        ModelStore.UpdateModelSettings(UiManager.currentModel.Appsetting());
                     }
                     break;
                 case 5:
                     if (this.txbModel5.Text == "Model Null")
                     {
-                        this.txbModel5.Text = $"Model {SelectNumberModel}";
-                        var model = UiManager.currentModel.Clone();
-                        model.modelName = this.txbModel5.Text;
-                        model.indexModel = SelectNumberModel;
-                        model.updatedTime = DateTime.Now;
-                        ModelStore.UpdateModelSettings(model);
+                        WndMessenger wnd2 = new WndMessenger();
+                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        return;
                     }
                     else
                     {
-                        UiManager.currentModel.updatedTime = DateTime.Now;
                         UiManager.currentModel.modelName = this.txbModel5.Text;
                         UiManager.currentModel.indexModel = SelectNumberModel;
-                        ModelStore.UpdateModelSettings(UiManager.currentModel);
-                    }
-                    break;
-                case 6:
-                    if (this.txbModel6.Text == "Model Null")
-                    {
-                        this.txbModel6.Text = $"Model {SelectNumberModel}";
-                        var model = UiManager.currentModel.Clone();
-                        model.modelName = this.txbModel6.Text;
-                        model.indexModel = SelectNumberModel;
-                        model.updatedTime = DateTime.Now;
-                        ModelStore.UpdateModelSettings(model);
-                    }
-                    else
-                    {
                         UiManager.currentModel.updatedTime = DateTime.Now;
-                        UiManager.currentModel.modelName = this.txbModel6.Text;
-                        UiManager.currentModel.indexModel = SelectNumberModel;
-                        ModelStore.UpdateModelSettings(UiManager.currentModel);
+                        ModelStore.UpdateModelSettings(UiManager.currentModel.Appsetting());
                     }
                     break;
-                case 7:
-                    if (this.txbModel7.Text == "Model Null")
-                    {
-                        this.txbModel7.Text = $"Model {SelectNumberModel}";
-                        var model = UiManager.currentModel.Clone();
-                        model.modelName = this.txbModel7.Text;
-                        model.indexModel = SelectNumberModel;
-                        model.updatedTime = DateTime.Now;
-                        ModelStore.UpdateModelSettings(model);
-                    }
-                    else
-                    {
-                        UiManager.currentModel.updatedTime = DateTime.Now;
-                        UiManager.currentModel.modelName = this.txbModel7.Text;
-                        UiManager.currentModel.indexModel = SelectNumberModel;
-                        ModelStore.UpdateModelSettings(UiManager.currentModel);
-                    }
-                    break;
-                case 8:
-                    if (this.txbModel8.Text == "Model Null")
-                    {
-                        this.txbModel8.Text = $"Model {SelectNumberModel}";
-                        var model = UiManager.currentModel.Clone();
-                        model.modelName = this.txbModel8.Text;
-                        model.indexModel = SelectNumberModel;
-                        model.updatedTime = DateTime.Now;
-                        ModelStore.UpdateModelSettings(model);
-                    }
-                    else
-                    {
-                        UiManager.currentModel.updatedTime = DateTime.Now;
-                        UiManager.currentModel.modelName = this.txbModel8.Text;
-                        UiManager.currentModel.indexModel = SelectNumberModel;
-                        ModelStore.UpdateModelSettings(UiManager.currentModel);
-                    }
-                    break;
-                case 9:
-                    if (this.txbModel9.Text == "Model Null")
-                    {
-                        this.txbModel9.Text = $"Model {SelectNumberModel}";
-                        var model = UiManager.currentModel.Clone();
-                        model.modelName = this.txbModel9.Text;
-                        model.indexModel = SelectNumberModel;
-                        model.updatedTime = DateTime.Now;
-                        ModelStore.UpdateModelSettings(model);
-                    }
-                    else
-                    {
-                        UiManager.currentModel.updatedTime = DateTime.Now;
-                        UiManager.currentModel.modelName = this.txbModel9.Text;
-                        UiManager.currentModel.indexModel = SelectNumberModel;
-                        ModelStore.UpdateModelSettings(UiManager.currentModel);
-                    }
-                    break;
-                case 10:
-                    if (this.txbModel10.Text == "Model Null")
-                    {
-                        this.txbModel10.Text = $"Model {SelectNumberModel}";
-                        var model = UiManager.currentModel.Clone();
-                        model.modelName = this.txbModel10.Text;
-                        model.indexModel = SelectNumberModel;
-                        model.updatedTime = DateTime.Now;
-                        ModelStore.UpdateModelSettings(model);
-                    }
-                    else
-                    {
-                        UiManager.currentModel.updatedTime = DateTime.Now;
-                        UiManager.currentModel.modelName = this.txbModel10.Text;
-                        UiManager.currentModel.indexModel = SelectNumberModel;
-                        ModelStore.UpdateModelSettings(UiManager.currentModel);
-                    }
-                    break;
+
             }
 
             UiManager.Instance.PLC.device.WriteDoubleWord(DeviceCode.R, 10600, SelectNumberModel);

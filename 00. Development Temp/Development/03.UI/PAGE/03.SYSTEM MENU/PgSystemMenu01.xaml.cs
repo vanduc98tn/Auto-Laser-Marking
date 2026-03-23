@@ -21,7 +21,7 @@ namespace Development
     /// </summary>
     public partial class PgSystemMenu01 : Page
     {
-        RUNMachine run = UiManager.appSetting.laserModel.run;
+        RUNMachine run;
         public PgSystemMenu01()
         {
             InitializeComponent();
@@ -104,6 +104,8 @@ namespace Development
         }
         private void PgSystemMenu01_Loaded(object sender, RoutedEventArgs e)
         {
+            run = UiManager.appSetting.laserModel.run;
+
             UpdateUI();
         }
         

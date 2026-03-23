@@ -29,6 +29,7 @@ namespace Development
         
         public ROIProperty RoiProperty;
         public ConnectionSettings connection;
+        public VisionModel visionModel;
         public AppSetting()
         {
             this.settingDevice = new SettingDevice();
@@ -36,14 +37,14 @@ namespace Development
             this.LotinData = new LotInData();
             //this.FpcbData = new FpcbData();
             this.MESSettings = new MESSetting();
-
             this.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
-            //this.RUN = new RUNMachine();
-            //this.Pattern = new PatternSetting();
+
             laserModel = new LaserModel();
-            
-            this.RoiProperty = new ROIProperty();
+
             this.connection = new ConnectionSettings();
+            this.RoiProperty = new ROIProperty();
+            this.visionModel = new VisionModel();
+
         }
         public string TOJSON()
         {
@@ -77,26 +78,23 @@ namespace Development
             {
                 _appSettings.currentModel = ModelSettings.DEFAULT_MODEL_NAME;
             }
-            //if (_appSettings.RUN == null)
-            //{
-            //    _appSettings.RUN = new RUNMachine();
-            //}
-            //if ( _appSettings.Pattern == null)
-            //{
-            //    _appSettings.Pattern = new PatternSetting();
-            //}
             if (_appSettings.laserModel == null)
             {
                 _appSettings.laserModel = new LaserModel();
+            }
+            if (_appSettings.connection == null)
+            {
+                _appSettings.connection = new ConnectionSettings();
             }
             if (_appSettings.RoiProperty == null)
             {
                 _appSettings.RoiProperty = new ROIProperty();
             }
-            if(_appSettings.connection == null)
+            if (_appSettings.visionModel == null)
             {
-                _appSettings.connection = new ConnectionSettings();
+                _appSettings.visionModel = new VisionModel();
             }
+
             return _appSettings;
         }
     }

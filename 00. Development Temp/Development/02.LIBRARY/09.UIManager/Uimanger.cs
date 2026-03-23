@@ -428,6 +428,8 @@ namespace Development
                 {
                     currentModel = model;
                     appSetting.currentModel = model.modelName;
+                    appSetting.laserModel = model.LaserModel;
+                    appSetting.visionModel = model.VisionModel;
                     SaveAppSetting();
                 }
             }
