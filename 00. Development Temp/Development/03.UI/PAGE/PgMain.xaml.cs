@@ -1726,7 +1726,7 @@ namespace Development
         private void LotOut()
         {
             lotInData = UiManager.appSetting.LotinData;
-            //FpcbData = UiManager.appSetting.FpcbData;
+            this.FpcbData = new FpcbData();
 
             lotInData.OKCount = 0;
             lotInData.NGCount = 0;
@@ -1738,10 +1738,12 @@ namespace Development
             lotInData.DeviceId = "";
             lotInData.LotId = "";
 
+            FpcbData.NGmes = 0;
             FpcbData.NGmarked = 0;
             FpcbData.NGmarking = 0;
-            FpcbData.OKCount = 0;
             FpcbData.TotalCountFpcb = 0;
+            FpcbData.OKCount = 0;
+            FpcbData.NGmesPer = 0;
             FpcbData.NGmarkedPer = 0;
             FpcbData.NGmarkingPer = 0;
             FpcbData.OKCountPer = 0;
@@ -1757,11 +1759,13 @@ namespace Development
             this.lbOkCountPer.Content = lotInData.OKCountPer.ToString() + "%";
             this.lbNgCountPer.Content = lotInData.NGCountPer.ToString() + "%";
 
+            this.lbNgMes.Content = FpcbData.NGmes.ToString();
             this.lbNgMarked.Content = FpcbData.NGmarked.ToString();
             this.lbNgMarking.Content = FpcbData.NGmarking.ToString();
             this.lbOKCountFpcb.Content = FpcbData.OKCount.ToString();
             this.lbTotalCountFpcb.Content = FpcbData.TotalCountFpcb.ToString();
 
+            this.lbNgMesPer.Content = FpcbData.NGmesPer.ToString() + "%";
             this.lbNgMarkedPer.Content = FpcbData.NGmarkedPer.ToString() + "%";
             this.lbNgMarkingPer.Content = FpcbData.NGmarkingPer.ToString() + "%";
             this.lbOKCountFpcbPer.Content = FpcbData.OKCountPer.ToString() + "%";

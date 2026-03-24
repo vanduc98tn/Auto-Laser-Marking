@@ -206,7 +206,8 @@ namespace Development
                     string first20 = responseData.Length >= 20 ? responseData.Substring(0, 20) : responseData;
                     bool hasM001 = first20.Contains("M001");
                     bool hasM002 = first20.Contains("M002");
-                    if ( !(hasM001 || hasM002) )
+                    bool hasREADYOK = first20.Contains("READYOK");
+                    if ( !(hasM001 || hasM002) || hasREADYOK)
                     {
                         this.DataReceiver = responseData;
                         this.isReceiver = true; 
