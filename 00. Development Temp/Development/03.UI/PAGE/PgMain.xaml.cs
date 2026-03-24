@@ -1752,6 +1752,8 @@ namespace Development
             UiManager.appSetting.LotinData = lotInData;
             //UiManager.appSetting.FpcbData = FpcbData;
             UiManager.SaveAppSetting();
+
+            UpdateUIMES("CONFIG LOT OUT OK", Brushes.Yellow);
         }
         private void UpdateOK_NG(int OK, int NG)
         {
