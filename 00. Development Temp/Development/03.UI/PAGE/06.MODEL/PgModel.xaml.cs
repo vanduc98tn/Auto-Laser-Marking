@@ -457,6 +457,7 @@ namespace Development
         {
             this.lblModelNo.Content = UiManager.appSetting.currentModelNo.ToString("D2");
             this.lblModelName.Content = UiManager.appSetting.currentModelName;
+            this.SelectNumberModel = UiManager.appSetting.currentModelNo;
             SelectModel();
 
             this.txbModel1.Text = "Model Null";

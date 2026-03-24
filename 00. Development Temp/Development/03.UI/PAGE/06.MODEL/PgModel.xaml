@@ -135,104 +135,104 @@
                             </Label.Effect>
                         </Label>
                     </Border>
-                    <Grid Grid.Row="1" Margin=" 0 0 0 0" Visibility="Visible">
+                    <Grid Grid.Row="1" Margin="5 0 0 0" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btSelectModel01" Margin="2">Model 01</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel1" Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel1" Margin="20 0 20 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="2" Margin=" 0 0 0 0" Visibility="Visible">
+                    <Grid Grid.Row="2" Margin="5 0 0 0" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btSelectModel02" Margin="2">Model 02</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel2"   Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel2" Margin="20 0 20 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="3" Margin=" 0 0 0 0" Visibility="Visible">
+                    <Grid Grid.Row="3" Margin="5 0 0 0" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btSelectModel03" Margin="2">Model 03</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel3"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel3" Margin="20 0 20 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="4" Margin=" 0 0 0 0" Visibility="Visible">
+                    <Grid Grid.Row="4" Margin="5 0 0 0" Visibility="Visible">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btSelectModel04" Margin="2">Model 04</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel4"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel4" Margin="20 0 20 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="5" Margin=" 0 0 0 0" Visibility="Hidden">
+                    <Grid Grid.Row="5" Margin="5 0 0 0" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btSelectModel05" Margin="2">Model 05</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel5"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel5" Margin="20 0 20 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="6" Margin=" 0 0 0 0" Visibility="Hidden">
+                    <Grid Grid.Row="6" Margin="5 0 0 0" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btSelectModel06" Margin="2">Model 06</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel6"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel6" Margin="20 0 20 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="7" Margin=" 0 0 0 0" Visibility="Hidden">
+                    <Grid Grid.Row="7" Margin="5 0 0 0" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btSelectModel07" Margin="2">Model 07</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel7"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel7" Margin="20 0 20 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="8" Margin=" 0 0 0 0" Visibility="Hidden">
+                    <Grid Grid.Row="8" Margin="5 0 0 0" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btSelectModel08" Margin="2">Model 08</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel8"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel8" Margin="20 0 20 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="9" Margin=" 0 0 0 0" Visibility="Hidden">
+                    <Grid Grid.Row="9" Margin="5 0 0 0" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btSelectModel09" Margin="2">Model 09</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel9"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel9" Margin="20 0 20 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="10" Margin=" 0 0 0 0" Visibility="Hidden">
+                    <Grid Grid.Row="10" Margin="5 0 0 0" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btSelectModel10" Margin="2">Model 10</Button>
                         <Border Margin="0,5,5,5" Grid.Column="1" Background="White" BorderBrush="#444444" BorderThickness="2" CornerRadius="10,10,10,10" Grid.Row="0" >
-                            <TextBox Name="txbModel10"  Width="600" Grid.Row="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
+                            <TextBox Name="txbModel10" Margin="20 0 20 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#333333" BorderThickness="0" Text="Model Null" FontFamily="Bahnschrift SemiBold Condensed" FontSize="24"></TextBox>
                         </Border>
                     </Grid>
 
@@ -306,7 +306,7 @@
 
 
 
-                    <Border Grid.Row="2" Background="{StaticResource HeaderBackground}" Margin="5,5,5,5" CornerRadius="8">
+                    <!--<Border Grid.Row="2" Background="{StaticResource HeaderBackground}" Margin="5,5,5,5" CornerRadius="8">
                         <Label Grid.Column="0" Content="COPY MODEL DATA" Foreground="White" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="10,-5,0,0">
                             <Label.Effect>
                                 <DropShadowEffect BlurRadius="5" Opacity="0.2" ShadowDepth="2"/>
@@ -358,7 +358,7 @@
                         <Label  Grid.Column="2" Margin="2,2,2,2" Content="No. Copy to"></Label>
                         <TextBox x:Name="TbxModelPaste"  Grid.Column="3" Margin="10" Text="0"></TextBox>
                         <Button x:Name="BtnCopyData" Grid.Column="4" Margin="10">Copy Data</Button>
-                    </Grid>
+                    </Grid>-->
                 </Grid>
             </Grid>
         </Grid>
