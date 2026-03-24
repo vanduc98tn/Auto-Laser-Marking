@@ -49,22 +49,29 @@ namespace Development
 
         private void BtnDeleteModel_Click(object sender, RoutedEventArgs e)
         {
-            WndComfirm wnd = new WndComfirm();
-            if (wnd.DoComfirmYesNo($"Do you want to Delete Model {SelectNumberModel}\n\r" +
-                                    $"Sẽ xoá toàn bộ dữ liệu Model {SelectNumberModel}, dữ liệu hiện tại của máy đang chạy không ảnh hưởng"))
+            WndComfirm wndcf = new WndComfirm();
+            WndMessenger wndms = new WndMessenger();
+
+            UiManager.Instance.PLC.device.ReadBit(DeviceCode.M, 21, out bool IL);
+            if (!IL)
             {
-                WndMessenger wndMes0 = new WndMessenger();
+                wndms.MessengerShow($"PLC Interlock, cannot delete Model {SelectNumberModel}!!!", Window.GetWindow(this));
+                return;
+            } 
+
+            if (wndcf.DoComfirmYesNo($"Do you want to Delete Model {SelectNumberModel}\n\r" +
+                                     $"Sẽ xoá toàn bộ dữ liệu Model {SelectNumberModel}, dữ liệu hiện tại của máy đang chạy không ảnh hưởng"))
+            {
                 ModelSettings modelDelete = null;
                 switch (this.SelectNumberModel)
                 {
                     case 0:
-                        WndMessenger wnd1 = new WndMessenger();
-                        wnd1.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
+                        wndms.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
                         return;
                     case 1:
                         if (this.txbModel1.Text == "Model Null")
                         {
-                            wndMes0.MessengerShow("Model Null!!!", Window.GetWindow(this));
+                            wndms.MessengerShow("Model Null!!!", Window.GetWindow(this));
                             return;
                         }
                         modelDelete = ModelStore.GetModelSettings(this.txbModel1.Text);
@@ -72,7 +79,7 @@ namespace Development
                     case 2:
                         if (this.txbModel2.Text == "Model Null")
                         {
-                            wndMes0.MessengerShow("Model Null!!!", Window.GetWindow(this));
+                            wndms.MessengerShow("Model Null!!!", Window.GetWindow(this));
                             return;
                         }
                         modelDelete = ModelStore.GetModelSettings(this.txbModel2.Text);
@@ -80,7 +87,7 @@ namespace Development
                     case 3:
                         if (this.txbModel3.Text == "Model Null")
                         {
-                            wndMes0.MessengerShow("Model Null!!!", Window.GetWindow(this));
+                            wndms.MessengerShow("Model Null!!!", Window.GetWindow(this));
                             return;
                         }
                         modelDelete = ModelStore.GetModelSettings(this.txbModel3.Text);
@@ -88,7 +95,7 @@ namespace Development
                     case 4:
                         if (this.txbModel4.Text == "Model Null")
                         {
-                            wndMes0.MessengerShow("Model Null!!!", Window.GetWindow(this));
+                            wndms.MessengerShow("Model Null!!!", Window.GetWindow(this));
                             return;
                         }
                         modelDelete = ModelStore.GetModelSettings(this.txbModel4.Text);
@@ -96,7 +103,7 @@ namespace Development
                     case 5:
                         if (this.txbModel5.Text == "Model Null")
                         {
-                            wndMes0.MessengerShow("Model Null!!!", Window.GetWindow(this));
+                            wndms.MessengerShow("Model Null!!!", Window.GetWindow(this));
                             return;
                         }
                         modelDelete = ModelStore.GetModelSettings(this.txbModel5.Text);
@@ -104,7 +111,7 @@ namespace Development
                     case 6:
                         if (this.txbModel6.Text == "Model Null")
                         {
-                            wndMes0.MessengerShow("Model Null!!!", Window.GetWindow(this));
+                            wndms.MessengerShow("Model Null!!!", Window.GetWindow(this));
                             return;
                         }
                         modelDelete = ModelStore.GetModelSettings(this.txbModel6.Text);
@@ -112,7 +119,7 @@ namespace Development
                     case 7:
                         if (this.txbModel7.Text == "Model Null")
                         {
-                            wndMes0.MessengerShow("Model Null!!!", Window.GetWindow(this));
+                            wndms.MessengerShow("Model Null!!!", Window.GetWindow(this));
                             return;
                         }
                         modelDelete = ModelStore.GetModelSettings(this.txbModel7.Text);
@@ -120,7 +127,7 @@ namespace Development
                     case 8:
                         if (this.txbModel8.Text == "Model Null")
                         {
-                            wndMes0.MessengerShow("Model Null!!!", Window.GetWindow(this));
+                            wndms.MessengerShow("Model Null!!!", Window.GetWindow(this));
                             return;
                         }
                         modelDelete = ModelStore.GetModelSettings(this.txbModel8.Text);
@@ -128,7 +135,7 @@ namespace Development
                     case 9:
                         if (this.txbModel9.Text == "Model Null")
                         {
-                            wndMes0.MessengerShow("Model Null!!!", Window.GetWindow(this));
+                            wndms.MessengerShow("Model Null!!!", Window.GetWindow(this));
                             return;
                         }
                         modelDelete = ModelStore.GetModelSettings(this.txbModel9.Text);
@@ -136,7 +143,7 @@ namespace Development
                     case 10:
                         if (this.txbModel10.Text == "Model Null")
                         {
-                            wndMes0.MessengerShow("Model Null!!!", Window.GetWindow(this));
+                            wndms.MessengerShow("Model Null!!!", Window.GetWindow(this));
                             return;
                         }
                         modelDelete = ModelStore.GetModelSettings(this.txbModel10.Text);
@@ -144,12 +151,12 @@ namespace Development
                 }
                 if (modelDelete == null)
                 {
-                    wndMes0.MessengerShow($"Cannot find Model {modelDelete.modelName}!!!", Window.GetWindow(this));
+                    wndms.MessengerShow($"Cannot find Model {modelDelete.modelName}!!!", Window.GetWindow(this));
                     return;
                 }
                 if (String.Equals(this.SelectNumberModel.ToString("D2"), this.lblModelNo.Content.ToString()))
                 {
-                    wndMes0.MessengerShow("You Cannot Delete Current Model !!!", Window.GetWindow(this));
+                    wndms.MessengerShow("You Cannot Delete Current Model !!!", Window.GetWindow(this));
                     return;
                 }
                 ModelStore.DeleteModel(modelDelete.modelName);
@@ -161,15 +168,23 @@ namespace Development
                 Thread.Sleep(20);
                 UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 804, false);
                 logger.Create($"Delete Model {SelectNumberModel} ok!", LogLevel.Information);
-                WndMessenger wnd2 = new WndMessenger();
-                wnd2.MessengerShow($"Delete of Model {SelectNumberModel} ok!", Window.GetWindow(this));
+                wndms.MessengerShow($"Delete of Model {SelectNumberModel} ok!", Window.GetWindow(this));
             }
         }
 
         private void BtLoadModel_Click(object sender, RoutedEventArgs e)
         {
-            WndComfirm wnd = new WndComfirm();
-            if (wnd.DoComfirmYesNo($"Do you want to Load Model {SelectNumberModel}\n\r" +
+            WndComfirm wndcf = new WndComfirm();
+            WndMessenger wndms = new WndMessenger();
+
+            UiManager.Instance.PLC.device.ReadBit(DeviceCode.M, 21, out bool IL);
+            if (!IL)
+            {
+                wndms.MessengerShow($"PLC Interlock, cannot load Model {SelectNumberModel}!!!", Window.GetWindow(this));
+                return;
+            }
+
+            if (wndcf.DoComfirmYesNo($"Do you want to Load Model {SelectNumberModel}\n\r" +
                                     $"Sẽ ghi đè toàn bộ dữ liệu Model {SelectNumberModel} vào dữ liệu hiện tại của máy đang chạy"))
             {
                 try
@@ -178,8 +193,7 @@ namespace Development
                     switch (this.SelectNumberModel)
                     {
                         case 0:
-                            WndMessenger wnd1 = new WndMessenger();
-                            wnd1.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
+                            wndms.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
                             return;
                         case 1:
                             if (this.txbModel1.Text == "Model Null")
@@ -245,13 +259,11 @@ namespace Development
                         Thread.Sleep(20);
                         UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 802, false);
                         logger.Create($"Load Model {SelectNumberModel} ok!", LogLevel.Information);
-                        WndMessenger wnd2 = new WndMessenger();
-                        wnd2.MessengerShow($"Load data from Model {SelectNumberModel} ok!", Window.GetWindow(this));
+                        wndms.MessengerShow($"Load data from Model {SelectNumberModel} ok!", Window.GetWindow(this));
                     }
                     else
                     {
-                        WndMessenger wnd3 = new WndMessenger();
-                        wnd3.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
+                        wndms.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
                     }
                 }
                 catch (Exception ex)
@@ -263,8 +275,17 @@ namespace Development
 
         private void BtSaveModel_Click(object sender, RoutedEventArgs e)
         {
-            WndComfirm wnd = new WndComfirm();
-            if (wnd.DoComfirmYesNo($"Do you want to Save Model {SelectNumberModel}\n\r" +
+            WndComfirm wndcf = new WndComfirm();
+            WndMessenger wndms = new WndMessenger();
+
+            //UiManager.Instance.PLC.device.ReadBit(DeviceCode.M, 21, out bool IL);
+            //if (!IL)
+            //{
+            //    wndms.MessengerShow($"PLC Interlock, cannot save Model {SelectNumberModel}!!!", Window.GetWindow(this));
+            //    return;
+            //}
+
+            if (wndcf.DoComfirmYesNo($"Do you want to Save Model {SelectNumberModel}\n\r" +
                                     $"Sẽ ghi đè toàn bộ dữ liệu hiện tại của máy đang chạy vào Model {SelectNumberModel}"))
             {
                 this.SaveModel();
@@ -272,18 +293,17 @@ namespace Development
         }
         private void SaveModel()
         {
+            WndMessenger wndms = new WndMessenger();
             // Save:
             switch (SelectNumberModel)
             {
                 case 0:
-                    WndMessenger wnd = new WndMessenger();
-                    wnd.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
+                    wndms.MessengerShow("Please Choose Model !!!", Window.GetWindow(this));
                     return;
                 case 1:
                     if (this.txbModel1.Text == "Model Null")
                     {
-                        WndMessenger wnd2 = new WndMessenger();
-                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        wndms.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
                         return;
                     }
                     else
@@ -297,8 +317,7 @@ namespace Development
                 case 2:
                     if (this.txbModel2.Text == "Model Null")
                     {
-                        WndMessenger wnd2 = new WndMessenger();
-                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        wndms.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
                         return;
                     }
                     else
@@ -312,8 +331,7 @@ namespace Development
                 case 3:
                     if (this.txbModel3.Text == "Model Null")
                     {
-                        WndMessenger wnd2 = new WndMessenger();
-                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        wndms.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
                         return;
                     }
                     else
@@ -327,8 +345,7 @@ namespace Development
                 case 4:
                     if (this.txbModel4.Text == "Model Null")
                     {
-                        WndMessenger wnd2 = new WndMessenger();
-                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        wndms.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
                         return;
                     }
                     else
@@ -342,8 +359,7 @@ namespace Development
                 case 5:
                     if (this.txbModel5.Text == "Model Null")
                     {
-                        WndMessenger wnd2 = new WndMessenger();
-                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        wndms.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
                         return;
                     }
                     else
@@ -357,8 +373,7 @@ namespace Development
                 case 6:
                     if (this.txbModel6.Text == "Model Null")
                     {
-                        WndMessenger wnd2 = new WndMessenger();
-                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        wndms.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
                         return;
                     }
                     else
@@ -372,8 +387,7 @@ namespace Development
                 case 7:
                     if (this.txbModel7.Text == "Model Null")
                     {
-                        WndMessenger wnd2 = new WndMessenger();
-                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        wndms.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
                         return;
                     }
                     else
@@ -387,8 +401,7 @@ namespace Development
                 case 8:
                     if (this.txbModel8.Text == "Model Null")
                     {
-                        WndMessenger wnd2 = new WndMessenger();
-                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        wndms.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
                         return;
                     }
                     else
@@ -402,8 +415,7 @@ namespace Development
                 case 9:
                     if (this.txbModel9.Text == "Model Null")
                     {
-                        WndMessenger wnd2 = new WndMessenger();
-                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        wndms.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
                         return;
                     }
                     else
@@ -417,8 +429,7 @@ namespace Development
                 case 10:
                     if (this.txbModel10.Text == "Model Null")
                     {
-                        WndMessenger wnd2 = new WndMessenger();
-                        wnd2.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
+                        wndms.MessengerShow("Please input Model name !!!", Window.GetWindow(this));
                         return;
                     }
                     else
@@ -438,8 +449,7 @@ namespace Development
             Thread.Sleep(20);
             UiManager.Instance.PLC.device.WriteBit(DeviceCode.L, 800, false);
             logger.Create($"Save Model {SelectNumberModel} ok!", LogLevel.Information);
-            WndMessenger wnd1 = new WndMessenger();
-            wnd1.MessengerShow($"Save data to Model {SelectNumberModel} ok!", Window.GetWindow(this));
+            wndms.MessengerShow($"Save data to Model {SelectNumberModel} ok!", Window.GetWindow(this));
 
         }
 
